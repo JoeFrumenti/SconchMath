@@ -27,6 +27,9 @@
     <None Include="..\..\include\Shaders\shader.fs" />
     <None Include="..\..\include\Shaders\shader.vs" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\Shaders\shader.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
