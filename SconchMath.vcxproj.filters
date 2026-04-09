@@ -26,13 +26,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="shader.h">
-      <Filter>Source Files\shaders</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="shader.vs">
-      <Filter>Source Files\shaders</Filter>
+    <None Include="..\..\include\Shaders\shader.vs">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -1,25 +1,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <Shaders/shader.h>
 
-const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"layout (location = 1) in vec3 aColor;\n"
-
-"out vec3 ourColor;\n"
-"void main()\n"
-"{\n"
-" gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"ourColor = aColor;\n"
-"}\0";
-
-const char* fragmentShaderSource = "#version 330 core\n"
-"in vec3 ourColor;\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-" FragColor = vec4(ourColor,1.0);\n"
-"}\0";
+float offset = 0;
 
 float vertices[] = {
 	// positions // colors
@@ -29,8 +13,7 @@ float vertices[] = {
 };
 
 unsigned int indices[] = { // note that we start from 0!
-0, 1, 4, // first triangle
-3, 2, 4 // second triangle
+0, 1, 2, // first triangle
 };
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -79,52 +62,7 @@ int main()
 	
 
 	//~~~~~~~~~~SHADERS~~~~~~~~~~~~~~~~~~~~
-	
-	//vertex
-	unsigned int vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-
-	//check compilation
-	int success;
-	char infoLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" <<
-			infoLog << std::endl;
-	}
-	else
-		std::cout << "Vertex shader compiled successfully!" << std::endl;
-
-	//fragment
-	unsigned int fragmentShader;
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-
-	//check compilation
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" <<
-			infoLog << std::endl;
-	}
-	else
-		std::cout << "Fragment shader compiled successfully!" << std::endl;
-
-	//shader program
-	unsigned int shaderProgram;
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-	glUseProgram(shaderProgram); 
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
+	Shader ourShader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
 
 	//~~~~~~~~~~~~~~~~~~~~Buffer in vertex things~~~~~~~~~~~~~~~~~~~~~~~~
 	unsigned int VAO;
@@ -166,15 +104,11 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		
 		glBindVertexArray(VAO);
-
-		float timeValue = glfwGetTime();
-		float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
-		int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-		glUseProgram(shaderProgram);
-		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-
+		ourShader.setFloat("xOffset", offset);
+		
+		ourShader.use();
+		
 
 		glDrawArrays(GL_TRIANGLES, 0,3);
 		glBindVertexArray(0);
