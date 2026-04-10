@@ -11,7 +11,6 @@
 #include <Shaders/shader.h>
 #include <OpenGL/gameObject.cpp>
 #include <OpenGL/glManager.cpp>
-#include <OpenGL/texManager.cpp>
 
 #include <iostream>
 
@@ -32,12 +31,11 @@ int main()
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
 	GameObject* cube = new GameObject();
-    TexManager* tm = new TexManager();
+    
 
     // load and create textures 
     // -------------------------
-    tm->addTexture("C:/Users/joefr/source/include/Textures/container.jpg", "container", GL_RGB);
-    tm->addTexture("C:/Users/joefr/source/include/Textures/awesomeface.png", "face", GL_RGBA);
+   
 
 
     // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
@@ -61,11 +59,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // also clear the depth buffer now!
 
         // bind textures on corresponding texture units
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, tm->getTexture("container"));
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, tm->getTexture("face"));
-
+        
         // activate shader
         ourShader.use();
 

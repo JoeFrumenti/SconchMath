@@ -3,16 +3,19 @@
 #include <iostream>
 
 #include <primitive.cpp>
+#include <OpenGL/texManager.cpp>
 
 class GameObject {
 private:
 
     unsigned int VBO, VAO;
     std::vector<float> vertices;
+    TexManager* tm;
 
 
 public:
     GameObject() {
+        tm = new TexManager();
         primitive* pm = new primitive();
         vertices = pm->getCube();
         glGenVertexArrays(1, &VAO);
@@ -22,7 +25,7 @@ public:
 
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertices.size(), vertices.data(), GL_STATIC_DRAW);
-        std::cout << "cleaned!";
+        std::cout << "cleanered!";
 
         // position attribute
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
@@ -30,6 +33,16 @@ public:
         // texture coord attribute
         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(1);
+
+        tm->addTexture("C:/Users/joefr/source/include/Textures/container.jpg", "container", GL_RGB);
+        tm->addTexture("C:/Users/joefr/source/include/Textures/awesomeface.png", "face", GL_RGBA);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, tm->getTexture("container"));
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, tm->getTexture("face"));
+
+
+
     }
 
     void clear() {
@@ -42,6 +55,14 @@ public:
 
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
+    }
+
+    void bindTextures() {
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, tm->getTexture("container"));
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, tm->getTexture("face"));
+
     }
 
 };
