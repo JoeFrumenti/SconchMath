@@ -26,21 +26,16 @@ const unsigned int SCR_HEIGHT = 600;
 int main()
 {
     GLFWwindow* window = configGL();
-
     // build and compile our shader zprogram
     // ------------------------------------
     Shader ourShader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
-
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
 	GameObject* cube = new GameObject();
-
     TexManager* tm = new TexManager();
 
-
-    // load and create a texture 
+    // load and create textures 
     // -------------------------
-    
     tm->addTexture("C:/Users/joefr/source/include/Textures/container.jpg", "container", GL_RGB);
     tm->addTexture("C:/Users/joefr/source/include/Textures/awesomeface.png", "face", GL_RGBA);
 
