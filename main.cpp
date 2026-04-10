@@ -40,10 +40,8 @@ int main()
 
     // load and create a texture 
     // -------------------------
-    unsigned int texture1, texture2;
-
+    
     tm->addTexture("C:/Users/joefr/source/include/Textures/container.jpg", "container", GL_RGB);
-
     tm->addTexture("C:/Users/joefr/source/include/Textures/awesomeface.png", "face", GL_RGBA);
 
 
