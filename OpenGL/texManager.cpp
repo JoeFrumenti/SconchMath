@@ -1,12 +1,6 @@
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include <Textures/stb_image.h>
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#include <Shaders/shader.h>
 
 #include <iostream>
 #include <map>
@@ -33,7 +27,7 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         // load image, create texture and generate mipmaps
         int width, height, nrChannels;
-        stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
+        stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded textures on the y-axis.
         unsigned char* data = stbi_load(path, &width, &height, &nrChannels, 0);
         if (data)
         {
