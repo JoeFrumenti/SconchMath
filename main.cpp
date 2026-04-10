@@ -9,6 +9,9 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <Shaders/shader.h>
+#include <OpenGL/gameObject.cpp>
+#include <OpenGL/glManager.cpp>
+#include <OpenGL/texManager.cpp>
 
 #include <iostream>
 
@@ -28,9 +31,6 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-#ifdef __APPLE__
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif
 
     // glfw window creation
     // --------------------
