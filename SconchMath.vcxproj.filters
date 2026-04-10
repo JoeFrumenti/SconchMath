@@ -27,9 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,8 +45,11 @@
     <ClCompile Include="BoxCollider.cpp">
       <Filter>Source Files\Entities\Attributes</Filter>
     </ClCompile>
-    <ClCompile Include="cube.cpp">
+    <ClCompile Include="primitive.cpp">
       <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

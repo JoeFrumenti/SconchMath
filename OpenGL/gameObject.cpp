@@ -1,58 +1,20 @@
 #include <glad/glad.h>
 #include <vector>
-
+#include <primitive.cpp>
 
 class GameObject {
 private:
 
     unsigned int VBO, VAO;
     std::vector<float> vertices;
+    primitive* cube;
 
 public:
     GameObject() {
-        vertices = {
-                -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-                 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-                 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-                 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-                -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-                -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+        cube = new primitive("cube");
 
-                -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-                 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-                 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-                 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-                -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-                -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        vertices = cube->getVertices();
 
-                -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-                -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-                -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-                -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-                -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-                -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-                 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-                 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-                 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-                 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-                 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-                 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-                -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-                 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-                 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-                 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-                -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-                -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-                -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-                 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-                 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-                 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-                -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-                -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-        };
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
 
