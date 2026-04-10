@@ -1,13 +1,18 @@
 #include <string>
 #include <vector>
+#include <iostream>
 class primitive {
 private:
-	std::vector<float> vertices;
 
 public:
-	primitive(std::string type) {
-		if (type.compare("cube")) {
-            vertices = {
+    std::vector<float> vertices;
+    primitive() {
+
+    }
+
+
+    std::vector<float> getCube() {
+        std::vector<float> vertices = {
                 -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
                  0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
                  0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
@@ -49,13 +54,12 @@ public:
                  0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
                 -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
                 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-            };
-		}
-	}
-
-    std::vector<float> getVertices() {
+        };
         return vertices;
-    }
+
+
+    };
+
 
 
 };
