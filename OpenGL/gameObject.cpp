@@ -29,27 +29,14 @@ private:
 
 public:
     GameObject(Shader* shade) {
-        trans = new transform();
-        tm = new TexManager();
+
         primitive* pm = new primitive();
         vertices = pm->getCube();
+        trans = new transform(vertices);
+
+        tm = new TexManager();
         ourShader = shade;
 
-        glGenVertexArrays(1, &VAO);
-        glGenBuffers(1, &VBO);
-
-        glBindVertexArray(VAO);
-
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertices.size(), vertices.data(), GL_STATIC_DRAW);
-
-        // position attribute
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-        glEnableVertexAttribArray(0);
-
-        // texture coord attribute
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-        glEnableVertexAttribArray(1);
 
         tm->addTexture("C:/Users/joefr/source/include/Textures/container.jpg", "container", GL_RGB);
         tm->addTexture("C:/Users/joefr/source/include/Textures/awesomeface.png", "face", GL_RGBA);
@@ -81,11 +68,8 @@ public:
         trans->spinAround();
         // retrieve the matrix uniform locations
         unsigned int modelLoc = glGetUniformLocation(ourShader->ID, "model");
-        // pass them to the shaders (3 different ways)
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(trans->getTrans()));
-        
-
-        glBindVertexArray(VAO);
+        glBindVertexArray(trans->getVertexArray());
         glDrawArrays(GL_TRIANGLES, 0, 36);
     }
 
