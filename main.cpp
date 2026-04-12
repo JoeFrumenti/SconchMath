@@ -23,9 +23,7 @@ const unsigned int SCR_HEIGHT = 600;
 int main()
 {
     GLFWwindow* window = configGL();
-    cout << "starting main!" << endl;;
     ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
-    cout << "initialized ourShader!" << endl;
    
 	GameObject* cube = new GameObject(ourShader);
     camera* cam = new camera(ourShader);

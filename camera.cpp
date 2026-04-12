@@ -29,7 +29,6 @@ public:
 
 	void setup() {
 
-		std::cout << "running setup!";
 
 		ourShader->use();
 		ourShader->setInt("texture1", 0);
