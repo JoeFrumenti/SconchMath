@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="primitive.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />

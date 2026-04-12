@@ -1,24 +1,20 @@
-
+#include <iostream>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <Textures/stb_image.h>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include <Shaders/shader.h>
+
 #include <OpenGL/gameObject.cpp>
-#include <OpenGL/glManager.cpp>
-
 #include <camera.cpp>
-
-#include <iostream>
+using namespace std;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 GLFWwindow* configGL();
+
+Shader* ourShader;
+
 
 // settings
 const unsigned int SCR_WIDTH = 800;
@@ -27,7 +23,15 @@ const unsigned int SCR_HEIGHT = 600;
 int main()
 {
     GLFWwindow* window = configGL();
-	GameObject* cube = new GameObject();
+    cout << "starting main!" << endl;;
+    ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
+    cout << "initialized ourShader!" << endl;
+   
+	GameObject* cube = new GameObject(ourShader);
+    camera* cam = new camera(ourShader);
+
+    cam->setup();
+
     
     while (!glfwWindowShouldClose(window))
     {
