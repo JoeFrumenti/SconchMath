@@ -27,6 +27,7 @@
     <ClCompile Include="OpenGL\glManager.cpp" />
     <ClCompile Include="OpenGL\texManager.cpp" />
     <ClCompile Include="texture.cpp" />
+    <ClCompile Include="transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.fs" />

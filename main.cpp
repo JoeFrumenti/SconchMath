@@ -12,6 +12,8 @@
 #include <OpenGL/gameObject.cpp>
 #include <OpenGL/glManager.cpp>
 
+#include <camera.cpp>
+
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -25,56 +27,21 @@ const unsigned int SCR_HEIGHT = 600;
 int main()
 {
     GLFWwindow* window = configGL();
-    // build and compile our shader zprogram
-    // ------------------------------------
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    // ------------------------------------------------------------------
 	GameObject* cube = new GameObject();
     
-
-    // load and create textures 
-    // -------------------------
-   
-
-
-    // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
-    // -------------------------------------------------------------------------------------------
-    
-
-
-    // render loop
-    // -----------
     while (!glfwWindowShouldClose(window))
     {
-        // input
-        // -----
         processInput(window);
 
-        // render
-        // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // also clear the depth buffer now!
-
-        // bind textures on corresponding texture units
-        
-        // activate shader
-        
-
-        // create transformations
-        
-
-        // render box
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
         cube->render();
 
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-    cube->clear();
 
-    // glfw: terminate, clearing all previously allocated GLFW resources.
-    // ------------------------------------------------------------------
+    cube->clear();
     glfwTerminate();
     return 0;
 }
