@@ -54,5 +54,11 @@ public:
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, getTexture(b));
     }
+
+    void activateTexture(std::string a) {
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, getTexture(a));
+    }
 };
 

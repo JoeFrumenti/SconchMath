@@ -41,8 +41,16 @@ public:
     }
 
     void spinAround() {
-       // model = glm::rotate(model, /*(float)glfwGetTime()*/ .1f, velocity);
+       model = glm::rotate(model, /*(float)glfwGetTime()*/ .1f, velocity);
 
+    }
+
+    void scale(glm::vec3 newScale) {
+        model = glm::scale(model, newScale);
+    }
+
+    void translate(glm::vec3 newScale) {
+        model = glm::translate(model, newScale);
     }
 
     void screenBounce() {

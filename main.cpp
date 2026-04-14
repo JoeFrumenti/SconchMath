@@ -26,7 +26,11 @@ int main()
     GLFWwindow* window = configGL();
     ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
    
-	GameObject* cube = new GameObject(ourShader,"cube");
+	GameObject* cube = new GameObject(ourShader,"cube", "C:/Users/joefr/source/include/Textures/awesomeface.png", GL_RGBA);
+    GameObject* bg = new GameObject(ourShader, "square", "C:/Users/joefr/source/include/Textures/container.jpg", GL_RGB);
+
+    bg->fitScreen();
+
     camera* cam = new camera(ourShader, SCR_WIDTH, SCR_HEIGHT);
 
     cam->setup();
@@ -39,10 +43,9 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
-        cube->screenBounce();
+        bg->render();
 
-        cube->spin();
-        
+        cube->screenBounce();
         cube->render();
 
         glfwSwapBuffers(window);

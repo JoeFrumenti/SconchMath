@@ -20,25 +20,26 @@ private:
     TexManager* tm;
     Shader* ourShader;
     transform* trans;
+    std::string texPath;
 
 
 
 
 public:
-    GameObject(Shader* shade, std::string type) {
+    GameObject(Shader* shade, std::string type, const char* texturePath, GLenum format) {
 
         primitive* pm = new primitive();
         vertices = pm->getPrimitive(type);
         trans = new transform(vertices);
 
+        texPath = texturePath;
+
         tm = new TexManager();
         ourShader = shade;
 
 
-        tm->addTexture("C:/Users/joefr/source/include/Textures/container.jpg", "container", GL_RGB);
-        tm->addTexture("C:/Users/joefr/source/include/Textures/awesomeface.png", "face", GL_RGBA);
-        tm->activateDoubleTexture("container", "face");
-
+        tm->addTexture(texturePath, texPath, format);
+        
 
 
 
@@ -57,8 +58,16 @@ public:
         glDeleteBuffers(1, &VBO);*/
     }
 
+    void fitScreen() {
+        int scale = 2;
+        trans->translate(glm::vec3(0.0f, 0.0f, -2.0f));
+        trans->scale(glm::vec3(9.0f * scale,16.0f * scale,0.0f));
+    }
 
     void render() {
+
+        tm->activateTexture(texPath);
+
         // retrieve the matrix uniform locations
         unsigned int modelLoc = glGetUniformLocation(ourShader->ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(trans->getTrans()));
