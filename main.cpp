@@ -26,7 +26,7 @@ int main()
     GLFWwindow* window = configGL();
     ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
    
-	GameObject* cube = new GameObject(ourShader);
+	GameObject* cube = new GameObject(ourShader,"cube");
     camera* cam = new camera(ourShader, SCR_WIDTH, SCR_HEIGHT);
 
     cam->setup();
@@ -34,7 +34,7 @@ int main()
     
     while (!glfwWindowShouldClose(window))
     {
-        //processInput(window);
+        processInput(window);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 

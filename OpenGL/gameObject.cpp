@@ -25,10 +25,10 @@ private:
 
 
 public:
-    GameObject(Shader* shade) {
+    GameObject(Shader* shade, std::string type) {
 
         primitive* pm = new primitive();
-        vertices = pm->getCube();
+        vertices = pm->getPrimitive(type);
         trans = new transform(vertices);
 
         tm = new TexManager();
