@@ -18,7 +18,7 @@ private:
 public:
     transform(std::vector<float> verts) {
         model = glm::mat4(1.0f);
-        velocity = glm::vec3(0.05f, 0.1f, 0.0f);
+        velocity = glm::vec3(0.1f, 0.1f, 0.0f);
         pos = glm::vec3(.0f, .0f, 0.0f);
 
         vertices = verts;
@@ -54,9 +54,9 @@ public:
     }
 
     void screenBounce() {
-        float scale = 0.72f;
+        float scale = 0.68f;
         float boundsX = 8.8f * scale;
-        float boundsY = 16.0f * scale;
+        float boundsY = 16.7f * scale;
 
         pos += velocity;
 
@@ -69,6 +69,7 @@ public:
         model = glm::mat4(1.0f);
         model = glm::translate(model, pos);
         model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.4f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.43f, 1.43f, 1.43f));
         
     }
 
