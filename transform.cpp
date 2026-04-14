@@ -68,7 +68,7 @@ public:
         // rebuild from scratch every frame
         model = glm::mat4(1.0f);
         model = glm::translate(model, pos);
-        model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.4f, 1.0f, 0.0f));
+        model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
         model = glm::scale(model, glm::vec3(1.43f, 1.43f, 1.43f));
         
     }

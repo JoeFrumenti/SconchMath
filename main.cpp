@@ -27,7 +27,7 @@ int main()
     ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
    
 	GameObject* cube = new GameObject(ourShader,"cube", "C:/Users/joefr/source/include/Textures/awesomeface.png", GL_RGBA);
-    GameObject* bg = new GameObject(ourShader, "square", "C:/Users/joefr/source/include/Textures/container.jpg", GL_RGB);
+    GameObject* bg = new GameObject(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
 
     bg->fitScreen();
 
