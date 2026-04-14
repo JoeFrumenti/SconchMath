@@ -15,10 +15,11 @@ GLFWwindow* configGL();
 
 Shader* ourShader;
 
+int scale = 50;
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 9 * scale;
+const unsigned int SCR_HEIGHT = 16 * scale;
 
 int main()
 {
@@ -26,17 +27,22 @@ int main()
     ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
    
 	GameObject* cube = new GameObject(ourShader);
-    camera* cam = new camera(ourShader);
+    camera* cam = new camera(ourShader, SCR_WIDTH, SCR_HEIGHT);
 
     cam->setup();
 
     
     while (!glfwWindowShouldClose(window))
     {
-        processInput(window);
+        //processInput(window);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
+
+        cube->screenBounce();
+
+        cube->spin();
+        
         cube->render();
 
         glfwSwapBuffers(window);

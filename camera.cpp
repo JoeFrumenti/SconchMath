@@ -19,12 +19,14 @@ private:
 	Shader* ourShader;
 
 
-	const unsigned int SCR_WIDTH = 800;
-	const unsigned int SCR_HEIGHT = 600;
+	unsigned int SCR_WIDTH;
+	unsigned int SCR_HEIGHT;
 public:
-	camera(Shader* shade) {
+	camera(Shader* shade, unsigned int width, unsigned int height) {
 
 		ourShader = shade;
+		SCR_WIDTH = width;
+		SCR_HEIGHT = height;
 	}
 
 	void setup() {
@@ -37,7 +39,7 @@ public:
 
 		view = glm::mat4(1.0f);
 		projection = glm::mat4(1.0f);
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -30.0f));
 		projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 
 		unsigned int viewLoc = glGetUniformLocation(ourShader->ID, "view");

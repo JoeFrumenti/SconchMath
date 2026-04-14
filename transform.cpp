@@ -13,10 +13,13 @@ private:
     glm::mat4 model;
     unsigned int VBO, VAO;
     std::vector<float> vertices;
-
+    glm::vec3 velocity;
+    glm::vec3 pos;
 public:
     transform(std::vector<float> verts) {
         model = glm::mat4(1.0f);
+        velocity = glm::vec3(0.05f, 0.1f, 0.0f);
+        pos = glm::vec3(.0f, .0f, 0.0f);
 
         vertices = verts;
 
@@ -38,8 +41,31 @@ public:
     }
 
     void spinAround() {
-        model = glm::rotate(model, /*(float)glfwGetTime()*/ .1f, glm::vec3(0.05f, .1f, 0.0f));
+       // model = glm::rotate(model, /*(float)glfwGetTime()*/ .1f, velocity);
 
+    }
+
+    void screenBounce() {
+        float scale = 0.72f;
+        float boundsX = 8.8f * scale;
+        float boundsY = 16.0f * scale;
+
+        pos += velocity;
+
+        if (pos.x >= boundsX || pos.x <= -boundsX)
+            velocity.x = -velocity.x;
+        if (pos.y >= boundsY || pos.y <= -boundsY)
+            velocity.y = -velocity.y;
+
+        // rebuild from scratch every frame
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, pos);
+        model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.4f, 1.0f, 0.0f));
+        
+    }
+
+    void scale(float scale) {
+        //model = glm::scale(model, glm::vec3(scale, scale, scale));
     }
 
     unsigned int getVertexArray() {

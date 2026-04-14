@@ -41,8 +41,18 @@ public:
         textures[name] = texture;
         stbi_image_free(data);
 	}
+
+
     unsigned int getTexture(std::string name){
         return textures[name];
+    }
+
+    void activateDoubleTexture(std::string a, std::string b) {
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, getTexture(a));
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, getTexture(b));
     }
 };
 

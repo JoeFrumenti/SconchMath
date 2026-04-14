@@ -16,15 +16,12 @@
 class GameObject {
 private:
 
-    unsigned int VBO, VAO;
     std::vector<float> vertices;
     TexManager* tm;
     Shader* ourShader;
     transform* trans;
 
 
-    const unsigned int SCR_WIDTH = 800;
-    const unsigned int SCR_HEIGHT = 600;
 
 
 public:
@@ -40,11 +37,8 @@ public:
 
         tm->addTexture("C:/Users/joefr/source/include/Textures/container.jpg", "container", GL_RGB);
         tm->addTexture("C:/Users/joefr/source/include/Textures/awesomeface.png", "face", GL_RGBA);
+        tm->activateDoubleTexture("container", "face");
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, tm->getTexture("container"));
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, tm->getTexture("face"));
 
 
 
@@ -59,18 +53,25 @@ public:
     void clear() {
         // optional: de-allocate all resources once they've outlived their purpose:
         // ------------------------------------------------------------------------
-        glDeleteVertexArrays(1, &VAO);
-        glDeleteBuffers(1, &VBO);
+        /*glDeleteVertexArrays(1, &VAO);
+        glDeleteBuffers(1, &VBO);*/
     }
 
 
     void render() {
-        trans->spinAround();
         // retrieve the matrix uniform locations
         unsigned int modelLoc = glGetUniformLocation(ourShader->ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(trans->getTrans()));
         glBindVertexArray(trans->getVertexArray());
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+    }
+
+    void spin() {
+        trans->spinAround();
+
+    }
+    void screenBounce() {
+        trans->screenBounce();
     }
 
     void bindTextures() {
