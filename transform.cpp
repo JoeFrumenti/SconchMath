@@ -5,8 +5,19 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <iostream>
+#include <fstream>
 
 #include <vector>
+
+#include <windows.h>
+
+
+#include "SoundDevice.h"
+#include "SoundBuffer.h"
+#include "SoundSource.h"
+
+
 
 class transform {
 private:
@@ -15,11 +26,26 @@ private:
     std::vector<float> vertices;
     glm::vec3 velocity;
     glm::vec3 pos;
+
+    SoundDevice* mysounddevice;
+    uint32_t sound1;
+
 public:
     transform(std::vector<float> verts) {
         model = glm::mat4(1.0f);
         velocity = glm::vec3(0.1f, 0.1f, 0.0f);
         pos = glm::vec3(.0f, .0f, 0.0f);
+
+        mysounddevice = SoundDevice::get();
+
+        sound1 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
+
+        SoundSource mySpeaker;
+
+        mySpeaker.Play(sound1);
+
+
+
 
         vertices = verts;
 
@@ -60,10 +86,14 @@ public:
 
         pos += velocity;
 
-        if (pos.x >= boundsX || pos.x <= -boundsX)
+        if (pos.x >= boundsX || pos.x <= -boundsX) {
             velocity.x = -velocity.x;
-        if (pos.y >= boundsY || pos.y <= -boundsY)
+           
+        }
+        if (pos.y >= boundsY || pos.y <= -boundsY) {
             velocity.y = -velocity.y;
+            
+        }
 
         // rebuild from scratch every frame
         model = glm::mat4(1.0f);

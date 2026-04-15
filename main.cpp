@@ -7,6 +7,8 @@
 
 #include <OpenGL/gameObject.cpp>
 #include <camera.cpp>
+
+
 using namespace std;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -23,6 +25,8 @@ const unsigned int SCR_HEIGHT = 16 * scale;
 
 int main()
 {
+   
+
     GLFWwindow* window = configGL();
     ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
    
@@ -34,6 +38,8 @@ int main()
     camera* cam = new camera(ourShader, SCR_WIDTH, SCR_HEIGHT);
 
     cam->setup();
+
+    
 
     
     while (!glfwWindowShouldClose(window))
