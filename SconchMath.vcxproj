@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="primitive.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="OpenGL\gameObject.cpp" />
+    <ClCompile Include="OpenGL\GameObject.cpp" />
     <ClCompile Include="OpenGL\glManager.cpp" />
     <ClCompile Include="OpenGL\texManager.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />

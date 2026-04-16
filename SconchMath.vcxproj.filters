@@ -28,6 +28,9 @@
     <Filter Include="Source Files\Sound">
       <UniqueIdentifier>{cde73706-9d4a-4e14-aa27-79fc66079d10}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{3a55eb16-caab-485a-b7dc-5e7d716b7f68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,11 +45,8 @@
     <ClCompile Include="OpenGL\glManager.cpp">
       <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="OpenGL\gameObject.cpp">
+    <ClCompile Include="OpenGL\GameObject.cpp">
       <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="BoxCollider.cpp">
-      <Filter>Source Files\Entities\Attributes</Filter>
     </ClCompile>
     <ClCompile Include="primitive.cpp">
       <Filter>Source Files\Entities</Filter>
@@ -68,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="SoundSource.cpp">
       <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

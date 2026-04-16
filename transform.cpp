@@ -67,7 +67,12 @@ public:
     }
 
     void translate(glm::vec3 newScale) {
+        pos += newScale;
         model = glm::translate(model, newScale);
+    }
+
+    glm::vec2 getCenter() {
+        return glm::vec2(pos.x, pos.y);
     }
 
     void screenBounce() {

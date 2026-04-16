@@ -54,6 +54,13 @@ public:
     void translate(glm::vec3 pos) {
         trans->translate(pos);
     }
+    glm::vec2 getCenter() {
+        return glm::vec2(trans->getCenter());
+    }
+
+    void destroy() {
+        std::cout << "DESTROYED!\n";
+    }
 
     void clear() {
         // optional: de-allocate all resources once they've outlived their purpose:

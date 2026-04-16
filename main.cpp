@@ -5,9 +5,8 @@
 
 #include <Shaders/shader.h>
 
-#include <OpenGL/gameObject.cpp>
 #include <camera.cpp>
-
+#include <CollisionManager.cpp>
 
 using namespace std;
 
@@ -29,10 +28,15 @@ int main()
 
     GLFWwindow* window = configGL();
     ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
+
+    CollisionManager* cm = new CollisionManager();
    
 	GameObject* cube = new GameObject(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);
     GameObject* bg = new GameObject(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
     GameObject* cube2 = new GameObject(ourShader, "cube", "C:/Users/joefr/source/repos/SconchMath/assets/container.jpg", GL_RGB);
+
+    cm->addObject(*cube);
+    cm->addCoin(*cube2);
 
     bg->fitScreen();
 
@@ -54,11 +58,14 @@ int main()
 
         bg->render();
 
+        cm->checkCollision();
+
         cube->screenBounce();
         cube->render();
 
         cube2->spin();
         cube2->render();
+
 
         glfwSwapBuffers(window);
         glfwPollEvents();
