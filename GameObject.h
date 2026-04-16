@@ -27,6 +27,11 @@ private:
 
 
 public:
+    int id;
+
+    void setId(int newId) { id = newId; }
+    int getId() { return id; }
+
     GameObject(Shader* shade, std::string type, const char* texturePath, GLenum format);
 
     void setShader(Shader* shade);

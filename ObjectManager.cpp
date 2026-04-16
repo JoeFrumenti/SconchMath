@@ -2,11 +2,11 @@
 #include <vector>
 #include "ObjectManager.h"
 
-ObjectManager::ObjectManager() {
+int idSlot = 0;
 
-}
 void ObjectManager::addObject(GameObject obj) {
 	objects.push_back(obj);
+	
 }
 void ObjectManager::renderObjects() {
 	for (auto& obj : objects) {
@@ -14,11 +14,18 @@ void ObjectManager::renderObjects() {
 	}
 }
 
-void ObjectManager::removeObject(const GameObject target) {
-    objects.erase(
-        std::remove_if(objects.begin(), objects.end(), [&](const GameObject& obj) {
-            return &obj == &target;  
-            }),
-        objects.end()
-    );
+void ObjectManager::removeObject(int id) {
+	
+	std::vector<GameObject> temp;
+	std::cout << "Checking id of " << id << "\n";
+	for (GameObject& obj : objects) {
+		
+		if (obj.id != id) {
+			std::cout << "not removing " << obj.id << "\n";
+			temp.push_back(obj);
+		}
+		else
+			std::cout << "Removing " << obj.id << "\n";
+	}
+	objects = temp;
 }

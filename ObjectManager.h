@@ -5,9 +5,16 @@
 class ObjectManager {
 private:
 	std::vector<GameObject> objects;
+
+	ObjectManager() {}
 public:
-	ObjectManager();
+
+	static ObjectManager& getInstance() {
+		static ObjectManager instance;  // created once, lives forever
+		return instance;
+	}
+
 	void addObject(GameObject obj);
 	void renderObjects();
-	void removeObject(const GameObject target);
+	void removeObject(int id);
 };

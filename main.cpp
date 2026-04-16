@@ -36,12 +36,22 @@ int main()
     GameObject* bg = new GameObject(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
     GameObject* cube2 = new GameObject(ourShader, "cube", "C:/Users/joefr/source/repos/SconchMath/assets/container.jpg", GL_RGB);
 
+
+    auto& objManager = ObjectManager::getInstance();
+
+    cube->setId(1);
+    cube2->setId(2);
+
+
     cm->addObject(*cube);
     cm->addCoin(*cube2);
 
+    objManager.addObject(*cube);
+    objManager.addObject(*cube2);
+
     bg->fitScreen();
 
-    cube2->translate(glm::vec3(3.0f, 5.0f, .0f));
+    cube2->translate(glm::vec3(4.0f, 5.0f, .0f));
 
     camera* cam = new camera(ourShader, SCR_WIDTH, SCR_HEIGHT);
 
@@ -62,11 +72,11 @@ int main()
         cm->checkCollision();
 
         cube->screenBounce();
-        cube->render();
+        
 
         cube2->spin();
-        cube2->render();
-
+        
+        objManager.renderObjects();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
