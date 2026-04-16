@@ -1,5 +1,5 @@
 
-#include <OpenGL/GameObject.cpp>
+#include "GameObject.h"
 #include <vector>
 
 class CollisionManager {

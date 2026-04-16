@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="primitive.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
@@ -39,9 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="primitive.h" />
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundDevice.h" />
     <ClInclude Include="SoundSource.h" />
+    <ClInclude Include="texManager.h" />
+    <ClInclude Include="transform.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

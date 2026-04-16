@@ -7,6 +7,7 @@
 
 #include <camera.cpp>
 #include <CollisionManager.cpp>
+#include <ObjectManager.h>
 
 using namespace std;
 
