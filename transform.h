@@ -28,6 +28,7 @@ private:
 
     SoundDevice* mysounddevice = SoundDevice::get();
     uint32_t sound1 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
+
     SoundSource mySpeaker;
 
 public:

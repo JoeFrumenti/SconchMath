@@ -16,6 +16,11 @@
 #include <GameObject.h>
 
 
+SoundDevice* mysounddevice = SoundDevice::get();
+uint32_t sound2 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime2.wav");
+
+SoundSource mySpeaker;
+
     GameObject::GameObject(Shader* shade, std::string type, const char* texturePath, GLenum format) {
 
         primitive* pm = new primitive();
@@ -29,6 +34,9 @@
 
 
         tm->addTexture(texturePath, texPath, format);
+
+
+        id = 0;
         
 
 
@@ -50,6 +58,7 @@
 
     void GameObject::destroy() {
         std::cout << "DESTROYED!\n";
+        mySpeaker.Play(sound2);
     }
 
     void GameObject::clear() {

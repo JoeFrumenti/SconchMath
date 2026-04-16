@@ -23,7 +23,7 @@ public:
 
 	void checkCollision() {
 		auto& objManager = ObjectManager::getInstance();
-		for(auto& obj:objects){
+		for (auto& obj : objects) {
 			glm::vec2 objCenter = obj.getCenter();
 			for (GameObject& coin : coins) {
 				float coinsize = 1;
@@ -37,7 +37,7 @@ public:
 					objManager.removeObject(coin.getId());
 					removeObject(coin.getId());
 				}
-				
+
 			}
 		}
 	}
@@ -45,17 +45,13 @@ public:
 	void removeObject(int id) {
 
 		std::vector<GameObject> temp;
-		std::cout << "Checking id of " << id << "\n";
-		for (GameObject& obj : objects) {
+		for (GameObject& obj : coins) {
 
 			if (obj.id != id) {
-				std::cout << "not removing " << obj.id << "\n";
 				temp.push_back(obj);
 			}
-			else
-				std::cout << "Removing " << obj.id << "\n";
-		}
-		objects = temp;
-	}
 
+			coins = temp;
+		}
+	}
 };
