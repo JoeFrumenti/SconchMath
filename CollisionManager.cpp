@@ -23,8 +23,16 @@ public:
 		for(auto& obj:objects){
 			glm::vec2 objCenter = obj.getCenter();
 			for (auto& coin : coins) {
+				float coinsize = 1;
 				glm::vec2 coinCenter = coin.getCenter();
-				coin.destroy();
+				if (objCenter.x > coinCenter.x - coinsize 
+					&& objCenter.x < coinCenter.x + coinsize 
+					&& objCenter.y <coinCenter.y + coinsize
+					&& objCenter.y >coinCenter.y - coinsize)
+				{
+					coin.destroy();
+				}
+				
 			}
 		}
 	}
