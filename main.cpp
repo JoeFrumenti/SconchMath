@@ -42,6 +42,16 @@ int main()
     cube->setId(1);
     cube2->setId(2);
 
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 12; j++) {
+            GameObject* coin = new GameObject(ourShader, "cube", "C:/Users/joefr/source/repos/SconchMath/assets/container.jpg", GL_RGB);
+            coin->setId(i + 20 + 9*j);
+            cm->addCoin(*coin);
+            objManager.addObject(*coin);
+            coin->translate(glm::vec3(4* (float)i - 4.0, 4*(float)j - 8.0, 0.0f));
+        }
+    }
+
 
     cm->addObject(*cube);
     cm->addCoin(*cube2);
