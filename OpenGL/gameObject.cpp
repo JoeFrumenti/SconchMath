@@ -51,6 +51,10 @@ public:
         ourShader->use();
     }
 
+    void translate(glm::vec3 pos) {
+        trans->translate(pos);
+    }
+
     void clear() {
         // optional: de-allocate all resources once they've outlived their purpose:
         // ------------------------------------------------------------------------
