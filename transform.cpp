@@ -46,7 +46,7 @@ transform::transform(std::vector<float> verts) {
 
 void transform::spinAround() {
        
-    model = glm::rotate(model, /*(float)glfwGetTime()*/ .1f, velocity);
+    model = glm::rotate(model, /*(float)glfwGetTime()*/ .1f, glm::vec3(0.0f,1.0f,.0f));
 
     
 }

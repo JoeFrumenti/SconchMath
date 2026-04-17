@@ -23,10 +23,11 @@ public:
 
 	void checkCollision() {
 		auto& objManager = ObjectManager::getInstance();
+		float coinsize = 1.4;
 		for (auto& obj : objects) {
 			glm::vec2 objCenter = obj.getCenter();
 			for (GameObject& coin : coins) {
-				float coinsize = 1;
+				coin.spin();
 				glm::vec2 coinCenter = coin.getCenter();
 				if (objCenter.x > coinCenter.x - coinsize
 					&& objCenter.x < coinCenter.x + coinsize

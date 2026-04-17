@@ -32,42 +32,33 @@ int main()
 
     CollisionManager* cm = new CollisionManager();
    
-	GameObject* cube = new GameObject(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);
-    GameObject* bg = new GameObject(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
-    GameObject* cube2 = new GameObject(ourShader, "cube", "C:/Users/joefr/source/repos/SconchMath/assets/container.jpg", GL_RGB);
+	GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);
+    GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
 
 
     auto& objManager = ObjectManager::getInstance();
 
-    cube->setId(1);
-    cube2->setId(2);
+    cube.setId(1);
 
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 12; j++) {
-            GameObject* coin = new GameObject(ourShader, "cube", "C:/Users/joefr/source/repos/SconchMath/assets/container.jpg", GL_RGB);
-            coin->setId(i + 20 + 9*j);
-            cm->addCoin(*coin);
-            objManager.addObject(*coin);
-            coin->translate(glm::vec3(4* (float)i - 4.0, 4*(float)j - 8.0, 0.0f));
+            GameObject coin(ourShader, "cube", "C:/Users/joefr/source/repos/SconchMath/assets/container.jpg", GL_RGB);
+            coin.setId(i + 20 + 9*j);
+            cm->addCoin(coin);
+            objManager.addObject(coin);
+            coin.translate(glm::vec3(4* (float)i - 4.0, 4*(float)j - 9.0, 0.0f));
         }
     }
 
+    cm->addObject(cube);
 
-    cm->addObject(*cube);
-    cm->addCoin(*cube2);
+    objManager.addObject(cube);
 
-    objManager.addObject(*cube);
-    objManager.addObject(*cube2);
-
-    bg->fitScreen();
-
-    cube2->translate(glm::vec3(4.0f, 5.0f, .0f));
+    bg.fitScreen();
 
     camera* cam = new camera(ourShader, SCR_WIDTH, SCR_HEIGHT);
 
     cam->setup();
-
-    
 
     
     while (!glfwWindowShouldClose(window))
@@ -77,14 +68,11 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
-        bg->render();
+        bg.render();
 
         cm->checkCollision();
 
-        cube->screenBounce();
-        
-
-        cube2->spin();
+        cube.screenBounce();
         
         objManager.renderObjects();
 
@@ -92,7 +80,6 @@ int main()
         glfwPollEvents();
     }
 
-    cube->clear();
     glfwTerminate();
     return 0;
 }
