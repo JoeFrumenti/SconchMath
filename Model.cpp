@@ -92,6 +92,11 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 	return Mesh(vertices, indices, textures);
 }
 
+void Model::Draw(Shader& shader)
+{
+	for (unsigned int i = 0; i < meshes.size(); i++)
+		meshes[i].Draw(shader);
+}
 
 vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type,
 	string typeName)

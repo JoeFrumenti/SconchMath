@@ -20,6 +20,7 @@ void processInput(GLFWwindow* window);
 GLFWwindow* configGL();
 
 Shader* ourShader;
+Shader* modelShader;
 
 int scale = 50;
 
@@ -33,6 +34,7 @@ int main()
 
     GLFWwindow* window = configGL();
     ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
+    modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
 
     CollisionManager* cm = new CollisionManager();
    
@@ -83,6 +85,19 @@ int main()
         cube.screenBounce();
         
         objManager.renderObjects();
+
+        glm::mat4 projection = glm::mat4(1.0f);
+        glm::mat4 view = glm::mat4(1.0f);
+        modelShader->setMat4("projection", projection);
+        modelShader->setMat4("view", view);
+
+        // render the loaded model
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader->setMat4("model", model);
+        ourModel.Draw(*modelShader);
+
 
         glfwSwapBuffers(window);
         glfwPollEvents();

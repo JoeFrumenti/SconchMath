@@ -39,6 +39,8 @@
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.fs" />
     <None Include="..\..\include\Shaders\shader.vs" />
+    <None Include="modelShader.fs" />
+    <None Include="modelShader.vs" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h" />
