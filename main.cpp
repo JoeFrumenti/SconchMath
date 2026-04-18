@@ -9,6 +9,10 @@
 #include <CollisionManager.cpp>
 #include <ObjectManager.h>
 
+#include "Model.h"
+
+#include <string>
+
 using namespace std;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -35,15 +39,19 @@ int main()
 	GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);
     GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
 
+    char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/backpack.obj";
+
+    Model ourModel(path);
 
     auto& objManager = ObjectManager::getInstance();
+    int idNum = 10;
 
     cube.setId(1);
 
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 12; j++) {
             GameObject coin(ourShader, "cube", "C:/Users/joefr/source/repos/SconchMath/assets/container.jpg", GL_RGB);
-            coin.setId(i + 20 + 9*j);
+            coin.setId(idNum++);
             cm->addCoin(coin);
             objManager.addObject(coin);
             coin.translate(glm::vec3(4* (float)i - 4.0, 4*(float)j - 9.0, 0.0f));

@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="primitive.cpp" />
     <ClCompile Include="glad.c" />
@@ -41,6 +43,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="primitive.h" />
     <ClInclude Include="SoundBuffer.h" />

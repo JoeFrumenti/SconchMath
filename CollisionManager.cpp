@@ -18,7 +18,6 @@ public:
 
 	void addCoin(GameObject& coin) {
 		coins.push_back(coin);
-		std::cout << coin.getId();
 	}
 
 	void checkCollision() {
