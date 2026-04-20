@@ -49,6 +49,7 @@ int main()
     Model ourModel(path);
 
     Coin* coin = new Coin();
+    coin->translate(glm::vec3(.7f, .7f, 0.0f));
 
     auto& objManager = ObjectManager::getInstance();
     int idNum = 10;
