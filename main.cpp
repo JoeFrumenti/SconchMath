@@ -48,7 +48,7 @@ int main()
 
     Model ourModel(path);
 
-    Coin* coin = new Coin();
+    Coin* coin = new Coin(modelShader);
     coin->translate(glm::vec3(.7f, .7f, 0.0f));
 
     auto& objManager = ObjectManager::getInstance();
@@ -106,7 +106,7 @@ int main()
         //ourModel.Draw(*modelShader);
 
         coin->Update();
-        coin->Draw(modelShader);
+        coin->Draw();
 
 
         glfwSwapBuffers(window);

@@ -1,6 +1,7 @@
 
 #include "UD.h"
 #include "Model.h"
+#include "Shaders/shader.h"
 
 #include <iostream>
 
@@ -11,13 +12,16 @@ private:
 
 	glm::vec3 pos;
 
+	Shader* shader;
+
 public:
 
-	Coin() {
+	Coin(Shader* shade) {
 		char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj";
 		ID = 0;
 		ourModel = new Model(path);
 		pos = glm::vec3(.0f,.0f,.0f);
+		shader = shade;
 	}
 
 
@@ -28,7 +32,7 @@ public:
 		model = glm::scale(model, glm::vec3(0.1f, 0.05f, .1f));	
 	}
 
-	void Draw(Shader* shader) override{
+	void Draw() override{
 		shader->setMat4("model", model);
 		ourModel->Draw(*shader);
 	}

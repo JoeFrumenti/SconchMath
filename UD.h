@@ -7,9 +7,8 @@ protected:
 
 public:
 	//UD();
-
+	virtual int getId() { return ID; };
 	virtual void setId(int id) { ID = id; };
 	virtual void Update() = 0;
-	virtual void Draw(Shader* shader) = 0;
-	
+	virtual void Draw() = 0;
 };
