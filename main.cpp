@@ -33,22 +33,22 @@ int main()
    
 
     GLFWwindow* window = configGL();
-    ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
+    //ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
     modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
 
     CollisionManager* cm = new CollisionManager();
    
-	GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);
-    GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
+	/*GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);
+    GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);*/
 
-    char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/backpack.obj";
+    char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj";
 
     Model ourModel(path);
 
     auto& objManager = ObjectManager::getInstance();
     int idNum = 10;
 
-    cube.setId(1);
+   /* cube.setId(1);
 
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 12; j++) {
@@ -64,11 +64,12 @@ int main()
 
     objManager.addObject(cube);
 
-    bg.fitScreen();
+    bg.fitScreen();*/
 
     camera* cam = new camera(ourShader, SCR_WIDTH, SCR_HEIGHT);
 
-    cam->setup();
+    //cam->setup();
+    modelShader->use();
 
     
     while (!glfwWindowShouldClose(window))
@@ -78,13 +79,13 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
-        bg.render();
+        //bg.render();
 
         cm->checkCollision();
 
-        cube.screenBounce();
+        //cube.screenBounce();
         
-        objManager.renderObjects();
+        //objManager.renderObjects();
 
         glm::mat4 projection = glm::mat4(1.0f);
         glm::mat4 view = glm::mat4(1.0f);

@@ -92,7 +92,9 @@
     <None Include="modelShader.vs">
       <Filter>Source Files\OpenGL\shaders</Filter>
     </None>
-    <None Include="modelShader.fs" />
+    <None Include="modelShader.fs">
+      <Filter>Source Files\OpenGL\shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h">
