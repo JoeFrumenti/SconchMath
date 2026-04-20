@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="coin.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="SoundSource.h" />
     <ClInclude Include="texManager.h" />
     <ClInclude Include="transform.h" />
+    <ClInclude Include="UD.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

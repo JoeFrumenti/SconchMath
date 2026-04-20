@@ -11,6 +11,9 @@
 
 #include "Model.h"
 
+#include "UD.h"
+#include "coin.cpp"
+
 #include <string>
 
 using namespace std;
@@ -44,6 +47,8 @@ int main()
     char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj";
 
     Model ourModel(path);
+
+    Coin* coin = new Coin();
 
     auto& objManager = ObjectManager::getInstance();
     int idNum = 10;
@@ -92,12 +97,15 @@ int main()
         modelShader->setMat4("projection", projection);
         modelShader->setMat4("view", view);
 
-        // render the loaded model
-        glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
-        modelShader->setMat4("model", model);
-        ourModel.Draw(*modelShader);
+        //// render the loaded model
+        //glm::mat4 model = glm::mat4(1.0f);
+        //model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        //model = glm::scale(model, glm::vec3(0.1f, 0.07f, .1f));	// it's a bit too big for our scene, so scale it down
+        //modelShader->setMat4("model", model);
+        //ourModel.Draw(*modelShader);
+
+        coin->Update();
+        coin->Draw(modelShader);
 
 
         glfwSwapBuffers(window);

@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Managers">
       <UniqueIdentifier>{3a55eb16-caab-485a-b7dc-5e7d716b7f68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Prefabs">
+      <UniqueIdentifier>{ceaa0cd5-eec3-4d48-948e-2c13da30fb46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,6 +84,9 @@
     <ClCompile Include="Model.cpp">
       <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="coin.cpp">
+      <Filter>Source Files\Entities\Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
@@ -129,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="Model.h">
       <Filter>Source Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="UD.h">
+      <Filter>Source Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
