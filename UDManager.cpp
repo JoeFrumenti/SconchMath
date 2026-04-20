@@ -10,3 +10,9 @@ void UDManager::drawUDs() {
 		kv.second->Draw();
 	}
 }
+
+void UDManager::updateUDs(){
+	for (const auto& kv : UDs) {
+		kv.second->Update();
+	}
+}

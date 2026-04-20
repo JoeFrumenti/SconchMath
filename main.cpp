@@ -13,6 +13,8 @@
 
 #include "UD.h"
 #include "coin.cpp"
+#include "UDManager.h"
+
 
 #include <string>
 
@@ -50,6 +52,10 @@ int main()
 
     Coin* coin = new Coin(modelShader);
     coin->translate(glm::vec3(.7f, .7f, 0.0f));
+
+    UDManager UDMan = UDManager::getInstance();
+
+    UDMan.addUD(coin);
 
     auto& objManager = ObjectManager::getInstance();
     int idNum = 10;
@@ -105,8 +111,8 @@ int main()
         //modelShader->setMat4("model", model);
         //ourModel.Draw(*modelShader);
 
-        coin->Update();
-        coin->Draw();
+        UDMan.updateUDs();
+        UDMan.drawUDs();
 
 
         glfwSwapBuffers(window);
