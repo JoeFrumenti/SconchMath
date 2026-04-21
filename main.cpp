@@ -11,9 +11,10 @@
 
 #include "Model.h"
 
-#include "UD.h"
-#include "coin.cpp"
 #include "UDManager.h"
+
+#include "coin.cpp"
+#include "BouncingCube.cpp"
 
 
 #include <string>
@@ -50,7 +51,10 @@ int main()
     Coin* coin = new Coin(modelShader);
     coin->translate(glm::vec3(.7f, .7f, 0.0f));
 
+    BouncingCube* bCube = new BouncingCube(modelShader);
+
     UDManager UDMan = UDManager::getInstance();
+    UDMan.addUD(bCube);
 
     //UDMan.addUD(coin);
 
@@ -69,7 +73,7 @@ int main()
     }
 
 
-    camera* cam = new camera(ourShader, SCR_WIDTH, SCR_HEIGHT);
+    camera* cam = new camera(modelShader, SCR_WIDTH, SCR_HEIGHT);
 
     //cam->setup();
     modelShader->use();

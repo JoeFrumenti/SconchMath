@@ -33,8 +33,6 @@ public:
 
 
 		ourShader->use();
-		ourShader->setInt("texture1", 0);
-		ourShader->setInt("texture2", 1);
 
 
 		view = glm::mat4(1.0f);
