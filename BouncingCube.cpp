@@ -13,6 +13,7 @@ private:
 	glm::vec3 pos;
 
 	Shader* shader;
+	glm::vec3 velocity = glm::vec3(0.1f, 0.1f, 0.0f);
 
 public:
 
@@ -24,8 +25,31 @@ public:
 		shader = shade;
 	}
 
+	void screenBounce() {
+		float scale = 0.65f;
+		float boundsX = 8.8f * scale;
+		float boundsY = 16.7f * scale;
+
+		pos += velocity;
+
+		if (pos.x >= boundsX || pos.x <= -boundsX) {
+			//mySpeaker.Play(sound1);
+			velocity.x = -velocity.x;
+
+		}
+		if (pos.y >= boundsY || pos.y <= -boundsY) {
+			//mySpeaker.Play(sound1);
+			velocity.y = -velocity.y;
+
+		}
+
+
+	}
+
 
 	void Update() override {
+		screenBounce();
+
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, pos);
 		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
