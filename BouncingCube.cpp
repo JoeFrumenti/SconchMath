@@ -5,6 +5,13 @@
 
 #include <iostream>
 
+
+#include "SoundDevice.h"
+#include "SoundBuffer.h"
+#include "SoundSource.h"
+
+
+
 class BouncingCube : public UD {
 private:
 	Model* ourModel;
@@ -14,6 +21,12 @@ private:
 
 	Shader* shader;
 	glm::vec3 velocity = glm::vec3(0.1f, 0.1f, 0.0f);
+
+
+	SoundDevice* mysounddevice = SoundDevice::get();
+	uint32_t sound1 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
+
+	SoundSource mySpeaker;
 
 public:
 
@@ -33,12 +46,12 @@ public:
 		pos += velocity;
 
 		if (pos.x >= boundsX || pos.x <= -boundsX) {
-			//mySpeaker.Play(sound1);
+			mySpeaker.Play(sound1);
 			velocity.x = -velocity.x;
 
 		}
 		if (pos.y >= boundsY || pos.y <= -boundsY) {
-			//mySpeaker.Play(sound1);
+			mySpeaker.Play(sound1);
 			velocity.y = -velocity.y;
 
 		}
