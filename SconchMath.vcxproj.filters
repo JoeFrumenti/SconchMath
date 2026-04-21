@@ -34,6 +34,9 @@
     <Filter Include="Source Files\Entities\Prefabs">
       <UniqueIdentifier>{ceaa0cd5-eec3-4d48-948e-2c13da30fb46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Alpha">
+      <UniqueIdentifier>{74887311-d742-4053-827e-21b6b186c3ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,17 +51,8 @@
     <ClCompile Include="OpenGL\glManager.cpp">
       <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="OpenGL\GameObject.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>Source Files\OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="transform.cpp">
-      <Filter>Source Files\Entities\Attributes</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
       <Filter>Source Files\Entities</Filter>
@@ -93,6 +87,18 @@
     <ClCompile Include="BouncingCube.cpp">
       <Filter>Source Files\Entities\Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="OpenGL\GameObject.cpp">
+      <Filter>Source Files\Entities\Alpha</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive.cpp">
+      <Filter>Source Files\Entities\Alpha</Filter>
+    </ClCompile>
+    <ClCompile Include="transform.cpp">
+      <Filter>Source Files\Entities\Alpha</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Source Files\Entities\Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
@@ -121,17 +127,8 @@
     <ClInclude Include="SoundSource.h">
       <Filter>Source Files\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Source Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive.h">
-      <Filter>Source Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="texManager.h">
       <Filter>Source Files\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="transform.h">
-      <Filter>Source Files\Entities\Attributes</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>Source Files\Managers</Filter>
@@ -147,6 +144,18 @@
     </ClInclude>
     <ClInclude Include="UDManager.h">
       <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Source Files\Entities\Alpha</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive.h">
+      <Filter>Source Files\Entities\Alpha</Filter>
+    </ClInclude>
+    <ClInclude Include="transform.h">
+      <Filter>Source Files\Entities\Alpha</Filter>
+    </ClInclude>
+    <ClInclude Include="sprite.h">
+      <Filter>Source Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

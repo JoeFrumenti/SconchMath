@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-class BouncingCube : public UD {
+class Background : public UD {
 private:
 	Model* ourModel;
 	glm::mat4 model;
@@ -16,20 +16,21 @@ private:
 
 public:
 
-	BouncingCube(Shader* shade) {
-		char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj";
+	Background(Shader* shade) {
+		char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj";
 		ID = 0;
 		ourModel = new Model(path);
 		pos = glm::vec3(.0f, .0f, .0f);
 		shader = shade;
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(.0f,-10.0f,-3.0f));
+		model = glm::rotate(model, 3.1415926536f, glm::vec3(.0f, .0f, 1.0f));
 	}
 
 
 	void Update() override {
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, pos);
-		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		
 	}
 
 	void Draw() override {

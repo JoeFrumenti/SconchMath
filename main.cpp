@@ -15,7 +15,7 @@
 
 #include "coin.cpp"
 #include "BouncingCube.cpp"
-
+#include "Background.cpp"
 
 #include <string>
 
@@ -44,8 +44,8 @@ int main()
 
     CollisionManager* cm = new CollisionManager();
    
-	/*GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);
-    GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);*/
+	/*GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);*/
+    //GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
 
 
     Coin* coin = new Coin(modelShader);
@@ -55,6 +55,9 @@ int main()
 
     UDManager UDMan = UDManager::getInstance();
     UDMan.addUD(bCube);
+
+    Background* bg = new Background(modelShader);
+    UDMan.addUD(bg);
 
     //UDMan.addUD(coin);
 
@@ -68,15 +71,15 @@ int main()
             Coin* coiny = new Coin(modelShader);
             coiny->setId(idNum++);
             UDMan.addUD(coiny);
-            coiny->translate(glm::vec3((float)i * 0.4 - 0.8, (float)j * 0.3 -0.89, 0.0f));
+            coiny->translate(glm::vec3((float)i * 4 - 8, (float)j * 3 - 9, 0.0f));
         }
     }
 
 
     camera* cam = new camera(modelShader, SCR_WIDTH, SCR_HEIGHT);
 
-    //cam->setup();
-    modelShader->use();
+    cam->setup();
+    //modelShader->use();
 
     
     while (!glfwWindowShouldClose(window))
@@ -94,10 +97,6 @@ int main()
         
         //objManager.renderObjects();
 
-        glm::mat4 projection = glm::mat4(1.0f);
-        glm::mat4 view = glm::mat4(1.0f);
-        modelShader->setMat4("projection", projection);
-        modelShader->setMat4("view", view);
 
         //// render the loaded model
         //glm::mat4 model = glm::mat4(1.0f);

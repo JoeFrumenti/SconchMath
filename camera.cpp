@@ -9,7 +9,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
+#include <iostream>
 class camera {
 private:
 
@@ -31,7 +31,7 @@ public:
 
 	void setup() {
 
-
+		std::cout << "RUNNING CAMERA SETUP!\n";
 		ourShader->use();
 
 
