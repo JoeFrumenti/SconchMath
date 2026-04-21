@@ -29,7 +29,7 @@ public:
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, pos); 
 		model = glm::rotate(model, (float)glfwGetTime() * 3, glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.3f, 0.3f, .3f));	
+		model = glm::scale(model, glm::vec3(0.45f, 0.45f, .45f));	
 	}
 
 	void Draw() override{

@@ -48,30 +48,26 @@ int main()
     //GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
 
 
-    Coin* coin = new Coin(modelShader);
-    coin->translate(glm::vec3(.7f, .7f, 0.0f));
+    UDManager UDMan = UDManager::getInstance();
 
     BouncingCube* bCube = new BouncingCube(modelShader);
 
-    UDManager UDMan = UDManager::getInstance();
     UDMan.addUD(bCube);
 
     Background* bg = new Background(modelShader);
+    bg->setId(1);
     UDMan.addUD(bg);
-
-    //UDMan.addUD(coin);
 
     auto& objManager = ObjectManager::getInstance();
     int idNum = 10;
 
-   /* cube.setId(1);*/
-
+   
     for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 7; j++) {
+        for (int j = 0; j < 8; j++) {
             Coin* coiny = new Coin(modelShader);
             coiny->setId(idNum++);
             UDMan.addUD(coiny);
-            coiny->translate(glm::vec3((float)i * 4 - 8, (float)j * 3 - 9, 0.0f));
+            coiny->translate(glm::vec3((float)i * 3.0f - 6, (float)j * 4.3f - 10.7f, 0.0f));
         }
     }
 
