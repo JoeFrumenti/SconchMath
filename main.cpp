@@ -6,8 +6,8 @@
 #include <Shaders/shader.h>
 
 #include <camera.cpp>
-#include <CollisionManager.cpp>
-#include <ObjectManager.h>
+#include "CollisionManager.h"
+#include "ObjectManager.h"
 
 #include "Model.h"
 
@@ -42,7 +42,6 @@ int main()
     //ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
     modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
 
-    CollisionManager* cm = CollisionManager::getInstance();
    
 	/*GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);*/
     //GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
@@ -87,7 +86,7 @@ int main()
 
         //bg.render();
 
-        cm->checkCollision();
+        //cm->checkCollision();
 
         //cube.screenBounce();
         
