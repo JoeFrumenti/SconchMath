@@ -4,6 +4,7 @@
 class UD {
 protected:
 	int ID;
+	glm::vec2 pos;
 
 public:
 	//UD();
@@ -11,4 +12,6 @@ public:
 	virtual void setId(int id) { ID = id; };
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
+	virtual glm::vec2 getPos() { return pos; };
+	virtual void Collide() {};
 };

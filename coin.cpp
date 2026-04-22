@@ -40,4 +40,8 @@ public:
 	void translate(glm::vec3 translation) {
 		pos += translation;
 	}
+
+	void Collide() override {
+		std::cout << "COIN COLLIDED!\n";
+	}
 };

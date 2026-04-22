@@ -1,57 +1,58 @@
+#pragma once
 
-#include "GameObject.h"
-#include "ObjectManager.h"
-#include <vector>
+#include "CollisionManager.h"
 
-class CollisionManager {
-private:
-	std::vector<GameObject> objects;
-	std::vector<GameObject> coins;
-public:
-	CollisionManager() {
+CollisionManager::CollisionManager() {}
 
-	}
+void CollisionManager::addObject1(UD* object) {
+	objects1.push_back(object);
+}
 
-	void addObject(GameObject& object) {
-		objects.push_back(object);
-	}
+void CollisionManager::addObject2(UD* coin) {
+	objects2.push_back(coin);
+}
 
-	void addCoin(GameObject& coin) {
-		coins.push_back(coin);
-	}
+void CollisionManager::checkCollision() {
+	auto& objManager = UDManager::getInstance();
+	float coinsize = 1.4;
+	for (auto& obj : objects1) {
+		glm::vec2 objCenter = obj.getPos();
+		for (UD* coin : objects2) {
 
-	void checkCollision() {
-		auto& objManager = ObjectManager::getInstance();
-		float coinsize = 1.4;
-		for (auto& obj : objects) {
-			glm::vec2 objCenter = obj.getCenter();
-			for (GameObject& coin : coins) {
-				coin.spin();
-				glm::vec2 coinCenter = coin.getCenter();
-				if (objCenter.x > coinCenter.x - coinsize
-					&& objCenter.x < coinCenter.x + coinsize
-					&& objCenter.y <coinCenter.y + coinsize
-					&& objCenter.y >coinCenter.y - coinsize)
-				{
-					coin.destroy();
-					objManager.removeObject(coin.getId());
-					removeObject(coin.getId());
-				}
-
-			}
-		}
-	}
-
-	void removeObject(int id) {
-
-		std::vector<GameObject> temp;
-		for (GameObject& obj : coins) {
-
-			if (obj.id != id) {
-				temp.push_back(obj);
+			glm::vec2 coinCenter = coin.getPos();
+			if (objCenter.x > coinCenter.x - coinsize
+				&& objCenter.x < coinCenter.x + coinsize
+				&& objCenter.y <coinCenter.y + coinsize
+				&& objCenter.y >coinCenter.y - coinsize)
+			{
+				coin.Collide();
+				//objManager.removeObject(coin.getId());
+				removeObject(coin.getId());
 			}
 
-			coins = temp;
 		}
 	}
-};
+}
+
+CollisionManager* CollisionManager::getInstance() {
+	if (instancePtr == nullptr) {
+		std::lock_guard<std::mutex> lock(mtx);
+		if (instancePtr == nullptr) {
+			instancePtr = new CollisionManager();
+		}
+	}
+	return instancePtr;
+}
+
+void CollisionManager::removeObject(int id) {
+
+	std::vector<UD> temp;
+	for (UD& obj : objects2) {
+
+		if (obj.getId() != id) {
+			temp.push_back(obj);
+		}
+
+		objects2 = temp;
+	}
+}
