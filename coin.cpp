@@ -54,7 +54,6 @@ public:
 	}
 
 	void Collide() override {
-		std::cout << "COIN COLLIDED!\n";
 		mySpeaker.Play(sound2);
 	}
 

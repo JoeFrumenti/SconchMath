@@ -18,6 +18,5 @@ void UDManager::updateUDs(){
 }
 
 void UDManager::removeObject(int id) {
-	std::cout << UDs.size();
 	UDs.erase(id);
 }

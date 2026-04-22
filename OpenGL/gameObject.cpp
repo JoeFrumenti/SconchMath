@@ -57,7 +57,6 @@ SoundSource mySpeaker;
     }
 
     void GameObject::destroy() {
-        std::cout << "DESTROYED!\n";
         mySpeaker.Play(sound2);
         //delete this;
     }

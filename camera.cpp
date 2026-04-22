@@ -31,7 +31,6 @@ public:
 
 	void setup() {
 
-		std::cout << "RUNNING CAMERA SETUP!\n";
 		ourShader->use();
 
 
