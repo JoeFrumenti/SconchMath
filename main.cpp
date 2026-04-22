@@ -57,6 +57,9 @@ int main()
     bg->setId(1);
     UDMan.addUD(bg);
 
+    CollisionManager cm;
+    cm.addObject1(bCube);
+
     auto& objManager = ObjectManager::getInstance();
     int idNum = 10;
 
@@ -67,6 +70,7 @@ int main()
             coiny->setId(idNum++);
             UDMan.addUD(coiny);
             coiny->translate(glm::vec3((float)i * 3.0f - 6, (float)j * 4.3f - 10.7f, 0.0f));
+            cm.addObject2(coiny);
         }
     }
 
@@ -86,7 +90,7 @@ int main()
 
         //bg.render();
 
-        //cm->checkCollision();
+        cm.checkCollision();
 
         //cube.screenBounce();
         

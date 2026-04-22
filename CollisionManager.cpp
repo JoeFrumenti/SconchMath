@@ -18,7 +18,7 @@ void CollisionManager::checkCollision() {
 	for (auto& obj : objects1) {
 		glm::vec2 objCenter = obj->getPos();
 		for (auto& coin : objects2) {
-
+			//std::cout << "CHECKING COINS!\n";
 			glm::vec2 coinCenter = coin->getPos();
 			if (objCenter.x > coinCenter.x - coinsize
 				&& objCenter.x < coinCenter.x + coinsize
