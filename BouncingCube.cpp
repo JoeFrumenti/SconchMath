@@ -20,7 +20,7 @@ private:
 	glm::vec3 pos;
 
 	Shader* shader;
-	glm::vec3 velocity = glm::vec3(0.1f, 0.1f, 0.0f);
+	glm::vec3 velocity = glm::vec3(0.1f, 0.06f, 0.0f);
 
 
 	SoundDevice* mysounddevice = SoundDevice::get();
@@ -68,7 +68,7 @@ public:
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, pos);
 		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		model = glm::scale(model, glm::vec3(0.8f, 0.8f, .8f));
 	}
 
 	void Draw() override {
