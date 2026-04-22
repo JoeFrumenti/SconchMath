@@ -41,4 +41,8 @@ public:
 	void translate(glm::vec3 translation) {
 		pos += translation;
 	}
+
+	glm::vec2 getPos() override {
+		return pos;
+	}
 };

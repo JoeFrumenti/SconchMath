@@ -68,8 +68,8 @@ int main()
         for (int j = 0; j < 8; j++) {
             Coin* coiny = new Coin(modelShader);
             coiny->setId(idNum++);
-            UDMan.addUD(coiny);
             coiny->translate(glm::vec3((float)i * 3.0f - 6, (float)j * 4.3f - 10.7f, 0.0f));
+            UDMan.addUD(coiny);
             cm.addObject2(coiny);
         }
     }

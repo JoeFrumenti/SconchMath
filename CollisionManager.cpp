@@ -18,7 +18,7 @@ void CollisionManager::checkCollision() {
 	for (auto& obj : objects1) {
 		glm::vec2 objCenter = obj->getPos();
 		for (auto& coin : objects2) {
-			//std::cout << "CHECKING COINS!\n";
+			//std::cout << "CHECKING COINS!\n" << coin->getId() << std::endl;
 			glm::vec2 coinCenter = coin->getPos();
 			if (objCenter.x > coinCenter.x - coinsize
 				&& objCenter.x < coinCenter.x + coinsize
@@ -26,22 +26,23 @@ void CollisionManager::checkCollision() {
 				&& objCenter.y >coinCenter.y - coinsize)
 			{
 				coin->Collide();
-				//objManager.removeObject(coin.getId());
+				objManager.removeObject(coin->getId());
 				removeObject(coin->getId());
 			}
-
 		}
 	}
 }
 
 void CollisionManager::removeObject(int id) {
-
+	
 	std::vector<UD*> temp;
 	for (auto& obj : objects2) {
 
 		if (obj->getId() != id) {
 			temp.push_back(obj);
 		}
+		/*else
+			std::cout << "Removing " << id << std::endl;*/
 
 		objects2 = temp;
 	}

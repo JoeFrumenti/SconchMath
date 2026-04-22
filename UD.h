@@ -12,6 +12,6 @@ public:
 	virtual void setId(int id) { ID = id; };
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
-	virtual glm::vec2 getPos() { return pos; };
+	virtual glm::vec2 getPos() = 0;
 	virtual void Collide() {};
 };

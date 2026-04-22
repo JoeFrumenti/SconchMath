@@ -5,6 +5,12 @@
 
 #include <iostream>
 
+
+#include "SoundDevice.h"
+#include "SoundBuffer.h"
+#include "SoundSource.h"
+
+
 class Coin : public UD {
 private:
 	Model* ourModel;
@@ -13,6 +19,12 @@ private:
 	glm::vec3 pos;
 
 	Shader* shader;
+
+
+	SoundDevice* mysounddevice = SoundDevice::get();
+	uint32_t sound2 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime2.wav");
+
+	SoundSource mySpeaker;
 
 public:
 
@@ -43,5 +55,10 @@ public:
 
 	void Collide() override {
 		std::cout << "COIN COLLIDED!\n";
+		mySpeaker.Play(sound2);
+	}
+
+	glm::vec2 getPos() override{
+		return pos;
 	}
 };

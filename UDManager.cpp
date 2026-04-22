@@ -16,3 +16,8 @@ void UDManager::updateUDs(){
 		kv.second->Update();
 	}
 }
+
+void UDManager::removeObject(int id) {
+
+	UDs.erase(id);
+}

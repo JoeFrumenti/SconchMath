@@ -58,7 +58,9 @@ public:
 
 
 	}
-
+	glm::vec2 getPos() override {
+		return pos;
+	}
 
 	void Update() override {
 		screenBounce();
