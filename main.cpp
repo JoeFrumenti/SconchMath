@@ -47,7 +47,7 @@ int main()
     //GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
 
 
-    UDManager UDMan = UDManager::getInstance();
+    auto& UDMan = UDManager::getInstance();
 
     BouncingCube* bCube = new BouncingCube(modelShader);
 
