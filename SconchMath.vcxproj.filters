@@ -37,6 +37,9 @@
     <Filter Include="Source Files\Entities\Alpha">
       <UniqueIdentifier>{74887311-d742-4053-827e-21b6b186c3ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\OpenGL\Rendering">
+      <UniqueIdentifier>{c4954669-ce7b-4a50-ab6e-6fbe325f78ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -44,15 +47,6 @@
     </ClCompile>
     <ClCompile Include="texture.cpp">
       <Filter>Source Files\OpenGL\shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenGL\texManager.cpp">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenGL\glManager.cpp">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="glad.c">
-      <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
       <Filter>Source Files\Entities</Filter>
@@ -68,12 +62,6 @@
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="coin.cpp">
       <Filter>Source Files\Entities\Prefabs</Filter>
@@ -101,6 +89,21 @@
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Source Files\OpenGL\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\glManager.cpp">
+      <Filter>Source Files\OpenGL\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\OpenGL\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\OpenGL\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\texManager.cpp">
+      <Filter>Source Files\OpenGL\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,17 +133,8 @@
     <ClInclude Include="SoundSource.h">
       <Filter>Source Files\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="texManager.h">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="UD.h">
       <Filter>Source Files\Entities</Filter>
@@ -162,6 +156,15 @@
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source Files\OpenGL\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\OpenGL\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="texManager.h">
+      <Filter>Source Files\OpenGL\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

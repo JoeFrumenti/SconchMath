@@ -50,7 +50,9 @@ public:
 
 	void Draw() override{
 		shader->setMat4("model", model);
+		shader->setVec4("color", glm::vec4(1.0, .0f, .0f, 1.0f));
 		ourModel->Draw(*shader);
+		shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	}
 
 	void translate(glm::vec3 translation) {
