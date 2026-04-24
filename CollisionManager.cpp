@@ -26,8 +26,8 @@ void CollisionManager::checkCollision() {
 				&& objCenter.y >coinCenter.y - coinsize)
 			{
 				coin->Collide();
-				objManager.removeObject(coin->getId());
-				removeObject(coin->getId());
+				//objManager.removeObject(coin->getId());
+				//removeObject(coin->getId());
 			}
 		}
 	}

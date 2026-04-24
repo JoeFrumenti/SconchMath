@@ -17,8 +17,9 @@ class Coin : public UD {
 private:
 	Model* ourModel;
 	glm::mat4 model;
-
 	glm::vec3 pos;
+	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	glm::vec4 white = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	Shader* shader;
 
@@ -50,9 +51,9 @@ public:
 
 	void Draw() override{
 		shader->setMat4("model", model);
-		shader->setVec4("color", glm::vec4(1.0, .0f, .0f, 1.0f));
+		shader->setVec4("color", color);
 		ourModel->Draw(*shader);
-		shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		shader->setVec4("color", white);
 	}
 
 	void translate(glm::vec3 translation) {
@@ -61,6 +62,7 @@ public:
 
 	void Collide() override {
 		mySpeaker.Play(sound2);
+		color = glm::vec4(1.0f, .0f, .0f, 1.0f);
 	}
 
 	glm::vec2 getPos() override{
