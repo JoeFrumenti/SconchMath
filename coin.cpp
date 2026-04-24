@@ -10,6 +10,8 @@
 #include "SoundBuffer.h"
 #include "SoundSource.h"
 
+#include "CollisionManager.h"
+
 
 class Coin : public UD {
 private:
@@ -20,6 +22,7 @@ private:
 
 	Shader* shader;
 
+	CollisionManager& cm = CollisionManager::getInstance();
 
 	SoundDevice* mysounddevice = SoundDevice::get();
 	uint32_t sound2 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime2.wav");
@@ -34,6 +37,7 @@ public:
 		ourModel = new Model(path);
 		pos = glm::vec3(.0f,.0f,.0f);
 		shader = shade;
+		cm.addObject2(this);
 	}
 
 

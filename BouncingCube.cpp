@@ -10,9 +10,13 @@
 #include "SoundBuffer.h"
 #include "SoundSource.h"
 
+#include "CollisionManager.h"
+
 
 
 class BouncingCube : public UD {
+
+
 private:
 	Model* ourModel;
 	glm::mat4 model;
@@ -20,13 +24,17 @@ private:
 	glm::vec3 pos;
 
 	Shader* shader;
-	glm::vec3 velocity = glm::vec3(0.1f, 0.06f, 0.0f);
+	glm::vec3 velocity = glm::vec3(0.2f, -0.12f, 0.0f);
 
+	CollisionManager& cm = CollisionManager::getInstance();
 
 	SoundDevice* mysounddevice = SoundDevice::get();
 	uint32_t sound1 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
 
 	SoundSource mySpeaker;
+
+
+
 
 public:
 
@@ -36,6 +44,7 @@ public:
 		ourModel = new Model(path);
 		pos = glm::vec3(.0f, .0f, .0f);
 		shader = shade;
+		cm.addObject1(this);
 	}
 
 	void screenBounce() {

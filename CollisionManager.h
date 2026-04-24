@@ -18,8 +18,10 @@ private:
 public:
 
 	CollisionManager();
-	static CollisionManager* getInstance();
-
+	static CollisionManager& getInstance() {
+		static CollisionManager instance;
+		return instance;
+	}
 	void addObject1(UD* object);
 
 	void addObject2(UD* coin);

@@ -19,7 +19,6 @@
 
 #include <string>
 
-using namespace std;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -35,10 +34,11 @@ const unsigned int SCR_WIDTH = 9 * scale;
 const unsigned int SCR_HEIGHT = 16 * scale;
 
 GLFWwindow* window;
-CollisionManager cm;
 auto& UDMan = UDManager::getInstance();
 
-bool start = false;
+CollisionManager& cm = CollisionManager::getInstance();
+
+bool start = true;
 
 void renderLoop();
 
@@ -65,7 +65,6 @@ int main()
     bg->setId(1);
     UDMan.addUD(bg);
 
-    cm.addObject1(bCube);
 
     auto& objManager = ObjectManager::getInstance();
     int idNum = 10;
@@ -77,7 +76,6 @@ int main()
             coiny->setId(idNum++);
             coiny->translate(glm::vec3((float)i * 3.0f - 6, (float)j * 4.3f - 10.7f, 0.0f));
             UDMan.addUD(coiny);
-            cm.addObject2(coiny);
         }
     }
 
