@@ -24,7 +24,7 @@ private:
 	glm::vec3 pos;
 
 	Shader* shader;
-	glm::vec3 velocity = glm::vec3(0.2f, -0.12f, 0.0f);
+	glm::vec3 velocity = glm::vec3(0.25f, -0.35f, 0.0f);
 
 	CollisionManager& cm = CollisionManager::getInstance();
 

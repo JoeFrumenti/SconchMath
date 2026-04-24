@@ -14,7 +14,7 @@ void CollisionManager::addObject2(UD* coin) {
 
 void CollisionManager::checkCollision() {
 	auto& objManager = UDManager::getInstance();
-	float coinsize = 1.3;
+	float coinsize = 1.7;
 	for (auto& obj : objects1) {
 		glm::vec2 objCenter = obj->getPos();
 		for (auto& coin : objects2) {

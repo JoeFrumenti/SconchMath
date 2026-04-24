@@ -38,7 +38,7 @@ auto& UDMan = UDManager::getInstance();
 
 CollisionManager& cm = CollisionManager::getInstance();
 
-bool start = true;
+bool start = false;
 
 void renderLoop();
 
