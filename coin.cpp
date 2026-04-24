@@ -11,6 +11,7 @@
 #include "SoundSource.h"
 
 #include "CollisionManager.h"
+#include "UDManager.h"
 
 
 class Coin : public UD {
@@ -24,11 +25,17 @@ private:
 	Shader* shader;
 
 	CollisionManager& cm = CollisionManager::getInstance();
+	UDManager& UDMan = UDManager::getInstance();
 
 	SoundDevice* mysounddevice = SoundDevice::get();
 	uint32_t sound2 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime2.wav");
 
 	SoundSource mySpeaker;
+
+	double timer = .1;
+	bool timerRunning = false;
+
+	int collisions = 0;
 
 public:
 
@@ -46,7 +53,13 @@ public:
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, pos); 
 		model = glm::rotate(model, (float)glfwGetTime() * 3, glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.45f, 0.45f, .45f));	
+		model = glm::scale(model, glm::vec3(0.45f, 0.45f, .45f));
+
+		if (timerRunning && (glfwGetTime() - timer >= 1.0f)) {
+			cm.addObject2(this);
+			timerRunning = false;
+		}
+
 	}
 
 	void Draw() override{
@@ -63,6 +76,13 @@ public:
 	void Collide() override {
 		mySpeaker.Play(sound2);
 		color = glm::vec4(1.0f, .0f, .0f, 1.0f);
+		cm.removeObject(ID);
+		if (++collisions < 2) {
+			timer = glfwGetTime();
+			timerRunning = true;
+		}
+		else
+			UDMan.removeObject(ID);
 	}
 
 	glm::vec2 getPos() override{

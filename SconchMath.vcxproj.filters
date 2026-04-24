@@ -22,9 +22,6 @@
     <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{793edd30-abfd-4ac9-8340-84f6d2c236f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Entities\Attributes">
-      <UniqueIdentifier>{3941099c-0cf2-4cf2-bdf1-83420bf73b90}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Sound">
       <UniqueIdentifier>{cde73706-9d4a-4e14-aa27-79fc66079d10}</UniqueIdentifier>
     </Filter>

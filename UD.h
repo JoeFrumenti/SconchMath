@@ -14,4 +14,5 @@ public:
 	virtual void Draw() = 0;
 	virtual glm::vec2 getPos() = 0;
 	virtual void Collide() {};
+
 };
