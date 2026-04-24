@@ -34,20 +34,28 @@ int scale = 50;
 const unsigned int SCR_WIDTH = 9 * scale;
 const unsigned int SCR_HEIGHT = 16 * scale;
 
+GLFWwindow* window;
+CollisionManager cm;
+auto& UDMan = UDManager::getInstance();
+
+bool start = false;
+
+void renderLoop();
+
 int main()
 {
-   
 
-    GLFWwindow* window = configGL();
+
+    window = configGL();
     //ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
     modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
 
-   
-	/*GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);*/
+
+    /*GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);*/
     //GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
 
 
-    auto& UDMan = UDManager::getInstance();
+
 
     BouncingCube* bCube = new BouncingCube(modelShader);
 
@@ -57,13 +65,12 @@ int main()
     bg->setId(1);
     UDMan.addUD(bg);
 
-    CollisionManager cm;
     cm.addObject1(bCube);
 
     auto& objManager = ObjectManager::getInstance();
     int idNum = 10;
 
-   
+
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 8; j++) {
             Coin* coiny = new Coin(modelShader);
@@ -79,48 +86,54 @@ int main()
 
     cam->setup();
     //modelShader->use();
+ 
 
-    
-    while (!glfwWindowShouldClose(window))
-    {
-        processInput(window);
+    renderLoop();
 
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
-
-        //bg.render();
-
-        cm.checkCollision();
-
-        //cube.screenBounce();
-        
-        //objManager.renderObjects();
-
-
-        //// render the loaded model
-        //glm::mat4 model = glm::mat4(1.0f);
-        //model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-        //model = glm::scale(model, glm::vec3(0.1f, 0.07f, .1f));	// it's a bit too big for our scene, so scale it down
-        //modelShader->setMat4("model", model);
-        //ourModel.Draw(*modelShader);
-
-        UDMan.updateUDs();
-        UDMan.drawUDs();
-
-
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
 
     glfwTerminate();
     return 0;
 }
 
+void renderLoop() {
+
+
+
+    while (!glfwWindowShouldClose(window))
+    {
+        processInput(window);
+
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+
+        //bg.render();
+
+        cm.checkCollision();
+
+
+        if (start) {
+
+            UDMan.updateUDs();
+            UDMan.drawUDs();
+
+        }
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+}
+
+
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow* window)
 {
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+        start = true;
+        
+    else if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 }
 
