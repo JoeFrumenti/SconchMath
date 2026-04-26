@@ -55,7 +55,7 @@ public:
 		model = glm::rotate(model, (float)glfwGetTime() * 3, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.65f, 0.65f, .65f));
 
-		if (timerRunning && (glfwGetTime() - timer >= 0.7f)) {
+		if (timerRunning && (glfwGetTime() - timer >= 0.3f)) {
 			cm.addObject2(this);
 			timerRunning = false;
 		}

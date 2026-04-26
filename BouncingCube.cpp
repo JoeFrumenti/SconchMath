@@ -4,7 +4,7 @@
 #include "Shaders/shader.h"
 
 #include <iostream>
-
+#include <vector>
 
 #include "SoundDevice.h"
 #include "SoundBuffer.h"
@@ -24,7 +24,7 @@ private:
 	glm::vec3 pos;
 
 	Shader* shader;
-	glm::vec3 velocity = glm::vec3(0.25f, -0.35f, 0.0f);
+	glm::vec3 velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 
 	CollisionManager& cm = CollisionManager::getInstance();
 
@@ -33,7 +33,8 @@ private:
 
 	SoundSource mySpeaker;
 
-
+	std::vector<int> pitches = {0, 2, 4, 6, 7};
+	int pitch = 0;
 
 
 public:
@@ -52,19 +53,24 @@ public:
 		float boundsX = 8.8f * scale;
 		float boundsY = 16.7f * scale;
 
+		
+
+		alSourcef(sound1, AL_PITCH, pow(2.0, pitches[pitch]/12.0));
+
 		pos += velocity;
 
 		if (pos.x >= boundsX || pos.x <= -boundsX) {
 			mySpeaker.Play(sound1);
 			velocity.x = -velocity.x;
+			pitch = rand() % pitches.size();
 
 		}
 		if (pos.y >= boundsY || pos.y <= -boundsY) {
 			mySpeaker.Play(sound1);
 			velocity.y = -velocity.y;
+			pitch = rand() % pitches.size();
 
 		}
-
 
 	}
 	glm::vec2 getPos() override {
