@@ -55,20 +55,24 @@ int main()
     
 
     window = configGL();
-    //ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
     modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
 
 
-    /*GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);*/
-    //GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
 
     InputManager* input = new InputManager(window);
 
     DebugCube* debugCube = new DebugCube(modelShader, input);
+    debugCube->setId(3);
+    debugCube->setInput(true);
+
+    DebugCube* dC2 = new DebugCube(modelShader, input);
+    dC2->setId(4);
+    dC2->translate(glm::vec3(3.0f, 5.0f,0.0f));
 
     BouncingCube* bCube = new BouncingCube(modelShader);
 
     UDMan.addUD(debugCube);
+    UDMan.addUD(dC2);
 
     //UDMan.addUD(bCube);
 
@@ -77,7 +81,6 @@ int main()
     //UDMan.addUD(bg);
 
 
-    auto& objManager = ObjectManager::getInstance();
     int idNum = 10;
 
 
@@ -94,7 +97,7 @@ int main()
     camera* cam = new camera(modelShader, SCR_WIDTH, SCR_HEIGHT);
 
     cam->setup();
-    //modelShader->use();
+    modelShader->use();
  
 
     renderLoop();
