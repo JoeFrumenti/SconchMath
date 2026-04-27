@@ -21,5 +21,7 @@ public:
 	virtual void Draw() = 0;
 	virtual glm::vec2 getPos() = 0;
 	virtual void Collide(Collision) {};
+	virtual float getWidth() { return this->width; }
+	virtual float getHeight() { return this->height; }
 
 };

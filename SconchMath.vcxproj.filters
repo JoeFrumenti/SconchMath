@@ -37,6 +37,9 @@
     <Filter Include="Source Files\OpenGL\Rendering">
       <UniqueIdentifier>{c4954669-ce7b-4a50-ab6e-6fbe325f78ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\OpenGL\Structs">
+      <UniqueIdentifier>{5f57b71f-42df-465d-b98b-37a28e55def6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -173,7 +176,10 @@
       <Filter>Source Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="Collision.h">
-      <Filter>Source Files\OpenGL</Filter>
+      <Filter>Source Files\OpenGL\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="point.h">
+      <Filter>Source Files\OpenGL\Structs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

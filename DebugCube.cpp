@@ -46,7 +46,10 @@ public:
 		shader = shade;
 		cm.addObject1(this);
 		input = i;
-		//shade->use();
+		tags.push_back("debug");
+		this->width = 1;
+		this->height = 1;
+		cm.addObject(this);
 	}
 
 	
@@ -70,6 +73,11 @@ public:
 		shader->setVec4("color", glm::vec4(1.0f,1.0f,1.0f,1.0f));
 		shader->setMat4("model", model);
 		ourModel->Draw(*shader);
+	}
+
+	void Collide(Collision col) {
+		for (auto& tag : col.tags)
+			std::cout << tag;
 	}
 
 	void translate(glm::vec3 translation) {

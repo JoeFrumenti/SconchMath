@@ -126,7 +126,7 @@ void renderLoop() {
 
         //bg.render();
 
-        cm.checkCollision();
+        cm.checkCollision2D();
 
 
         if (start) {

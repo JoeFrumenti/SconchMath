@@ -1,8 +1,13 @@
 #pragma once
 
 #include "CollisionManager.h"
+#include "point.h"
 
 CollisionManager::CollisionManager() {}
+
+void CollisionManager::addObject(UD* object) {
+	objects.push_back(object);
+}
 
 void CollisionManager::addObject1(UD* object) {
 	objects1.push_back(object);
@@ -10,6 +15,16 @@ void CollisionManager::addObject1(UD* object) {
 
 void CollisionManager::addObject2(UD* coin) {
 	objects2.push_back(coin);
+}
+
+void CollisionManager::checkCollision2D() {
+	for (auto& obj1 : objects) {
+		for (auto& obj2 : objects){
+			if (obj1->getId() != obj2->getId()) {
+				std::cout << obj1->getId() << "\n";
+			}
+		}
+	}
 }
 
 void CollisionManager::checkCollision() {
@@ -46,4 +61,13 @@ void CollisionManager::removeObject(int id) {
 
 		objects2 = temp;
 	}
+}
+
+bool CollisionManager::inBox(Point point, glm::vec3 pos, float w, float h) {
+	if (point.x < pos.x + w &&
+		point.x > pos.x - w &&
+		point.y < pos.y + h &&
+		point.y > pos.y - h)
+		return true;
+	return false;
 }

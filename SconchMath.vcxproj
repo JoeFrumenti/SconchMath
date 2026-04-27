@@ -58,6 +58,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="point.h" />
     <ClInclude Include="primitive.h" />
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundDevice.h" />
