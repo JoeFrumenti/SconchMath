@@ -1,10 +1,13 @@
 #pragma once
 #include "Shaders/shader.h"
 #include <GLFW/glfw3.h>
+#include <vector>
+
 class UD {
 protected:
 	int ID;
 	glm::vec2 pos;
+	std::vector<std::string> tags;
 
 public:
 	//UD();

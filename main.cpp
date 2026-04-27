@@ -3,6 +3,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <chrono>
+#include <thread>
+
 #include <Shaders/shader.h>
 
 #include <camera.cpp>
@@ -40,11 +43,15 @@ CollisionManager& cm = CollisionManager::getInstance();
 
 bool start = false;
 
+const double TARGET_FPS = 60.0;
+const std::chrono::duration<double> FRAME_DURATION(1.0 / TARGET_FPS); // ~16.67ms
+
+
 void renderLoop();
 
 int main()
 {
-
+    
 
     window = configGL();
     //ourShader = new Shader("C:/Users/joefr/source/include/Shaders/shader.vs", "C:/Users/joefr/source/include/Shaders/shader.fs");
@@ -88,6 +95,8 @@ int main()
 
     renderLoop();
 
+    
+
 
     glfwTerminate();
     return 0;
@@ -99,6 +108,8 @@ void renderLoop() {
 
     while (!glfwWindowShouldClose(window))
     {
+        auto frameStart = std::chrono::high_resolution_clock::now();
+
         processInput(window);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -120,6 +131,13 @@ void renderLoop() {
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+
+        auto frameEnd = std::chrono::high_resolution_clock::now();
+        auto elapsed = frameEnd - frameStart;
+
+        if (elapsed < FRAME_DURATION) {
+            std::this_thread::sleep_for(FRAME_DURATION - elapsed);
+        }
     }
 }
 
