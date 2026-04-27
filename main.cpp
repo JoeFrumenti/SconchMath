@@ -13,12 +13,13 @@
 #include "ObjectManager.h"
 
 #include "Model.h"
-
+#include "InputManager.h"
 #include "UDManager.h"
 
 #include "coin.cpp"
 #include "BouncingCube.cpp"
 #include "Background.cpp"
+#include "DebugCube.cpp"
 
 #include <string>
 
@@ -61,10 +62,13 @@ int main()
     /*GameObject cube(ourShader,"cube", "C:/Users/joefr/source/repos/SconchMath/assets/star.png", GL_RGBA);*/
     //GameObject bg(ourShader, "square", "C:/Users/joefr/source/repos/SconchMath/assets/backgroundPB.jpg", GL_RGB);
 
+    InputManager* input = new InputManager(window);
 
-
+    DebugCube* debugCube = new DebugCube(modelShader, input);
 
     BouncingCube* bCube = new BouncingCube(modelShader);
+
+    UDMan.addUD(debugCube);
 
     //UDMan.addUD(bCube);
 
@@ -77,14 +81,14 @@ int main()
     int idNum = 10;
 
 
-    for (int i = 0; i < 5; i++) {
+    /*for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 8; j++) {
             Coin* coiny = new Coin(modelShader);
             coiny->setId(idNum++);
             coiny->translate(glm::vec3((float)i * 3.0f - 6, (float)j * 4.3f - 10.7f, 0.0f));
-            //UDMan.addUD(coiny);
+           UDMan.addUD(coiny);
         }
-    }
+    }*/
 
 
     camera* cam = new camera(modelShader, SCR_WIDTH, SCR_HEIGHT);

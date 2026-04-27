@@ -8,7 +8,7 @@ InputManager::InputManager(GLFWwindow* w) {
 
 }
 
-glm::vec2 InputManager::getInput() {
+glm::vec3 InputManager::getInput() {
 	int x = 0;
 	int y = 0;
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
@@ -19,5 +19,9 @@ glm::vec2 InputManager::getInput() {
 		y++;
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 		y--;
-	return glm::vec2(x, y);
+	return glm::vec3(x, y,0);
+}
+
+bool InputManager::isE() {
+	return glfwGetKey(window, GLFW_KEY_E);
 }

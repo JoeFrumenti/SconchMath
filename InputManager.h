@@ -15,7 +15,9 @@ private:
 public: 
 
 	InputManager(GLFWwindow* w);
-	glm::vec2 getInput();
+	glm::vec3 getInput();
+
+	bool isE();
 
 
 };
