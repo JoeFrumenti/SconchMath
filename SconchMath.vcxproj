@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />

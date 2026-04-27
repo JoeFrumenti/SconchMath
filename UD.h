@@ -3,6 +3,8 @@
 #include <GLFW/glfw3.h>
 #include <vector>
 
+#include "Collision.h"
+
 class UD {
 protected:
 	int ID;
@@ -18,6 +20,6 @@ public:
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 	virtual glm::vec2 getPos() = 0;
-	virtual void Collide() {};
+	virtual void Collide(Collision) {};
 
 };

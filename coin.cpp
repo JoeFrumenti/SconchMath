@@ -73,7 +73,7 @@ public:
 		pos += translation;
 	}
 
-	void Collide() override {
+	void Collide(Collision col) override {
 		mySpeaker.Play(sound2);
 		color = glm::vec4(1.0f, .0f, .0f, 1.0f);
 		cm.removeObject(ID);

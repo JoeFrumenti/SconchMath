@@ -6,10 +6,7 @@
 #include <mutex>
 #include <string>
 
-struct Collision {
-	std::vector<std::string> tags;
-	glm::vec2 pos;
-};
+#include "Collision.h"
 
 class CollisionManager {
 private:

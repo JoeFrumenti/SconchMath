@@ -172,5 +172,8 @@
     <ClInclude Include="InputManager.h">
       <Filter>Source Files\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
