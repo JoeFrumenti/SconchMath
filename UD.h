@@ -8,6 +8,8 @@ protected:
 	int ID;
 	glm::vec2 pos;
 	std::vector<std::string> tags;
+	float width;
+	float height;
 
 public:
 	//UD();

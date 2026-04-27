@@ -4,8 +4,12 @@
 #include "UDManager.h"
 #include <vector>
 #include <mutex>
+#include <string>
 
-
+struct Collision {
+	std::vector<std::string> tags;
+	glm::vec2 pos;
+};
 
 class CollisionManager {
 private:
@@ -18,6 +22,7 @@ private:
 public:
 
 	CollisionManager();
+
 	static CollisionManager& getInstance() {
 		static CollisionManager instance;
 		return instance;

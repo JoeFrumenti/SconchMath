@@ -102,6 +102,12 @@
     <ClCompile Include="OpenGL\texManager.cpp">
       <Filter>Source Files\OpenGL\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="DebugCube.cpp">
+      <Filter>Source Files\Entities\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
@@ -162,6 +168,9 @@
     </ClInclude>
     <ClInclude Include="texManager.h">
       <Filter>Source Files\OpenGL\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Source Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

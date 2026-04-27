@@ -41,7 +41,7 @@ auto& UDMan = UDManager::getInstance();
 
 CollisionManager& cm = CollisionManager::getInstance();
 
-bool start = false;
+bool start = true;
 
 const double TARGET_FPS = 60.0;
 const std::chrono::duration<double> FRAME_DURATION(1.0 / TARGET_FPS); // ~16.67ms
@@ -66,11 +66,11 @@ int main()
 
     BouncingCube* bCube = new BouncingCube(modelShader);
 
-    UDMan.addUD(bCube);
+    //UDMan.addUD(bCube);
 
     Background* bg = new Background(modelShader);
     bg->setId(1);
-    UDMan.addUD(bg);
+    //UDMan.addUD(bg);
 
 
     auto& objManager = ObjectManager::getInstance();
@@ -82,7 +82,7 @@ int main()
             Coin* coiny = new Coin(modelShader);
             coiny->setId(idNum++);
             coiny->translate(glm::vec3((float)i * 3.0f - 6, (float)j * 4.3f - 10.7f, 0.0f));
-            UDMan.addUD(coiny);
+            //UDMan.addUD(coiny);
         }
     }
 
