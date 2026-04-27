@@ -8,5 +8,7 @@
 
 struct Collision {
 	std::vector<std::string> tags;
-	glm::vec2 pos;
+	glm::vec3 pos;
+
+	Collision(std::vector<std::string> tags, glm::vec3 pos) : tags(tags), pos(pos) {}
 };

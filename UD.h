@@ -23,5 +23,6 @@ public:
 	virtual void Collide(Collision) {};
 	virtual float getWidth() { return this->width; }
 	virtual float getHeight() { return this->height; }
+	virtual std::vector<std::string> getTags() { return this->tags; }
 
 };

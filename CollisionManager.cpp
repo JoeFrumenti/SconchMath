@@ -32,8 +32,19 @@ void CollisionManager::checkCollision2D() {
 				Point UL(pos1.x - w1, pos1.y + h1);
 				Point BR(pos1.x + w1, pos1.y - h1);
 				Point BL(pos1.x - w1, pos1.y - h1);
-				if (inBox(UR, obj2->getPos(), w2, h2))
-					std::cout << "AAAAAAAAAA\n";
+				if (inBox(UR, obj2->getPos(), w2, h2) ||
+					inBox(UL, obj2->getPos(), w2, h2) ||
+					inBox(BR, obj2->getPos(), w2, h2) ||
+					inBox(BL, obj2->getPos(), w2, h2)) 
+					{
+						std::vector<std::string> tags;
+						for (auto& tag : obj2->getTags()) {
+							tags.push_back(tag);
+						}
+						Collision col(tags, obj2->getPos());
+						obj1->Collide(col);
+					}
+					
 				
 			}
 		}
@@ -48,10 +59,10 @@ void CollisionManager::checkCollision() {
 		for (auto& coin : objects2) {
 			//std::cout << "CHECKING COINS!\n" << coin->getId() << std::endl;
 			glm::vec2 coinCenter = coin->getPos();
-			if (objCenter.x > coinCenter.x - coinsize
-				&& objCenter.x < coinCenter.x + coinsize
-				&& objCenter.y <coinCenter.y + coinsize
-				&& objCenter.y >coinCenter.y - coinsize)
+			if (objCenter.x >= coinCenter.x - coinsize
+				&& objCenter.x <= coinCenter.x + coinsize
+				&& objCenter.y <= coinCenter.y + coinsize
+				&& objCenter.y >= coinCenter.y - coinsize)
 			{
 				//coin->Collide();
 				//objManager.removeObject(coin->getId());
