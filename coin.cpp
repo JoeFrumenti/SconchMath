@@ -85,7 +85,7 @@ public:
 			UDMan.removeObject(ID);
 	}
 
-	glm::vec2 getPos() override{
+	glm::vec3 getPos() override{
 		return pos;
 	}
 };

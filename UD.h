@@ -8,7 +8,7 @@
 class UD {
 protected:
 	int ID;
-	glm::vec2 pos;
+	glm::vec3 pos;
 	std::vector<std::string> tags;
 	float width;
 	float height;
@@ -19,7 +19,7 @@ public:
 	virtual void setId(int id) { ID = id; };
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
-	virtual glm::vec2 getPos() = 0;
+	virtual glm::vec3 getPos() = 0;
 	virtual void Collide(Collision) {};
 	virtual float getWidth() { return this->width; }
 	virtual float getHeight() { return this->height; }

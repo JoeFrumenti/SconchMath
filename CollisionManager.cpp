@@ -21,7 +21,20 @@ void CollisionManager::checkCollision2D() {
 	for (auto& obj1 : objects) {
 		for (auto& obj2 : objects){
 			if (obj1->getId() != obj2->getId()) {
-				std::cout << obj1->getId() << "\n";
+				glm::vec2 pos1 = obj1->getPos();
+				float w1 = obj1->getWidth();
+				float h1 = obj1->getHeight();
+				glm::vec2 pos2a = obj2->getPos();
+				float w2 = obj2->getWidth();
+				float h2 = obj2->getHeight();
+
+				Point UR(pos1.x + w1, pos1.y + h1);
+				Point UL(pos1.x - w1, pos1.y + h1);
+				Point BR(pos1.x + w1, pos1.y - h1);
+				Point BL(pos1.x - w1, pos1.y - h1);
+				if (inBox(UR, obj2->getPos(), w2, h2))
+					std::cout << "AAAAAAAAAA\n";
+				
 			}
 		}
 	}

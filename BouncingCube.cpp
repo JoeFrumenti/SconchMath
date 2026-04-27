@@ -73,7 +73,7 @@ public:
 		}
 
 	}
-	glm::vec2 getPos() override {
+	glm::vec3 getPos() override {
 		return pos;
 	}
 
