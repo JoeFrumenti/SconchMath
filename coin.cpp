@@ -28,7 +28,7 @@ private:
 	UDManager& UDMan = UDManager::getInstance();
 
 	SoundDevice* mysounddevice = SoundDevice::get();
-	uint32_t sound2 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime2.wav");
+	uint32_t sound2 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime3.wav");
 
 	SoundSource mySpeaker;
 

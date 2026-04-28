@@ -23,6 +23,8 @@
 
 #include <string>
 
+bool start = false;
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -42,7 +44,6 @@ auto& UDMan = UDManager::getInstance();
 
 CollisionManager& cm = CollisionManager::getInstance();
 
-bool start = true;
 
 const double TARGET_FPS = 60.0;
 const std::chrono::duration<double> FRAME_DURATION(1.0 / TARGET_FPS); // ~16.67ms
@@ -61,11 +62,14 @@ int main()
 
     InputManager* input = new InputManager(window);
 
-    BouncingCube* debugCube = new BouncingCube(modelShader);
+    char path1[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj";
+    char path2[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj";
+
+    BouncingCube* debugCube = new BouncingCube(modelShader, path1);
     debugCube->setId(3);
     debugCube->setVelocity(glm::vec3(0.45f, -0.15f, .0f));
 
-    BouncingCube* dC2 = new BouncingCube(modelShader);
+    BouncingCube* dC2 = new BouncingCube(modelShader, path2);
     dC2->setId(4);
     dC2->translate(glm::vec3(.0f, -5.0f,0.0f));
     dC2->setVelocity(glm::vec3(0.35f, 0.24f, .0f));

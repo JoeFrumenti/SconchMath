@@ -16,7 +16,6 @@
 
 class BouncingCube : public UD {
 
-
 private:
 	Model* ourModel;
 	glm::mat4 model;
@@ -39,8 +38,9 @@ private:
 
 public:
 
-	BouncingCube(Shader* shade) {
-		char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj";
+	BouncingCube(Shader* shade, char* path) {
+		
+
 		ID = 0;
 		ourModel = new Model(path);
 		pos = glm::vec3(.0f, .0f, .0f);
@@ -58,6 +58,7 @@ public:
 		{
 			if (tag == "bcube")
 			{
+				mySpeaker.Play(sound1);
 				UD* obj = col.obj;
 				if (obj->getLastPos().x + obj->getWidth() <= lastPos.x - width && velocity.x < 0) {
 					
