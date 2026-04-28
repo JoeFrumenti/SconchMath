@@ -63,12 +63,12 @@ int main()
 
     BouncingCube* debugCube = new BouncingCube(modelShader);
     debugCube->setId(3);
-    debugCube->setVelocity(glm::vec3(0.0f, -0.15f, .0f));
+    debugCube->setVelocity(glm::vec3(0.45f, -0.15f, .0f));
 
     BouncingCube* dC2 = new BouncingCube(modelShader);
     dC2->setId(4);
     dC2->translate(glm::vec3(.0f, -5.0f,0.0f));
-    dC2->setVelocity(glm::vec3(0.0f, 0.24f, .0f));
+    dC2->setVelocity(glm::vec3(0.35f, 0.24f, .0f));
 
     //BouncingCube* bCube = new BouncingCube(modelShader);
 
@@ -79,20 +79,20 @@ int main()
 
     Background* bg = new Background(modelShader);
     bg->setId(1);
-    //UDMan.addUD(bg);
+    UDMan.addUD(bg);
 
 
     int idNum = 10;
 
 
-    /*for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 8; j++) {
             Coin* coiny = new Coin(modelShader);
             coiny->setId(idNum++);
             coiny->translate(glm::vec3((float)i * 3.0f - 6, (float)j * 4.3f - 10.7f, 0.0f));
            UDMan.addUD(coiny);
         }
-    }*/
+    }
 
 
     camera* cam = new camera(modelShader, SCR_WIDTH, SCR_HEIGHT);

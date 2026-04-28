@@ -45,7 +45,9 @@ public:
 		ourModel = new Model(path);
 		pos = glm::vec3(.0f,.0f,.0f);
 		shader = shade;
-		cm.addObject2(this);
+		this->width = 0.5f;
+		this->height = 0.7f;
+		cm.addObject(this);
 	}
 
 
@@ -56,7 +58,7 @@ public:
 		model = glm::scale(model, glm::vec3(0.65f, 0.65f, .65f));
 
 		if (timerRunning && (glfwGetTime() - timer >= 0.3f)) {
-			cm.addObject2(this);
+			cm.addObject(this);
 			timerRunning = false;
 		}
 

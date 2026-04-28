@@ -83,7 +83,7 @@ void CollisionManager::checkCollision() {
 void CollisionManager::removeObject(int id) {
 	
 	std::vector<UD*> temp;
-	for (auto& obj : objects2) {
+	for (auto& obj : objects) {
 
 		if (obj->getId() != id) {
 			temp.push_back(obj);
@@ -91,7 +91,7 @@ void CollisionManager::removeObject(int id) {
 		/*else
 			std::cout << "Removing " << id << std::endl;*/
 
-		objects2 = temp;
+		objects = temp;
 	}
 }
 

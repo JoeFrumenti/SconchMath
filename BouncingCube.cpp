@@ -58,26 +58,22 @@ public:
 		{
 			if (tag == "bcube")
 			{
-				std::cout << "collide!";
 				UD* obj = col.obj;
 				if (obj->getLastPos().x + obj->getWidth() <= lastPos.x - width && velocity.x < 0) {
-					std::cout << "Negative to positive!\n";
+					
 					velocity.x = -velocity.x;
 				}
 				if (obj->getLastPos().x - obj->getWidth() >= lastPos.x + width && velocity.x > 0) {
-					std::cout << "Positive to negative!\n";
+					
 					velocity.x = -velocity.x;
 				}
 					
 				if (obj->getLastPos().y + obj->getHeight() <= lastPos.y - height && velocity.y < 0)
 				{
-					std::cout << "Negative to positive!\n";
 					velocity.y = -velocity.y;
 				}
 				if (obj->getLastPos().y - obj->getHeight() >= lastPos.y + height && velocity.y > 0)
 				{
-					
-					std::cout << "Positive to negative!\n";
 					velocity.y = -velocity.y;
 				}
 
@@ -124,7 +120,7 @@ public:
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, pos);
-		//model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
+		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
 		//model = glm::scale(model, glm::vec3(0.8f, 0.8f, .8f));
 		
 	}
