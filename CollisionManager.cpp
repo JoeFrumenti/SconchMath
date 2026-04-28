@@ -18,12 +18,16 @@ void CollisionManager::addObject2(UD* coin) {
 }
 
 void CollisionManager::checkCollision2D() {
+	std::vector<UD*> UDcollisions;
+	std::vector<Collision> cols;
+
 	for (auto& obj1 : objects) {
 		for (auto& obj2 : objects){
 			if (obj1->getId() != obj2->getId()) {
 				glm::vec2 pos1 = obj1->getPos();
 				float w1 = obj1->getWidth();
 				float h1 = obj1->getHeight();
+
 				glm::vec2 pos2a = obj2->getPos();
 				float w2 = obj2->getWidth();
 				float h2 = obj2->getHeight();
@@ -32,22 +36,26 @@ void CollisionManager::checkCollision2D() {
 				Point UL(pos1.x - w1, pos1.y + h1);
 				Point BR(pos1.x + w1, pos1.y - h1);
 				Point BL(pos1.x - w1, pos1.y - h1);
+
 				if (inBox(UR, obj2->getPos(), w2, h2) ||
 					inBox(UL, obj2->getPos(), w2, h2) ||
 					inBox(BR, obj2->getPos(), w2, h2) ||
 					inBox(BL, obj2->getPos(), w2, h2)) 
 					{
-						std::vector<std::string> tags;
-						for (auto& tag : obj2->getTags()) {
-							tags.push_back(tag);
-						}
-						Collision col(tags, obj2->getPos());
-						obj1->Collide(col);
+						
+						Collision col(obj2);
+						cols.push_back(col);
+						UDcollisions.push_back(obj1);
+						
 					}
 					
 				
 			}
 		}
+	}
+
+	for (int i = 0; i < cols.size(); i++) {
+		UDcollisions[i]->Collide(cols[i]);
 	}
 }
 
@@ -88,10 +96,10 @@ void CollisionManager::removeObject(int id) {
 }
 
 bool CollisionManager::inBox(Point point, glm::vec3 pos, float w, float h) {
-	if (point.x < pos.x + w &&
-		point.x > pos.x - w &&
-		point.y < pos.y + h &&
-		point.y > pos.y - h)
+	if (point.x <= pos.x + w &&
+		point.x >= pos.x - w &&
+		point.y <= pos.y + h &&
+		point.y >= pos.y - h)
 		return true;
 	return false;
 }

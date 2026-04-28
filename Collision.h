@@ -6,9 +6,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+class UD;
+
 struct Collision {
 	std::vector<std::string> tags;
 	glm::vec3 pos;
+	UD* obj;
 
-	Collision(std::vector<std::string> tags, glm::vec3 pos) : tags(tags), pos(pos) {}
+	Collision(UD* obj) : obj(obj) {}
 };

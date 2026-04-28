@@ -61,15 +61,16 @@ int main()
 
     InputManager* input = new InputManager(window);
 
-    DebugCube* debugCube = new DebugCube(modelShader, input);
+    BouncingCube* debugCube = new BouncingCube(modelShader);
     debugCube->setId(3);
-    debugCube->setInput(true);
+    debugCube->setVelocity(glm::vec3(0.12f, 0.0f, .0f));
 
-    DebugCube* dC2 = new DebugCube(modelShader, input);
+    BouncingCube* dC2 = new BouncingCube(modelShader);
     dC2->setId(4);
-    dC2->translate(glm::vec3(3.0f, 5.0f,0.0f));
+    dC2->translate(glm::vec3(3.0f, 0.0f,0.0f));
+    dC2->setVelocity(glm::vec3(-0.12f, 0.0f, .0f));
 
-    BouncingCube* bCube = new BouncingCube(modelShader);
+    //BouncingCube* bCube = new BouncingCube(modelShader);
 
     UDMan.addUD(debugCube);
     UDMan.addUD(dC2);

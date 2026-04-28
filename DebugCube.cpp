@@ -47,6 +47,7 @@ public:
 		cm.addObject1(this);
 		input = i;
 		tags.push_back("debug");
+		tags.push_back(" cube ");
 		this->width = 1;
 		this->height = 1;
 		cm.addObject(this);
@@ -58,6 +59,8 @@ public:
 	}
 
 	void Update() override {
+		lastPos = pos;
+
 		if(isInput)
 			pos += input->getInput() * velocity;
 
@@ -76,9 +79,21 @@ public:
 	}
 
 	void Collide(Collision col) {
-		for (auto& tag : col.tags)
-			std::cout << tag;
+		for (auto& tag : col.obj->getTags())
+		{
+			if(tag == "debug")
+			{
+				UD* obj = col.obj;
+				if (obj->getLastPos().x + obj->getWidth() < pos.x - width ||
+					obj->getLastPos().x - obj->getWidth() > pos.x + width)
+					std::cout << "LR";
+				if (obj->getLastPos().y + obj->getHeight() < pos.y - height ||
+					obj->getLastPos().y - obj->getHeight() > pos.y + height)
+					std::cout << "TB";
+			}
+		}
 	}
+	
 
 	void translate(glm::vec3 translation) {
 		pos += translation;

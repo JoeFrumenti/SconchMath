@@ -8,6 +8,7 @@
 class UD {
 protected:
 	int ID;
+	glm::vec3 lastPos;
 	glm::vec3 pos;
 	std::vector<std::string> tags;
 	float width;
@@ -23,6 +24,7 @@ public:
 	virtual void Collide(Collision) {};
 	virtual float getWidth() { return this->width; }
 	virtual float getHeight() { return this->height; }
+	virtual glm::vec3 getLastPos() { return this->lastPos; }
 	virtual std::vector<std::string> getTags() { return this->tags; }
 
 };
