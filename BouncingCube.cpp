@@ -69,10 +69,17 @@ public:
 					velocity.x = -velocity.x;
 				}
 					
-				if (obj->getLastPos().y + obj->getHeight() <= pos.y - height && velocity.y > 0)
+				if (obj->getLastPos().y + obj->getHeight() <= lastPos.y - height && velocity.y < 0)
+				{
+					std::cout << "Negative to positive!\n";
 					velocity.y = -velocity.y;
-				if (obj->getLastPos().y - obj->getHeight() >= pos.y + height && velocity.y < 0)
+				}
+				if (obj->getLastPos().y - obj->getHeight() >= lastPos.y + height && velocity.y > 0)
+				{
+					
+					std::cout << "Positive to negative!\n";
 					velocity.y = -velocity.y;
+				}
 
 				//pos += velocity;
 			}

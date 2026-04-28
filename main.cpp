@@ -63,12 +63,12 @@ int main()
 
     BouncingCube* debugCube = new BouncingCube(modelShader);
     debugCube->setId(3);
-    debugCube->setVelocity(glm::vec3(0.12f, 0.0f, .0f));
+    debugCube->setVelocity(glm::vec3(0.0f, -0.15f, .0f));
 
     BouncingCube* dC2 = new BouncingCube(modelShader);
     dC2->setId(4);
-    dC2->translate(glm::vec3(3.0f, 0.0f,0.0f));
-    dC2->setVelocity(glm::vec3(-0.12f, 0.0f, .0f));
+    dC2->translate(glm::vec3(.0f, -5.0f,0.0f));
+    dC2->setVelocity(glm::vec3(0.0f, 0.24f, .0f));
 
     //BouncingCube* bCube = new BouncingCube(modelShader);
 
