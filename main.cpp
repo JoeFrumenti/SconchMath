@@ -62,7 +62,7 @@ int main()
 
     InputManager* input = new InputManager(window);
 
-    char path1[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj";
+    char path1[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj";
     char path2[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj";
 
     BouncingCube* debugCube = new BouncingCube(modelShader, path1);
