@@ -18,9 +18,12 @@ class BouncingCube : public UD {
 
 private:
 	Model* ourModel;
-	glm::mat4 model;
+	Model* coin;
 
+	glm::mat4 model;
 	glm::vec3 pos;
+
+	glm::mat4 cPos;
 
 	Shader* shader;
 	glm::vec3 velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
@@ -43,6 +46,9 @@ public:
 
 		ID = 0;
 		ourModel = new Model(path);
+
+		char path2[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj";
+		coin = new Model(path2);
 		pos = glm::vec3(.0f, .0f, .0f);
 		shader = shade;
 		cm.addObject1(this);
@@ -111,6 +117,7 @@ public:
 		}
 
 	}
+
 	glm::vec3 getPos() override {
 		return pos;
 	}
@@ -119,9 +126,15 @@ public:
 		lastPos = pos;
 		screenBounce();
 
+		cPos = glm::mat4(1.0f);
 		model = glm::mat4(1.0f);
+
 		model = glm::translate(model, pos);
+		cPos = glm::translate(cPos, pos + glm::vec3(-.7f, 2.0f -pos.y*0.1f, 3.0f));
+		
 		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
+
+		cPos = glm::scale(cPos, glm::vec3(0.4f, 0.4f, 0.4f));
 		//model = glm::scale(model, glm::vec3(0.8f, 0.8f, .8f));
 		
 	}
@@ -130,6 +143,10 @@ public:
 		shader->setMat4("model", model);
 		shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		ourModel->Draw(*shader);
+
+		shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		shader->setMat4("model", cPos);
+		coin->Draw(*shader);
 	}
 
 	void setVelocity(glm::vec3 vel) {
