@@ -161,6 +161,8 @@ int main()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
+    textShader->use();
+    textShader->setMat4("projection", projection);
 
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -178,7 +180,6 @@ int main()
     camera* cam = new camera(modelShader, SCR_WIDTH, SCR_HEIGHT);
 
     cam->setup();
-    modelShader->use();
  
 
     renderLoop();
@@ -193,16 +194,17 @@ int main()
 void RenderText(Shader& s, std::string text, float x, float y, float scale,
     glm::vec3 color)
 {
+
     // activate corresponding render state
     s.use();
-    glUniform3f(glGetUniformLocation(s.ID, "textColor"),
-        color.x, color.y, color.z);
+    s.setVec3("textColor", color);
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
     // iterate through all characters
     std::string::const_iterator c;
     for (c = text.begin(); c != text.end(); c++)
     {
+    std::cout << "rendering text!\n";
         Character ch = Characters[*c];
         float xpos = x + ch.Bearing.x * scale;
         float ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
@@ -234,8 +236,6 @@ void RenderText(Shader& s, std::string text, float x, float y, float scale,
 
 void renderLoop() {
 
-
-
     while (!glfwWindowShouldClose(window))
     {
         auto frameStart = std::chrono::high_resolution_clock::now();
@@ -253,11 +253,12 @@ void renderLoop() {
 
         //bg.render();
 
-        cm.checkCollision2D();
+        modelShader->use();
 
 
         if (start) {
 
+            cm.checkCollision2D();
             UDMan.updateUDs();
             UDMan.drawUDs();
 
