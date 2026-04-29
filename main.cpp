@@ -25,7 +25,7 @@
 #include <string>
 #include <map>
 
-bool start = false;
+bool start = true;
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -160,7 +160,7 @@ int main()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
+    glm::mat4 projection = glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT);
     textShader->use();
     textShader->setMat4("projection", projection);
 
@@ -204,7 +204,6 @@ void RenderText(Shader& s, std::string text, float x, float y, float scale,
     std::string::const_iterator c;
     for (c = text.begin(); c != text.end(); c++)
     {
-    std::cout << "rendering text!\n";
         Character ch = Characters[*c];
         float xpos = x + ch.Bearing.x * scale;
         float ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
@@ -245,11 +244,6 @@ void renderLoop() {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        textShader->use();
-        RenderText(*textShader, "This is sample text", 0.0f, 0.0f, 1.0f,
-            glm::vec3(0.5, 0.8f, 0.2f));
-        RenderText(*textShader, "(C) LearnOpenGL.com", 540.0f, 570.0f, 0.5f,
-            glm::vec3(0.3, 0.7f, 0.9f));
 
         //bg.render();
 
@@ -263,6 +257,13 @@ void renderLoop() {
             UDMan.drawUDs();
 
         }
+
+
+        textShader->use();
+        RenderText(*textShader, "This is sample text", 0.0f, 0.0f, 1.0f,
+            glm::vec3(0.5, 0.8f, 0.2f));
+        RenderText(*textShader, "(C) LearnOpenGL.com", 540.0f, 570.0f, 0.5f,
+            glm::vec3(0.3, 0.7f, 0.9f));
 
         glfwSwapBuffers(window);
         glfwPollEvents();
