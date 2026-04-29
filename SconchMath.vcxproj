@@ -48,9 +48,12 @@
     <None Include="..\..\include\Shaders\shader.vs" />
     <None Include="modelShader.fs" />
     <None Include="modelShader.vs" />
+    <None Include="textShader.fs" />
+    <None Include="textShader.vs" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="GameObject.h" />

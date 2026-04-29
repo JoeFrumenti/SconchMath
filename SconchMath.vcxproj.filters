@@ -125,6 +125,12 @@
     <None Include="modelShader.fs">
       <Filter>Source Files\OpenGL\shaders</Filter>
     </None>
+    <None Include="textShader.vs">
+      <Filter>Source Files\OpenGL\shaders</Filter>
+    </None>
+    <None Include="textShader.fs">
+      <Filter>Source Files\OpenGL\shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h">
@@ -179,6 +185,9 @@
       <Filter>Source Files\OpenGL\Structs</Filter>
     </ClInclude>
     <ClInclude Include="point.h">
+      <Filter>Source Files\OpenGL\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
       <Filter>Source Files\OpenGL\Structs</Filter>
     </ClInclude>
   </ItemGroup>
