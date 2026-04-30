@@ -20,3 +20,9 @@ void UDManager::updateUDs(){
 void UDManager::removeObject(int id) {
 	UDs.erase(id);
 }
+
+void UDManager::drawText() {
+	for (const auto& kv : UDs) {
+		kv.second->drawText();
+	}
+}

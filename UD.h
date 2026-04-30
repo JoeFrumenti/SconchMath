@@ -27,4 +27,6 @@ public:
 	virtual glm::vec3 getLastPos() { return this->lastPos; }
 	virtual std::vector<std::string> getTags() { return this->tags; }
 
+	virtual void drawText() {};
+
 };

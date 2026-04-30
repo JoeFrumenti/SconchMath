@@ -11,6 +11,7 @@
 #include "SoundSource.h"
 
 #include "CollisionManager.h"
+#include "Text.h"
 
 
 
@@ -22,13 +23,9 @@ private:
 
 	glm::mat4 model;
 	glm::vec3 pos;
-
 	glm::mat4 cPos;
 
-	Shader* shader;
 	glm::vec3 velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
-
-	CollisionManager& cm = CollisionManager::getInstance();
 
 	SoundDevice* mysounddevice = SoundDevice::get();
 	uint32_t sound1 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
@@ -39,10 +36,20 @@ private:
 	int pitch = 0;
 
 
+
+	Shader* shader;
+	Text* textManager;
+	Shader* textShader;
+
+
 public:
 
-	BouncingCube(Shader* shade, char* path) {
+	BouncingCube(Shader* shade, char* path, Shader* ts) {
 		
+		textShader = ts;
+		textManager = new Text(textShader);
+
+		CollisionManager& cm = CollisionManager::getInstance();
 
 		ID = 0;
 		ourModel = new Model(path);
@@ -155,5 +162,14 @@ public:
 
 	void translate(glm::vec3 translation) {
 		pos += translation;
+	}
+
+	void drawText() override {
+
+		float scale = 1.0f;
+
+		textShader->use();
+		textManager->RenderText(*textShader, "x12", pos.x * 18 * scale + 225, pos.y*32 * scale + 400, 1.0f,
+			glm::vec3(1.0, 1.0f, 1.0f));
 	}
 };

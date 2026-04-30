@@ -17,4 +17,5 @@ public:
 	void updateUDs();
 	void drawUDs();
 	void removeObject(int id);
+	void drawText();
 };

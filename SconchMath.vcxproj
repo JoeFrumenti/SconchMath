@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="BasicModel.cpp" />
     <ClCompile Include="BouncingCube.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="coin.cpp" />

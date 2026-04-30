@@ -81,7 +81,7 @@
     <ClCompile Include="transform.cpp">
       <Filter>Source Files\Entities\Alpha</Filter>
     </ClCompile>
-    <ClCompile Include="Background.cpp">
+    <ClCompile Include="BasicModel.cpp">
       <Filter>Source Files\Entities\Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="OldCollisionManager.cpp">

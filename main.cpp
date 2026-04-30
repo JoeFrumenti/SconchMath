@@ -21,7 +21,7 @@
 
 #include "coin.cpp"
 #include "BouncingCube.cpp"
-#include "Background.cpp"
+#include "BasicModel.cpp"
 #include "DebugCube.cpp"
 
 #include <string>
@@ -38,7 +38,6 @@ Shader* ourShader;
 Shader* modelShader;
 Shader* textShader;
 
-Text* textManager;
 
 int scale = 50;
 
@@ -65,20 +64,20 @@ int main()
     //window setup
     window = configGL();
     modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
+    
     textShader = new Shader("C:/Users/joefr/source/repos/SconchMath/textShader.vs", "C:/Users/joefr/source/repos/SconchMath/textShader.fs");
-    InputManager* input = new InputManager(window);
 
-    textManager = new Text(textShader);
+    InputManager* input = new InputManager(window);
 
     //object setup
     char path1[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj";
     char path2[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj";
 
-    BouncingCube* debugCube = new BouncingCube(modelShader, path1);
+    BouncingCube* debugCube = new BouncingCube(modelShader, path1, textShader);
     debugCube->setId(3);
     debugCube->setVelocity(glm::vec3(0.45f, -0.15f, .0f));
 
-    BouncingCube* dC2 = new BouncingCube(modelShader, path2);
+    BouncingCube* dC2 = new BouncingCube(modelShader, path2, textShader);
     dC2->setId(4);
     dC2->translate(glm::vec3(.0f, -5.0f,0.0f));
     dC2->setVelocity(glm::vec3(0.35f, 0.24f, .0f));
@@ -87,10 +86,24 @@ int main()
     UDMan.addUD(debugCube);
     UDMan.addUD(dC2);
 
+    char path3[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj";
+    char path4[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundCream.obj";
 
-    Background* bg = new Background(modelShader);
-    bg->setId(1);
+    BasicModel* bg = new BasicModel(modelShader, path3);
+    BasicModel* foreground = new BasicModel(modelShader, path4);
+
+    bg->setId(200);
+    foreground->setId(201);
+
+    bg->translate(glm::vec3(0.0f, -10.0f, -2.0f));
+    foreground->translate(glm::vec3(0.0f, -10.0f, -1.0f));
+
+    bg->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
+
+    //foreground->scale(glm::vec3(0.7f, .5f, 1.0f));
+
     UDMan.addUD(bg);
+    UDMan.addUD(foreground);
 
     int idNum = 10;
     for (int i = 0; i < 5; i++) {
@@ -145,12 +158,11 @@ void renderLoop() {
             cm.checkCollision2D();
             UDMan.updateUDs();
             UDMan.drawUDs();
+            //UDMan.drawText();
 
         }
 
-        textShader->use();
-        textManager->RenderText(*textShader, "x12", 0.0f, 0.0f, 1.0f,
-            glm::vec3(0.5, 0.8f, 0.2f));
+        
         
         glfwSwapBuffers(window);
         glfwPollEvents();
