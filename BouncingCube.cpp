@@ -70,6 +70,7 @@ public:
 			cPos = glm::vec3(3.25f, 8.75f, 1.0f);
 			tPos = glm::vec2(352.75, 678.25);
 			cmPos.x = -cmPos.x;
+			this->width, height = 1, 1;
 		}
 	}
 
@@ -92,8 +93,8 @@ public:
 		pos = glm::vec3(.0f, .0f, .0f);
 		shader = shade;
 		tags.push_back("bcube");
-		this->width = 1;
-		this->height = 1;
+		this->width = 0.8f;
+		this->height = 0.8f;
 		cm.addObject(this);
 		input = i;
 	}
@@ -102,8 +103,10 @@ public:
 		
 		for (auto& tag : col.obj->getTags())
 		{
-			if (tag == "coin")
+			if (tag == "coin") {
 				coins++;
+				std::cout << "Coin colliding " << coins << " " << player << std::endl;
+			}
 			if (tag == "bcube")
 			{
 				mySpeaker.Play(sound1);
@@ -143,14 +146,14 @@ public:
 
 		pos += velocity;
 
-		if (pos.x >= boundsX || pos.x <= -boundsX) {
+		if (pos.x + width >= 6 || pos.x - width <= -6) {
 			pitch = rand() % pitches.size();
 			alSourcef(sound1, AL_PITCH, pow(2.0, pitches[pitch] / 12.0));
 			mySpeaker.Play(sound1);
 			velocity.x = -velocity.x;
 
 		}
-		if (pos.y >= boundsY || pos.y <= -boundsY) {
+		if (pos.y + height >= 7.75 || pos.y - height <= -11.25) {
 			pitch = rand() % pitches.size();
 			alSourcef(sound1, AL_PITCH, pow(2.0, pitches[pitch] / 12.0));
 			mySpeaker.Play(sound1);

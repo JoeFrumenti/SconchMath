@@ -14,7 +14,8 @@
 
 class DebugCube : public UD {
 
-
+	/*-6, 8
+	6,-11.25*/
 private:
 	Model* ourModel;
 	glm::mat4 model;

@@ -55,8 +55,6 @@ void CollisionManager::removeObject(int id) {
 		if (obj->getId() != id) {
 			temp.push_back(obj);
 		}
-		/*else
-			std::cout << "Removing " << id << std::endl;*/
 
 		objects = temp;
 	}

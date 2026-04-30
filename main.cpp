@@ -94,12 +94,15 @@ int main()
     BasicModel* bg = new BasicModel(modelShader, path3,input);
     BasicModel* foreground = new BasicModel(modelShader, path4,input);
 
+    DebugCube* dc = new DebugCube(modelShader,  input);
+
 
     bg->setId(200);
     foreground->setId(201);
 
     bg->translate(glm::vec3(0.0f, -10.0f, -3.0f));
     foreground->translate(glm::vec3(0.625f, -8.0f, -1.0f));
+
 
     bg->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
     foreground->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
