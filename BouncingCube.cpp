@@ -29,12 +29,19 @@ private:
 	glm::vec3 cPos = glm::vec3(-5.25f, 8.75f, 1.0f);;
 	glm::vec3 cScale = glm::vec3(.515f, .465001f, .001f);
 
+	glm::vec2 tPos = glm::vec2(69.25f, 678.25f);
+	float tScale = .7925f;
+
 	glm::vec3 velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 
 	SoundDevice* mysounddevice = SoundDevice::get();
 	uint32_t sound1 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
 
 	SoundSource mySpeaker;
+
+	glm::mat4 copyModel;
+	glm::vec3 cmPos = glm::vec3(.0f,.0f,.0f);
+	glm::vec3 cmSca = glm::vec3(.0f,.0f,.0f);
 
 	std::vector<int> pitches = {0, 2, 4, 6, 7};
 	int pitch = 0;
@@ -58,6 +65,7 @@ public:
 
 		if (player == 2) {
 			cPos = glm::vec3(3.25f, 8.75f, 1.0f);
+			tPos = glm::vec2(352.75, 678.25);
 		}
 	}
 
@@ -66,6 +74,7 @@ public:
 	}
 	BouncingCube(Shader* shade, char* path, Shader* ts, InputManager* i) {
 		
+		player = 1;
 		textShader = ts;
 		textManager = new Text(textShader);
 
@@ -155,12 +164,12 @@ public:
 		screenBounce();
 
 		if (isInput) {
-			cPos += input->getInput() * coinVelocity;
-			cScale += input->getInputWASD() * glm::vec3(0.0025f, 0.0025f, 0.0025f);
+			tPos += glm::vec2(input->getInput().x, input->getInput().y) * glm::vec2(5.25f,5.25f);
+			tScale += input->getInputWASD().x * 0.0025;
 
 			if (input->isE()) {
-				std::cout << cPos.x << " " << cPos.y << " "
-					<< cScale.x << " " << cScale.y << std::endl;
+				std::cout << tPos.x << " " << tPos.y << " "
+					<< tScale << " " << tScale << std::endl;
 			}
 		}
 
@@ -181,6 +190,7 @@ public:
 		shader->setMat4("model", model);
 		shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		ourModel->Draw(*shader);
+		shader->setMat4("model", copyModel);
 
 		shader->setMat4("model", cModel);
 		coin->Draw(*shader);
@@ -199,7 +209,7 @@ public:
 		float scale = 1.0f;
 
 		textShader->use();
-		textManager->RenderText(*textShader, "x12", pos.x * 18 * scale + 225, pos.y*32 * scale + 400, 1.0f,
+		textManager->RenderText(*textShader, "x12", tPos.x, tPos.y, tScale,
 			glm::vec3(1.0, 1.0f, 1.0f));
 	}
 };

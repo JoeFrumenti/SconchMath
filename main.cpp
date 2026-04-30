@@ -162,7 +162,7 @@ void renderLoop() {
             cm.checkCollision2D();
             UDMan.updateUDs();
             UDMan.drawUDs();
-            //UDMan.drawText();
+            UDMan.drawText();
 
         }
 
