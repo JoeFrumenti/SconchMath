@@ -16,6 +16,7 @@ public:
 
 	InputManager(GLFWwindow* w);
 	glm::vec3 getInput();
+	glm::vec3 getInputWASD();
 
 	bool isE();
 

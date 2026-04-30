@@ -73,35 +73,38 @@ int main()
     char path1[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj";
     char path2[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj";
 
-    BouncingCube* debugCube = new BouncingCube(modelShader, path1, textShader);
-    debugCube->setId(3);
-    debugCube->setVelocity(glm::vec3(0.45f, -0.15f, .0f));
+    BouncingCube* cube1 = new BouncingCube(modelShader, path1, textShader,input);
+    cube1->setId(3);
+    cube1->setVelocity(glm::vec3(0.45f, -0.15f, .0f));
+    cube1->setInput(true);
 
-    BouncingCube* dC2 = new BouncingCube(modelShader, path2, textShader);
-    dC2->setId(4);
-    dC2->translate(glm::vec3(.0f, -5.0f,0.0f));
-    dC2->setVelocity(glm::vec3(0.35f, 0.24f, .0f));
+    BouncingCube* cube2 = new BouncingCube(modelShader, path2, textShader,input);
+    cube2->setId(4);
+    cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
+    cube2->setVelocity(glm::vec3(0.35f, 0.24f, .0f));
+    cube2->setPlayer(2);
 
 
-    UDMan.addUD(debugCube);
-    UDMan.addUD(dC2);
+    UDMan.addUD(cube1);
+    UDMan.addUD(cube2);
 
     char path3[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj";
     char path4[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundCream.obj";
 
-    BasicModel* bg = new BasicModel(modelShader, path3);
-    BasicModel* foreground = new BasicModel(modelShader, path4);
+    BasicModel* bg = new BasicModel(modelShader, path3,input);
+    BasicModel* foreground = new BasicModel(modelShader, path4,input);
+
 
     bg->setId(200);
     foreground->setId(201);
 
     bg->translate(glm::vec3(0.0f, -10.0f, -3.0f));
-    foreground->translate(glm::vec3(0.0f, -10.0f, -1.0f));
+    foreground->translate(glm::vec3(0.625f, -8.0f, -1.0f));
 
     bg->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
     foreground->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
 
-    foreground->scale(glm::vec3(.8f, .8f, .3f));
+    foreground->scale(glm::vec3(.7425f, .6575f, .3f));
 
     UDMan.addUD(bg);
     UDMan.addUD(foreground);

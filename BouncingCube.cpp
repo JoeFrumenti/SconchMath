@@ -14,6 +14,7 @@
 #include "Text.h"
 
 
+#include "InputManager.h"
 
 class BouncingCube : public UD {
 
@@ -23,7 +24,10 @@ private:
 
 	glm::mat4 model;
 	glm::vec3 pos;
-	glm::mat4 cPos;
+
+	glm::mat4 cModel;
+	glm::vec3 cPos = glm::vec3(-5.25f, 8.75f, 1.0f);;
+	glm::vec3 cScale = glm::vec3(.515f, .465001f, .001f);
 
 	glm::vec3 velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 
@@ -36,15 +40,31 @@ private:
 	int pitch = 0;
 
 
+	InputManager* input;
+	glm::vec3 coinVelocity = glm::vec3(0.25f, 0.25f, 0.0f);
+	bool isInput = false;
 
 	Shader* shader;
 	Text* textManager;
 	Shader* textShader;
 
+	int player;
+
 
 public:
 
-	BouncingCube(Shader* shade, char* path, Shader* ts) {
+	void setPlayer(int p) {
+		player = p;
+
+		if (player == 2) {
+			cPos = glm::vec3(3.25f, 8.75f, 1.0f);
+		}
+	}
+
+	void setInput(bool inp) {
+		isInput = inp;
+	}
+	BouncingCube(Shader* shade, char* path, Shader* ts, InputManager* i) {
 		
 		textShader = ts;
 		textManager = new Text(textShader);
@@ -63,6 +83,7 @@ public:
 		this->width = 1;
 		this->height = 1;
 		cm.addObject(this);
+		input = i;
 	}
 
 	void Collide(Collision col) {
@@ -133,15 +154,25 @@ public:
 		lastPos = pos;
 		screenBounce();
 
-		cPos = glm::mat4(1.0f);
+		if (isInput) {
+			cPos += input->getInput() * coinVelocity;
+			cScale += input->getInputWASD() * glm::vec3(0.0025f, 0.0025f, 0.0025f);
+
+			if (input->isE()) {
+				std::cout << cPos.x << " " << cPos.y << " "
+					<< cScale.x << " " << cScale.y << std::endl;
+			}
+		}
+
+		cModel = glm::mat4(1.0f);
 		model = glm::mat4(1.0f);
 
 		model = glm::translate(model, pos);
-		cPos = glm::translate(cPos, pos + glm::vec3(-.7f, 2.0f -pos.y*0.1f, 3.0f));
+		cModel = glm::translate(cModel, cPos);
 		
 		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
 
-		cPos = glm::scale(cPos, glm::vec3(0.4f, 0.4f, 0.4f));
+		cModel = glm::scale(cModel, cScale);
 		//model = glm::scale(model, glm::vec3(0.8f, 0.8f, .8f));
 		
 	}
@@ -151,8 +182,7 @@ public:
 		shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		ourModel->Draw(*shader);
 
-		shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-		shader->setMat4("model", cPos);
+		shader->setMat4("model", cModel);
 		coin->Draw(*shader);
 	}
 

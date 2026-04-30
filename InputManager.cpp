@@ -22,6 +22,20 @@ glm::vec3 InputManager::getInput() {
 	return glm::vec3(x, y,0);
 }
 
+glm::vec3 InputManager::getInputWASD() {
+	int x = 0;
+	int y = 0;
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		x++;
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		x--;
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		y++;
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		y--;
+	return glm::vec3(x, y, 0);
+}
+
 bool InputManager::isE() {
 	return glfwGetKey(window, GLFW_KEY_E);
 }
