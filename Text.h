@@ -32,5 +32,5 @@ private:
 public:
 	void RenderText(Shader& s, std::string text, float x, float y, float scale,
 		glm::vec3 color);
-	Text(Shader* textShader);
+	Text(Shader* textShader, char* fontPath);
 };

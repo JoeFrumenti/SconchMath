@@ -27,7 +27,7 @@
 #include <string>
 #include <map>
 
-bool start = true;
+bool start = false;
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -98,6 +98,7 @@ int main()
 
 
     bg->setId(200);
+    
     foreground->setId(201);
 
     bg->translate(glm::vec3(0.0f, -10.0f, -3.0f));

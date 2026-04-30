@@ -44,12 +44,3 @@ void CollisionManager::removeObject(int id) {
 		objects = temp;
 	}
 }
-
-bool CollisionManager::inBox(Point point, glm::vec3 pos, float w, float h) {
-	if (point.x <= pos.x + w &&
-		point.x >= pos.x - w &&
-		point.y <= pos.y + h &&
-		point.y >= pos.y - h)
-		return true;
-	return false;
-}

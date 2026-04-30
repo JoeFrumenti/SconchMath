@@ -58,6 +58,8 @@ private:
 	Text* textManager;
 	Shader* textShader;
 
+	Text* vs;
+
 	int player;
 	int frames = 0;
 
@@ -81,7 +83,11 @@ public:
 		
 		player = 1;
 		textShader = ts;
-		textManager = new Text(textShader);
+		char fontPath[] = "C:/Windows/Fonts/comic.ttf";
+		textManager = new Text(textShader, fontPath);
+
+		char fontPath2[] = "C:/Windows/Fonts/BOD_B.TTF";
+		vs = new Text(textShader, fontPath2);
 
 		CollisionManager& cm = CollisionManager::getInstance();
 
@@ -224,6 +230,9 @@ public:
 
 		textShader->use();
 		textManager->RenderText(*textShader, coinString, tPos.x, tPos.y, tScale,
+			glm::vec3(1.0, 1.0f, 1.0f));
+
+		vs->RenderText(*textShader, "VS", 211, 725, 1.0f,
 			glm::vec3(1.0, 1.0f, 1.0f));
 	}
 };
