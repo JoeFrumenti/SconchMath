@@ -9,18 +9,8 @@ void CollisionManager::addObject(UD* object) {
 	objects.push_back(object);
 }
 
-void CollisionManager::addObject1(UD* object) {
-	objects1.push_back(object);
-}
-
-void CollisionManager::addObject2(UD* coin) {
-	objects2.push_back(coin);
-}
-
 void CollisionManager::checkCollision2D() {
-	std::vector<UD*> UDcollisions;
-	std::vector<Collision> cols;
-
+	
 	for (auto& obj1 : objects) {
 		for (auto& obj2 : objects){
 			if (obj1->getId() != obj2->getId()) {
@@ -42,10 +32,10 @@ void CollisionManager::checkCollision2D() {
 					inBox(BR, obj2->getPos(), w2, h2) ||
 					inBox(BL, obj2->getPos(), w2, h2)) 
 					{
-						
-						Collision col(obj2);
-						cols.push_back(col);
-						UDcollisions.push_back(obj1);
+						Collision col1(obj1);
+						Collision col2(obj2);
+						obj1->Collide(col2);
+						obj2->Collide(col1);
 						
 					}
 					
@@ -54,31 +44,8 @@ void CollisionManager::checkCollision2D() {
 		}
 	}
 
-	for (int i = 0; i < cols.size(); i++) {
-		UDcollisions[i]->Collide(cols[i]);
-	}
 }
 
-void CollisionManager::checkCollision() {
-	auto& objManager = UDManager::getInstance();
-	float coinsize = 1.7;
-	for (auto& obj : objects1) {
-		glm::vec2 objCenter = obj->getPos();
-		for (auto& coin : objects2) {
-			//std::cout << "CHECKING COINS!\n" << coin->getId() << std::endl;
-			glm::vec2 coinCenter = coin->getPos();
-			if (objCenter.x >= coinCenter.x - coinsize
-				&& objCenter.x <= coinCenter.x + coinsize
-				&& objCenter.y <= coinCenter.y + coinsize
-				&& objCenter.y >= coinCenter.y - coinsize)
-			{
-				//coin->Collide();
-				//objManager.removeObject(coin->getId());
-				//removeObject(coin->getId());
-			}
-		}
-	}
-}
 
 void CollisionManager::removeObject(int id) {
 	

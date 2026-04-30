@@ -49,6 +49,7 @@ public:
 		this->width = 0.25f * scaling;
 		this->height = 0.35f * scaling;
 		cm.addObject(this);
+		tags.push_back("coin");
 	}
 
 

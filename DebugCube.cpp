@@ -44,7 +44,6 @@ public:
 		ourModel = new Model(path);
 		pos = glm::vec3(.0f, .0f, .0f);
 		shader = shade;
-		cm.addObject1(this);
 		input = i;
 		tags.push_back("debug");
 		tags.push_back(" cube ");

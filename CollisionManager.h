@@ -31,10 +31,6 @@ public:
 
 	void addObject(UD* object);
 
-	void addObject1(UD* object);
-
-	void addObject2(UD* coin);
-
 	void checkCollision();
 
 	void checkCollision2D();

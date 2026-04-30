@@ -40,11 +40,14 @@ private:
 	SoundSource mySpeaker;
 
 	glm::mat4 copyModel;
-	glm::vec3 cmPos = glm::vec3(.0f,.0f,.0f);
-	glm::vec3 cmSca = glm::vec3(.0f,.0f,.0f);
+	glm::vec3 cmPos = glm::vec3(-4.25f,10.25f,1.0f);
+	glm::vec3 cmSca = glm::vec3(.715f,.715f,.715f);
 
 	std::vector<int> pitches = {0, 2, 4, 6, 7};
 	int pitch = 0;
+
+	int coins = 0;
+	string coinString = "x12";
 
 
 	InputManager* input;
@@ -66,6 +69,7 @@ public:
 		if (player == 2) {
 			cPos = glm::vec3(3.25f, 8.75f, 1.0f);
 			tPos = glm::vec2(352.75, 678.25);
+			cmPos.x = -cmPos.x;
 		}
 	}
 
@@ -87,7 +91,6 @@ public:
 		coin = new Model(path2);
 		pos = glm::vec3(.0f, .0f, .0f);
 		shader = shade;
-		cm.addObject1(this);
 		tags.push_back("bcube");
 		this->width = 1;
 		this->height = 1;
@@ -99,6 +102,8 @@ public:
 		
 		for (auto& tag : col.obj->getTags())
 		{
+			if (tag == "coin")
+				coins++;
 			if (tag == "bcube")
 			{
 				mySpeaker.Play(sound1);
@@ -164,26 +169,30 @@ public:
 		screenBounce();
 
 		if (isInput) {
-			tPos += glm::vec2(input->getInput().x, input->getInput().y) * glm::vec2(5.25f,5.25f);
-			tScale += input->getInputWASD().x * 0.0025;
+			cmPos += input->getInput()* glm::vec3(0.25f,0.25f,1.0f);
+			cmSca += input->getInputWASD() * glm::vec3(0.0025f,0.0025f,0.0025f);
 
 			if (input->isE()) {
-				std::cout << tPos.x << " " << tPos.y << " "
-					<< tScale << " " << tScale << std::endl;
+				std::cout << cmPos.x << " " << cmPos.y << " " 
+					<< cmSca.x << " " << cmSca.y << std::endl;
 			}
 		}
 
 		cModel = glm::mat4(1.0f);
 		model = glm::mat4(1.0f);
+		copyModel = glm::mat4(1.0f);
 
 		model = glm::translate(model, pos);
 		cModel = glm::translate(cModel, cPos);
-		
+		copyModel = glm::translate(copyModel, cmPos);
+
 		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
+		copyModel = glm::rotate(copyModel, (float)glfwGetTime()/2, glm::vec3(.0f, 1.0f, 0.0f));
 
 		cModel = glm::scale(cModel, cScale);
-		//model = glm::scale(model, glm::vec3(0.8f, 0.8f, .8f));
-		
+		model = glm::scale(model, glm::vec3(0.8f, 0.8f, .8f));
+		copyModel = glm::scale(copyModel, cmSca);
+		coinString = "x" + std::to_string(coins);
 	}
 
 	void Draw() override {
@@ -191,6 +200,7 @@ public:
 		shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		ourModel->Draw(*shader);
 		shader->setMat4("model", copyModel);
+		ourModel->Draw(*shader);
 
 		shader->setMat4("model", cModel);
 		coin->Draw(*shader);
@@ -209,7 +219,7 @@ public:
 		float scale = 1.0f;
 
 		textShader->use();
-		textManager->RenderText(*textShader, "x12", tPos.x, tPos.y, tScale,
+		textManager->RenderText(*textShader, coinString, tPos.x, tPos.y, tScale,
 			glm::vec3(1.0, 1.0f, 1.0f));
 	}
 };
