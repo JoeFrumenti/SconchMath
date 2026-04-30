@@ -34,6 +34,7 @@ public:
 		model = glm::translate(model, pos);
 		model = glm::rotate(model, angle, rot);
 		model = glm::scale(model, sca);
+		std::cout << sca.x << std::endl;
 	}
 
 	void Draw() override {
@@ -55,7 +56,10 @@ public:
 	}
 
 	void scale(glm::vec3 translation) {
-		sca += translation;
+		sca.x *= translation.x;
+		sca.y *= translation.y;
+		sca.z *= translation.z;
+
 	}
 
 	glm::vec3 getPos() override {

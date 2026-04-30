@@ -36,6 +36,7 @@ private:
 	bool timerRunning = false;
 
 	int collisions = 0;
+	float scaling = 1.2f;
 
 public:
 
@@ -45,8 +46,8 @@ public:
 		ourModel = new Model(path);
 		pos = glm::vec3(.0f,.0f,.0f);
 		shader = shade;
-		this->width = 0.5f;
-		this->height = 0.7f;
+		this->width = 0.25f * scaling;
+		this->height = 0.35f * scaling;
 		cm.addObject(this);
 	}
 
@@ -55,7 +56,7 @@ public:
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, pos); 
 		model = glm::rotate(model, (float)glfwGetTime() * 3, glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.65f, 0.65f, .65f));
+		model = glm::scale(model, glm::vec3(0.3f * scaling, 0.3f * scaling, .3f * scaling));
 
 		if (timerRunning && (glfwGetTime() - timer >= 0.3f)) {
 			cm.addObject(this);

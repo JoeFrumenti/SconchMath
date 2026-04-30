@@ -95,12 +95,13 @@ int main()
     bg->setId(200);
     foreground->setId(201);
 
-    bg->translate(glm::vec3(0.0f, -10.0f, -2.0f));
+    bg->translate(glm::vec3(0.0f, -10.0f, -3.0f));
     foreground->translate(glm::vec3(0.0f, -10.0f, -1.0f));
 
     bg->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
+    foreground->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
 
-    //foreground->scale(glm::vec3(0.7f, .5f, 1.0f));
+    foreground->scale(glm::vec3(.8f, .8f, .3f));
 
     UDMan.addUD(bg);
     UDMan.addUD(foreground);
