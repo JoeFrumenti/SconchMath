@@ -3,6 +3,7 @@
 #include "CollisionManager.h"
 #include "point.h"
 
+int frames = 0;
 CollisionManager::CollisionManager() {}
 
 void CollisionManager::addObject(UD* object) {
@@ -10,36 +11,20 @@ void CollisionManager::addObject(UD* object) {
 }
 
 void CollisionManager::checkCollision2D() {
-	
-	for (auto& obj1 : objects) {
-		for (auto& obj2 : objects){
-			if (obj1->getId() != obj2->getId()) {
-				glm::vec2 pos1 = obj1->getPos();
-				float w1 = obj1->getWidth();
-				float h1 = obj1->getHeight();
+	frames++;
+	for (int i = 0; i < objects.size(); i++) {
+		for (int j = i + 1; j < objects.size(); j++) {
+			UD* a = objects[i];
+			UD* b = objects[j];
 
-				glm::vec2 pos2a = obj2->getPos();
-				float w2 = obj2->getWidth();
-				float h2 = obj2->getHeight();
+			bool overlapX = std::abs(a->getPos().x - b->getPos().x) < (a->getWidth() + b->getWidth());
+			bool overlapY = std::abs(a->getPos().y - b->getPos().y) < (a->getHeight() + b->getHeight());
 
-				Point UR(pos1.x + w1, pos1.y + h1);
-				Point UL(pos1.x - w1, pos1.y + h1);
-				Point BR(pos1.x + w1, pos1.y - h1);
-				Point BL(pos1.x - w1, pos1.y - h1);
-
-				if (inBox(UR, obj2->getPos(), w2, h2) ||
-					inBox(UL, obj2->getPos(), w2, h2) ||
-					inBox(BR, obj2->getPos(), w2, h2) ||
-					inBox(BL, obj2->getPos(), w2, h2)) 
-					{
-						Collision col1(obj1);
-						Collision col2(obj2);
-						obj1->Collide(col2);
-						obj2->Collide(col1);
-						
-					}
-					
-				
+			if (overlapX && overlapY) {
+				Collision col1(a);
+				Collision col2(b);
+				a->Collide(col2);
+				b->Collide(col1);
 			}
 		}
 	}

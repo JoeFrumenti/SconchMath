@@ -59,7 +59,7 @@ private:
 	Shader* textShader;
 
 	int player;
-
+	int frames = 0;
 
 public:
 
@@ -105,7 +105,7 @@ public:
 		{
 			if (tag == "coin") {
 				coins++;
-				std::cout << "Coin colliding " << coins << " " << player << std::endl;
+				//std::cout << "Coin colliding " << coins << " " << player << " " << frames << std::endl;
 			}
 			if (tag == "bcube")
 			{
@@ -168,6 +168,7 @@ public:
 	}
 
 	void Update() override {
+		frames++;
 		lastPos = pos;
 		screenBounce();
 
