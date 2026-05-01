@@ -43,5 +43,6 @@ public:
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
 		
 		ourShader->setMat4("projection", projection);
+		ourShader->setVec3("viewPos", glm::vec3(.0f, .0f, -30.0f));
 	}
 };

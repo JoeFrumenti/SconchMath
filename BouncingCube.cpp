@@ -13,6 +13,7 @@
 #include "CollisionManager.h"
 #include "Text.h"
 
+#include <cmath>
 
 #include "InputManager.h"
 
@@ -27,7 +28,7 @@ private:
 
 	glm::mat4 cModel;
 	glm::vec3 cPos = glm::vec3(-5.25f, 8.75f, 1.0f);;
-	glm::vec3 cScale = glm::vec3(.515f, .465001f, .001f);
+	glm::vec3 cScale = glm::vec3(.515f, .465001f, .465f);
 
 	glm::vec2 tPos = glm::vec2(69.25f, 678.25f);
 	float tScale = .7925f;
@@ -105,6 +106,12 @@ public:
 		input = i;
 	}
 
+	float dot(glm::vec2 a, glm::vec2 b) {
+		return a.x * b.x + a.y * b.y;
+	}
+
+
+
 	void Collide(Collision col) {
 		
 		for (auto& tag : col.obj->getTags())
@@ -115,9 +122,20 @@ public:
 			}
 			if (tag == "bcube")
 			{
+
+				glm::vec2 colPos = glm::vec2(col.obj->getPos().x, col.obj->getPos().y);
+
+				float nx = pos.x - colPos.x;
+				float ny = pos.y - colPos.y;
+				float dist = std::sqrt(nx * nx + ny * ny);
+				nx /= dist;
+				ny /= dist;
+
+				velocity = glm::vec3(nx * 0.5, ny * 0.5, 0.0f);
+
 				mySpeaker.Play(sound1);
 				UD* obj = col.obj;
-				if (obj->getLastPos().x + obj->getWidth() <= lastPos.x - width && velocity.x < 0) {
+				/*if (obj->getLastPos().x + obj->getWidth() <= lastPos.x - width && velocity.x < 0) {
 					
 					velocity.x = -velocity.x;
 				}
@@ -133,9 +151,7 @@ public:
 				if (obj->getLastPos().y - obj->getHeight() >= lastPos.y + height && velocity.y > 0)
 				{
 					velocity.y = -velocity.y;
-				}
-
-				//pos += velocity;
+				}*/
 			}
 		}
 	}
@@ -196,6 +212,7 @@ public:
 		cModel = glm::translate(cModel, cPos);
 		copyModel = glm::translate(copyModel, cmPos);
 
+		cModel = glm::rotate(cModel, (float)glfwGetTime() / 2, glm::vec3(.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
 		copyModel = glm::rotate(copyModel, (float)glfwGetTime()/2, glm::vec3(.0f, 1.0f, 0.0f));
 
@@ -215,6 +232,14 @@ public:
 		shader->setMat4("model", cModel);
 		coin->Draw(*shader);
 	}
+
+
+
+
+
+
+
+
 
 	void setVelocity(glm::vec3 vel) {
 		velocity = vel;

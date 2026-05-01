@@ -22,14 +22,12 @@
 #include "BasicModel.cpp"
 #include "DebugCube.cpp"
 
-
 bool start = false;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 GLFWwindow* configGL();
 
-Shader* ourShader;
 Shader* modelShader;
 Shader* textShader;
 
@@ -42,7 +40,6 @@ auto& UDMan = UDManager::getInstance();
 
 CollisionManager& cm = CollisionManager::getInstance();
 
-
 const double TARGET_FPS = 60.0;
 const std::chrono::duration<double> FRAME_DURATION(1.0 / TARGET_FPS); // ~16.67ms
 
@@ -54,9 +51,7 @@ int main()
     //window setup
     window = configGL();
     modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
-    
     textShader = new Shader("C:/Users/joefr/source/repos/SconchMath/textShader.vs", "C:/Users/joefr/source/repos/SconchMath/textShader.fs");
-
     InputManager* input = new InputManager(window);
 
     //object setup
@@ -65,13 +60,13 @@ int main()
 
     BouncingCube* cube1 = new BouncingCube(modelShader, path1, textShader,input);
     cube1->setId(3);
-    cube1->setVelocity(glm::vec3(0.45f, -0.15f, .0f));
+    cube1->setVelocity(glm::vec3(0.18f, -0.45f, .0f));
     cube1->setInput(true);
 
     BouncingCube* cube2 = new BouncingCube(modelShader, path2, textShader,input);
     cube2->setId(4);
     cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
-    cube2->setVelocity(glm::vec3(0.35f, 0.24f, .0f));
+    cube2->setVelocity(glm::vec3(0.46f, 0.15f, .0f));
     cube2->setPlayer(2);
 
     UDMan.addUD(cube1);
@@ -84,7 +79,6 @@ int main()
     BasicModel* foreground = new BasicModel(modelShader, path4,input);
 
     DebugCube* dc = new DebugCube(modelShader,  input);
-
 
     bg->setId(200);
     
@@ -101,6 +95,9 @@ int main()
     UDMan.addUD(bg);
     UDMan.addUD(foreground);
 
+
+    char path5[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj";
+
     int idNum = 10;
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
@@ -116,6 +113,8 @@ int main()
     cam->setup();
  
 
+    modelShader->use();
+    modelShader->setVec3("lightPos", glm::vec3(.0f, 11.0f, 10.0f));
     renderLoop();
 
     
@@ -140,15 +139,12 @@ void renderLoop() {
 
         modelShader->use();
 
-
         if (start) {
             cm.checkCollision2D();
             UDMan.updateUDs();
             UDMan.drawUDs();
             UDMan.drawText();
         }
-
-        
         
         glfwSwapBuffers(window);
         glfwPollEvents();

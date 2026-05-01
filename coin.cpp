@@ -20,7 +20,7 @@ private:
 	glm::mat4 model;
 	glm::vec3 pos;
 	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	glm::vec4 white = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	glm::vec4 white = glm::vec4(.2f, .2f, .2f, 1.0f);
 
 	Shader* shader;
 
@@ -63,7 +63,6 @@ public:
 			cm.addObject(this);
 			timerRunning = false;
 		}
-
 	}
 
 	void Draw() override{
@@ -73,9 +72,16 @@ public:
 		shader->setVec4("color", white);
 	}
 
+
+
 	void translate(glm::vec3 translation) {
 		pos += translation;
 	}
+
+
+
+
+
 
 	void Collide(Collision col) override {
 		mySpeaker.Play(sound2);
