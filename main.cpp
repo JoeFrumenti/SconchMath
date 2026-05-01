@@ -14,21 +14,16 @@
 
 #include "Text.h"
 
-
 #include <ft2build.h>
 #include FT_FREETYPE_H
-#include "Character.h"
 
 #include "coin.cpp"
 #include "BouncingCube.cpp"
 #include "BasicModel.cpp"
 #include "DebugCube.cpp"
 
-#include <string>
-#include <map>
 
 bool start = false;
-
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -38,12 +33,9 @@ Shader* ourShader;
 Shader* modelShader;
 Shader* textShader;
 
-
-int scale = 50;
-
 // settings
-const unsigned int SCR_WIDTH = 9 * scale;
-const unsigned int SCR_HEIGHT = 16 * scale;
+const unsigned int SCR_WIDTH = 450;
+const unsigned int SCR_HEIGHT = 800;
 
 GLFWwindow* window;
 auto& UDMan = UDManager::getInstance();
@@ -53,8 +45,6 @@ CollisionManager& cm = CollisionManager::getInstance();
 
 const double TARGET_FPS = 60.0;
 const std::chrono::duration<double> FRAME_DURATION(1.0 / TARGET_FPS); // ~16.67ms
-
-
 
 void renderLoop();
 
@@ -84,7 +74,6 @@ int main()
     cube2->setVelocity(glm::vec3(0.35f, 0.24f, .0f));
     cube2->setPlayer(2);
 
-
     UDMan.addUD(cube1);
     UDMan.addUD(cube2);
 
@@ -104,7 +93,6 @@ int main()
     bg->translate(glm::vec3(0.0f, -10.0f, -3.0f));
     foreground->translate(glm::vec3(0.625f, -8.0f, -1.0f));
 
-
     bg->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
     foreground->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
 
@@ -123,13 +111,8 @@ int main()
         }
     }
 
-   
-
-
-
     //camera setup
     camera* cam = new camera(modelShader, SCR_WIDTH, SCR_HEIGHT);
-
     cam->setup();
  
 
@@ -155,19 +138,14 @@ void renderLoop() {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
-        //bg.render();
-
         modelShader->use();
 
 
         if (start) {
-
             cm.checkCollision2D();
             UDMan.updateUDs();
             UDMan.drawUDs();
             UDMan.drawText();
-
         }
 
         
@@ -200,8 +178,6 @@ void processInput(GLFWwindow* window)
 // ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-    // make sure the viewport matches the new window dimensions; note that width and 
-    // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
 }
 
