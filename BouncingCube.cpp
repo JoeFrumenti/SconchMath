@@ -118,7 +118,6 @@ public:
 		{
 			if (tag == "coin") {
 				coins++;
-				//std::cout << "Coin colliding " << coins << " " << player << " " << frames << std::endl;
 			}
 			if (tag == "bcube")
 			{
@@ -135,23 +134,7 @@ public:
 
 				mySpeaker.Play(sound1);
 				UD* obj = col.obj;
-				/*if (obj->getLastPos().x + obj->getWidth() <= lastPos.x - width && velocity.x < 0) {
-					
-					velocity.x = -velocity.x;
-				}
-				if (obj->getLastPos().x - obj->getWidth() >= lastPos.x + width && velocity.x > 0) {
-					
-					velocity.x = -velocity.x;
-				}
-					
-				if (obj->getLastPos().y + obj->getHeight() <= lastPos.y - height && velocity.y < 0)
-				{
-					velocity.y = -velocity.y;
-				}
-				if (obj->getLastPos().y - obj->getHeight() >= lastPos.y + height && velocity.y > 0)
-				{
-					velocity.y = -velocity.y;
-				}*/
+				
 			}
 		}
 	}
