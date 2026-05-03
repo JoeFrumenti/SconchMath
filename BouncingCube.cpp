@@ -31,8 +31,6 @@ private:
 	glm::vec2 tPos = glm::vec2(69.25f, 678.25f);
 	float tScale = .7925f;
 
-
-
 	SoundManager& soundMan = SoundManager::getInstance();
 
 	glm::mat4 copyModel;
@@ -53,11 +51,9 @@ private:
 	Shader* shader;
 	Text* textManager;
 	Shader* textShader;
-
 	Text* vs;
 
-	int player;
-	int frames = 0;
+	int player = 1;
 
 public:
 
@@ -68,7 +64,6 @@ public:
 			cPos = glm::vec3(3.25f, 8.75f, 1.0f);
 			tPos = glm::vec2(352.75, 678.25);
 			cmPos.x = -cmPos.x;
-			this->width, height = 1, 1;
 		}
 	}
 
@@ -79,26 +74,22 @@ public:
 		velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 		soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
 
-		player = 1;
 		textShader = ts;
-		char fontPath[] = "C:/Windows/Fonts/comic.ttf";
-		textManager = new Text(textShader, fontPath);
 
-		char fontPath2[] = "C:/Windows/Fonts/BOD_B.TTF";
-		vs = new Text(textShader, fontPath2);
+		textManager = new Text(textShader, "C:/Windows/Fonts/comic.ttf");
+
+		vs = new Text(textShader, "C:/Windows/Fonts/BOD_B.TTF");
 
 		CollisionManager& cm = CollisionManager::getInstance();
 
-		ID = 0;
 		ourModel = new Model(path);
 
 		char path2[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj";
 		coin = new Model(path2);
-		pos = glm::vec3(.0f, .0f, .0f);
 		shader = shade;
 		tags.push_back("bcube");
-		this->width = 0.8f;
-		this->height = 0.8f;
+		this->width = 1.0f;
+		this->height = 1.0f;
 		cm.addObject(this);
 		input = i;
 	}
@@ -106,8 +97,6 @@ public:
 	float dot(glm::vec2 a, glm::vec2 b) {
 		return a.x * b.x + a.y * b.y;
 	}
-
-
 
 	void Collide(Collision col) {
 		
@@ -119,17 +108,8 @@ public:
 			if (tag == "bcube")
 			{
 
-				/*glm::vec2 colPos = glm::vec2(col.obj->getPos().x, col.obj->getPos().y);
-
-				float nx = pos.x - colPos.x;
-				float ny = pos.y - colPos.y;
-				float dist = std::sqrt(nx * nx + ny * ny);
-				nx /= dist;
-				ny /= dist;
-
-				velocity = glm::vec3(nx * 0.5, ny * 0.5, 0.0f);
-				*/
 				if(player == 1) soundMan.playSong("bounce");
+
 				UD* obj = col.obj;
 
 				const float dx = obj->getPos().x - pos.x;
@@ -163,9 +143,6 @@ public:
 		float boundsY = 16.7f * scale;
 
 		
-
-		
-
 		pos += velocity;
 
 		if (pos.x + width >= 6 || pos.x - width <= -6) {
@@ -188,19 +165,8 @@ public:
 	}
 
 	void Update() override {
-		frames++;
 		lastPos = pos;
 		screenBounce();
-
-		if (isInput) {
-			cmPos += input->getInput()* glm::vec3(0.25f,0.25f,1.0f);
-			cmSca += input->getInputWASD() * glm::vec3(0.0025f,0.0025f,0.0025f);
-
-			if (input->isE()) {
-				std::cout << cmPos.x << " " << cmPos.y << " " 
-					<< cmSca.x << " " << cmSca.y << std::endl;
-			}
-		}
 
 		cModel = glm::mat4(1.0f);
 		model = glm::mat4(1.0f);
@@ -229,11 +195,6 @@ public:
 
 		shader->setMat4("model", cModel);
 		coin->Draw(*shader);
-	}
-
-
-	void setVelocity(glm::vec3 vel) {
-		velocity = vel;
 	}
 
 	void translate(glm::vec3 translation) {

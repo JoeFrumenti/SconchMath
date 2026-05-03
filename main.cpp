@@ -22,7 +22,7 @@
 #include "BasicModel.cpp"
 #include "DebugCube.cpp"
 
-bool start = false;
+bool start = true;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);

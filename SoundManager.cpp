@@ -29,9 +29,6 @@ std::map<std::string, double> noteMap = {
 
 int pitchIndex = 0;
 void SoundManager::playSong(std::string soundName) {
-
-    
-    
     playSound(soundName, noteMap[pitches[pitchIndex]]);
     if (++pitchIndex >= pitches.size())
         pitchIndex = 0;
@@ -52,11 +49,12 @@ void SoundManager::playSound(std::string name, double pitch) {
         } while (state == AL_PLAYING);
         }).detach();
 }
-
+/*vHEREv*/
 void SoundManager::addSound(std::string name, std::string path) {
 	const char* p = path.c_str();
 	noises[name] = SoundBuffer::get()->addSoundEffect(p);
 }
+/*^HERE^*/
 
 void SoundManager::setSong(std::string name) {
 

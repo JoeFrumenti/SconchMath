@@ -69,7 +69,6 @@
     <ClInclude Include="SoundDevice.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundSource.h" />
-    <ClInclude Include="sprite.h" />
     <ClInclude Include="texManager.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="transform.h" />

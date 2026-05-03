@@ -1,5 +1,5 @@
 #include "Text.h"
-Text::Text(Shader* textShader, char* fontPath) {
+Text::Text(Shader* textShader, std::string fontPath) {
 
     //text setup
     FT_Library ft;
@@ -7,7 +7,9 @@ Text::Text(Shader* textShader, char* fontPath) {
         std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std
         ::endl;
     FT_Face face;
-    if (FT_New_Face(ft, fontPath, 0, &face))
+
+    const char* fp = fontPath.c_str();
+    if (FT_New_Face(ft, fp, 0, &face))
         std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
 
     FT_Set_Pixel_Sizes(face, 0, 48);
