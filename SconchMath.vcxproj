@@ -38,6 +38,7 @@
     <ClCompile Include="OpenGL\texManager.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />
     <ClCompile Include="SoundDevice.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SoundSource.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -66,6 +67,7 @@
     <ClInclude Include="primitive.h" />
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundDevice.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundSource.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="texManager.h" />

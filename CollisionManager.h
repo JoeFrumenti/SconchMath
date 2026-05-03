@@ -3,7 +3,6 @@
 #include "UD.h"
 #include "UDManager.h"
 #include <vector>
-#include <mutex>
 #include <string>
 
 #include "Collision.h"
@@ -14,9 +13,7 @@ private:
 	std::vector<UD*> objects;
 	std::vector<UD*> objects1;
 	std::vector<UD*> objects2;
-	static CollisionManager* instancePtr;
 
-	static std::mutex mtx;
 
 public:
 
