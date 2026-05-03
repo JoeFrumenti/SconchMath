@@ -29,3 +29,7 @@ void SoundSource::Play(const ALuint buffer_to_play)
 
 
 }
+
+ALuint SoundSource::getSource() {
+	return p_Source;
+}

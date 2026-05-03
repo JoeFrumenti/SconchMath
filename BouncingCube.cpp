@@ -6,9 +6,7 @@
 #include <iostream>
 #include <vector>
 
-#include "SoundDevice.h"
-#include "SoundBuffer.h"
-#include "SoundSource.h"
+#include "SoundManager.h"
 
 #include "CollisionManager.h"
 #include "Text.h"
@@ -35,10 +33,8 @@ private:
 
 	glm::vec3 velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 
-	SoundDevice* mysounddevice = SoundDevice::get();
-	uint32_t sound1 = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
 
-	SoundSource mySpeaker;
+	SoundManager& soundMan = SoundManager::getInstance();
 
 	glm::mat4 copyModel;
 	glm::vec3 cmPos = glm::vec3(-4.25f,10.25f,1.0f);
@@ -81,7 +77,8 @@ public:
 		isInput = inp;
 	}
 	BouncingCube(Shader* shade, char* path, Shader* ts, InputManager* i) {
-		
+		soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
+
 		player = 1;
 		textShader = ts;
 		char fontPath[] = "C:/Windows/Fonts/comic.ttf";
@@ -132,7 +129,7 @@ public:
 
 				velocity = glm::vec3(nx * 0.5, ny * 0.5, 0.0f);
 
-				mySpeaker.Play(sound1);
+				soundMan.playSound("bounce");
 				UD* obj = col.obj;
 				
 			}
@@ -152,16 +149,13 @@ public:
 		pos += velocity;
 
 		if (pos.x + width >= 6 || pos.x - width <= -6) {
-			pitch = rand() % pitches.size();
-			alSourcef(sound1, AL_PITCH, pow(2.0, pitches[pitch] / 12.0));
-			mySpeaker.Play(sound1);
+			
+			soundMan.playSound("bounce");
 			velocity.x = -velocity.x;
 
 		}
 		if (pos.y + height >= 7.75 || pos.y - height <= -11.25) {
-			pitch = rand() % pitches.size();
-			alSourcef(sound1, AL_PITCH, pow(2.0, pitches[pitch] / 12.0));
-			mySpeaker.Play(sound1);
+			soundMan.playSound("bounce");
 			velocity.y = -velocity.y;
 
 		}
@@ -215,13 +209,6 @@ public:
 		shader->setMat4("model", cModel);
 		coin->Draw(*shader);
 	}
-
-
-
-
-
-
-
 
 
 	void setVelocity(glm::vec3 vel) {
