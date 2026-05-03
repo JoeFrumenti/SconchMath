@@ -70,7 +70,7 @@ public:
 	void setInput(bool inp) {
 		isInput = inp;
 	}
-	BouncingCube(Shader* shade, char* path, Shader* ts, InputManager* i) {
+	BouncingCube(Shader* shade, std::string path, Shader* ts, InputManager* i) {
 		velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 		soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
 
@@ -84,8 +84,7 @@ public:
 
 		ourModel = new Model(path);
 
-		char path2[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj";
-		coin = new Model(path2);
+		coin = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
 		shader = shade;
 		tags.push_back("bcube");
 		this->width = 1.0f;
