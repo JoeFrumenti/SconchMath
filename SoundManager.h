@@ -26,9 +26,9 @@ public:
 		return instance;
 	}
 
-	void playSound(std::string name);
+	void playSound(std::string name, double pitch);
 	void addSound(std::string name, std::string path);
-	void playSong();
+	void playSong(std::string soundName);
 	void setSong(std::string name);
 
 

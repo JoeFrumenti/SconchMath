@@ -129,7 +129,7 @@ public:
 
 				velocity = glm::vec3(nx * 0.5, ny * 0.5, 0.0f);
 
-				soundMan.playSound("bounce");
+				soundMan.playSong("bounce");
 				UD* obj = col.obj;
 				
 			}
@@ -150,12 +150,12 @@ public:
 
 		if (pos.x + width >= 6 || pos.x - width <= -6) {
 			
-			soundMan.playSound("bounce");
+			soundMan.playSong("bounce");
 			velocity.x = -velocity.x;
 
 		}
 		if (pos.y + height >= 7.75 || pos.y - height <= -11.25) {
-			soundMan.playSound("bounce");
+			soundMan.playSong("bounce");
 			velocity.y = -velocity.y;
 
 		}

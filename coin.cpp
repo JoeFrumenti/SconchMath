@@ -73,7 +73,7 @@ public:
 	}
 
 	void Collide(Collision col) override {
-		soundMan.playSound("coin");
+		soundMan.playSound("coin",0);
 		color = glm::vec4(1.0f, .0f, .0f, 1.0f);
 		cm.removeObject(ID);
 		if (++collisions < 2) {
