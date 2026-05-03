@@ -60,13 +60,13 @@ int main()
 
     BouncingCube* cube1 = new BouncingCube(modelShader, path1, textShader,input);
     cube1->setId(3);
-    cube1->setVelocity(glm::vec3(0.18f, -0.45f, .0f));
+    cube1->setVelocity(glm::vec3(0.19f, -0.42f, .0f));
     cube1->setInput(true);
 
     BouncingCube* cube2 = new BouncingCube(modelShader, path2, textShader,input);
     cube2->setId(4);
     cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
-    cube2->setVelocity(glm::vec3(0.46f, 0.15f, .0f));
+    cube2->setVelocity(glm::vec3(0.45f, 0.16f, .0f));
     cube2->setPlayer(2);
 
     UDMan.addUD(cube1);

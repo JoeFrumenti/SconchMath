@@ -2,13 +2,37 @@
 #include <thread>
 #include <chrono>
 
-std::vector<double> pitches = {0,1,2,3,4,5,6,7};
+std::vector<std::string> pitches = { "A5", "D5", "A#4", "G4", "G5","D5","A#4","G4",
+                                    "F#5", "D5", "A#4", "G4", "G5","D5","A#4","G4",
+                                    "G5", "C5", "A4", "F4", "F5", "C5", "A4", "F4",
+                                    "E5", "C5", "A4", "F4",  "F5", "C5", "A4", "F4",
+                                    "F5", "A#4", "G4", "E4","E5","D#5", "G4", "D#4",
+                                    "E5", "G4", "F4", "D4", "D5", "A4", "F4", "D4",
+                                    "C#5","A4","F4", "D4","D5", "A4", "F4", "D4",
+                                    "C#5","A4","F4", "D4", "D5", "A4", "F4", "D4"};
+
+std::map<std::string, double> noteMap = {
+    // Octave 4
+    {"C4",  -12}, {"C#4", -11}, {"D4",  -10}, {"D#4", -9},
+    {"E4",  -8},  {"F4",  -7},  {"F#4", -6},  {"G4",  -5},
+    {"G#4", -4},  {"A4",  -3},  {"A#4", -2},  {"B4",  -1},
+    // Octave 5
+    {"C5",   0},  {"C#5",  1},  {"D5",   2},  {"D#5",  3},
+    {"E5",   4},  {"F5",   5},  {"F#5",  6},  {"G5",   7},
+    {"G#5",  8},  {"A5",   9},  {"A#5", 10},  {"B5",  11},
+    // Octave 6
+    {"C6",  12},  {"C#6", 13},  {"D6",  14},  {"D#6", 15},
+    {"E6",  16},  {"F6",  17},  {"F#6", 18},  {"G6",  19},
+    {"G#6", 20},  {"A6",  21},  {"A#6", 22},  {"B6",  23},
+};
+
+
 int pitchIndex = 0;
 void SoundManager::playSong(std::string soundName) {
 
     
     
-    playSound(soundName, pitches[pitchIndex]);
+    playSound(soundName, noteMap[pitches[pitchIndex]]);
     if (++pitchIndex >= pitches.size())
         pitchIndex = 0;
 }

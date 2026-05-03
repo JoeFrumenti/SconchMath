@@ -20,6 +20,8 @@ private:
 
 	int nextNote = 0;
 
+	
+
 public:
 	static SoundManager& getInstance() {
 		static SoundManager instance;
