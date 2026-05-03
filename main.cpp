@@ -22,7 +22,7 @@
 #include "BasicModel.cpp"
 #include "DebugCube.cpp"
 
-bool start = true;
+bool start = false;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -66,7 +66,7 @@ int main()
     BouncingCube* cube2 = new BouncingCube(modelShader, path2, textShader,input);
     cube2->setId(4);
     cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
-    cube2->setVelocity(glm::vec3(0.45f, 0.16f, .0f));
+    cube2->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
     cube2->setPlayer(2);
 
     UDMan.addUD(cube1);

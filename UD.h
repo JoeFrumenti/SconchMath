@@ -11,6 +11,7 @@ protected:
 	glm::vec3 lastPos;
 	glm::vec3 pos;
 	std::vector<std::string> tags;
+	glm::vec3 velocity;
 	float width;
 	float height;
 
@@ -26,6 +27,8 @@ public:
 	virtual float getHeight() { return this->height; }
 	virtual glm::vec3 getLastPos() { return this->lastPos; }
 	virtual std::vector<std::string> getTags() { return this->tags; }
+	virtual glm::vec3 getVelocity() { return this->velocity; }
+	virtual void setVelocity(glm::vec3 v) { this->velocity = v; }
 
 	virtual void drawText() {};
 

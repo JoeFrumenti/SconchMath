@@ -31,7 +31,6 @@ private:
 	glm::vec2 tPos = glm::vec2(69.25f, 678.25f);
 	float tScale = .7925f;
 
-	glm::vec3 velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 
 
 	SoundManager& soundMan = SoundManager::getInstance();
@@ -77,6 +76,7 @@ public:
 		isInput = inp;
 	}
 	BouncingCube(Shader* shade, char* path, Shader* ts, InputManager* i) {
+		velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 		soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
 
 		player = 1;
@@ -119,7 +119,7 @@ public:
 			if (tag == "bcube")
 			{
 
-				glm::vec2 colPos = glm::vec2(col.obj->getPos().x, col.obj->getPos().y);
+				/*glm::vec2 colPos = glm::vec2(col.obj->getPos().x, col.obj->getPos().y);
 
 				float nx = pos.x - colPos.x;
 				float ny = pos.y - colPos.y;
@@ -128,9 +128,29 @@ public:
 				ny /= dist;
 
 				velocity = glm::vec3(nx * 0.5, ny * 0.5, 0.0f);
-
-				soundMan.playSong("bounce");
+				*/
+				if(player == 1) soundMan.playSong("bounce");
 				UD* obj = col.obj;
+
+				const float dx = obj->getPos().x - pos.x;
+				const float dy = obj->getPos().y - pos.y;
+				const float dist = std::sqrt(dx * dx + dy * dy);
+
+				const float nx = dx / dist;
+				const float ny = dy / dist;
+
+				const float dvx = obj->getVelocity().x - velocity.x;
+				const float dvy = obj->getVelocity().y - velocity.y;
+				const float dvn = dvx * nx + dvy * ny;
+
+				if (dvn >= 0) return;  // already separating, skip
+
+				obj->setVelocity(glm::vec3(obj->getVelocity().x - dvn * nx,
+					obj->getVelocity().y - dvn * ny, .0f));
+				velocity.x += dvn * nx;
+				velocity.y += dvn * ny;
+				
+
 				
 			}
 		}
@@ -152,12 +172,13 @@ public:
 			
 			soundMan.playSong("bounce");
 			velocity.x = -velocity.x;
+			pos.x += velocity.x;
 
 		}
 		if (pos.y + height >= 7.75 || pos.y - height <= -11.25) {
 			soundMan.playSong("bounce");
 			velocity.y = -velocity.y;
-
+			pos.y += velocity.y;
 		}
 
 	}
