@@ -98,12 +98,13 @@ int main()
 
     char path5[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj";
 
+    //SPAWN COINS
     int idNum = 10;
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
             Coin* coiny = new Coin(modelShader);
             coiny->setId(idNum++);
-            coiny->translate(glm::vec3((float)i * 3.0f - 6, (float)j * 4.3f - 10.7f, 0.0f));
+            coiny->translate(glm::vec3((float)i * 2.6f - 5.3, (float)j * 4.1f - 10.2f, 0.0f));
            UDMan.addUD(coiny);
         }
     }
