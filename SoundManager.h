@@ -13,7 +13,6 @@ private:
 
 	SoundDevice* mysounddevice = SoundDevice::get();
 	uint32_t sound2;
-
 	SoundSource mySpeaker;
 
 	std::map<std::string, uint32_t> noises;

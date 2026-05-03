@@ -6,9 +6,7 @@
 #include <iostream>
 
 
-#include "SoundDevice.h"
-#include "SoundBuffer.h"
-#include "SoundSource.h"
+#include "SoundManager.h"
 
 #include "CollisionManager.h"
 #include "UDManager.h"
@@ -32,6 +30,8 @@ private:
 
 	SoundSource mySpeaker;
 
+	SoundManager& soundMan = SoundManager::getInstance();
+
 	double timer = .1;
 	bool timerRunning = false;
 
@@ -50,6 +50,7 @@ public:
 		this->height = 0.35f * scaling;
 		cm.addObject(this);
 		tags.push_back("coin");
+		soundMan.addSound("coin", "C:/Users/joefr/source/repos/SconchMath/assets/chime3.wav");
 	}
 
 
@@ -84,7 +85,7 @@ public:
 
 
 	void Collide(Collision col) override {
-		mySpeaker.Play(sound2);
+		soundMan.playSound("coin");
 		color = glm::vec4(1.0f, .0f, .0f, 1.0f);
 		cm.removeObject(ID);
 		if (++collisions < 2) {
