@@ -18,7 +18,6 @@ private:
 	std::map<std::string, uint32_t> noises;
 	std::vector<float> notes;
 
-	int nextNote = 0;
 
 	
 

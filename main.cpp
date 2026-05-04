@@ -22,11 +22,12 @@
 #include "BasicModel.cpp"
 #include "DebugCube.cpp"
 
+#include "Window.h"
+
 bool start = true;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
-GLFWwindow* configGL();
 
 Shader* modelShader;
 Shader* textShader;
@@ -35,7 +36,9 @@ Shader* textShader;
 const unsigned int SCR_WIDTH = 450;
 const unsigned int SCR_HEIGHT = 800;
 
-GLFWwindow* window;
+Window& window = Window::getInstance();
+
+
 auto& UDMan = UDManager::getInstance();
 
 CollisionManager& cm = CollisionManager::getInstance();
@@ -49,18 +52,17 @@ int main()
 {
     
     //window setup
-    window = configGL();
+    window.initWindow();
     modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
     textShader = new Shader("C:/Users/joefr/source/repos/SconchMath/textShader.vs", "C:/Users/joefr/source/repos/SconchMath/textShader.fs");
-    InputManager* input = new InputManager(window);
 
 
-    BouncingCube* cube1 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj", textShader,input);
+    BouncingCube* cube1 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj", textShader);
     cube1->setId(3);
     cube1->setVelocity(glm::vec3(0.19f, -0.42f, .0f));
     cube1->setInput(true);
 
-    BouncingCube* cube2 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj", textShader,input);
+    BouncingCube* cube2 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj", textShader);
     cube2->setId(4);
     cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
     cube2->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
@@ -72,10 +74,10 @@ int main()
     char path3[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj";
     char path4[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundCream.obj";
 
-    BasicModel* bg = new BasicModel(modelShader, path3,input);
-    BasicModel* foreground = new BasicModel(modelShader, path4,input);
+    BasicModel* bg = new BasicModel(modelShader, path3);
+    BasicModel* foreground = new BasicModel(modelShader, path4);
 
-    DebugCube* dc = new DebugCube(modelShader,  input);
+    DebugCube* dc = new DebugCube(modelShader);
 
     bg->setId(200);
     
@@ -115,8 +117,6 @@ int main()
     modelShader->setVec3("lightPos", glm::vec3(.0f, 11.0f, 10.0f));
     renderLoop();
 
-    
-
 
     glfwTerminate();
     return 0;
@@ -126,11 +126,11 @@ int main()
 
 void renderLoop() {
 
-    while (!glfwWindowShouldClose(window))
+    while (!glfwWindowShouldClose(window.get()))
     {
         auto frameStart = std::chrono::high_resolution_clock::now();
 
-        processInput(window);
+        processInput(window.get());
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -144,7 +144,7 @@ void renderLoop() {
             UDMan.drawText();
         }
         
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(window.get());
         glfwPollEvents();
 
         auto frameEnd = std::chrono::high_resolution_clock::now();
@@ -170,42 +170,4 @@ void processInput(GLFWwindow* window)
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    glViewport(0, 0, width, height);
-}
-
-GLFWwindow* configGL() {
-    // glfw: initialize and configure
-    // ------------------------------
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-
-    // glfw window creation
-    // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
-    if (window == NULL)
-    {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return NULL;
-    }
-    glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
-    // glad: load all OpenGL function pointers
-    // ---------------------------------------
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        std::cout << "Failed to initialize GLAD" << std::endl;   
-    }
-    // configure global opengl state
-    // -----------------------------
-    glEnable(GL_DEPTH_TEST);
-
-    return window;
-}
 

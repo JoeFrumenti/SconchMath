@@ -24,7 +24,6 @@ private:
 
 	bool isInput = false;
 
-	InputManager* input;
 
 	glm::vec3 velocity = glm::vec3(0.25f, 0.25f,0.0f);
 
@@ -39,13 +38,12 @@ public:
 		isInput = inp;
 	}
 
-	DebugCube(Shader* shade, InputManager* i) {
+	DebugCube(Shader* shade) {
 		char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj";
 		ID = 0;
 		ourModel = new Model(path);
 		pos = glm::vec3(.0f, .0f, .0f);
 		shader = shade;
-		input = i;
 		tags.push_back("debug");
 		tags.push_back(" cube ");
 		this->width = 1;
@@ -60,13 +58,6 @@ public:
 
 	void Update() override {
 		lastPos = pos;
-
-		if(isInput)
-			pos += input->getInput() * velocity;
-
-		if (input->isE())
-			std::cout << pos.x << " " << pos.y << std::endl;
-
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, pos);

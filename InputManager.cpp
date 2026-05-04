@@ -3,8 +3,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-InputManager::InputManager(GLFWwindow* w) {
-	window = w;
+#include "Window.h"
+
+InputManager::InputManager() {
+	window = Window::getInstance().get();
 
 }
 

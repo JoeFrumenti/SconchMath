@@ -44,6 +44,7 @@
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="transform.cpp" />
     <ClCompile Include="UDManager.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.fs" />
@@ -74,6 +75,7 @@
     <ClInclude Include="transform.h" />
     <ClInclude Include="UD.h" />
     <ClInclude Include="UDManager.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

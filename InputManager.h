@@ -14,7 +14,7 @@ private:
 
 public: 
 
-	InputManager(GLFWwindow* w);
+	InputManager();
 	glm::vec3 getInput();
 	glm::vec3 getInputWASD();
 

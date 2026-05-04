@@ -44,7 +44,6 @@ private:
 	string coinString = "x12";
 
 
-	InputManager* input;
 	glm::vec3 coinVelocity = glm::vec3(0.25f, 0.25f, 0.0f);
 	bool isInput = false;
 
@@ -70,7 +69,7 @@ public:
 	void setInput(bool inp) {
 		isInput = inp;
 	}
-	BouncingCube(Shader* shade, std::string path, Shader* ts, InputManager* i) {
+	BouncingCube(Shader* shade, std::string path, Shader* ts) {
 		velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 		soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
 
@@ -90,7 +89,6 @@ public:
 		this->width = 1.0f;
 		this->height = 1.0f;
 		cm.addObject(this);
-		input = i;
 	}
 
 	float dot(glm::vec2 a, glm::vec2 b) {
