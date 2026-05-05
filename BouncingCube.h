@@ -34,18 +34,14 @@ private:
 	Shader* textShader;
 	Text* vs;
 
-	int player = 1;
 
 public:
 
 	Model* getModel();
-	void setPlayer(int p);
 	BouncingCube(Shader* shade, std::string path, Shader* ts);
-	float dot(glm::vec2 a, glm::vec2 b);
 	void Collide(Collision col);
 	void screenBounce();
 	void Update() override;
 	void Draw() override;
-	void translate(glm::vec3 translation);
 	void drawText() override;
 };

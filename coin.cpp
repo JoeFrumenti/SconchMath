@@ -73,15 +73,21 @@ public:
 	}
 
 	void Collide(Collision col) override {
-		soundMan.playSound("coin",0);
-		color = glm::vec4(1.0f, .0f, .0f, 1.0f);
-		cm.removeObject(ID);
-		if (++collisions < 2) {
-			timer = glfwGetTime();
-			timerRunning = true;
+		for (auto& tag : col.obj->getTags())
+		{
+			if (tag == "CoinPickup") {
+
+				soundMan.playSound("coin", 0);
+				color = glm::vec4(1.0f, .0f, .0f, 1.0f);
+				cm.removeObject(ID);
+				if (++collisions < 2) {
+					timer = glfwGetTime();
+					timerRunning = true;
+				}
+				else
+					UDMan.removeObject(ID);
+			}
 		}
-		else
-			UDMan.removeObject(ID);
 	}
 
 	glm::vec3 getPos() override{

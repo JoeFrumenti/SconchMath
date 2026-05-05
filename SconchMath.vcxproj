@@ -23,6 +23,7 @@
     <ClCompile Include="BouncingCube.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="coin.cpp" />
+    <ClCompile Include="CoinPickup.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="DebugCube.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Player1.cpp" />
+    <ClCompile Include="Player2.cpp" />
     <ClCompile Include="primitive.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />

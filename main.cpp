@@ -22,6 +22,9 @@
 #include "BasicModel.cpp"
 #include "DebugCube.cpp"
 #include "Player1.cpp"
+#include "Player2.cpp"
+#include "CoinPickup.cpp"
+
 #include "Window.h"
 
 bool start = true;
@@ -56,12 +59,14 @@ int main()
     modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
     textShader = new Shader("C:/Users/joefr/source/repos/SconchMath/textShader.vs", "C:/Users/joefr/source/repos/SconchMath/textShader.fs");
 
-    Player1* p1 = new Player1(modelShader, textShader);
 
     BouncingCube* cube1 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj", textShader);
     cube1->setId(3);
     cube1->setVelocity(glm::vec3(0.19f, -0.42f, .0f));
 
+    Player1* p1 = new Player1(modelShader, textShader);
+    CoinPickup* coinPickup = new CoinPickup();
+    cube1->addChild(coinPickup);
     cube1->addChild(p1);
 
 
@@ -69,7 +74,11 @@ int main()
     cube2->setId(4);
     cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
     cube2->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
-    cube2->setPlayer(2);
+
+    Player2* p2 = new Player2(modelShader, textShader);
+    CoinPickup* coinPickup2 = new CoinPickup();
+    cube2->addChild(p2);
+    cube2->addChild(coinPickup2);
 
     UDMan.addUD(cube1);
     UDMan.addUD(cube2);

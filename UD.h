@@ -4,7 +4,6 @@
 #include <vector>
 #include <map>
 #include "Collision.h"
-//#include "BouncingCube.cpp"
 
 class UD {
 protected:
@@ -28,18 +27,21 @@ public:
 	virtual void Draw() = 0;
 	virtual glm::vec3 getPos() { return pos; };
 	virtual void Collide(Collision) {};
-	virtual float getWidth() { return this->width; }
-	virtual float getHeight() { return this->height; }
+	virtual float getWidth() { return width; }
+	virtual float getHeight() { return height; }
 	virtual glm::vec3 getLastPos() { return this->lastPos; }
 	virtual std::vector<std::string> getTags() { return this->tags; }
 	virtual glm::vec3 getVelocity() { return this->velocity; }
 	virtual void setVelocity(glm::vec3 v) { this->velocity = v; }
-	virtual std::map<std::string, float> getStats() { return this->stats; }
+	virtual std::map<std::string, float>& getStats() { return this->stats; }
 	virtual void drawText() {};
 	virtual void setParent(UD* parent) {};
 	virtual void addChild(UD* child) {
 		this->children.push_back(child);
 		child->setParent(this);
-	};
+	}
+	virtual void translate(glm::vec3 translation) {
+		pos += translation;
+	}
 
 };

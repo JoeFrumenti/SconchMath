@@ -4,23 +4,11 @@ Model* BouncingCube::getModel() {
 	return ourModel;
 }
 
-void BouncingCube::setPlayer(int p) {
-	player = p;
-
-	if (player == 2) {
-		//cPos = glm::vec3(3.25f, 8.75f, 1.0f);
-		//cmPos.x = -cmPos.x;
-	}
-}
-
-
 BouncingCube::BouncingCube(Shader* shade, std::string path, Shader* ts) {
 	velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 	soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
 
 	textShader = ts;
-
-
 	vs = new Text(textShader, "C:/Windows/Fonts/BOD_B.TTF");
 
 	CollisionManager& cm = CollisionManager::getInstance();
@@ -34,21 +22,13 @@ BouncingCube::BouncingCube(Shader* shade, std::string path, Shader* ts) {
 	cm.addObject(this);
 }
 
-float BouncingCube::dot(glm::vec2 a, glm::vec2 b) {
-	return a.x * b.x + a.y * b.y;
-}
-
 void BouncingCube::Collide(Collision col) {
 		
 	for (auto& tag : col.obj->getTags())
 	{
-		if (tag == "coin") {
-			stats["coins"]++;
-		}
+		
 		if (tag == "bcube")
 		{
-
-			if(player == 1) soundMan.playSong("bounce");
 
 			UD* obj = col.obj;
 
@@ -107,22 +87,11 @@ void BouncingCube::Update() {
 		
 	lastPos = pos;
 
-
-
 	screenBounce();
 
-		
 	model = glm::mat4(1.0f);
-		
-
 	model = glm::translate(model, pos);
-		
-		
-
-	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
-		
-
-		
+	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));		
 	model = glm::scale(model, glm::vec3(0.8f, 0.8f, .8f));
 		
 }
@@ -131,28 +100,19 @@ void BouncingCube::Draw(){
 	for (UD* child : children) {
 		child->Draw();
 	}
-
 	shader->setMat4("model", model);
 	shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	ourModel->Draw(*shader);
-		
-
 }
 
-void BouncingCube::translate(glm::vec3 translation) {
-	pos += translation;
-}
+
 
 void BouncingCube::drawText(){
 	for (UD* child : children) {
 		child->drawText();
 	}
-
 	float scale = 1.0f;
-
 	textShader->use();
-		
-
 	vs->RenderText(*textShader, "VS", 211, 725, 1.0f,
 		glm::vec3(1.0, 1.0f, 1.0f));
 }

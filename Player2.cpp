@@ -6,7 +6,7 @@
 class BouncingCube;
 
 
-class Player1 : public UD {
+class Player2 : public UD {
 
 private:
 	int coins = 0;
@@ -17,18 +17,18 @@ private:
 	glm::mat4 cModel;
 	glm::mat4 copyModel;
 	std::string coinString;
-	
+
 	Model* coin;
 	Model* parentModel;
 public:
 
-	Player1(Shader* cs, Shader* ts) {
+	Player2(Shader* cs, Shader* ts) {
 		coinShader = cs;
 		textShader = ts;
 		textManager = new Text(textShader, "C:/Windows/Fonts/comic.ttf");
 		coin = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
 		parentModel = NULL;
-		
+
 	}
 
 	void setParent(UD* parent) override {
@@ -39,12 +39,12 @@ public:
 
 	void Update() override {
 		cModel = glm::mat4(1.0f);
-		cModel = glm::translate(cModel, glm::vec3(-5.25f, 8.75f, 1.0f));
+		cModel = glm::translate(cModel, glm::vec3(3.25f, 8.75f, 1.0f));
 		cModel = glm::rotate(cModel, (float)glfwGetTime() / 2, glm::vec3(.0f, 1.0f, 0.0f));
 		cModel = glm::scale(cModel, glm::vec3(.515f, .465001f, .465f));
 
 		copyModel = glm::mat4(1.0f);
-		copyModel = glm::translate(copyModel, glm::vec3(-4.25f, 10.25f, 1.0f));
+		copyModel = glm::translate(copyModel, glm::vec3(4.25f, 10.25f, 1.0f));
 		copyModel = glm::rotate(copyModel, (float)glfwGetTime() / 2, glm::vec3(.0f, 1.0f, 0.0f));
 		copyModel = glm::scale(copyModel, glm::vec3(.715f, .715f, .715f));
 
@@ -62,9 +62,9 @@ public:
 		parentModel->Draw(*coinShader);
 	}
 
-	void drawText() override{
+	void drawText() override {
 		textShader->use();
-		textManager->RenderText(*textShader, coinString, 69.25f, 678.25f, .7925f,
+		textManager->RenderText(*textShader, coinString, 352.75f, 678.25f, .7925f,
 			glm::vec3(1.0, 1.0f, 1.0f));
 	}
 

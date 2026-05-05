@@ -126,6 +126,12 @@
     <ClCompile Include="Player1.cpp">
       <Filter>Source Files\Entities\Behaviors</Filter>
     </ClCompile>
+    <ClCompile Include="Player2.cpp">
+      <Filter>Source Files\Entities\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="CoinPickup.cpp">
+      <Filter>Source Files\Entities\Behaviors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
