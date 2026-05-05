@@ -28,7 +28,7 @@ private:
 	glm::vec3 cmSca = glm::vec3(.715f, .715f, .715f);
 
 	Model* coin;
-	//Model* parentModel;
+	Model* parentModel = NULL;
 public:
 
 	Player1(Shader* cs, Shader* ts) {
@@ -36,12 +36,14 @@ public:
 		textShader = ts;
 		textManager = new Text(textShader, "C:/Windows/Fonts/comic.ttf");
 		coin = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
-		//parentModel = static_cast<BouncingCube*>(Parent)->getModel();
+		
+		
 	}
 
 	void setParent(UD* parent) override {
 		this->Parent = parent;
 		coins = parent->getStats()["coins"];
+		parentModel = dynamic_cast<BouncingCube*>(Parent)->getModel();
 	}
 
 	void Update() override {
@@ -66,7 +68,7 @@ public:
 		coin->Draw(*coinShader);
 
 		coinShader->setMat4("model", copyModel);
-		//parentModel->Draw(*coinShader);
+		parentModel->Draw(*coinShader);
 
 
 	}
