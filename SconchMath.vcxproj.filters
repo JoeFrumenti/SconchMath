@@ -211,5 +211,8 @@
     <ClInclude Include="Window.h">
       <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="BouncingCube.h">
+      <Filter>Source Files\Entities\Prefabs</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -18,7 +18,7 @@
 #include FT_FREETYPE_H
 
 #include "coin.cpp"
-#include "BouncingCube.cpp"
+#include "BouncingCube.h"
 #include "BasicModel.cpp"
 #include "DebugCube.cpp"
 #include "Player1.cpp"
@@ -56,7 +56,7 @@ int main()
     modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
     textShader = new Shader("C:/Users/joefr/source/repos/SconchMath/textShader.vs", "C:/Users/joefr/source/repos/SconchMath/textShader.fs");
 
-    Player1* p1 = new Player1(textShader);
+    Player1* p1 = new Player1(modelShader, textShader);
 
     BouncingCube* cube1 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj", textShader);
     cube1->setId(3);

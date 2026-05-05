@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h" />
+    <ClInclude Include="BouncingCube.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionManager.h" />
