@@ -21,7 +21,7 @@
 #include "BouncingCube.cpp"
 #include "BasicModel.cpp"
 #include "DebugCube.cpp"
-
+#include "Player1.cpp"
 #include "Window.h"
 
 bool start = true;
@@ -56,11 +56,14 @@ int main()
     modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
     textShader = new Shader("C:/Users/joefr/source/repos/SconchMath/textShader.vs", "C:/Users/joefr/source/repos/SconchMath/textShader.fs");
 
+    Player1* p1 = new Player1(textShader);
 
     BouncingCube* cube1 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj", textShader);
     cube1->setId(3);
     cube1->setVelocity(glm::vec3(0.19f, -0.42f, .0f));
-    cube1->setInput(true);
+
+    cube1->addChild(p1);
+
 
     BouncingCube* cube2 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj", textShader);
     cube2->setId(4);

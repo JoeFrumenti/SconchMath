@@ -26,7 +26,7 @@ public:
 	virtual void setId(int id) { ID = id; };
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
-	virtual glm::vec3 getPos() = 0;
+	virtual glm::vec3 getPos() { return pos; };
 	virtual void Collide(Collision) {};
 	virtual float getWidth() { return this->width; }
 	virtual float getHeight() { return this->height; }
@@ -37,6 +37,9 @@ public:
 	virtual std::map<std::string, float> getStats() { return this->stats; }
 	virtual void drawText() {};
 	virtual void setParent(UD* parent) {};
-	virtual void addChild(UD* child) {};
+	virtual void addChild(UD* child) {
+		this->children.push_back(child);
+		child->setParent(this);
+	};
 
 };

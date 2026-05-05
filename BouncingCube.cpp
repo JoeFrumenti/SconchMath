@@ -22,14 +22,11 @@ private:
 	Model* coin;
 
 	glm::mat4 model;
-	glm::vec3 pos;
 
 	glm::mat4 cModel;
 	glm::vec3 cPos = glm::vec3(-5.25f, 8.75f, 1.0f);;
 	glm::vec3 cScale = glm::vec3(.515f, .465001f, .465f);
 
-	glm::vec2 tPos = glm::vec2(69.25f, 678.25f);
-	float tScale = .7925f;
 
 	SoundManager& soundMan = SoundManager::getInstance();
 
@@ -43,7 +40,6 @@ private:
 	bool isInput = false;
 
 	Shader* shader;
-	Text* textManager;
 
 	Shader* textShader;
 	Text* vs;
@@ -57,7 +53,6 @@ public:
 
 		if (player == 2) {
 			cPos = glm::vec3(3.25f, 8.75f, 1.0f);
-			tPos = glm::vec2(352.75, 678.25);
 			cmPos.x = -cmPos.x;
 		}
 	}
@@ -72,7 +67,6 @@ public:
 
 		textShader = ts;
 
-		textManager = new Text(textShader, "C:/Windows/Fonts/comic.ttf");
 
 		vs = new Text(textShader, "C:/Windows/Fonts/BOD_B.TTF");
 
@@ -154,12 +148,15 @@ public:
 
 	}
 
-	glm::vec3 getPos() override {
-		return pos;
-	}
-
 	void Update() override {
+		for(UD* child : children) {
+			child->Update();
+		}
+		
 		lastPos = pos;
+
+
+
 		screenBounce();
 
 		cModel = glm::mat4(1.0f);
@@ -177,10 +174,13 @@ public:
 		cModel = glm::scale(cModel, cScale);
 		model = glm::scale(model, glm::vec3(0.8f, 0.8f, .8f));
 		copyModel = glm::scale(copyModel, cmSca);
-		coinString = "x" + std::to_string((int)stats["coins"]);
 	}
 
 	void Draw() override {
+		for (UD* child : children) {
+			child->Draw();
+		}
+
 		shader->setMat4("model", model);
 		shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		ourModel->Draw(*shader);
@@ -196,12 +196,14 @@ public:
 	}
 
 	void drawText() override {
+		for (UD* child : children) {
+			child->drawText();
+		}
 
 		float scale = 1.0f;
 
 		textShader->use();
-		textManager->RenderText(*textShader, coinString, tPos.x, tPos.y, tScale,
-			glm::vec3(1.0, 1.0f, 1.0f));
+		
 
 		vs->RenderText(*textShader, "VS", 211, 725, 1.0f,
 			glm::vec3(1.0, 1.0f, 1.0f));
