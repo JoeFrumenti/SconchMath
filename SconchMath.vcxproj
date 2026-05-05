@@ -26,6 +26,7 @@
     <ClCompile Include="CoinPickup.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="DebugCube.cpp" />
+    <ClCompile Include="DropCoins.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="OldCollisionManager.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="..\..\include\Shaders\shader.h" />
     <ClInclude Include="BouncingCube.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Coin.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="GameObject.h" />

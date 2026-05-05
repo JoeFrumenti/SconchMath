@@ -1,96 +1,62 @@
-
-#include "UD.h"
-#include "Model.h"
-#include "Shaders/shader.h"
-
-#include <iostream>
+#include "Coin.h"
 
 
-#include "SoundManager.h"
 
-#include "CollisionManager.h"
-#include "UDManager.h"
+Coin::Coin(Shader* shade) {
+	char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj";
+	ID = 0;
+	ourModel = new Model(path);
+	pos = glm::vec3(.0f,.0f,.0f);
+	shader = shade;
+	this->width = 0.25f * scaling;
+	this->height = 0.35f * scaling;
+	cm.addObject(this);
+	tags.push_back("coin");
+	soundMan.addSound("coin", "C:/Users/joefr/source/repos/SconchMath/assets/chime3.wav");
+}
 
 
-class Coin : public UD {
-private:
-	Model* ourModel;
-	glm::mat4 model;
-	glm::vec3 pos;
-	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	glm::vec4 white = glm::vec4(.2f, .2f, .2f, 1.0f);
+void Coin::Update() {
+	model = glm::mat4(1.0f);
+	model = glm::translate(model, pos); 
+	model = glm::rotate(model, (float)glfwGetTime() * 3, glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(0.3f * scaling, 0.3f * scaling, .3f * scaling));
 
-	Shader* shader;
-
-	CollisionManager& cm = CollisionManager::getInstance();
-	UDManager& UDMan = UDManager::getInstance();
-
-	SoundManager& soundMan = SoundManager::getInstance();
-
-	double timer = .1;
-	bool timerRunning = false;
-
-	int collisions = 0;
-	float scaling = 1.2f;
-
-public:
-
-	Coin(Shader* shade) {
-		char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj";
-		ID = 0;
-		ourModel = new Model(path);
-		pos = glm::vec3(.0f,.0f,.0f);
-		shader = shade;
-		this->width = 0.25f * scaling;
-		this->height = 0.35f * scaling;
+	if (timerRunning && (glfwGetTime() - timer >= 0.3f)) {
 		cm.addObject(this);
-		tags.push_back("coin");
-		soundMan.addSound("coin", "C:/Users/joefr/source/repos/SconchMath/assets/chime3.wav");
+		timerRunning = false;
 	}
+}
 
+void Coin::Draw() {
+	shader->setMat4("model", model);
+	shader->setVec4("color", color);
+	ourModel->Draw(*shader);
+	shader->setVec4("color", white);
+}
 
-	void Update() override{
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, pos); 
-		model = glm::rotate(model, (float)glfwGetTime() * 3, glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.3f * scaling, 0.3f * scaling, .3f * scaling));
+void Coin::translate(glm::vec3 translation) {
+	pos += translation;
+}
 
-		if (timerRunning && (glfwGetTime() - timer >= 0.3f)) {
-			cm.addObject(this);
-			timerRunning = false;
-		}
-	}
+glm::vec3 Coin::getPos() {
+	return pos;
+}
 
-	void Draw() override{
-		shader->setMat4("model", model);
-		shader->setVec4("color", color);
-		ourModel->Draw(*shader);
-		shader->setVec4("color", white);
-	}
+void Coin::Collide(Collision col)  {
+	for (auto& tag : col.obj->getTags())
+	{
+		if (tag == "CoinPickup") {
 
-	void translate(glm::vec3 translation) {
-		pos += translation;
-	}
-
-	void Collide(Collision col) override {
-		for (auto& tag : col.obj->getTags())
-		{
-			if (tag == "CoinPickup") {
-
-				soundMan.playSound("coin", 0);
-				color = glm::vec4(1.0f, .0f, .0f, 1.0f);
-				cm.removeObject(ID);
-				if (++collisions < 2) {
-					timer = glfwGetTime();
-					timerRunning = true;
-				}
-				else
-					UDMan.removeObject(ID);
+			soundMan.playSound("coin", 0);
+			color = glm::vec4(1.0f, .0f, .0f, 1.0f);
+			cm.removeObject(ID);
+			if (++collisions < 2) {
+				timer = glfwGetTime();
+				timerRunning = true;
 			}
+			else
+				UDMan.removeObject(ID);
 		}
 	}
-
-	glm::vec3 getPos() override{
-		return pos;
-	}
-};
+}

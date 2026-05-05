@@ -17,13 +17,14 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include "coin.cpp"
+#include "coin.h"
 #include "BouncingCube.h"
 #include "BasicModel.cpp"
 #include "DebugCube.cpp"
 #include "Player1.cpp"
 #include "Player2.cpp"
 #include "CoinPickup.cpp"
+#include "DropCoins.cpp"
 
 #include "Window.h"
 
@@ -60,7 +61,7 @@ int main()
     textShader = new Shader("C:/Users/joefr/source/repos/SconchMath/textShader.vs", "C:/Users/joefr/source/repos/SconchMath/textShader.fs");
 
 
-    BouncingCube* cube1 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj", textShader);
+    BouncingCube* cube1 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj", textShader);
     cube1->setId(3);
     cube1->setVelocity(glm::vec3(0.19f, -0.42f, .0f));
 
@@ -70,7 +71,7 @@ int main()
     cube1->addChild(p1);
 
 
-    BouncingCube* cube2 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj", textShader);
+    BouncingCube* cube2 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj", textShader);
     cube2->setId(4);
     cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
     cube2->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
@@ -80,8 +81,16 @@ int main()
     cube2->addChild(p2);
     cube2->addChild(coinPickup2);
 
+    BouncingCube* moneyBag = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj", textShader);
+    moneyBag->setId(5);
+    moneyBag->translate(glm::vec3(.0f, 5.0f, 0.0f));
+    moneyBag->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
+    //gDropCoins* dropCoins = new DropCoins(modelShader);
+    //gmoneyBag->addChild(dropCoins);
+
     UDMan.addUD(cube1);
     UDMan.addUD(cube2);
+    UDMan.addUD(moneyBag);
 
     char path3[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj";
     char path4[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundCream.obj";
