@@ -37,18 +37,14 @@ private:
 	glm::vec3 cmPos = glm::vec3(-4.25f,10.25f,1.0f);
 	glm::vec3 cmSca = glm::vec3(.715f,.715f,.715f);
 
-	std::vector<int> pitches = {0, 2, 4, 6, 7};
-	int pitch = 0;
-
-	int coins = 0;
 	string coinString = "x12";
 
 
-	glm::vec3 coinVelocity = glm::vec3(0.25f, 0.25f, 0.0f);
 	bool isInput = false;
 
 	Shader* shader;
 	Text* textManager;
+
 	Shader* textShader;
 	Text* vs;
 
@@ -69,6 +65,7 @@ public:
 	void setInput(bool inp) {
 		isInput = inp;
 	}
+
 	BouncingCube(Shader* shade, std::string path, Shader* ts) {
 		velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 		soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
@@ -100,7 +97,7 @@ public:
 		for (auto& tag : col.obj->getTags())
 		{
 			if (tag == "coin") {
-				coins++;
+				stats["coins"]++;
 			}
 			if (tag == "bcube")
 			{
@@ -180,7 +177,7 @@ public:
 		cModel = glm::scale(cModel, cScale);
 		model = glm::scale(model, glm::vec3(0.8f, 0.8f, .8f));
 		copyModel = glm::scale(copyModel, cmSca);
-		coinString = "x" + std::to_string(coins);
+		coinString = "x" + std::to_string((int)stats["coins"]);
 	}
 
 	void Draw() override {

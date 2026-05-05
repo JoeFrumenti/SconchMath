@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Alpha">
       <UniqueIdentifier>{74887311-d742-4053-827e-21b6b186c3ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Behaviors">
+      <UniqueIdentifier>{4c3f96cb-d101-46f6-8e54-b357169c0320}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -119,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Player1.cpp">
+      <Filter>Source Files\Entities\Behaviors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

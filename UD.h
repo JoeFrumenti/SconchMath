@@ -2,8 +2,9 @@
 #include "Shaders/shader.h"
 #include <GLFW/glfw3.h>
 #include <vector>
-
+#include <map>
 #include "Collision.h"
+//#include "BouncingCube.cpp"
 
 class UD {
 protected:
@@ -14,6 +15,10 @@ protected:
 	glm::vec3 velocity;
 	float width;
 	float height;
+	UD* Parent;
+	std::vector<UD*> children;
+
+	std::map<std::string, float> stats;
 
 public:
 	//UD();
@@ -29,7 +34,9 @@ public:
 	virtual std::vector<std::string> getTags() { return this->tags; }
 	virtual glm::vec3 getVelocity() { return this->velocity; }
 	virtual void setVelocity(glm::vec3 v) { this->velocity = v; }
-
+	virtual std::map<std::string, float> getStats() { return this->stats; }
 	virtual void drawText() {};
+	virtual void setParent(UD* parent) {};
+	virtual void addChild(UD* child) {};
 
 };
