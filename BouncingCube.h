@@ -13,7 +13,7 @@
 #include "Text.h"
 
 #include <cmath>
-
+#include "ShaderCollection.h"
 #include "InputManager.h"
 
 class BouncingCube : public UD {
@@ -30,13 +30,12 @@ private:
 	Shader* shader;
 
 	Shader* textShader;
-	Text* vs;
-
+	
 
 public:
-
+	~BouncingCube();
 	Model* getModel();
-	BouncingCube(Shader* shade, std::string path, Shader* ts);
+	BouncingCube(std::string path);
 	void Collide(Collision col);
 	void screenBounce();
 	void Update() override;

@@ -41,6 +41,7 @@
     <ClCompile Include="OpenGL\GameObject.cpp" />
     <ClCompile Include="OpenGL\glManager.cpp" />
     <ClCompile Include="OpenGL\texManager.cpp" />
+    <ClCompile Include="ShaderCollection.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />
     <ClCompile Include="SoundDevice.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -61,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h" />
+    <ClInclude Include="BasicModel.h" />
     <ClInclude Include="BouncingCube.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Coin.h" />
@@ -74,6 +76,7 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="primitive.h" />
+    <ClInclude Include="ShaderCollection.h" />
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundDevice.h" />
     <ClInclude Include="SoundManager.h" />

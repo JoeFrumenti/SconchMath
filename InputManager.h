@@ -13,10 +13,14 @@ private:
 	GLFWwindow* window;
 
 public: 
-
 	InputManager();
 	glm::vec3 getInput();
 	glm::vec3 getInputWASD();
+
+	static InputManager& getInstance() {
+		static InputManager instance;
+		return instance;
+	}
 
 	bool isE();
 

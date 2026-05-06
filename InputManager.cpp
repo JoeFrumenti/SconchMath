@@ -7,7 +7,6 @@
 
 InputManager::InputManager() {
 	window = Window::getInstance().get();
-
 }
 
 glm::vec3 InputManager::getInput() {

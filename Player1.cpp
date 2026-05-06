@@ -2,6 +2,7 @@
 #include "Text.h"
 #include "Model.h"
 #include "BouncingCube.h"
+#include "ShaderCollection.h"
 
 class BouncingCube;
 
@@ -22,9 +23,9 @@ private:
 	Model* parentModel;
 public:
 
-	Player1(Shader* cs, Shader* ts) {
-		coinShader = cs;
-		textShader = ts;
+	Player1() {
+		coinShader = ShaderCollection::getInstance().getShader("Model");
+		textShader = ShaderCollection::getInstance().getShader("Text");
 		textManager = new Text(textShader, "C:/Windows/Fonts/comic.ttf");
 		coin = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
 		parentModel = NULL;
@@ -65,7 +66,7 @@ public:
 
 	void drawText() override{
 		textShader->use();
-		textManager->RenderText(*textShader, coinString, 69.25f, 678.25f, .7925f,
+		textManager->RenderText(coinString, 69.25f, 678.25f, .7825f,
 			glm::vec3(1.0, 1.0f, 1.0f));
 	}
 

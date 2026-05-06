@@ -1,6 +1,6 @@
 #include "Text.h"
 Text::Text(Shader* textShader, std::string fontPath) {
-
+    shader = textShader;
     //text setup
     FT_Library ft;
     if (FT_Init_FreeType(&ft))
@@ -80,13 +80,13 @@ Text::Text(Shader* textShader, std::string fontPath) {
 
 }
 
-void Text::RenderText(Shader& s, std::string text, float x, float y, float scale,
+void Text::RenderText(std::string text, float x, float y, float scale,
     glm::vec3 color)
 {
 
     // activate corresponding render state
-    s.use();
-    s.setVec3("textColor", color);
+    shader->use();
+    shader->setVec3("textColor", color);
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
     // iterate through all characters

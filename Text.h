@@ -23,6 +23,8 @@ private:
 
 	int scale = 50;
 
+	Shader* shader;
+
 	// settings
 	const unsigned int SCR_WIDTH = 9 * scale;
 	const unsigned int SCR_HEIGHT = 16 * scale;
@@ -30,7 +32,7 @@ private:
 	unsigned int VAO, VBO;
 	std::map<char, Character> Characters;
 public:
-	void RenderText(Shader& s, std::string text, float x, float y, float scale,
+	void RenderText(std::string text, float x, float y, float scale,
 		glm::vec3 color);
 	Text(Shader* textShader, std::string fontPath);
 };

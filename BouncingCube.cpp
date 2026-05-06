@@ -4,22 +4,31 @@ Model* BouncingCube::getModel() {
 	return ourModel;
 }
 
-BouncingCube::BouncingCube(Shader* shade, std::string path, Shader* ts) {
+BouncingCube::BouncingCube(std::string path) {
 	velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 	soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
 
-	textShader = ts;
-	vs = new Text(textShader, "C:/Windows/Fonts/BOD_B.TTF");
+	textShader = ShaderCollection::getInstance().getShader("Text");;
 
 	CollisionManager& cm = CollisionManager::getInstance();
 
 	ourModel = new Model(path);
 
-	shader = shade;
+	shader = ShaderCollection::getInstance().getShader("Model");;
 	tags.push_back("bcube");
 	this->width = 1.0f;
 	this->height = 1.0f;
 	cm.addObject(this);
+}
+
+BouncingCube::~BouncingCube() {
+	CollisionManager& cm = CollisionManager::getInstance();
+	UDManager& UDMan = UDManager::getInstance();
+	for (UD* obj : children) {
+		std::cout << "REMOVING " << obj->getId() << std::endl;
+		cm.removeObject(obj->getId());
+		UDMan.removeObject(obj->getId());
+	}
 }
 
 void BouncingCube::Collide(Collision col) {
@@ -113,6 +122,4 @@ void BouncingCube::drawText(){
 	}
 	float scale = 1.0f;
 	textShader->use();
-	vs->RenderText(*textShader, "VS", 211, 725, 1.0f,
-		glm::vec3(1.0, 1.0f, 1.0f));
 }

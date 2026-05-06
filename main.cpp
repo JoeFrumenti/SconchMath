@@ -6,7 +6,7 @@
 #include <chrono>
 #include <thread>
 
-#include <Shaders/shader.h>
+#include "ShaderCollection.h"
 
 #include <camera.cpp>
 #include "CollisionManager.h"
@@ -19,7 +19,7 @@
 
 #include "coin.h"
 #include "BouncingCube.h"
-#include "BasicModel.cpp"
+#include "BasicModel.h"
 #include "DebugCube.cpp"
 #include "Player1.cpp"
 #include "Player2.cpp"
@@ -58,31 +58,33 @@ int main()
     
     //window setup
     window.initWindow();
-    modelShader = new Shader("C:/Users/joefr/source/repos/SconchMath/modelShader.vs", "C:/Users/joefr/source/repos/SconchMath/modelShader.fs");
-    textShader = new Shader("C:/Users/joefr/source/repos/SconchMath/textShader.vs", "C:/Users/joefr/source/repos/SconchMath/textShader.fs");
+    modelShader = ShaderCollection::getInstance().getShader("Model");
+    textShader = ShaderCollection::getInstance().getShader("Model");
 
 
-    BouncingCube* cube1 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj", textShader);
+    BouncingCube* cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj");
     cube1->setId(3);
     cube1->setVelocity(glm::vec3(0.19f, -0.42f, .0f));
 
-    Player1* p1 = new Player1(modelShader, textShader);
+    Player1* p1 = new Player1();
     CoinPickup* coinPickup = new CoinPickup();
+    coinPickup->setId(8);
     cube1->addChild(coinPickup);
     cube1->addChild(p1);
 
 
-    BouncingCube* cube2 = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj", textShader);
+    BouncingCube* cube2 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj");
     cube2->setId(4);
     cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
     cube2->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
 
-    Player2* p2 = new Player2(modelShader, textShader);
+    Player2* p2 = new Player2();
     CoinPickup* coinPickup2 = new CoinPickup();
+    coinPickup2->setId(7);
     cube2->addChild(p2);
     cube2->addChild(coinPickup2);
 
-    BouncingCube* moneyBag = new BouncingCube(modelShader, "C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj", textShader);
+    BouncingCube* moneyBag = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
     moneyBag->setId(5);
     moneyBag->translate(glm::vec3(.0f, 5.0f, 0.0f));
     moneyBag->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
@@ -117,13 +119,14 @@ int main()
     UDMan.addUD(foreground);
 
     PlayerManager* playerMan = new PlayerManager(cube1, cube2);
+    playerMan->setId(6);
     UDMan.addUD(playerMan);
 
 
     char path5[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj";
 
     //SPAWN COINS
-    int idNum = 10;
+    int idNum = 100;
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
             Coin* coiny = new Coin(modelShader);
