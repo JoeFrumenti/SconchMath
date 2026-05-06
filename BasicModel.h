@@ -15,8 +15,6 @@ private:
 	float angle;
 	glm::vec3 rot;
 	glm::vec3 sca = glm::vec3(1.0f, 1.0f, 1.0f);
-
-
 	Shader* shader;
 
 	glm::vec3 velocity = glm::vec3(0.25f, 0.25f, 0.0f);

@@ -11,12 +11,12 @@ private:
 
 	BouncingCube* p1;
 	BouncingCube* p2;
-	bool win = false;
+	int winner = 0;
 	UDManager& UDMan = UDManager::getInstance();
 	CollisionManager& cm = CollisionManager::getInstance();
 	std::string message = "100    = WIN";
 	Text* display;
-	float textScale = 1.0f;
+	float loserScale = 1.0f;
 	BasicModel* coin;
 
 public:

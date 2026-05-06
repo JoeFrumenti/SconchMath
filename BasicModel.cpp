@@ -8,7 +8,6 @@ BasicModel::BasicModel(std::string path) {
 	shader = ShaderCollection::getInstance().getShader("Model");
 	angle = 0;
 	sca = glm::vec3(1.0f,1.0f,1.0f);
-		
 }
 
 void BasicModel::setInput(bool inp) {
