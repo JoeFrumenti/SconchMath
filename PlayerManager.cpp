@@ -20,18 +20,17 @@ void PlayerManager::Update() {
 	if (winner == 0)
 	{
 
-		if (p1->getStats()["coins"] >= 100) {
-			
+		if (p1->getStats()["coins"] >= 10) {
 			cm.removeObject(p2->getId());
 			winner = 1;
 		}
 
-		if (p2->getStats()["coins"] >= 100) {
-			
+		if (p2->getStats()["coins"] >= 10) {
 			cm.removeObject(p1->getId());
 			winner = 2;
 		}
 	}
+
 	else if (winner == 1) {
 		loserScale -= 1.0f / 60.0f;
 		p2->setScale(glm::vec3(loserScale, loserScale, loserScale));

@@ -2,6 +2,8 @@
 #include <thread>
 #include <chrono>
 
+std::atomic<int> SoundManager::activeSoundCount = 0;
+
 std::vector<std::string> pitches = { "A5", "D5", "A#4", "G4", "G5","D5","A#4","G4",
                                     "F#5", "D5", "A#4", "G4", "G5","D5","A#4","G4",
                                     "G5", "C5", "A4", "F4", "F5", "C5", "A4", "F4",
@@ -28,27 +30,85 @@ std::map<std::string, double> noteMap = {
 
 
 int pitchIndex = 0;
+
+
+
+
 void SoundManager::playSong(std::string soundName) {
     playSound(soundName, noteMap[pitches[pitchIndex]]);
     if (++pitchIndex >= pitches.size())
         pitchIndex = 0;
 }
 
-//alSourcef(noises[soundName], AL_PITCH, pow(2.0, pitches[pitchIndex++] / 12.0));
-
+void SoundManager::updateMasterGain() {
+    int active = activeSoundCount.load();
+    float master = 1.0f / sqrtf((float)std::max(1, active));
+    alListenerf(AL_GAIN, master);
+}
 void SoundManager::playSound(std::string name, double pitch) {
     ALuint buffer = noises[name];
-    std::thread([buffer, pitch]() {
-        SoundSource speaker;
-        alSourcef(speaker.getSource(), AL_PITCH, pow(2.0, pitch/ 12.0));  // set on the source
-        speaker.Play(buffer);
-        ALint state;
-        do {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            alGetSourcei(speaker.getSource(), AL_SOURCE_STATE, &state);
-        } while (state == AL_PLAYING);
+    std::lock_guard<std::mutex> lock(soundsMutex);
+
+    // prune finished voices
+    activeSounds.erase(
+        std::remove_if(activeSounds.begin(), activeSounds.end(), [](const ActiveSound& s) {
+            ALint state;
+            alGetSourcei(s.source, AL_SOURCE_STATE, &state);
+            return state != AL_PLAYING;
+            }),
+        activeSounds.end()
+    );
+
+    ALuint source;
+    if (activeSounds.size() >= MAX_VOICES) {
+        // prefer to steal the oldest, but skip if it just started
+        auto& oldest = activeSounds.front();
+        auto age = std::chrono::steady_clock::now() - oldest.startTime;
+        if (age < std::chrono::milliseconds(100)) {
+            return; // don't play rather than cause a click
+        }
+        source = oldest.source;
+        alSourceStop(source);
+        activeSounds.erase(activeSounds.begin());
+    }
+    else {
+        // grab next unused source from pool
+        // find one not currently in activeSounds
+        for (int i = 0; i < MAX_VOICES; i++) {
+            bool inUse = false;
+            for (auto& s : activeSounds) {
+                if (s.source == sourcePool[i]) { inUse = true; break; }
+            }
+            if (!inUse) { source = sourcePool[i]; break; }
+        }
+    }
+
+    alSourcef(source, AL_GAIN, 0.0f);  //  changed from 1.0f
+    alSourcef(source, AL_PITCH, pow(2.0, pitch / 12.0));
+    alSourcei(source, AL_BUFFER, buffer);
+    alSourcePlay(source);
+    activeSounds.push_back({ source, std::chrono::steady_clock::now() });
+
+    std::thread([source]() {
+        int steps = 32;
+        for (int i = 1; i <= steps; i++) {
+            alSourcef(source, AL_GAIN, i / (float)steps);
+            std::this_thread::sleep_for(std::chrono::microseconds(500));
+        }
         }).detach();
+
+
 }
+
+void SoundManager::fadeOutAndStop(ALuint source) {
+    int steps = 16;
+    for (int i = steps; i >= 0; i--) {
+        alSourcef(source, AL_GAIN, i / (float)steps);
+        std::this_thread::sleep_for(std::chrono::microseconds(500)); // 8ms total
+    }
+    alSourceStop(source);
+}
+
 /*vHEREv*/
 void SoundManager::addSound(std::string name, std::string path) {
 	const char* p = path.c_str();
@@ -58,4 +118,10 @@ void SoundManager::addSound(std::string name, std::string path) {
 
 void SoundManager::setSong(std::string name) {
 
+}
+
+SoundManager::SoundManager() {
+    for (int i = 0; i < MAX_VOICES; i++) {
+        alGenSources(1, &sourcePool[i]);
+    }
 }

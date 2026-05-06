@@ -7,10 +7,20 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <atomic>
+#include <mutex>
+
+// In your header
+struct ActiveSound {
+	ALuint source;
+	std::chrono::steady_clock::time_point startTime;
+};
+
+
 
 class SoundManager {
 private:
-
+	static std::atomic<int> activeSoundCount;
 	SoundDevice* mysounddevice = SoundDevice::get();
 	uint32_t sound2;
 	SoundSource mySpeaker;
@@ -19,6 +29,10 @@ private:
 	std::vector<float> notes;
 
 
+	std::mutex soundsMutex;
+	std::vector<ActiveSound> activeSounds;
+	const int MAX_VOICES = 5;
+	ALuint sourcePool[5];
 	
 
 public:
@@ -31,6 +45,8 @@ public:
 	void addSound(std::string name, std::string path);
 	void playSong(std::string soundName);
 	void setSong(std::string name);
-
+	void updateMasterGain();
+	void fadeOutAndStop(ALuint source);
+	SoundManager();
 
 };

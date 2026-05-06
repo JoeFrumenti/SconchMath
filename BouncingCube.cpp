@@ -25,9 +25,9 @@ BouncingCube::~BouncingCube() {
 	CollisionManager& cm = CollisionManager::getInstance();
 	UDManager& UDMan = UDManager::getInstance();
 	for (UD* obj : children) {
-		std::cout << "REMOVING " << obj->getId() << std::endl;
 		cm.removeObject(obj->getId());
 		UDMan.removeObject(obj->getId());
+		delete obj;
 	}
 }
 
