@@ -1,12 +1,13 @@
 
 #include "BasicModel.h"
 
-BasicModel::BasicModel(Shader* shade, char* path) {
+BasicModel::BasicModel(std::string path) {
 	ID = 0;
-	ourModel = new Model(path);
+	ourModel = new Model(path.c_str());
 	pos = glm::vec3(.0f, .0f, .0f);
-	shader = shade;
+	shader = ShaderCollection::getInstance().getShader("Model");
 	angle = 0;
+	sca = glm::vec3(1.0f,1.0f,1.0f);
 		
 }
 
@@ -22,6 +23,7 @@ void BasicModel::Update() {
 	model = glm::translate(model, pos);
 	model = glm::rotate(model, angle, rot);
 	model = glm::scale(model, sca);
+	
 }
 
 void BasicModel::Draw() {
@@ -51,4 +53,8 @@ void BasicModel::scale(glm::vec3 translation) {
 
 glm::vec3 BasicModel::getPos() {
 	return pos;
+}
+
+glm::vec3 BasicModel::getScale() {
+	return sca;
 }

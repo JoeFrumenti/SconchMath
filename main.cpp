@@ -95,11 +95,9 @@ int main()
     UDMan.addUD(cube2);
     UDMan.addUD(moneyBag);
 
-    char path3[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj";
-    char path4[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundCream.obj";
 
-    BasicModel* bg = new BasicModel(modelShader, path3);
-    BasicModel* foreground = new BasicModel(modelShader, path4);
+    BasicModel* bg = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj");
+    BasicModel* foreground = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundCream.obj");
 
     DebugCube* dc = new DebugCube(modelShader);
 

@@ -15,9 +15,9 @@ private:
 	UDManager& UDMan = UDManager::getInstance();
 	CollisionManager& cm = CollisionManager::getInstance();
 	std::string message = "100    = WIN";
-
 	Text* display;
 	float textScale = 1.0f;
+	BasicModel* coin;
 
 public:
 	PlayerManager(BouncingCube* a, BouncingCube* b);

@@ -2,9 +2,7 @@
 
 #include "UD.h"
 #include "Model.h"
-#include "Shaders/shader.h"
-
-#include "InputManager.h"
+#include "ShaderCollection.h"
 
 #include <iostream>
 
@@ -26,7 +24,7 @@ private:
 
 public:
 
-	BasicModel(Shader* shade, char* path);
+	BasicModel(std::string path);
 
 	void setInput(bool inp);
 
@@ -40,4 +38,5 @@ public:
 	void scale(glm::vec3 translation);
 
 	glm::vec3 getPos() override;
+	glm::vec3 getScale();
 };
