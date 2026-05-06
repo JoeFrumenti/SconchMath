@@ -9,6 +9,7 @@
 #include <vector>
 #include <atomic>
 #include <mutex>
+#include <unordered_map>
 
 // In your header
 struct ActiveSound {
@@ -28,11 +29,12 @@ private:
 	std::map<std::string, uint32_t> noises;
 	std::vector<float> notes;
 
+	std::unordered_map<std::string, std::chrono::steady_clock::time_point> lastPlayed;
 
 	std::mutex soundsMutex;
 	std::vector<ActiveSound> activeSounds;
-	const int MAX_VOICES = 5;
-	ALuint sourcePool[5];
+	const int MAX_VOICES = 8;
+	ALuint sourcePool[8];
 	
 
 public:

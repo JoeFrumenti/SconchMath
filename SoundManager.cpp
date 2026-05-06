@@ -46,6 +46,12 @@ void SoundManager::updateMasterGain() {
     alListenerf(AL_GAIN, master);
 }
 void SoundManager::playSound(std::string name, double pitch) {
+    if (name == "coin") {
+        auto now = std::chrono::steady_clock::now();
+        auto& last = lastPlayed[name];
+        if (now - last < std::chrono::milliseconds(50)) return; // skip if played recently
+        last = now;
+    }
     ALuint buffer = noises[name];
     std::lock_guard<std::mutex> lock(soundsMutex);
 
