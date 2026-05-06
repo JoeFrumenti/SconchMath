@@ -11,6 +11,7 @@ protected:
 	glm::vec3 lastPos;
 	glm::vec3 pos;
 	std::vector<std::string> tags;
+	glm::vec3 scale = glm::vec3(1.0f,1.0f,1.0f);
 	glm::vec3 velocity;
 	float width;
 	float height;
@@ -33,6 +34,7 @@ public:
 	virtual std::vector<std::string> getTags() { return this->tags; }
 	virtual glm::vec3 getVelocity() { return this->velocity; }
 	virtual void setVelocity(glm::vec3 v) { this->velocity = v; }
+	virtual void setScale(glm::vec3 v) { this->scale = v; }
 	virtual std::map<std::string, float>& getStats() { return this->stats; }
 	virtual void drawText() {};
 	virtual void setParent(UD* parent) {};

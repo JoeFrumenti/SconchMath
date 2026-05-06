@@ -21,13 +21,13 @@ public:
 
 	void Update() {
 		pos = Parent->getPos();
-		/*if (glm::distance(pos, lastPos) >= 1) {
+		if (glm::distance(pos, lastPos) >= 4) {
 			Coin* coin = new Coin(modelShader);
 			coin->setId(idNum++);
 			coin->translate(pos);
 			UDMan.addUD(coin);
-		}*/
-		lastPos = pos;
+			lastPos = pos;
+		}
 	}
 	void Draw() override {
 

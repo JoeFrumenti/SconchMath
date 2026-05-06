@@ -25,6 +25,7 @@
 #include "Player2.cpp"
 #include "CoinPickup.cpp"
 #include "DropCoins.cpp"
+#include "PlayerManager.h"
 
 #include "Window.h"
 
@@ -85,8 +86,8 @@ int main()
     moneyBag->setId(5);
     moneyBag->translate(glm::vec3(.0f, 5.0f, 0.0f));
     moneyBag->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
-    //gDropCoins* dropCoins = new DropCoins(modelShader);
-    //gmoneyBag->addChild(dropCoins);
+    DropCoins* dropCoins = new DropCoins(modelShader);
+    moneyBag->addChild(dropCoins);
 
     UDMan.addUD(cube1);
     UDMan.addUD(cube2);
@@ -114,6 +115,9 @@ int main()
 
     UDMan.addUD(bg);
     UDMan.addUD(foreground);
+
+    PlayerManager* playerMan = new PlayerManager(cube1, cube2);
+    UDMan.addUD(playerMan);
 
 
     char path5[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj";

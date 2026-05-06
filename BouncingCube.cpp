@@ -92,7 +92,7 @@ void BouncingCube::Update() {
 	model = glm::mat4(1.0f);
 	model = glm::translate(model, pos);
 	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));		
-	model = glm::scale(model, glm::vec3(0.8f, 0.8f, .8f));
+	model = glm::scale(model, glm::vec3(0.8f *scale.x, 0.8f *scale.y, .8f * scale.z));
 		
 }
 

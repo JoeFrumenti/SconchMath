@@ -56,6 +56,7 @@ public:
 		coinShader->use();
 
 		coinShader->setMat4("model", cModel);
+		coinShader->setVec4("color", glm::vec4(1.0f,1.0f,1.0f,1.0f));
 		coin->Draw(*coinShader);
 
 		coinShader->setMat4("model", copyModel);

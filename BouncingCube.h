@@ -24,9 +24,7 @@ private:
 	glm::mat4 model;
 
 	SoundManager& soundMan = SoundManager::getInstance();
-
 	string coinString = "x12";
-
 	bool isInput = false;
 
 	Shader* shader;

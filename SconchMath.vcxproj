@@ -34,6 +34,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Player1.cpp" />
     <ClCompile Include="Player2.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="primitive.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
@@ -70,6 +71,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="primitive.h" />
     <ClInclude Include="SoundBuffer.h" />
