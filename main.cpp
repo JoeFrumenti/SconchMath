@@ -26,6 +26,7 @@
 #include "CoinPickup.cpp"
 #include "DropCoins.cpp"
 #include "PlayerManager.h"
+#include "Icey.cpp"
 
 #include "Window.h"
 
@@ -62,7 +63,7 @@ int main()
     //window setup
     window.initWindow();
     modelShader = ShaderCollection::getInstance().getShader("Model");
-    textShader = ShaderCollection::getInstance().getShader("Model");
+    textShader = ShaderCollection::getInstance().getShader("Text");
 
 
     cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
@@ -70,6 +71,7 @@ int main()
 
     Player1* p1 = new Player1();
     CoinPickup* coinPickup = new CoinPickup();
+
     coinPickup->setId(8);
     cube1->addChild(coinPickup);
     cube1->addChild(p1);
@@ -82,9 +84,12 @@ int main()
 
     Player2* p2 = new Player2();
     CoinPickup* coinPickup2 = new CoinPickup();
+    Icey* icey = new Icey();
+    icey->setId(8);
     coinPickup2->setId(7);
     cube2->addChild(p2);
     cube2->addChild(coinPickup2);
+    cube2->addChild(icey);
 
     BouncingCube* moneyBag = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/StarCube.obj");
     moneyBag->setId(5);
@@ -92,6 +97,7 @@ int main()
     moneyBag->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
     DropCoins* dropCoins = new DropCoins(modelShader);
     moneyBag->addChild(dropCoins);
+
 
     UDMan.addUD(cube1);
     UDMan.addUD(cube2);

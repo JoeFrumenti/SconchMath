@@ -14,7 +14,7 @@ BouncingCube::BouncingCube(std::string path) {
 
 	ourModel = new Model(path);
 
-	shader = ShaderCollection::getInstance().getShader("Model");;
+	shader = ShaderCollection::getInstance().getShader("Model");
 	tags.push_back("bcube");
 	this->width = 1.0f;
 	this->height = 1.0f;

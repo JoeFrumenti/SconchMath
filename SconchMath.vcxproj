@@ -27,6 +27,7 @@
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="DebugCube.cpp" />
     <ClCompile Include="DropCoins.cpp" />
+    <ClCompile Include="Icey.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="OldCollisionManager.cpp" />
     <ClCompile Include="Mesh.cpp" />

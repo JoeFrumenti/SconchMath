@@ -141,6 +141,9 @@
     <ClCompile Include="ShaderCollection.cpp">
       <Filter>Source Files\OpenGL\shaders</Filter>
     </ClCompile>
+    <ClCompile Include="Icey.cpp">
+      <Filter>Source Files\Entities\Behaviors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
