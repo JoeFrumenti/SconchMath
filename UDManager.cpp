@@ -18,7 +18,14 @@ void UDManager::updateUDs(){
 }
 
 void UDManager::removeObject(int id) {
-	UDs.erase(id);
+	//UDs.erase(id);
+	std::map<int, UD*> temp;
+	for (auto& obj : UDs) {
+		if (obj.first != id)
+			temp.insert(obj);
+	}
+	UDs = temp;
+
 }
 
 void UDManager::drawText() {

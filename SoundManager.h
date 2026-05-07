@@ -33,8 +33,10 @@ private:
 
 	std::mutex soundsMutex;
 	std::vector<ActiveSound> activeSounds;
-	const int MAX_VOICES = 8;
-	ALuint sourcePool[8];
+	const int MAX_VOICES = 10;
+	ALuint sourcePool[10];
+
+	float loserScale = 1.0f;
 	
 
 public:

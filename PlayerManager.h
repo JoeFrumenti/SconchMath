@@ -9,6 +9,8 @@ class PlayerManager: public UD {
 private:
 	InputManager& input = InputManager::getInstance();
 
+	glm::vec2 textPos = glm::vec2(135.0f,729.0f);
+
 	BouncingCube* p1;
 	BouncingCube* p2;
 	int winner = 0;

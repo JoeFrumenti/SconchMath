@@ -45,5 +45,6 @@ public:
 	virtual void translate(glm::vec3 translation) {
 		pos += translation;
 	}
+	virtual glm::vec3 getScale() { return scale; }
 
 };

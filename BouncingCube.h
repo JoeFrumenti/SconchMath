@@ -30,6 +30,9 @@ private:
 	Shader* shader;
 
 	Shader* textShader;
+	bool loser = false;
+
+	float loserScale = 1.0f;
 	
 
 public:
@@ -41,4 +44,5 @@ public:
 	void Update() override;
 	void Draw() override;
 	void drawText() override;
+	void lose();
 };

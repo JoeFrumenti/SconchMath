@@ -15,52 +15,35 @@ PlayerManager::PlayerManager(BouncingCube* a, BouncingCube* b) {
 void PlayerManager::Update() {
 	
 	coin->Update();
-	
+	textPos.x += input.getInput().x;
+	if (input.isE())
+		std::cout << textPos.x << std::endl;
 
 	if (winner == 0)
 	{
 
-		if (p1->getStats()["coins"] >= 10) {
-			cm.removeObject(p2->getId());
+		if (p1->getStats()["coins"] >= 100) {
+			p2->lose();
 			winner = 1;
+			message = "WINNER: RED";
 		}
 
-		if (p2->getStats()["coins"] >= 10) {
-			cm.removeObject(p1->getId());
+		if (p2->getStats()["coins"] >= 100) {
+			p1->lose();
 			winner = 2;
+			message = "WINNER: BLUE";
+			textPos.x = 63;
 		}
 	}
 
-	else if (winner == 1) {
-		loserScale -= 1.0f / 60.0f;
-		p2->setScale(glm::vec3(loserScale, loserScale, loserScale));
-		if (loserScale <= 0) {
-			loserScale = 0;
-			UDMan.removeObject(p2->getId());
-			delete p2;
-			winner = 3;
-		}
-
-	}
-
-	else if (winner == 2) {
-		loserScale -= 1.0f / 60.0f;
-		p1->setScale(glm::vec3(loserScale, loserScale, loserScale));
-		if (loserScale <= 0) {
-			loserScale = 0;
-			UDMan.removeObject(p1->getId());
-			delete p1;
-			winner = 3;
-		}
-			
-	}
 }
 
 void PlayerManager::Draw() {
-	coin->Draw();
+	if(winner ==0)
+		coin->Draw();
 }
 
 void PlayerManager::drawText() {
-	display->RenderText(message, 135.0f, 729.0f, 0.716f,
+	display->RenderText(message, textPos.x, textPos.y, 0.716f,
 		glm::vec3(1.0, 1.0f, 1.0f));
 }

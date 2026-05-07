@@ -22,8 +22,10 @@ BouncingCube::BouncingCube(std::string path) {
 }
 
 BouncingCube::~BouncingCube() {
+	std::cout << "BC DESTRUCTOR CALLED\n";
 	CollisionManager& cm = CollisionManager::getInstance();
 	UDManager& UDMan = UDManager::getInstance();
+	UDMan.removeObject(getId());
 	for (UD* obj : children) {
 		cm.removeObject(obj->getId());
 		UDMan.removeObject(obj->getId());
@@ -89,14 +91,40 @@ void BouncingCube::screenBounce() {
 
 }
 
+void BouncingCube::lose() {
+	loser = true;
+
+	CollisionManager& cm = CollisionManager::getInstance();
+	cm.removeObject(ID);
+
+
+	for (UD* child : children) {
+		for (auto& tag : child->getTags()) {
+			if (tag == "CoinPickup") {
+				cm.removeObject(child->getId());
+			}
+		}
+	}
+}
+
 void BouncingCube::Update() {
 	for(UD* child : children) {
 		child->Update();
 	}
-		
+
 	lastPos = pos;
 
 	screenBounce();
+
+	if (loser) {
+		loserScale -= 1.0f / 60.0f;
+		setScale(glm::vec3(loserScale, loserScale, loserScale));
+		if (loserScale <= 0) {
+			loserScale = 0;
+			
+			return;
+		}
+	}
 
 	model = glm::mat4(1.0f);
 	model = glm::translate(model, pos);
@@ -106,9 +134,18 @@ void BouncingCube::Update() {
 }
 
 void BouncingCube::Draw(){
+	
+
 	for (UD* child : children) {
 		child->Draw();
 	}
+
+	if (loserScale <= 0) {
+		loserScale = 0;
+
+		return;
+	}
+
 	shader->setMat4("model", model);
 	shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	ourModel->Draw(*shader);

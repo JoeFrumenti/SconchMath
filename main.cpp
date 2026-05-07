@@ -29,7 +29,7 @@
 
 #include "Window.h"
 
-bool start = true;
+bool start = false;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -53,6 +53,9 @@ const std::chrono::duration<double> FRAME_DURATION(1.0 / TARGET_FPS);
 
 void renderLoop();
 
+BouncingCube* cube1;
+BouncingCube* cube2;
+
 int main()
 {
     
@@ -62,9 +65,8 @@ int main()
     textShader = ShaderCollection::getInstance().getShader("Model");
 
 
-    BouncingCube* cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj");
+    cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
     cube1->setId(3);
-    cube1->setVelocity(glm::vec3(0.19f, -0.42f, .0f));
 
     Player1* p1 = new Player1();
     CoinPickup* coinPickup = new CoinPickup();
@@ -73,10 +75,10 @@ int main()
     cube1->addChild(p1);
 
 
-    BouncingCube* cube2 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj");
+    cube2 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere2.obj");
     cube2->setId(4);
     cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
-    cube2->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
+   
 
     Player2* p2 = new Player2();
     CoinPickup* coinPickup2 = new CoinPickup();
@@ -84,7 +86,7 @@ int main()
     cube2->addChild(p2);
     cube2->addChild(coinPickup2);
 
-    BouncingCube* moneyBag = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
+    BouncingCube* moneyBag = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/StarCube.obj");
     moneyBag->setId(5);
     moneyBag->translate(glm::vec3(.0f, 5.0f, 0.0f));
     moneyBag->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
@@ -184,8 +186,12 @@ void renderLoop() {
 
 void processInput(GLFWwindow* window)
 {
-    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
         start = true;
+        cube1->setVelocity(glm::vec3(0.10f, -0.21f, .0f));
+        cube2->setVelocity(glm::vec3(-0.23f, 0.08f, .0f));
+
+    }
         
     else if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
