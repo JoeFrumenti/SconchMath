@@ -4,7 +4,7 @@ class Icey : public UD {
 private:
 	Model* ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
 	Shader* shader = ShaderCollection::getInstance().getShader("Model");
-
+	CollisionManager& cm = CollisionManager::getInstance();
 	glm::mat4 model;
 
 public:
@@ -14,18 +14,19 @@ public:
 
 	void setParent(UD* parent) override {
 		this->Parent = parent;
-		width = Parent->getWidth();
-		height = Parent->getHeight();
-		
+		width = 0.5;
+		height = 0.5;
+		cm.addObject(this);
 	}
 
 	void Update() {
 		
-		pos = Parent->getPos() + glm::vec3(cos(glfwGetTime()), sin(glfwGetTime()), .0f);
+		pos = Parent->getPos() + glm::vec3(cos(glfwGetTime() * 4) * 2, sin(glfwGetTime() * 4) * 2, .0f);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, pos);
-		
+		model = glm::translate(model, getPos());
+		model = glm::scale(model, glm::vec3(getWidth(), getHeight(), 0.5));
+
 	}
 	void Draw() {
 		shader->use();
@@ -42,8 +43,8 @@ public:
 
 		for (auto& tag : col.obj->getTags())
 		{
-			if (tag == "coin") {
-				Parent->getStats()["coins"]++;
+			if (tag == "bcube" && col.obj != Parent) {
+				dynamic_cast<BouncingCube*>(col.obj)->freeze(1);
 			}
 		}
 	}

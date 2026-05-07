@@ -15,9 +15,9 @@ BouncingCube::BouncingCube(std::string path) {
 	ourModel = new Model(path);
 
 	shader = ShaderCollection::getInstance().getShader("Model");
-	tags.push_back("bcube");
-	this->width = 1.0f;
-	this->height = 1.0f;
+	
+	width = 1.0f;
+	height = 1.0f;
 	cm.addObject(this);
 }
 
@@ -112,6 +112,15 @@ void BouncingCube::Update() {
 		child->Update();
 	}
 
+	if (isFrozen) {
+		float elapsed = glfwGetTime() - freezeStartTime;
+		if (elapsed >= freezeDuration) {
+			isFrozen = false;
+			velocity = frozenVelocity;
+		}
+		return;
+	}
+
 	lastPos = pos;
 
 	screenBounce();
@@ -151,8 +160,14 @@ void BouncingCube::Draw(){
 	ourModel->Draw(*shader);
 }
 
-
-
+void BouncingCube::freeze(float freezeTime) {
+	if(!isFrozen)
+		frozenVelocity = velocity;
+	velocity = glm::vec3(0.0f, 0.0f, 0.0f);
+	isFrozen = true;
+	freezeStartTime = glfwGetTime(); 
+	freezeDuration = freezeTime;
+}
 void BouncingCube::drawText(){
 	for (UD* child : children) {
 		child->drawText();

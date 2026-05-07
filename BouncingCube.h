@@ -20,20 +20,20 @@ class BouncingCube : public UD {
 
 private:
 	Model* ourModel;
-
 	glm::mat4 model;
 
 	SoundManager& soundMan = SoundManager::getInstance();
-	string coinString = "x12";
-	bool isInput = false;
-
+	
 	Shader* shader;
-
 	Shader* textShader;
+	
 	bool loser = false;
-
 	float loserScale = 1.0f;
 	
+	float freezeStartTime = 0;
+	float freezeDuration = 0;
+	bool isFrozen = false;
+	glm::vec3 frozenVelocity;
 
 public:
 	~BouncingCube();
@@ -45,4 +45,5 @@ public:
 	void Draw() override;
 	void drawText() override;
 	void lose();
+	void freeze(float);
 };

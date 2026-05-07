@@ -30,7 +30,7 @@
 
 #include "Window.h"
 
-bool start = false;
+bool start = true;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -75,11 +75,12 @@ int main()
     coinPickup->setId(8);
     cube1->addChild(coinPickup);
     cube1->addChild(p1);
-
+    cube1->addTag("bcube");
 
     cube2 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere2.obj");
     cube2->setId(4);
     cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
+    cube2->addTag("bcube");
    
 
     Player2* p2 = new Player2();
