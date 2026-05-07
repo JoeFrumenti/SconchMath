@@ -27,6 +27,8 @@
 #include "DropCoins.cpp"
 #include "PlayerManager.h"
 #include "Icey.cpp"
+#include "Launcher.h"
+#include "SlimeBall.cpp"
 
 #include "Window.h"
 
@@ -68,14 +70,20 @@ int main()
 
     cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
     cube1->setId(3);
+    cube1->addTag("bcube");
 
     Player1* p1 = new Player1();
     CoinPickup* coinPickup = new CoinPickup();
+    SlimeBall* slimeBall = new SlimeBall();
+    Launcher* slimeLauncher = new Launcher(slimeBall);
 
     coinPickup->setId(8);
     cube1->addChild(coinPickup);
     cube1->addChild(p1);
-    cube1->addTag("bcube");
+    cube1->addChild(slimeLauncher);
+    
+
+
 
     cube2 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere2.obj");
     cube2->setId(4);

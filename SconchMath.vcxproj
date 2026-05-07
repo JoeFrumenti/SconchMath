@@ -29,6 +29,7 @@
     <ClCompile Include="DropCoins.cpp" />
     <ClCompile Include="Icey.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Launcher.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Player1.cpp" />
@@ -39,6 +40,7 @@
     <ClCompile Include="OpenGL\glManager.cpp" />
     <ClCompile Include="OpenGL\texManager.cpp" />
     <ClCompile Include="ShaderCollection.cpp" />
+    <ClCompile Include="SlimeBall.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />
     <ClCompile Include="SoundDevice.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -65,6 +67,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Launcher.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="PlayerManager.h" />

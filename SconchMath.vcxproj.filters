@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Entities\Behaviors">
       <UniqueIdentifier>{4c3f96cb-d101-46f6-8e54-b357169c0320}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Behaviors\Orbitals">
+      <UniqueIdentifier>{fdb5d55a-d811-4bed-9c95-6cef79b985e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Behaviors\Bouncers">
+      <UniqueIdentifier>{79ab406e-62ba-4a1c-9828-39093bb0ac13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -128,6 +134,12 @@
     </ClCompile>
     <ClCompile Include="Icey.cpp">
       <Filter>Source Files\Entities\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Launcher.cpp">
+      <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
+    </ClCompile>
+    <ClCompile Include="SlimeBall.cpp">
+      <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +228,9 @@
     </ClInclude>
     <ClInclude Include="BasicModel.h">
       <Filter>Source Files\Entities\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Launcher.h">
+      <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

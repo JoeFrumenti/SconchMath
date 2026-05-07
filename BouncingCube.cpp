@@ -158,6 +158,7 @@ void BouncingCube::Draw(){
 	shader->setMat4("model", model);
 	shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	ourModel->Draw(*shader);
+
 }
 
 void BouncingCube::freeze(float freezeTime) {
