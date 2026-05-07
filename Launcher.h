@@ -4,6 +4,7 @@
 class Launcher:public UD {
 private:
 	UD* projectile;
+	float launchTimer = 0;
 public:
 	void setParent(UD*) override;
 	Launcher(UD*);
