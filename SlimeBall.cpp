@@ -1,19 +1,22 @@
 #include "UD.h"
-class SlimeBall : public UD {
+#include "Model.h"
+#include "Projectile.h"
+class SlimeBall : public Projectile {
 private:
-
+	Model* ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere2.obj");
 public:
 	SlimeBall() {
 		width = 0.7;
 		height = 0.7;
 	}
-	void Update() override {
 
-	}
-	void Draw() override {
+	
 
+	void Collide(Collision col) override {
+		for (auto& tag : col.obj->getTags()) {
+			if (tag == "bcube" && col.obj != Parent)
+				std::cout << "SLIME!";
+		}
 	}
-	void drawText() override{
-		
-	}
+
 };

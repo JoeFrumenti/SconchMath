@@ -232,5 +232,8 @@
     <ClInclude Include="Launcher.h">
       <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
     </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
