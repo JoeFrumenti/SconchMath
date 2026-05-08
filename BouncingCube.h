@@ -14,7 +14,6 @@
 
 #include <cmath>
 #include "ShaderCollection.h"
-#include "InputManager.h"
 
 class BouncingCube : public UD {
 

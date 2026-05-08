@@ -6,7 +6,6 @@
 #include <string>
 
 #include "Collision.h"
-#include "point.h"
 
 class CollisionManager {
 private:
@@ -24,12 +23,8 @@ public:
 		return instance;
 	}
 
-	bool inBox(Point p, glm::vec3 pos, float w, float h);
 
 	void addObject(UD* object);
-
-	void checkCollision();
-
 	void checkCollision2D();
 
 	void removeObject(int id);

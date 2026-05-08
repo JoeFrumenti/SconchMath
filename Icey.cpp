@@ -2,7 +2,7 @@
 
 class Icey : public UD {
 private:
-	Model* ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
+	Model* ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/ice.obj");
 	Shader* shader = ShaderCollection::getInstance().getShader("Model");
 	CollisionManager& cm = CollisionManager::getInstance();
 	glm::mat4 model;

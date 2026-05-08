@@ -116,21 +116,22 @@ int main()
 
 
     BasicModel* bg = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj");
-    BasicModel* foreground = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundCream.obj");
+    BasicModel* foreground = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundBW.obj");
 
     DebugCube* dc = new DebugCube(modelShader);
 
     bg->setId(200);
     
     foreground->setId(201);
+    foreground->setInput(true);
 
     bg->translate(glm::vec3(0.0f, -10.0f, -3.0f));
-    foreground->translate(glm::vec3(0.625f, -8.0f, -1.0f));
+    foreground->translate(glm::vec3(0.025f, -.6f, -1.0f));
 
     bg->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
-    foreground->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
+    foreground->rotate(3.14159265358979/2, glm::vec3(.0f, 1.0f, 0.0f));
 
-    foreground->scale(glm::vec3(.7425f, .6575f, .3f));
+    foreground->scale(glm::vec3(4.54999f, 5.78, 4.54999f));
 
     UDMan.addUD(bg);
     UDMan.addUD(foreground);

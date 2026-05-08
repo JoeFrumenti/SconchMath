@@ -72,7 +72,6 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="PlayerManager.h" />
-    <ClInclude Include="point.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ShaderCollection.h" />
     <ClInclude Include="SoundBuffer.h" />

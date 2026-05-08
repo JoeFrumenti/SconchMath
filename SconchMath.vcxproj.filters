@@ -202,9 +202,6 @@
     <ClInclude Include="Collision.h">
       <Filter>Source Files\OpenGL\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="point.h">
-      <Filter>Source Files\OpenGL\Structs</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Source Files\OpenGL\Structs</Filter>
     </ClInclude>

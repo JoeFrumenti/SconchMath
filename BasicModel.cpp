@@ -1,5 +1,7 @@
 
 #include "BasicModel.h"
+#include "InputManager.h"
+
 
 BasicModel::BasicModel(std::string path) {
 	ID = 0;
@@ -15,7 +17,14 @@ void BasicModel::setInput(bool inp) {
 }
 
 void BasicModel::Update() {
-		
+	if (isInput) {
+		pos += input.getInput() * glm::vec3(0.1,.1,.1);
+		sca.y += input.getInputWASD().y * .03;
+		sca.z += input.getInputWASD().x * .03;
+
+		if (input.isE())
+			std::cout << pos.x << "  " << pos.y << " " << sca.z << " " << sca.y << std::endl;
+	}
 
 		
 	model = glm::mat4(1.0f);

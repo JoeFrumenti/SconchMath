@@ -8,7 +8,7 @@ public:
 		width = 0.7;
 		height = 0.7;
 		std::cout << "NEW SLIMEBALL\n";
-		ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere2.obj");
+		ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/slimeball.obj");
 		velocity = glm::vec3(-0.11f, 0.24f, 0.0f);
 	}
 

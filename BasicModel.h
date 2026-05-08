@@ -5,9 +5,12 @@
 #include "ShaderCollection.h"
 
 #include <iostream>
+#include "InputManager.h"
 
 class BasicModel : public UD {
 private:
+	InputManager& input = InputManager::getInstance();
+
 	Model* ourModel;
 	glm::mat4 model;
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CollisionManager.h"
-#include "point.h"
 
 int frames = 0;
 CollisionManager::CollisionManager() {}
