@@ -40,7 +40,11 @@ void BouncingCube::Collide(Collision col) {
 		
 		if (tag == "bcube")
 		{
-
+			if (isFrozen)
+			{
+				isFrozen = false;
+				velocity = frozenVelocity;
+			}
 			UD* obj = col.obj;
 
 			const float dx = obj->getPos().x - pos.x;
@@ -73,8 +77,10 @@ void BouncingCube::screenBounce() {
 	float boundsX = 8.8f * scale;
 	float boundsY = 16.7f * scale;
 
-		
-	pos += velocity;
+	if (isSlowed)
+		pos += velocity * glm::vec3(0.2, 0.2, 0.2);
+	else
+		pos += velocity;
 
 	if (pos.x + width >= 6 || pos.x - width <= -6) {
 			
@@ -99,12 +105,10 @@ void BouncingCube::lose() {
 
 
 	for (UD* child : children) {
-		for (auto& tag : child->getTags()) {
-			if (tag == "CoinPickup") {
-				cm.removeObject(child->getId());
-			}
-		}
+			cm.removeObject(child->getId());
+			
 	}
+	
 }
 
 void BouncingCube::Update() {
@@ -121,6 +125,16 @@ void BouncingCube::Update() {
 		return;
 	}
 
+
+	if (isSlowed) {
+		slowTimer += timer.getDeltaTime();
+		if (slowTimer >= slowCap)
+		{
+			std::cout << "Done slowing!\n";
+			isSlowed = false;
+		}
+	}
+
 	lastPos = pos;
 
 	screenBounce();
@@ -130,7 +144,7 @@ void BouncingCube::Update() {
 		setScale(glm::vec3(loserScale, loserScale, loserScale));
 		if (loserScale <= 0) {
 			loserScale = 0;
-			
+			UDManager::getInstance().queueRemoval(getId());
 			return;
 		}
 	}
@@ -169,6 +183,18 @@ void BouncingCube::freeze(float freezeTime) {
 	freezeStartTime = glfwGetTime(); 
 	freezeDuration = freezeTime;
 }
+
+void BouncingCube::slow(float t) {
+	if (isSlowed) {
+		slowCap += t;
+	}
+	else {
+		slowCap = t;
+		isSlowed = true;
+		slowTimer = 0;
+	}
+}
+
 void BouncingCube::drawText(){
 	for (UD* child : children) {
 		child->drawText();

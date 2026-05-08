@@ -14,6 +14,7 @@
 
 #include <cmath>
 #include "ShaderCollection.h"
+#include "MyTimer.h"
 
 class BouncingCube : public UD {
 
@@ -29,10 +30,16 @@ private:
 	bool loser = false;
 	float loserScale = 1.0f;
 	
+	MyTimer& timer = MyTimer::getInstance();
+
 	float freezeStartTime = 0;
 	float freezeDuration = 0;
 	bool isFrozen = false;
 	glm::vec3 frozenVelocity;
+
+	bool isSlowed;
+	float slowTimer;
+	float slowCap;
 
 public:
 	~BouncingCube();
@@ -45,4 +52,5 @@ public:
 	void drawText() override;
 	void lose();
 	void freeze(float);
+	void slow(float);
 };

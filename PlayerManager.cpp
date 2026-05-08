@@ -22,13 +22,13 @@ void PlayerManager::Update() {
 	if (winner == 0)
 	{
 
-		if (p1->getStats()["coins"] >= 100) {
+		if (p1->getStats()["coins"] >= 10) {
 			p2->lose();
 			winner = 1;
 			message = "WINNER: RED";
 		}
 
-		if (p2->getStats()["coins"] >= 100) {
+		if (p2->getStats()["coins"] >= 10) {
 			p1->lose();
 			winner = 2;
 			message = "WINNER: BLUE";

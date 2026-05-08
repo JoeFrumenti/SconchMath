@@ -123,7 +123,7 @@ int main()
     bg->setId(200);
     
     foreground->setId(201);
-    foreground->setInput(true);
+    //foreground->setInput(true);
 
     bg->translate(glm::vec3(0.0f, -10.0f, -3.0f));
     foreground->translate(glm::vec3(0.025f, -.6f, -1.0f));

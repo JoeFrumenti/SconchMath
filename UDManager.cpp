@@ -12,9 +12,16 @@ void UDManager::drawUDs() {
 }
 
 void UDManager::updateUDs(){
+	for (int id : remQ) {
+		removeObject(id);
+	}
 	for (const auto& kv : UDs) {
 		kv.second->Update();
 	}
+}
+
+void UDManager::queueRemoval(int id) {
+	remQ.push_back(id);
 }
 
 void UDManager::removeObject(int id) {

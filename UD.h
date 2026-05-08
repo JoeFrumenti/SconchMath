@@ -27,7 +27,7 @@ public:
 	virtual float getHeight() { return height; }
 	virtual glm::vec3 getLastPos() { return this->lastPos; }
 	virtual std::vector<std::string> getTags() { return this->tags; }
-	virtual glm::vec3 getVelocity() { return this->velocity; }
+	virtual glm::vec3 getVelocity() { return velocity; }
 	virtual glm::vec3 getScale() { return scale; }
 
 

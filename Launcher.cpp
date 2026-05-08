@@ -20,8 +20,9 @@ Launcher::Launcher(UD* p) {
 }
 
 void Launcher::launch() {
+	sb->setVelocity(Parent->getVelocity() * glm::vec3(-1, -1, -1));
 	sb->setActive(true);
-	
+	cm.addObject(sb);
 }
 
 void Launcher::Update() {

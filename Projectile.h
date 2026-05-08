@@ -3,6 +3,7 @@
 #include "Model.h"
 #include "Shaders/shader.h"
 #include "ShaderCollection.h"
+#include "CollisionManager.h"
 class Projectile: public UD {
 protected:
 	bool isActive = false;
@@ -10,6 +11,7 @@ protected:
 	Shader* shader = ShaderCollection::getInstance().getShader("Model");
 	glm::mat4 model;
 	int bounces = 0;
+	CollisionManager& cm = CollisionManager::getInstance();
 public:
 	
 
@@ -38,6 +40,7 @@ public:
 		if (bounces >= 2) {
 			isActive = false;
 			bounces = 0;
+			cm.removeObject(this->getId());
 		}
 
 	}

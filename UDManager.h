@@ -6,6 +6,7 @@
 class UDManager {
 private: 
 	std::map<int, UD*> UDs;
+	std::vector<int> remQ;
 
 	UDManager() {}
 public:
@@ -18,4 +19,5 @@ public:
 	void drawUDs();
 	void removeObject(int id);
 	void drawText();
+	void queueRemoval(int id);
 };
