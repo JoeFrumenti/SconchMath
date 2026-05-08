@@ -29,7 +29,7 @@
 #include "Icey.cpp"
 #include "Launcher.h"
 #include "SlimeBall.cpp"
-
+#include "MyTimer.h"
 #include "Window.h"
 
 bool start = true;
@@ -67,6 +67,8 @@ int main()
     modelShader = ShaderCollection::getInstance().getShader("Model");
     textShader = ShaderCollection::getInstance().getShader("Text");
 
+    MyTimer* timer = &MyTimer::getInstance();
+    UDMan.addUD(timer);
 
     cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
     cube1->setId(3);

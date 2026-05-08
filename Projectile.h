@@ -9,6 +9,7 @@ protected:
 	Model* ourModel;
 	Shader* shader = ShaderCollection::getInstance().getShader("Model");
 	glm::mat4 model;
+	int bounces = 0;
 public:
 	
 
@@ -25,30 +26,49 @@ public:
 
 			velocity.x = -velocity.x;
 			pos.x += velocity.x;
+			bounces++;
 
 		}
 		if (pos.y + height >= 7.75 || pos.y - height <= -11.25) {
 			
 			velocity.y = -velocity.y;
 			pos.y += velocity.y;
+			bounces++;
+		}
+		if (bounces >= 2) {
+			isActive = false;
+			bounces = 0;
 		}
 
 	}
 	
 	virtual void Update() override {
-		screenBounce();
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, pos);
-
+		if (isActive) {
+			screenBounce();
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, pos);
+		}
 	}
 
 	virtual void Draw() override{
-		shader->setMat4("model", model);
-		ourModel->Draw(*shader);
+		if(isActive){
+			shader->setMat4("model", model);
+			ourModel->Draw(*shader);
+		}
 	}
 
 	virtual void setParent(UD* p) override {
 		Parent = p;
+	}
+
+	virtual void setActive(bool a) {
+		isActive = a;
+		if (isActive) {
+			pos = Parent->getPos();
+		}
+	}
+	virtual bool getActive() {
+		return isActive;
 	}
 
 };

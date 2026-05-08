@@ -1,28 +1,44 @@
 #include "Launcher.h"
 #include "SlimeBall.cpp"
+#include "MyTimer.h"
+
+MyTimer& timer = MyTimer::getInstance();
+
+SlimeBall* sb;
+
 void Launcher::setParent(UD* parent) {
 		this->Parent = parent;
+		projectile->setParent(Parent);
 }
 
 Launcher::Launcher(UD* p) {
 	projectile = p;
 	launchTimer = glfwGetTime();
+	children.push_back(projectile);
+	sb = dynamic_cast<SlimeBall*>(projectile);
+	
 }
 
 void Launcher::launch() {
-	dynamic_cast<SlimeBall*>(projectile)->test();
-	children.push_back(projectile);
+	sb->setActive(true);
+	
 }
 
 void Launcher::Update() {
+	
+	if (!sb->getActive()) {
+		launchTimer += timer.getDeltaTime();
+		if (launchTimer >= 1)
+		{
+			launch();
+			launchTimer = 0;
+		}
+	}
+
 	for (auto& child : children) {
 		child->Update();
 	}
 
-	if (glfwGetTime() - 1 > launchTimer) {
-		launchTimer = glfwGetTime();
-		launch();
-	}
 
 }
 

@@ -141,6 +141,9 @@
     <ClCompile Include="SlimeBall.cpp">
       <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
     </ClCompile>
+    <ClCompile Include="MyTimer.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
@@ -234,6 +237,9 @@
     </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTimer.h">
+      <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
