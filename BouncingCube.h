@@ -53,4 +53,7 @@ public:
 	void lose();
 	void freeze(float);
 	void slow(float);
+
+	bool getFrozen() { return isFrozen; }
+	glm::vec3 getFrozenVelocity() { return frozenVelocity; }
 };

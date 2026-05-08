@@ -20,7 +20,11 @@ Launcher::Launcher(UD* p) {
 }
 
 void Launcher::launch() {
-	sb->setVelocity(Parent->getVelocity() * glm::vec3(-1, -1, -1));
+	if (dynamic_cast<BouncingCube*>(Parent)->getFrozen()) {
+		sb->setVelocity(dynamic_cast<BouncingCube*>(Parent)->getFrozenVelocity() * glm::vec3(-1, -1, -1));
+	}
+	else
+		sb->setVelocity(Parent->getVelocity() * glm::vec3(-1, -1, -1));
 	sb->setActive(true);
 	cm.addObject(sb);
 }
