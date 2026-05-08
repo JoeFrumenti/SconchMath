@@ -21,7 +21,7 @@ class BouncingCube : public UD {
 private:
 	Model* ourModel;
 	glm::mat4 model;
-
+	glm::vec4 color = glm::vec4(1,1, 1, 1);
 	SoundManager& soundMan = SoundManager::getInstance();
 	
 	Shader* shader;

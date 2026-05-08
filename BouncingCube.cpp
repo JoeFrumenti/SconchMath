@@ -44,6 +44,7 @@ void BouncingCube::Collide(Collision col) {
 			{
 				isFrozen = false;
 				velocity = frozenVelocity;
+				color = glm::vec4(1, 1, 1, 1);
 			}
 			UD* obj = col.obj;
 
@@ -89,7 +90,7 @@ void BouncingCube::screenBounce() {
 		pos.x += velocity.x;
 
 	}
-	if (pos.y + height >= 7.75 || pos.y - height <= -11.25) {
+	if (pos.y + height >= 8 || pos.y - height <= -5.5) {
 		soundMan.playSong("bounce");
 		velocity.y = -velocity.y;
 		pos.y += velocity.y;
@@ -126,6 +127,7 @@ void BouncingCube::Update() {
 		if (elapsed >= freezeDuration) {
 			isFrozen = false;
 			velocity = frozenVelocity;
+			color = glm::vec4(1.0f, 1.0f, 1.0f,1);
 		}
 		return;
 	}
@@ -135,8 +137,8 @@ void BouncingCube::Update() {
 		slowTimer += timer.getDeltaTime();
 		if (slowTimer >= slowCap)
 		{
-			std::cout << "Done slowing!\n";
 			isSlowed = false;
+			color = glm::vec4(1, 1, 1, 1);
 		}
 	}
 
@@ -171,7 +173,7 @@ void BouncingCube::Draw(){
 	}
 
 	shader->setMat4("model", model);
-	shader->setVec4("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	shader->setVec4("color", color);
 	ourModel->Draw(*shader);
 
 }
@@ -183,9 +185,11 @@ void BouncingCube::freeze(float freezeTime) {
 	isFrozen = true;
 	freezeStartTime = glfwGetTime(); 
 	freezeDuration = freezeTime;
+	color = glm::vec4(0.5f, 0.5f, 1.0f,1);
 }
 
 void BouncingCube::slow(float t) {
+	color = glm::vec4(0.5f, 1.0f, .5f, 1);
 	if (isSlowed) {
 		slowCap += t;
 	}

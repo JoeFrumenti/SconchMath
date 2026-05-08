@@ -31,7 +31,7 @@ public:
 			bounces++;
 
 		}
-		if (pos.y + height >= 7.75 || pos.y - height <= -11.25) {
+		if (pos.y + height >= 8 || pos.y - height <= -5.5) {
 			
 			velocity.y = -velocity.y;
 			pos.y += velocity.y;
@@ -50,6 +50,7 @@ public:
 			screenBounce();
 			model = glm::mat4(1.0f);
 			model = glm::translate(model, pos);
+			model = glm::scale(model, glm::vec3(width, height, height));
 		}
 	}
 

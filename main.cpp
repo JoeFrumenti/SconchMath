@@ -62,16 +62,24 @@ BouncingCube* cube2;
 int main()
 {
     
-    //window setup
+    //Game setup
     window.initWindow();
     modelShader = ShaderCollection::getInstance().getShader("Model");
     textShader = ShaderCollection::getInstance().getShader("Text");
-
     MyTimer* timer = &MyTimer::getInstance();
     UDMan.addUD(timer);
 
+
+    //GameObject setup & config
+    /*DebugCube* dc = new DebugCube(modelShader);
+    dc->setId(9);
+    dc->setScale(glm::vec3(0.1, .1, .1));
+    UDMan.addUD(dc);*/
+
+
     cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
     cube1->setId(3);
+    cube1->translate(glm::vec3(5.0f, .0f, 0.0f));
     cube1->addTag("bcube");
 
     Player1* p1 = new Player1();
@@ -83,16 +91,15 @@ int main()
     cube1->addChild(coinPickup);
     cube1->addChild(p1);
     cube1->addChild(slimeLauncher);
-    
+    UDMan.addUD(cube1);
 
 
 
     cube2 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere2.obj");
     cube2->setId(4);
-    cube2->translate(glm::vec3(.0f, -5.0f,0.0f));
+    cube2->translate(glm::vec3(-5.0f, .0f,0.0f));
     cube2->addTag("bcube");
-   
-
+  
     Player2* p2 = new Player2();
     CoinPickup* coinPickup2 = new CoinPickup();
     Icey* icey = new Icey();
@@ -101,40 +108,42 @@ int main()
     cube2->addChild(p2);
     cube2->addChild(coinPickup2);
     cube2->addChild(icey);
+    UDMan.addUD(cube2);
 
-    BouncingCube* moneyBag = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/StarCube.obj");
+
+   /* BouncingCube* moneyBag = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/StarCube.obj");
     moneyBag->setId(5);
     moneyBag->translate(glm::vec3(.0f, 5.0f, 0.0f));
     moneyBag->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
     DropCoins* dropCoins = new DropCoins(modelShader);
-    moneyBag->addChild(dropCoins);
+    moneyBag->addChild(dropCoins);*/
 
 
-    UDMan.addUD(cube1);
-    UDMan.addUD(cube2);
-    UDMan.addUD(moneyBag);
+    
+    
+//    UDMan.addUD(moneyBag);
 
 
     BasicModel* bg = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj");
     BasicModel* foreground = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundBW.obj");
 
-    DebugCube* dc = new DebugCube(modelShader);
+    
 
     bg->setId(200);
     
     foreground->setId(201);
     //foreground->setInput(true);
+    foreground->translate(glm::vec3(0.025f, 1.2f, -1.0f));
+    foreground->rotate(3.14159265358979 / 2, glm::vec3(.0f, 1.0f, 0.0f));
+    foreground->scale(glm::vec3(4.54999f, 4.81, 4.54999f));
+    UDMan.addUD(foreground);
 
     bg->translate(glm::vec3(0.0f, -10.0f, -3.0f));
-    foreground->translate(glm::vec3(0.025f, -.6f, -1.0f));
 
     bg->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
-    foreground->rotate(3.14159265358979/2, glm::vec3(.0f, 1.0f, 0.0f));
-
-    foreground->scale(glm::vec3(4.54999f, 5.78, 4.54999f));
-
+   
     UDMan.addUD(bg);
-    UDMan.addUD(foreground);
+    
 
     PlayerManager* playerMan = new PlayerManager(cube1, cube2);
     playerMan->setId(6);
@@ -144,12 +153,12 @@ int main()
     char path5[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj";
 
     //SPAWN COINS
-    int idNum = 100;
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
+    int idNum = 10000;
+    for (float i = -5.5f; i <= 5.5f; i+= 12.0f/10.0f) {
+        for (float j = -5.0f; j <= 7.5f; j+= 13.5f/10.0f) {
             Coin* coiny = new Coin(modelShader);
             coiny->setId(idNum++);
-            coiny->translate(glm::vec3((float)i * 2.6f - 5.3, (float)j * 4.1f - 10.2f, 0.0f));
+            coiny->translate(glm::vec3(i,j,0));
            UDMan.addUD(coiny);
         }
     }

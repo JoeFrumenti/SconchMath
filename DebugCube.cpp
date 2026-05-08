@@ -28,6 +28,7 @@ private:
 	glm::vec3 velocity = glm::vec3(0.25f, 0.25f,0.0f);
 
 	CollisionManager& cm = CollisionManager::getInstance();
+	InputManager& input = InputManager::getInstance();
 
 	
 
@@ -57,10 +58,17 @@ public:
 	}
 
 	void Update() override {
+		pos += input.getInput() * glm::vec3(.25, .25, .25);
+		if (input.isE()) {
+			std::cout << pos.x << " " << pos.y << std::endl;
+		}
+
+
 		lastPos = pos;
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, pos);
+		model = glm::scale(model, scale);
 	}
 
 	void Draw() override {
