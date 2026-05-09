@@ -1,4 +1,5 @@
 #include "BouncingCube.h"
+#include <algorithm>
 
 class Icey : public UD {
 private:
@@ -6,10 +7,13 @@ private:
 	Shader* shader = ShaderCollection::getInstance().getShader("Model");
 	CollisionManager& cm = CollisionManager::getInstance();
 	glm::mat4 model;
-
+	float freezeTime = 1;
+	
 public:
 	Icey() {
 		tags.push_back("Icey");
+		width = 0.5;
+		height = 0.5;
 	}
 
 	void setParent(UD* parent) override {
@@ -17,11 +21,12 @@ public:
 		width = 0.5;
 		height = 0.5;
 		cm.addObject(this);
+		
 	}
 
 	void Update() {
 		
-		pos = Parent->getPos() + glm::vec3(cos(glfwGetTime() * 4) * 2, sin(glfwGetTime() * 4) * 2, .0f);
+		pos = Parent->getPos() + glm::vec3(cos(glfwGetTime() * 6) * 2.5, sin(glfwGetTime() * 6) * 2.5, .0f);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, getPos());
@@ -40,11 +45,17 @@ public:
 	}
 
 	void Collide(Collision col) override {
+		BouncingCube* ob = dynamic_cast<BouncingCube*>(col.obj);
+		BouncingCube* par = dynamic_cast<BouncingCube*>(Parent);
 
 		for (auto& tag : col.obj->getTags())
 		{
-			if (tag == "bcube" && col.obj != Parent) {
-				dynamic_cast<BouncingCube*>(col.obj)->freeze(1);
+			if (tag == "bcube" && col.obj != Parent && !(ob->getFrozen())) {
+				
+				ob->freeze(par->getDebuffTime());
+				par->addDebuffTime(0.2f);
+				freezeTime = std::min(freezeTime + 0.3f, 2.0f);
+
 			}
 		}
 	}

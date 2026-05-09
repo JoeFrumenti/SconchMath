@@ -12,6 +12,9 @@ protected:
 	glm::mat4 model;
 	int bounces = 0;
 	CollisionManager& cm = CollisionManager::getInstance();
+	float debuffTime = 1.0f;
+
+	bool shrinkDie = false;
 public:
 	
 
@@ -38,20 +41,30 @@ public:
 			bounces++;
 		}
 		if (bounces >= 2) {
-			isActive = false;
+			//isActive = false;
 			bounces = 0;
-			cm.removeObject(this->getId());
+			shrinkDie = true;
 		}
 
 	}
 	
 	virtual void Update() override {
-		if (isActive) {
+		if (shrinkDie) {
+			scale -= glm::vec3(1.0f/15.0f, 1.0f / 15.0f, 1.0f / 15.0f);
+			if (scale.x <= 0) {
+				shrinkDie = false;
+				isActive = false;
+				cm.removeObject(this->getId());
+			}
+		}
+
+		else if (isActive) {
 			screenBounce();
+		}
 			model = glm::mat4(1.0f);
 			model = glm::translate(model, pos);
-			model = glm::scale(model, glm::vec3(width, height, height));
-		}
+			model = glm::scale(model, glm::vec3(width * scale.x, height * scale.y, height * scale.z));
+		
 	}
 
 	virtual void Draw() override{

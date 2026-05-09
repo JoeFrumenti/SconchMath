@@ -18,6 +18,8 @@ protected:
 	UD* Parent;
 	std::vector<UD*> children;
 
+	float UDtimer;
+
 	std::map<std::string, float> stats;
 
 public:
@@ -29,6 +31,7 @@ public:
 	virtual std::vector<std::string> getTags() { return this->tags; }
 	virtual glm::vec3 getVelocity() { return velocity; }
 	virtual glm::vec3 getScale() { return scale; }
+	
 
 
 	virtual void setId(int id) { ID = id; };
@@ -48,6 +51,8 @@ public:
 	virtual void addTag(std::string s) {
 		tags.push_back(s);
 	}
+
+	virtual std::vector<UD*> getChildren() { return children; }
 
 	virtual void Update() = 0;
 	virtual void Draw() = 0;

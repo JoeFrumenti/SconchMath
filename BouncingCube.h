@@ -41,6 +41,10 @@ private:
 	float slowTimer;
 	float slowCap;
 
+	float speed = .25f;
+
+	float debuffTime = 1;
+
 public:
 	~BouncingCube();
 	Model* getModel();
@@ -53,7 +57,11 @@ public:
 	void lose();
 	void freeze(float);
 	void slow(float);
+	void win();
+	void addDebuffTime(float f);
+	float getDebuffTime();
 
 	bool getFrozen() { return isFrozen; }
+	bool getSlow() { return isSlowed; }
 	glm::vec3 getFrozenVelocity() { return frozenVelocity; }
 };

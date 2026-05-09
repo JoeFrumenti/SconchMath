@@ -132,9 +132,6 @@
     <ClCompile Include="ShaderCollection.cpp">
       <Filter>Source Files\OpenGL\shaders</Filter>
     </ClCompile>
-    <ClCompile Include="Icey.cpp">
-      <Filter>Source Files\Entities\Behaviors</Filter>
-    </ClCompile>
     <ClCompile Include="Launcher.cpp">
       <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
     </ClCompile>
@@ -143,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="MyTimer.cpp">
       <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Icey.cpp">
+      <Filter>Source Files\Entities\Behaviors\Orbitals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

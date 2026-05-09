@@ -46,6 +46,7 @@ const unsigned int SCR_HEIGHT = 800;
 
 Window& window = Window::getInstance();
 
+void initCubeVel();
 
 auto& UDMan = UDManager::getInstance();
 
@@ -85,12 +86,10 @@ int main()
     Player1* p1 = new Player1();
     CoinPickup* coinPickup = new CoinPickup();
     SlimeBall* slimeBall = new SlimeBall();
-    Launcher* slimeLauncher = new Launcher(slimeBall);
 
     coinPickup->setId(8);
     cube1->addChild(coinPickup);
     cube1->addChild(p1);
-    cube1->addChild(slimeLauncher);
     UDMan.addUD(cube1);
 
 
@@ -103,7 +102,7 @@ int main()
     Player2* p2 = new Player2();
     CoinPickup* coinPickup2 = new CoinPickup();
     Icey* icey = new Icey();
-    icey->setId(8);
+    icey->setId(99999);
     coinPickup2->setId(7);
     cube2->addChild(p2);
     cube2->addChild(coinPickup2);
@@ -150,6 +149,10 @@ int main()
     UDMan.addUD(playerMan);
 
 
+    Launcher* slimeLauncher = new Launcher(slimeBall,playerMan);
+    cube1->addChild(slimeLauncher);
+
+
     char path5[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube2.obj";
 
     //SPAWN COINS
@@ -170,6 +173,9 @@ int main()
 
     modelShader->use();
     modelShader->setVec3("lightPos", glm::vec3(.0f, 11.0f, 10.0f));
+
+    initCubeVel();
+
     renderLoop();
 
 
@@ -211,12 +217,17 @@ void renderLoop() {
     }
 }
 
+void initCubeVel() {
+    cube1->setVelocity(glm::vec3(0.10f, -0.21f, .0f));
+    cube2->setVelocity(glm::vec3(-0.23f, 0.08f, .0f));
+
+}
+
 void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
         start = true;
-        cube1->setVelocity(glm::vec3(0.10f, -0.21f, .0f));
-        cube2->setVelocity(glm::vec3(-0.23f, 0.08f, .0f));
+        initCubeVel;
 
     }
         

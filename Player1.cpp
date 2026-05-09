@@ -47,7 +47,7 @@ public:
 		copyModel = glm::mat4(1.0f);
 		copyModel = glm::translate(copyModel, glm::vec3(-4.25f, 10.25f, 1.0f));
 		copyModel = glm::rotate(copyModel, (float)glfwGetTime() / 2, glm::vec3(.0f, 1.0f, 0.0f));
-		copyModel = glm::scale(copyModel, glm::vec3(.715f, .715f, .715f) * Parent->getScale());
+		copyModel = glm::scale(copyModel, Parent->getScale());
 
 		coins = Parent->getStats()["coins"];
 		coinString = "x" + std::to_string(coins);
