@@ -176,6 +176,7 @@ int main()
 
     initCubeVel();
 
+    SoundManager::getInstance().playSound("announce", 0);
     renderLoop();
 
 

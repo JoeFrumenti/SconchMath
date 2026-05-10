@@ -150,6 +150,7 @@ void BouncingCube::Update() {
 			isFrozen = false;
 			velocity = frozenVelocity;
 			color = glm::vec4(1.0f, 1.0f, 1.0f,1);
+			soundMan.playSound("unfreeze", 0);
 		}
 		return;
 	}
@@ -202,6 +203,7 @@ void BouncingCube::Draw(){
 }
 
 void BouncingCube::freeze(float freezeTime) {
+	soundMan.playSound("freeze", 0);
 	if(!isFrozen)
 		frozenVelocity = velocity;
 	velocity = glm::vec3(0.0f, 0.0f, 0.0f);

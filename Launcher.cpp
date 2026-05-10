@@ -2,6 +2,7 @@
 #include "SlimeBall.cpp"
 #include "MyTimer.h"
 #include <random>
+#include "SoundManager.h"
 
 MyTimer& timer = MyTimer::getInstance();
 
@@ -24,6 +25,8 @@ Launcher::Launcher(UD* p, PlayerManager* pm) {
 }
 
 void Launcher::launch() {
+	SoundManager::getInstance().playSound("cork",0);
+
 	std::mt19937 rng(std::random_device{}());
 	std::uniform_real_distribution<float> dist(-.3f, .3f);
 	float value = dist(rng);

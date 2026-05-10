@@ -43,14 +43,16 @@ void PlayerManager::Update() {
 			p2->lose();
 			winner = 1;
 			message = "WINNER: SLIMEBALL";
+			SoundManager::getInstance().playSound("slimewins",0);
 			
 		}
 
 		if (p2->getStats()["coins"] >= 100) {
 			p1->lose();
 			winner = 2;
-			message = "WINNER: ICEY";
+			message = "WINNER: ICE";
 			textPos.x = 63;
+			SoundManager::getInstance().playSound("icewins", 0);
 			
 		}
 	}

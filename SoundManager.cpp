@@ -121,13 +121,19 @@ void SoundManager::addSound(std::string name, std::string path) {
 	noises[name] = SoundBuffer::get()->addSoundEffect(p);
 }
 /*^HERE^*/
-
-void SoundManager::setSong(std::string name) {
-
-}
-
 SoundManager::SoundManager() {
     for (int i = 0; i < MAX_VOICES; i++) {
         alGenSources(1, &sourcePool[i]);
     }
+    noises["cork"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/cork.wav");
+    noises["freeze"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/freeze.wav");
+    noises["unfreeze"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/unfreeze.wav");
+    noises["announce"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/slimevsice.mp3");
+    noises["slimewins"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/slimewins.mp3");
+    noises["icewins"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/icewins.mp3");
+
 }
+void SoundManager::setSong(std::string name) {
+
+}
+
