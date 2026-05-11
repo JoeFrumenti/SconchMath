@@ -1,7 +1,7 @@
 
 #include "UD.h"
 #include "Model.h"
-#include "Shaders/shader.h"
+#include "ShaderCollection.h"
 
 #include <iostream>
 #include <vector>
@@ -39,12 +39,12 @@ public:
 		isInput = inp;
 	}
 
-	DebugCube(Shader* shade) {
+	DebugCube() {
 		char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj";
 		ID = 0;
 		ourModel = new Model(path);
 		pos = glm::vec3(.0f, .0f, .0f);
-		shader = shade;
+		shader = ShaderCollection::getInstance().getShader("Model");
 		tags.push_back("debug");
 		tags.push_back(" cube ");
 		this->width = 1;

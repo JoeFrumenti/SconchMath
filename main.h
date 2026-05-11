@@ -39,8 +39,6 @@ bool start = false;
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
-Shader* modelShader;
-Shader* textShader;
 
 const unsigned int SCR_WIDTH = 450;
 const unsigned int SCR_HEIGHT = 800;
@@ -119,8 +117,6 @@ void processInput(GLFWwindow* window)
 void setupWindow() {
 
     //Game setup
-    ShaderCollection::getInstance().getShader("Model");
-    textShader = ShaderCollection::getInstance().getShader("Text");
     MyTimer* timer = &MyTimer::getInstance();
     UDMan.addUD(timer);
 
@@ -132,7 +128,7 @@ void setupWindow() {
 
 void addGameObjects() {
     //GameObject setup & config
-    /*DebugCube* dc = new DebugCube(modelShader);
+    /*DebugCube* dc = new DebugCube();
     dc->setId(9);
     dc->setScale(glm::vec3(0.1, .1, .1));
     UDMan.addUD(dc);*/
@@ -169,7 +165,7 @@ void addGameObjects() {
     /* BouncingCube* moneyBag = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/StarCube.obj");
      moneyBag->translate(glm::vec3(.0f, 5.0f, 0.0f));
      moneyBag->setVelocity(glm::vec3(-0.45f, 0.16f, .0f));
-     DropCoins* dropCoins = new DropCoins(modelShader);
+     DropCoins* dropCoins = new DropCoins();
      moneyBag->addChild(dropCoins);*/
 
 

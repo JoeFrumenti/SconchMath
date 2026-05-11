@@ -10,9 +10,9 @@ private:
 	UDManager& UDMan = UDManager::getInstance();
 
 public:
-	DropCoins(Shader* s) {
+	DropCoins() {
 		lastPos = pos;
-		modelShader = s;
+		modelShader = ShaderCollection::getInstance().getShader("Model");
 	}
 
 	void setParent(UD* parent) override {
