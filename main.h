@@ -104,7 +104,7 @@ void initCubeVel() {
 
 void processInput(GLFWwindow* window)
 {
-    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
+    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS && !start) {
         start = true;
         started = 1;
         initCubeVel;
