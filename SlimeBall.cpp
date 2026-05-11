@@ -9,8 +9,8 @@ class SlimeBall : public Projectile {
 
 public:
 	SlimeBall() {
-		width = 0.4;
-		height = 0.4;
+		width = 0.5;
+		height = 0.5;
 		//std::cout << "NEW SLIMEBALL\n";
 		ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/slimeball.obj");
 		velocity = glm::vec3(-0.11f, 0.24f, 0.0f);

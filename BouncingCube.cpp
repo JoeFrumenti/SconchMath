@@ -33,8 +33,7 @@ float BouncingCube::getDebuffTime() {
 	 return debuffTime; 
 }
 void BouncingCube::win() {
-	std::cout << "WINNING\n";
-	velocity = glm::vec3(1,.1,0);
+	velocity = glm::normalize(velocity) * glm::vec3(0.4);
 }
 
 BouncingCube::~BouncingCube() {
@@ -150,7 +149,7 @@ void BouncingCube::Update() {
 			isFrozen = false;
 			velocity = frozenVelocity;
 			color = glm::vec4(1.0f, 1.0f, 1.0f,1);
-			soundMan.playSound("unfreeze", 0);
+			soundMan.playSound("powerup", 0);
 		}
 		return;
 	}
@@ -163,6 +162,7 @@ void BouncingCube::Update() {
 			isSlowed = false;
 			color = glm::vec4(1, 1, 1, 1);
 			velocity = glm::normalize(velocity) * glm::vec3(speed);
+			soundMan.playSound("powerup", 0);
 		}
 	}
 
@@ -203,7 +203,7 @@ void BouncingCube::Draw(){
 }
 
 void BouncingCube::freeze(float freezeTime) {
-	soundMan.playSound("freeze", 0);
+	soundMan.playSound("unfreeze", 0);
 	if(!isFrozen)
 		frozenVelocity = velocity;
 	velocity = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -215,7 +215,7 @@ void BouncingCube::freeze(float freezeTime) {
 
 void BouncingCube::slow(float t) {
 	color = glm::vec4(0.5f, 1.0f, .5f, 1);
-	
+	soundMan.playSound("powerdown", 0);
 		slowCap = t;
 		isSlowed = true;
 		slowTimer = 0;

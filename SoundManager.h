@@ -35,6 +35,7 @@ private:
 	std::vector<ActiveSound> activeSounds;
 	const int MAX_VOICES = 10;
 	ALuint sourcePool[10];
+	ALuint importantSource;
 
 	float loserScale = 1.0f;
 	
@@ -52,5 +53,6 @@ public:
 	void updateMasterGain();
 	void fadeOutAndStop(ALuint source);
 	SoundManager();
+	void playImportantSound(std::string);
 
 };

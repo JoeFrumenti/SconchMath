@@ -40,7 +40,7 @@ public:
 			pos.y += velocity.y;
 			bounces++;
 		}
-		if (bounces >= 2) {
+		if (bounces >= 3) {
 			//isActive = false;
 			bounces = 0;
 			shrinkDie = true;

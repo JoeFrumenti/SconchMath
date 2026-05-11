@@ -42,7 +42,7 @@ void PlayerManager::Update() {
 		if (p1->getStats()["coins"] >= 100) {
 			p2->lose();
 			winner = 1;
-			message = "WINNER: SLIMEBALL";
+			message = "WINNER: SLIME";
 			SoundManager::getInstance().playSound("slimewins",0);
 			
 		}

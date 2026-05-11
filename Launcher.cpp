@@ -28,7 +28,7 @@ void Launcher::launch() {
 	SoundManager::getInstance().playSound("cork",0);
 
 	std::mt19937 rng(std::random_device{}());
-	std::uniform_real_distribution<float> dist(-.3f, .3f);
+	std::uniform_real_distribution<float> dist(-.25f, .25f);
 	float value = dist(rng);
 	
 	
@@ -44,7 +44,7 @@ void Launcher::launch() {
 
 	float norm = std::sqrt(dx * dx + dy * dy);
 
-	glm::vec3 pVel = glm::vec3(dx / norm, dy / norm, 0) * glm::vec3(0.3f,0.3f,0.3f);
+	glm::vec3 pVel = glm::vec3(dx / norm, dy / norm, 0) * glm::vec3(0.5f);
 	
 	sb->setVelocity(pVel);
 	
@@ -57,7 +57,7 @@ void Launcher::Update() {
 	
 	if (!sb->getActive()) {
 		launchTimer += timer.getDeltaTime();
-		if (launchTimer >= 2.5)
+		if (launchTimer >= 1.9)
 		{
 			launch();
 			launchTimer = 0;

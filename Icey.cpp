@@ -26,7 +26,7 @@ public:
 
 	void Update() {
 		
-		pos = Parent->getPos() + glm::vec3(cos(glfwGetTime() * 6) * 2.5, sin(glfwGetTime() * 6) * 2.5, .0f);
+		pos = Parent->getPos() + glm::vec3(cos(glfwGetTime() * 6) * 2.8, sin(glfwGetTime() * 6) * 2.8, .0f);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, getPos());

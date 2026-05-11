@@ -32,7 +32,7 @@
 #include "MyTimer.h"
 #include "Window.h"
 
-bool start = true;
+bool start = false;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -57,6 +57,8 @@ const std::chrono::duration<double> FRAME_DURATION(1.0 / TARGET_FPS);
 
 void renderLoop();
 
+
+int started = 0;
 BouncingCube* cube1;
 BouncingCube* cube2;
 
@@ -176,7 +178,6 @@ int main()
 
     initCubeVel();
 
-    SoundManager::getInstance().playSound("announce", 0);
     renderLoop();
 
 
@@ -190,6 +191,11 @@ void renderLoop() {
 
     while (!glfwWindowShouldClose(window.get()))
     {
+        if (started == 1) {
+
+            SoundManager::getInstance().playImportantSound("announce");
+            started = 2;
+        }
         auto frameStart = std::chrono::high_resolution_clock::now();
 
         processInput(window.get());
@@ -228,7 +234,9 @@ void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
         start = true;
+        started = 1;
         initCubeVel;
+
 
     }
         
