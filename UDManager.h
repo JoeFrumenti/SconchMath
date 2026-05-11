@@ -7,6 +7,7 @@ class UDManager {
 private: 
 	std::map<int, UD*> UDs;
 	std::vector<int> remQ;
+	int nextID = 0;
 
 	UDManager() {}
 public:

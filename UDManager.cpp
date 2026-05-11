@@ -2,7 +2,8 @@
 
 void UDManager::addUD(UD* newUD)
 {
-	 UDs[newUD->getId()] = newUD;
+	newUD->setId(nextID);
+	UDs[nextID++] = newUD;
 }
 
 void UDManager::drawUDs() {

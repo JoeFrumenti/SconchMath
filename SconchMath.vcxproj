@@ -69,6 +69,7 @@
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Launcher.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="PlayerManager.h" />
