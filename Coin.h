@@ -2,7 +2,7 @@
 
 #include "UD.h"
 #include "Model.h"
-#include "Shaders/shader.h"
+#include "ShaderCollection.h"
 
 #include <iostream>
 
@@ -36,7 +36,7 @@ private:
 
 public:
 
-	Coin(Shader* shade);
+	Coin();
 
 
 	void Update() override;

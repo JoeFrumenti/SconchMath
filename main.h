@@ -78,7 +78,6 @@ void renderLoop() {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        modelShader->use();
 
         if (start) {
             cm.checkCollision2D();
@@ -103,7 +102,6 @@ void renderLoop() {
 void initCubeVel() {
     cube1->setVelocity(glm::vec3(0.10f, -0.21f, .0f));
     cube2->setVelocity(glm::vec3(-0.23f, 0.08f, .0f));
-
 }
 
 void processInput(GLFWwindow* window)
@@ -121,18 +119,15 @@ void processInput(GLFWwindow* window)
 void setupWindow() {
 
     //Game setup
-    modelShader = ShaderCollection::getInstance().getShader("Model");
+    ShaderCollection::getInstance().getShader("Model");
     textShader = ShaderCollection::getInstance().getShader("Text");
     MyTimer* timer = &MyTimer::getInstance();
     UDMan.addUD(timer);
 
     //camera setup
-    camera* cam = new camera(modelShader, SCR_WIDTH, SCR_HEIGHT);
+    camera* cam = new camera(SCR_WIDTH, SCR_HEIGHT);
     cam->setup();
 
-    //shader setup
-    modelShader->use();
-    modelShader->setVec3("lightPos", glm::vec3(.0f, 11.0f, 10.0f));
 }
 
 void addGameObjects() {
@@ -214,7 +209,7 @@ void addGameObjects() {
     int idNum = 10000;
     for (float i = -5.5f; i <= 5.5f; i += 1.2) {
         for (float j = -5.0f; j <= 7.5f; j += 1.35f) {
-            Coin* coiny = new Coin(modelShader);
+            Coin* coiny = new Coin();
             coiny->translate(glm::vec3(i, j, 0));
             UDMan.addUD(coiny);
         }

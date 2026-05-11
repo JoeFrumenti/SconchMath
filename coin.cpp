@@ -2,12 +2,12 @@
 
 
 
-Coin::Coin(Shader* shade) {
+Coin::Coin() {
 	char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj";
 	ID = 0;
 	ourModel = new Model(path);
 	pos = glm::vec3(.0f,.0f,.0f);
-	shader = shade;
+	shader = ShaderCollection::getInstance().getShader("Model");
 	this->width = 0.25f * scaling;
 	this->height = 0.35f * scaling;
 	cm.addObject(this);

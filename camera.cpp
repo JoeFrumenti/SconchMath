@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-#include <Shaders/shader.h>
+#include "ShaderCollection.h"""
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -22,9 +22,10 @@ private:
 	unsigned int SCR_WIDTH;
 	unsigned int SCR_HEIGHT;
 public:
-	camera(Shader* shade, unsigned int width, unsigned int height) {
+	camera(unsigned int width, unsigned int height) {
 
-		ourShader = shade;
+		ourShader = ShaderCollection::getInstance().getShader("Model");
+		
 		SCR_WIDTH = width;
 		SCR_HEIGHT = height;
 	}
@@ -32,7 +33,7 @@ public:
 	void setup() {
 
 		ourShader->use();
-
+		ourShader->setVec3("lightPos", glm::vec3(.0f, 11.0f, 10.0f));
 
 		view = glm::mat4(1.0f);
 		projection = glm::mat4(1.0f);
