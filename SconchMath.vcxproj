@@ -39,6 +39,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OpenGL\glManager.cpp" />
     <ClCompile Include="OpenGL\texManager.cpp" />
+    <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="ShaderCollection.cpp" />
     <ClCompile Include="SlimeBall.cpp" />
     <ClCompile Include="SoundBuffer.cpp" />
@@ -80,6 +81,7 @@
     <ClInclude Include="Player2.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="ShaderCollection.h" />
     <ClInclude Include="SlimeBall.h" />
     <ClInclude Include="SoundBuffer.h" />

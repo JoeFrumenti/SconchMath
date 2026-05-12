@@ -147,6 +147,9 @@
     <ClCompile Include="Icey.cpp">
       <Filter>Source Files\Entities\Behaviors\Orbitals</Filter>
     </ClCompile>
+    <ClCompile Include="SceneLoader.cpp">
+      <Filter>Source Files\Engine\Loaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
@@ -264,6 +267,9 @@
     </ClInclude>
     <ClInclude Include="SlimeBall.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLoader.h">
+      <Filter>Source Files\Engine\Loaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
