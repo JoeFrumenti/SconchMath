@@ -14,6 +14,8 @@ public:
 		width = Parent->getWidth();
 		height = Parent->getHeight();
 		cm.addObject(this);
+		UDManager::getInstance().addUD(this);
+
 	}
 
 	void Update() {/*

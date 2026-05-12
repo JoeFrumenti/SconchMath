@@ -21,6 +21,7 @@ Launcher::Launcher(UD* p, PlayerManager* pm) {
 	sb = dynamic_cast<SlimeBall*>(projectile);
 	tags.push_back("Launcher");
 	playMan = pm;
+	UDManager::getInstance().addUD(this);
 	
 }
 

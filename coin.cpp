@@ -1,18 +1,15 @@
 #include "Coin.h"
 
-
-
 Coin::Coin() {
-	char path[] = "C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj";
-	ID = 0;
-	ourModel = new Model(path);
+	
+	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
 	pos = glm::vec3(.0f,.0f,.0f);
 	shader = ShaderCollection::getInstance().getShader("Model");
 	this->width = 0.25f * scaling;
 	this->height = 0.35f * scaling;
-	cm.addObject(this);
 	tags.push_back("coin");
 	soundMan.addSound("coin", "C:/Users/joefr/source/repos/SconchMath/assets/chime3.wav");
+	cm.addObject(this);
 }
 
 
@@ -50,7 +47,7 @@ void Coin::Collide(Collision col)  {
 
 			soundMan.playSound("coin", 0);
 			color = glm::vec4(1.0f, .0f, .0f, 1.0f);
-			cm.removeObject(ID);
+			cm.removeObject(getId());
 			if (++collisions < 2) {
 				timer = glfwGetTime();
 				timerRunning = true;

@@ -26,6 +26,8 @@ private:
 	float loserScale = 1.0f;
 	BasicModel* coin;
 
+	float UDtimer;
+
 	std::ostringstream oss;
 
 public:

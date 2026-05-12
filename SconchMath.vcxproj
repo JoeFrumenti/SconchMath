@@ -67,6 +67,7 @@
     <ClInclude Include="Coin.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="DebugCube.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Launcher.h" />
     <ClInclude Include="main.h" />

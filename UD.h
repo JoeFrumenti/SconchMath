@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include "Collision.h"
+#include "UDManager.h"
 
 class UD {
 protected:
@@ -17,10 +18,8 @@ protected:
 	float height;
 	UD* Parent;
 	std::vector<UD*> children;
-
-	float UDtimer;
-
 	std::map<std::string, float> stats;
+	
 
 public:
 	//UD();
@@ -31,6 +30,7 @@ public:
 	virtual std::vector<std::string> getTags() { return this->tags; }
 	virtual glm::vec3 getVelocity() { return velocity; }
 	virtual glm::vec3 getScale() { return scale; }
+	virtual glm::vec3 getPos() { return pos; };
 	
 
 
@@ -56,11 +56,10 @@ public:
 
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
-	virtual glm::vec3 getPos() { return pos; };
 	virtual void Collide(Collision) {};
 	
 	virtual std::map<std::string, float>& getStats() { return this->stats; }
 	virtual void drawText() {};
-	
+
 
 };

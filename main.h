@@ -11,7 +11,6 @@
 
 #include <camera.cpp>
 #include "CollisionManager.h"
-#include "ObjectManager.h"
 
 #include "Text.h"
 
@@ -21,7 +20,7 @@
 #include "coin.h"
 #include "BouncingCube.h"
 #include "BasicModel.h"
-#include "DebugCube.cpp"
+#include "DebugCube.h"
 #include "Player1.cpp"
 #include "Player2.cpp"
 #include "CoinPickup.cpp"
@@ -30,6 +29,7 @@
 #include "Icey.cpp"
 #include "Launcher.h"
 #include "SlimeBall.cpp"
+
 #include "MyTimer.h"
 #include "Window.h"
 
@@ -45,7 +45,7 @@ const unsigned int SCR_HEIGHT = 800;
 
 Window& window = Window::getInstance();
 
-void initCubeVel();
+void init();
 
 auto& UDMan = UDManager::getInstance();
 
@@ -53,7 +53,6 @@ CollisionManager& cm = CollisionManager::getInstance();
 
 const double TARGET_FPS = 60.0;
 const std::chrono::duration<double> FRAME_DURATION(1.0 / TARGET_FPS);
-
 
 int started = 0;
 BouncingCube* cube1;
@@ -64,12 +63,13 @@ void renderLoop() {
 
     while (!glfwWindowShouldClose(window.get()))
     {
+        auto frameStart = std::chrono::high_resolution_clock::now();
+
         if (started == 1) {
 
-            SoundManager::getInstance().playImportantSound("announce");
+            
             started = 2;
         }
-        auto frameStart = std::chrono::high_resolution_clock::now();
 
         processInput(window.get());
 
@@ -78,10 +78,12 @@ void renderLoop() {
 
 
         if (start) {
-            cm.checkCollision2D();
+            
             UDMan.updateUDs();
+            cm.checkCollision2D();
             UDMan.drawUDs();
             UDMan.drawText();
+
         }
 
         glfwSwapBuffers(window.get());
@@ -96,18 +98,18 @@ void renderLoop() {
     }
 }
 
-
-void initCubeVel() {
+void init() {
     cube1->setVelocity(glm::vec3(0.10f, -0.21f, .0f));
     cube2->setVelocity(glm::vec3(-0.23f, 0.08f, .0f));
+    start = true;
+    SoundManager::getInstance().playImportantSound("announce");
 }
 
 void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS && !start) {
-        start = true;
-        started = 1;
-        initCubeVel;
+        
+        init();
     }
 
     else if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -135,7 +137,6 @@ void addGameObjects() {
 
 
     cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
-    cube1->setId(3);
     cube1->translate(glm::vec3(5.0f, .0f, 0.0f));
     cube1->addTag("bcube");
 

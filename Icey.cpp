@@ -14,6 +14,7 @@ public:
 		tags.push_back("Icey");
 		width = 0.5;
 		height = 0.5;
+		UDManager::getInstance().addUD(this);
 	}
 
 	void setParent(UD* parent) override {

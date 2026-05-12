@@ -29,6 +29,7 @@ public:
 		textManager = new Text(textShader, "C:/Windows/Fonts/comic.ttf");
 		coin = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
 		parentModel = NULL;
+		UDManager::getInstance().addUD(this);
 
 	}
 

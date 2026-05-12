@@ -134,9 +134,7 @@ void BouncingCube::lose() {
 }
 
 void BouncingCube::Update() {
-	for(UD* child : children) {
-		child->Update();
-	}
+	
 
 	model = glm::mat4(1.0f);
 	model = glm::translate(model, pos);

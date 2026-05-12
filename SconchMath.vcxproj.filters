@@ -13,32 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\OpenGL">
-      <UniqueIdentifier>{0b255548-6f10-4f02-a7e4-5b32468914de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\OpenGL\shaders">
-      <UniqueIdentifier>{7f22b119-f4c0-4220-b8e1-4e30ea63c483}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{793edd30-abfd-4ac9-8340-84f6d2c236f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Sound">
-      <UniqueIdentifier>{cde73706-9d4a-4e14-aa27-79fc66079d10}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Managers">
-      <UniqueIdentifier>{3a55eb16-caab-485a-b7dc-5e7d716b7f68}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Entities\Prefabs">
       <UniqueIdentifier>{ceaa0cd5-eec3-4d48-948e-2c13da30fb46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\OpenGL\Rendering">
-      <UniqueIdentifier>{c4954669-ce7b-4a50-ab6e-6fbe325f78ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\OpenGL\Structs">
-      <UniqueIdentifier>{5f57b71f-42df-465d-b98b-37a28e55def6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Alpha">
-      <UniqueIdentifier>{74887311-d742-4053-827e-21b6b186c3ee}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Entities\Behaviors">
       <UniqueIdentifier>{4c3f96cb-d101-46f6-8e54-b357169c0320}</UniqueIdentifier>
@@ -49,28 +28,52 @@
     <Filter Include="Source Files\Entities\Behaviors\Bouncers">
       <UniqueIdentifier>{79ab406e-62ba-4a1c-9828-39093bb0ac13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{060343f4-ecc4-4e8b-b152-5ef85085389c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\OpenGL">
+      <UniqueIdentifier>{0b255548-6f10-4f02-a7e4-5b32468914de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\OpenGL\shaders">
+      <UniqueIdentifier>{7f22b119-f4c0-4220-b8e1-4e30ea63c483}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\OpenGL\Rendering">
+      <UniqueIdentifier>{c4954669-ce7b-4a50-ab6e-6fbe325f78ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\OpenGL\Structs">
+      <UniqueIdentifier>{5f57b71f-42df-465d-b98b-37a28e55def6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Loaders">
+      <UniqueIdentifier>{49cffbea-f40a-43eb-96f1-2fa62ecb1a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Sound">
+      <UniqueIdentifier>{cde73706-9d4a-4e14-aa27-79fc66079d10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Managers">
+      <UniqueIdentifier>{3a55eb16-caab-485a-b7dc-5e7d716b7f68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="texture.cpp">
-      <Filter>Source Files\OpenGL\shaders</Filter>
+      <Filter>Source Files\Engine\OpenGL\shaders</Filter>
     </ClCompile>
     <ClCompile Include="SoundDevice.cpp">
-      <Filter>Source Files\Sound</Filter>
+      <Filter>Source Files\Engine\Sound</Filter>
     </ClCompile>
     <ClCompile Include="SoundBuffer.cpp">
-      <Filter>Source Files\Sound</Filter>
+      <Filter>Source Files\Engine\Sound</Filter>
     </ClCompile>
     <ClCompile Include="SoundSource.cpp">
-      <Filter>Source Files\Sound</Filter>
+      <Filter>Source Files\Engine\Sound</Filter>
     </ClCompile>
     <ClCompile Include="coin.cpp">
       <Filter>Source Files\Entities\Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="UDManager.cpp">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="BouncingCube.cpp">
       <Filter>Source Files\Entities\Prefabs</Filter>
@@ -79,40 +82,40 @@
       <Filter>Source Files\Entities\Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="glad.c">
-      <Filter>Source Files\OpenGL\Rendering</Filter>
+      <Filter>Source Files\Engine\OpenGL\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="OpenGL\glManager.cpp">
-      <Filter>Source Files\OpenGL\Rendering</Filter>
+      <Filter>Source Files\Engine\OpenGL\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\OpenGL\Rendering</Filter>
+      <Filter>Source Files\Engine\OpenGL\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Model.cpp">
-      <Filter>Source Files\OpenGL\Rendering</Filter>
+      <Filter>Source Files\Engine\OpenGL\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="OpenGL\texManager.cpp">
-      <Filter>Source Files\OpenGL\Rendering</Filter>
+      <Filter>Source Files\Engine\OpenGL\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="DebugCube.cpp">
       <Filter>Source Files\Entities\Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="Text.cpp">
-      <Filter>Source Files\OpenGL\Rendering</Filter>
+      <Filter>Source Files\Engine\OpenGL\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
-      <Filter>Source Files\OpenGL</Filter>
+      <Filter>Source Files\Engine\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Source Files\OpenGL</Filter>
+      <Filter>Source Files\Engine\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Player1.cpp">
       <Filter>Source Files\Entities\Behaviors</Filter>
@@ -127,10 +130,10 @@
       <Filter>Source Files\Entities\Behaviors</Filter>
     </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="ShaderCollection.cpp">
-      <Filter>Source Files\OpenGL\shaders</Filter>
+      <Filter>Source Files\Engine\OpenGL\shaders</Filter>
     </ClCompile>
     <ClCompile Include="Launcher.cpp">
       <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
@@ -139,7 +142,7 @@
       <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
     </ClCompile>
     <ClCompile Include="MyTimer.cpp">
-      <Filter>Source Files\OpenGL</Filter>
+      <Filter>Source Files\Engine\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Icey.cpp">
       <Filter>Source Files\Entities\Behaviors\Orbitals</Filter>
@@ -147,99 +150,102 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
-      <Filter>Source Files\OpenGL\shaders</Filter>
+      <Filter>Source Files\Engine\OpenGL\shaders</Filter>
     </None>
     <None Include="..\..\include\Shaders\shader.fs">
-      <Filter>Source Files\OpenGL\shaders</Filter>
+      <Filter>Source Files\Engine\OpenGL\shaders</Filter>
     </None>
     <None Include="modelShader.vs">
-      <Filter>Source Files\OpenGL\shaders</Filter>
+      <Filter>Source Files\Engine\OpenGL\shaders</Filter>
     </None>
     <None Include="modelShader.fs">
-      <Filter>Source Files\OpenGL\shaders</Filter>
+      <Filter>Source Files\Engine\OpenGL\shaders</Filter>
     </None>
     <None Include="textShader.vs">
-      <Filter>Source Files\OpenGL\shaders</Filter>
+      <Filter>Source Files\Engine\OpenGL\shaders</Filter>
     </None>
     <None Include="textShader.fs">
-      <Filter>Source Files\OpenGL\shaders</Filter>
+      <Filter>Source Files\Engine\OpenGL\shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h">
-      <Filter>Source Files\OpenGL\shaders</Filter>
+      <Filter>Source Files\Engine\OpenGL\shaders</Filter>
     </ClInclude>
     <ClInclude Include="SoundDevice.h">
-      <Filter>Source Files\Sound</Filter>
+      <Filter>Source Files\Engine\Sound</Filter>
     </ClInclude>
     <ClInclude Include="SoundBuffer.h">
-      <Filter>Source Files\Sound</Filter>
+      <Filter>Source Files\Engine\Sound</Filter>
     </ClInclude>
     <ClInclude Include="SoundSource.h">
-      <Filter>Source Files\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="UD.h">
-      <Filter>Source Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="UDManager.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionManager.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Source Files\OpenGL\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Source Files\OpenGL\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="texManager.h">
-      <Filter>Source Files\OpenGL\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\Sound</Filter>
     </ClInclude>
     <ClInclude Include="Collision.h">
-      <Filter>Source Files\OpenGL\Structs</Filter>
+      <Filter>Source Files\Engine\OpenGL\Structs</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Source Files\OpenGL\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Source Files\OpenGL\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="BouncingCube.h">
-      <Filter>Source Files\Entities\Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="Coin.h">
-      <Filter>Source Files\Entities\Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerManager.h">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\OpenGL\Structs</Filter>
     </ClInclude>
     <ClInclude Include="ShaderCollection.h">
-      <Filter>Source Files\OpenGL\shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicModel.h">
-      <Filter>Source Files\Entities\Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="Launcher.h">
-      <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
-    </ClInclude>
-    <ClInclude Include="Projectile.h">
-      <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
-    </ClInclude>
-    <ClInclude Include="MyTimer.h">
-      <Filter>Source Files\OpenGL</Filter>
+      <Filter>Source Files\Engine\OpenGL\shaders</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Launcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BouncingCube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UDManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="texManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugCube.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

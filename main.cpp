@@ -6,7 +6,7 @@ int main()
 
     addGameObjects();
 
-    initCubeVel();
+    init();
 
     renderLoop();
 
