@@ -21,7 +21,7 @@
 #include "BouncingCube.h"
 #include "BasicModel.h"
 #include "DebugCube.h"
-#include "Player1.cpp"
+#include "Player1.h"
 #include "Player2.cpp"
 #include "CoinPickup.cpp"
 #include "DropCoins.cpp"

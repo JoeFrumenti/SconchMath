@@ -247,5 +247,8 @@
     <ClInclude Include="DebugCube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Player1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
