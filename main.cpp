@@ -2,7 +2,6 @@
 
 int main()
 {
-    setupWindow();
 
     addGameObjects();
 

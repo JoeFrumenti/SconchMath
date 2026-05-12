@@ -1,9 +1,9 @@
 #pragma once
 #include "UD.h"
 #include "Model.h"
-#include "Shaders/shader.h"
 #include "ShaderCollection.h"
 #include "CollisionManager.h"
+
 class Projectile: public UD {
 protected:
 	bool isActive = false;

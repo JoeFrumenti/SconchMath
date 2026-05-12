@@ -29,6 +29,10 @@ void Player1::Update(){
 
 	coins = Parent->getStats()["coins"];
 	coinString = "x" + std::to_string(coins);
+
+	oss.str("");
+	oss << std::fixed << std::setprecision(1) << gameMan.getp1()->getDebuffTime();
+	p1StatMsg = "Slime time: " + oss.str();
 }
 
 void Player1::Draw(){
@@ -46,4 +50,7 @@ void Player1::drawText(){
 	textShader->use();
 	textManager->RenderText(coinString, 69.25f, 678.25f, .7825f,
 		glm::vec3(1.0, 1.0f, 1.0f));
+
+	textManager->RenderText(p1StatMsg, p1Stats.x, p1Stats.y, 0.4f,
+		glm::vec3(.0, 1.0f, .0f));
 }

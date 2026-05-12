@@ -5,19 +5,18 @@
 #include "BasicModel.h"
 #include <iomanip>
 
-class PlayerManager: public UD {
+class GameManager: public UD {
 private:
 	InputManager& input = InputManager::getInstance();
 
 	glm::vec2 textPos = glm::vec2(135.0f,729.0f);
-	glm::vec2 p1Stats = glm::vec2(32.0f, 177.0f);
+	
 	glm::vec2 p2Stats = glm::vec2(305.0f, 177.0f);
 
 	std::string p1StatMsg = "Slow time: 1";
 	std::string p2StatMsg = "Freeze time : 1";
 
-	BouncingCube* p1;
-	BouncingCube* p2;
+	BouncingCube* players[4] = { NULL,NULL,NULL,NULL };
 	int winner = 0;
 	UDManager& UDMan = UDManager::getInstance();
 	CollisionManager& cm = CollisionManager::getInstance();
@@ -26,17 +25,24 @@ private:
 	float loserScale = 1.0f;
 	BasicModel* coin;
 
-	float UDtimer;
-
+	float UDtimer = 0;
 	std::ostringstream oss;
 
 public:
-	PlayerManager(BouncingCube* a, BouncingCube* b);
-	PlayerManager();
+	GameManager(BouncingCube* a, BouncingCube* b);
+	GameManager();
 	void Update() override;
 	void Draw() override;
 	void drawText() override;
 
-	BouncingCube* getp1() { return p1; }
-	BouncingCube* getp2() { return p2; }
+	void setp1(BouncingCube* player) { players[0] = player; }
+	void setp2(BouncingCube* player) { players[1] = player; }
+
+	BouncingCube* getp1() { return players[0]; }
+	BouncingCube* getp2() { return players[1]; }
+
+	static GameManager& getInstance() {
+		static GameManager instance;
+		return instance;
+	}
 };

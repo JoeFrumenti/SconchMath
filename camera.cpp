@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-#include "ShaderCollection.h"""
+#include "ShaderCollection.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -28,10 +28,6 @@ public:
 		
 		SCR_WIDTH = width;
 		SCR_HEIGHT = height;
-	}
-
-	void setup() {
-
 		ourShader->use();
 		ourShader->setVec3("lightPos", glm::vec3(.0f, 11.0f, 10.0f));
 
@@ -42,8 +38,9 @@ public:
 
 		unsigned int viewLoc = glGetUniformLocation(ourShader->ID, "view");
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
-		
+
 		ourShader->setMat4("projection", projection);
 		ourShader->setVec3("viewPos", glm::vec3(.0f, .0f, -30.0f));
 	}
+
 };

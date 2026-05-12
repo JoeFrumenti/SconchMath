@@ -1,31 +1,18 @@
 #pragma once
 #include <iostream>
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 #include <chrono>
 #include <thread>
 
-#include "ShaderCollection.h"
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
 
-#include <camera.cpp>
+#include "camera.cpp"
 #include "CollisionManager.h"
-
-#include "Text.h"
-
-#include <ft2build.h>
-#include FT_FREETYPE_H
-
 #include "SceneLoader.h"
-
-#include "MyTimer.h"
 #include "Window.h"
-
 
 bool start = false;
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
 
@@ -52,12 +39,6 @@ void renderLoop() {
     while (!glfwWindowShouldClose(window.get()))
     {
         auto frameStart = std::chrono::high_resolution_clock::now();
-
-        if (started == 1) {
-
-            
-            started = 2;
-        }
 
         processInput(window.get());
 
@@ -90,6 +71,7 @@ void init() {
     
     start = true;
     SoundManager::getInstance().playImportantSound("announce");
+
 }
 
 void processInput(GLFWwindow* window)
@@ -103,18 +85,8 @@ void processInput(GLFWwindow* window)
         glfwSetWindowShouldClose(window, true);
 }
 
-void setupWindow() {
-
-    //Game setup
-    MyTimer* timer = &MyTimer::getInstance();
-    UDMan.addUD(timer);
-
-    //camera setup
-    camera* cam = new camera(SCR_WIDTH, SCR_HEIGHT);
-    cam->setup();
-
-}
 
 void addGameObjects() {
+    camera* cam = new camera(SCR_WIDTH, SCR_HEIGHT);
     sceneLoader.loadFightScene();
 }

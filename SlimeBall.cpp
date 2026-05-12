@@ -4,7 +4,6 @@
 SlimeBall::SlimeBall() {
 	width = 0.5;
 	height = 0.5;
-	//std::cout << "NEW SLIMEBALL\n";
 	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/slimeball.obj");
 	velocity = glm::vec3(-0.11f, 0.24f, 0.0f);
 	scale = glm::vec3(1.0f, 1.0f, 1);

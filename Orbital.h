@@ -1,18 +1,21 @@
 #pragma once
+#pragma once
 #include "UD.h"
 #include "CollisionManager.h"
 #include "GameManager.h"
 #include "Projectile.h"
 
-class Launcher:public UD {
-private:
-	UD* projectile;
+class Orbital :public UD {
+protected:
+	bool isActive = false;
+	Model* ourModel;
+	Shader* shader = ShaderCollection::getInstance().getShader("Model");
+	glm::mat4 model;
+	int bounces = 0;
 	CollisionManager& cm = CollisionManager::getInstance();
-	float launchTimer = 0;
-	GameManager& playMan = GameManager::getInstance();
+	float debuffTime = 1.0f;
 public:
 	void setParent(UD*) override;
-	Launcher(Projectile* p);
 	void launch();
 	void Update() override;
 	void Draw() override;

@@ -129,7 +129,7 @@
     <ClCompile Include="DropCoins.cpp">
       <Filter>Source Files\Entities\Behaviors</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerManager.cpp">
+    <ClCompile Include="GameManager.cpp">
       <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="ShaderCollection.cpp">
@@ -149,6 +149,12 @@
     </ClCompile>
     <ClCompile Include="SceneLoader.cpp">
       <Filter>Source Files\Engine\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefabLoader.cpp">
+      <Filter>Source Files\Engine\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Orbital.cpp">
+      <Filter>Source Files\Entities\Behaviors\Orbitals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,7 +226,7 @@
     <ClInclude Include="InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerManager.h">
+    <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h">
@@ -269,7 +275,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SceneLoader.h">
-      <Filter>Source Files\Engine\Loaders</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefabLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Orbital.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

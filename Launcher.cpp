@@ -14,13 +14,12 @@ void Launcher::setParent(UD* parent) {
 
 }
 
-Launcher::Launcher(UD* p, PlayerManager* pm) {
+Launcher::Launcher(Projectile* p) {
 	projectile = p;
 	launchTimer = glfwGetTime();
 	children.push_back(projectile);
 	sb = dynamic_cast<SlimeBall*>(projectile);
 	tags.push_back("Launcher");
-	playMan = pm;
 	UDManager::getInstance().addUD(this);
 	
 }
@@ -34,9 +33,9 @@ void Launcher::launch() {
 	
 	
 	float x1 = Parent->getPos().x;
-	float x2 = playMan->getp2()->getPos().x;
+	float x2 = playMan.getp2()->getPos().x;
 	float y1 = Parent->getPos().y;
-	float y2 = playMan->getp2()->getPos().y;
+	float y2 = playMan.getp2()->getPos().y;
 
 
 
