@@ -1,5 +1,5 @@
 #include "Launcher.h"
-#include "SlimeBall.cpp"
+#include "SlimeBall.h"
 #include "MyTimer.h"
 #include <random>
 #include "SoundManager.h"

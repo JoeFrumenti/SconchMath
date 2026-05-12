@@ -26,9 +26,9 @@
 #include "CoinPickup.h"
 #include "DropCoins.h"
 #include "PlayerManager.h"
-#include "Icey.cpp"
+#include "Icey.h"
 #include "Launcher.h"
-#include "SlimeBall.cpp"
+#include "SlimeBall.h"
 
 #include "MyTimer.h"
 #include "Window.h"

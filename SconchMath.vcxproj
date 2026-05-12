@@ -70,6 +70,7 @@
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="DebugCube.h" />
     <ClInclude Include="DropCoins.h" />
+    <ClInclude Include="Icey.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Launcher.h" />
     <ClInclude Include="main.h" />
@@ -80,6 +81,7 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ShaderCollection.h" />
+    <ClInclude Include="SlimeBall.h" />
     <ClInclude Include="SoundBuffer.h" />
     <ClInclude Include="SoundDevice.h" />
     <ClInclude Include="SoundManager.h" />

@@ -259,5 +259,11 @@
     <ClInclude Include="DropCoins.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Icey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SlimeBall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
