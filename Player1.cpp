@@ -1,7 +1,5 @@
 #include "Player1.h"
 
-
-
 Player1::Player1(){
 	coinShader = ShaderCollection::getInstance().getShader("Model");
 	textShader = ShaderCollection::getInstance().getShader("Text");

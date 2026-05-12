@@ -1,38 +1,27 @@
-#include "BouncingCube.h"
-#include "Coin.h"
+#include "DropCoins.h"
 
-class DropCoins : public UD {
-private:
-	CollisionManager& cm = CollisionManager::getInstance();
-	glm::vec3 lastPos;
-	int idNum = 300;
-	Shader* modelShader;
-	UDManager& UDMan = UDManager::getInstance();
+DropCoins::DropCoins() {
+	lastPos = pos;
+	modelShader = ShaderCollection::getInstance().getShader("Model");
+}
 
-public:
-	DropCoins() {
+void DropCoins::setParent(UD* parent){
+	this->Parent = parent;
+}
+
+void DropCoins::Update() {
+	pos = Parent->getPos();
+	if (glm::distance(pos, lastPos) >= 4) {
+		Coin* coin = new Coin();
+		coin->setId(idNum++);
+		coin->translate(pos);
+		UDMan.addUD(coin);
 		lastPos = pos;
-		modelShader = ShaderCollection::getInstance().getShader("Model");
 	}
+}
+void DropCoins::Draw(){
 
-	void setParent(UD* parent) override {
-		this->Parent = parent;
-	}
+}
+void DropCoins::drawText(){
 
-	void Update() {
-		pos = Parent->getPos();
-		if (glm::distance(pos, lastPos) >= 4) {
-			Coin* coin = new Coin();
-			coin->setId(idNum++);
-			coin->translate(pos);
-			UDMan.addUD(coin);
-			lastPos = pos;
-		}
-	}
-	void Draw() override {
-
-	}
-	void drawText() override {
-
-	}
-};
+}
