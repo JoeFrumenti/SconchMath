@@ -17,8 +17,8 @@ void Icey::Collide(Collision col){
 	{
 		if (tag == "bcube" && col.obj != Parent && !(ob->getFrozen())) {
 				
-			ob->freeze(par->getStats()["debuffTime"]);
-			par->getStats()["debuffTime"] += 0.2f;
+			ob->freeze(par->getStats().debuffTime);
+			par->getStats().debuffTime += 0.2f;
 			freezeTime = std::min(freezeTime + 0.3f, 2.0f);
 
 		}

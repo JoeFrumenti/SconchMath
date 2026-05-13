@@ -18,7 +18,7 @@ BouncingCube::BouncingCube(std::string path) {
 	
 	width = .6f;
 	height = 0.6f;
-	stats["debufftime"] = 1;
+	stats.debuffTime = 1;
 
 
 	scale = glm::vec3(width);

@@ -31,7 +31,7 @@ void CoinPickup::Collide(Collision col){
 	for (auto& tag : col.obj->getTags())
 	{
 		if (tag == "coin") {
-			dynamic_cast<BouncingCube*>(Parent)->getStats()["coins"]++;
+			dynamic_cast<BouncingCube*>(Parent)->getStats().coins ++;
 		}
 	}
 }

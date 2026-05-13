@@ -11,7 +11,7 @@ Player2::Player2(){
 
 void Player2::setParent(UD* parent){
 	this->Parent = parent;
-	coins = dynamic_cast<BouncingCube*>(Parent)->getStats()["coins"];
+	coins = dynamic_cast<BouncingCube*>(Parent)->getStats().coins;
 	parentModel = dynamic_cast<BouncingCube*>(Parent)->getModel();
 }
 
@@ -26,11 +26,11 @@ void Player2::Update(){
 	copyModel = glm::rotate(copyModel, (float)glfwGetTime() / 2, glm::vec3(.0f, 1.0f, 0.0f));
 	copyModel = glm::scale(copyModel, Parent->getScale());
 
-	coins = dynamic_cast<BouncingCube*>(Parent)->getStats()["coins"];
+	coins = dynamic_cast<BouncingCube*>(Parent)->getStats().coins;
 	coinString = "x" + std::to_string(coins);
 
 	oss.str("");
-	oss << std::fixed << std::setprecision(1) << gameMan.getp2()->getStats()["debufftime"];
+	oss << std::fixed << std::setprecision(1) << gameMan.getp2()->getStats().debuffTime;
 	p2StatMsg = "Freeze time: " + oss.str();
 
 

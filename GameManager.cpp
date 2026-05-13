@@ -7,7 +7,7 @@ GameManager::GameManager(BouncingCube* a, BouncingCube* b) {
 	players[0] = a;
 	players[1] = b;
 
-	std::cout << "Debuff time: " << players[0]->getStats()["debuffTime"] << "\n";
+	std::cout << "Debuff time: " << players[0]->getStats().debuffTime << "\n";
 
 	display = new Text(ShaderCollection::getInstance().getShader("Text"), "C:/Windows/Fonts/BOD_B.TTF");
 	coin = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
@@ -27,13 +27,13 @@ void GameManager::Update() {
 
 	if (winner == 0)
 	{
-		if (players[0]->getStats()["coins"] >= 100) {
+		if (players[0]->getStats().coins >= 100) {
 			players[1]->lose();
 			winner = 1;
 			message = "WINNER: SLIME";
 			SoundManager::getInstance().playSound("slimewins",0);		
 		}
-		if (players[1]->getStats()["coins"] >= 100) {
+		if (players[1]->getStats().coins >= 100) {
 			players[0]->lose();
 			winner = 2;
 			message = "WINNER: ICE";

@@ -43,14 +43,14 @@
     <Filter Include="Source Files\Engine\OpenGL\Structs">
       <UniqueIdentifier>{5f57b71f-42df-465d-b98b-37a28e55def6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Loaders">
-      <UniqueIdentifier>{49cffbea-f40a-43eb-96f1-2fa62ecb1a91}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Engine\Sound">
       <UniqueIdentifier>{cde73706-9d4a-4e14-aa27-79fc66079d10}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Engine\Managers">
       <UniqueIdentifier>{3a55eb16-caab-485a-b7dc-5e7d716b7f68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Loaders">
+      <UniqueIdentifier>{49cffbea-f40a-43eb-96f1-2fa62ecb1a91}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,10 +148,10 @@
       <Filter>Source Files\Entities\Behaviors\Orbitals</Filter>
     </ClCompile>
     <ClCompile Include="SceneLoader.cpp">
-      <Filter>Source Files\Engine\Loaders</Filter>
+      <Filter>Source Files\Entities\Loaders</Filter>
     </ClCompile>
     <ClCompile Include="PrefabLoader.cpp">
-      <Filter>Source Files\Engine\Loaders</Filter>
+      <Filter>Source Files\Entities\Loaders</Filter>
     </ClCompile>
     <ClCompile Include="Orbital.cpp">
       <Filter>Source Files\Entities\Behaviors\Orbitals</Filter>

@@ -16,6 +16,14 @@
 #include "ShaderCollection.h"
 #include "MyTimer.h"
 
+struct PlayerStats {
+	float debuffTime = 1.0f;
+	std::string name;
+	int coins = 0;
+
+};
+
+
 class BouncingCube : public UD {
 
 private:
@@ -23,7 +31,7 @@ private:
 	glm::mat4 model;
 	glm::vec4 color = glm::vec4(1,1, 1, 1);
 	SoundManager& soundMan = SoundManager::getInstance();
-	std::map<std::string, float> stats;
+	PlayerStats stats;
 	
 	Shader* shader;
 	Shader* textShader;
@@ -57,9 +65,10 @@ public:
 	void freeze(float);
 	void slow(float);
 	void win();
-	virtual std::map<std::string, float>& getStats() { return this->stats; }
 
 	bool getFrozen() { return isFrozen; }
 	bool getSlow() { return isSlowed; }
 	glm::vec3 getFrozenVelocity() { return frozenVelocity; }
+
+	PlayerStats& getStats() { return this->stats; }
 };
