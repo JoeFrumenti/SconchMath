@@ -13,6 +13,9 @@ BouncingCube* PrefabLoader::loadSlime() {
     cube1->addChild(p1);
     Launcher* slimeLauncher = new Launcher(slimeBall);
     cube1->addChild(slimeLauncher);
+
+    cube1->getStats().name = "SLIME";
+    cube1->getStats().winSound = "slimewins";
     return cube1;
 }
 
@@ -27,6 +30,10 @@ BouncingCube* PrefabLoader::loadIce() {
     cube2->addChild(p2);
     cube2->addChild(coinPickup2);
     cube2->addChild(icey);
+
+    cube2->getStats().name = "ICE";
+    cube2->getStats().winSound = "icewins";
+
     return cube2;
 }
 

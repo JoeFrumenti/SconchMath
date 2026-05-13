@@ -17,8 +17,9 @@
 #include "MyTimer.h"
 
 struct PlayerStats {
-	float debuffTime = 1.0f;
+	std::string winSound;
 	std::string name;
+	float debuffTime = 1.0f;
 	int coins = 0;
 
 };

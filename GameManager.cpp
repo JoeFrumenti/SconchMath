@@ -28,17 +28,21 @@ void GameManager::Update() {
 	if (winner == 0)
 	{
 		if (players[0]->getStats().coins >= 100) {
+			PlayerStats tempStats = players[0]->getStats();
+
 			players[1]->lose();
 			winner = 1;
-			message = "WINNER: SLIME";
-			SoundManager::getInstance().playSound("slimewins",0);		
+			message = "WINNER: " + tempStats.name;
+			SoundManager::getInstance().playSound(tempStats.winSound,0);		
 		}
 		if (players[1]->getStats().coins >= 100) {
+			PlayerStats tempStats = players[1]->getStats();
+
 			players[0]->lose();
 			winner = 2;
-			message = "WINNER: ICE";
+			message = "WINNER: " + tempStats.name;
 			textPos.x = 63;
-			SoundManager::getInstance().playSound("icewins", 0);
+			SoundManager::getInstance().playSound(tempStats.winSound, 0);
 		}
 	}
 	else if (winner == 1) {
