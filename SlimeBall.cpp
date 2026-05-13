@@ -3,12 +3,15 @@
 
 
 SlimeBall::SlimeBall(BouncingCube* parent) : Projectile(parent) {
+	Parent = parent;
+	
+	pos = Parent->getPos();
 	width = 0.5;
 	height = 0.5;
 	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/slimeball.obj");
 	velocity = glm::vec3(-0.11f, 0.24f, 0.0f);
 	scale = glm::vec3(1.0f, 1.0f, 1);
-	Parent = parent;
+	
 
 	std::mt19937 rng(std::random_device{}());
 	std::uniform_real_distribution<float> dist(-.25f, .25f);
@@ -33,6 +36,9 @@ SlimeBall::SlimeBall(BouncingCube* parent) : Projectile(parent) {
 	setVelocity(pVel);
 
 	setScale(glm::vec3(1, 1, 1));
+	isActive = true;
+
+	cm.addObject(this);
 }
 
 	

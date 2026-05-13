@@ -72,6 +72,7 @@ public:
 	virtual void Draw() override{
 		if(isActive){
 			shader->setMat4("model", model);
+			shader->setVec4("color", glm::vec4(1));
 			ourModel->Draw(*shader);
 		}
 	}

@@ -16,6 +16,7 @@ private:
 	explicit Launcher(Factory f) : factory_(std::move(f)) {};
 	Factory factory_;
 	BouncingCube* Parent;
+	MyTimer& timer = MyTimer::getInstance();
 
 public:
 	
@@ -29,8 +30,9 @@ public:
 		return new Launcher([](BouncingCube* cube) { return std::make_unique<T>(cube); });
 	}
 
-	std::unique_ptr<Projectile> Launch(BouncingCube* cube) {
-		return factory_(cube);
+	Projectile* Launch(BouncingCube* cube) {
+		Projectile* p = factory_(cube).release();
+		return p;
 	}
 		
 	

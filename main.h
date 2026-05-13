@@ -71,6 +71,7 @@ void init() {
     
     start = true;
     SoundManager::getInstance().playImportantSound("announce");
+    UDMan.addUD(&MyTimer::getInstance());
 
 }
 

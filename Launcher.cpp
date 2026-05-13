@@ -3,28 +3,22 @@
 #include "MyTimer.h"
 #include "SoundManager.h"
 
-MyTimer& timer = MyTimer::getInstance();
-
-SlimeBall* sb;
-
-
 void Launcher::setParent(BouncingCube* parent){
 		this->Parent = parent;
+		std::cout << "Setting parent!!!!!!!!!!!\n";
 }
-
-
-
-
 
 void Launcher::Update() {
 	
-	if (!sb->getActive()) {
-		launchTimer += timer.getDeltaTime();
-		if (launchTimer >= 1.9){
-			Launch(Parent);
-			launchTimer = 0;
-		}
+	//std::cout << "Updating Launcher, launchTimer is " << this->launchTimer << " and deltaTime is " << timer.getDeltaTime() << std::endl;
+	this->launchTimer += timer.getDeltaTime();
+	if (launchTimer >= 1.9){
+		std::cout << "\nLaunching Parent";
+		UDManager::getInstance().addUD(Launch(Parent));
+		
+		launchTimer = 0;
 	}
+	
 
 }
 

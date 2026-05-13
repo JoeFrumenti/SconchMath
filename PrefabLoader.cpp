@@ -12,7 +12,9 @@ BouncingCube* PrefabLoader::loadSlime() {
     cube1->addChild(p1);
 
     Launcher* slimeLauncher = Launcher::Create<SlimeBall>();
+    UDManager::getInstance().addUD(slimeLauncher);
     cube1->addChild(slimeLauncher);
+    slimeLauncher->setParent(cube1);
 
     cube1->getStats().name = "SLIME";
     cube1->getStats().winSound = "slimewins";
