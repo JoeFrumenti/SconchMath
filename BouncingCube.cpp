@@ -8,7 +8,7 @@ BouncingCube::BouncingCube(std::string path) {
 	velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
 	soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
 
-	textShader = ShaderCollection::getInstance().getShader("Text");;
+	textShader = ShaderCollection::getInstance().getShader("Text");
 
 	CollisionManager& cm = CollisionManager::getInstance();
 
@@ -64,23 +64,17 @@ void BouncingCube::Collide(Collision col) {
 			const float dvy = obj->getVelocity().y - velocity.y;
 			const float dvn = dvx * nx + dvy * ny;
 
-			if (dvn >= 0 || isFrozen) return;  // already separating, skip
-
-
+			if (dvn >= 0 || isFrozen) return; 
 
 			obj->setVelocity(glm::vec3(obj->getVelocity().x - dvn * nx,
 				obj->getVelocity().y - dvn * ny, .0f));
-
-			
 
 			velocity.x += dvn * nx;
 			velocity.y += dvn * ny;
 
 			if (dynamic_cast<BouncingCube*>(obj)->getFrozen())
 				velocity = glm::normalize(velocity) * glm::vec3(speed);
-				
-
-				
+						
 		}
 	}
 }

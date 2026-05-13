@@ -19,6 +19,7 @@
 struct PlayerStats {
 	std::string winSound;
 	std::string name;
+	std::string statMsg;
 	float debuffTime = 1.0f;
 	int coins = 0;
 

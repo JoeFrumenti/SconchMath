@@ -3,6 +3,7 @@
 #include "Model.h"
 #include "ShaderCollection.h"
 #include "CollisionManager.h"
+#include "GameManager.h"
 
 class Projectile: public UD {
 protected:
@@ -12,12 +13,13 @@ protected:
 	glm::mat4 model;
 	int bounces = 0;
 	CollisionManager& cm = CollisionManager::getInstance();
+	GameManager& gameMan = GameManager::getInstance();
 	
 
 	bool shrinkDie = false;
 public:
-	
-
+	Projectile() = default;
+	Projectile(BouncingCube* parent) { Parent = parent; };
 
 	virtual void screenBounce() {
 		float scale = 0.65f;

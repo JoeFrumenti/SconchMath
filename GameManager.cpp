@@ -7,8 +7,6 @@ GameManager::GameManager(BouncingCube* a, BouncingCube* b) {
 	players[0] = a;
 	players[1] = b;
 
-	std::cout << "Debuff time: " << players[0]->getStats().debuffTime << "\n";
-
 	display = new Text(ShaderCollection::getInstance().getShader("Text"), "C:/Windows/Fonts/BOD_B.TTF");
 	coin = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
 	coin->translate(glm::vec3(-0.75f, 10.5f, .25f));

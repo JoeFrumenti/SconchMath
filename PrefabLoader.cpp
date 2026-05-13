@@ -2,26 +2,28 @@
 
 BouncingCube* PrefabLoader::loadSlime() {
     BouncingCube* cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
-    cube1->translate(glm::vec3(5.0f, .0f, 0.0f));
+    
     cube1->addTag("bcube");
 
     Player1* p1 = new Player1();
     CoinPickup* coinPickup = new CoinPickup();
-    SlimeBall* slimeBall = new SlimeBall();
 
     cube1->addChild(coinPickup);
     cube1->addChild(p1);
-    Launcher* slimeLauncher = new Launcher(slimeBall);
+
+    Launcher* slimeLauncher = Launcher::Create<SlimeBall>();
     cube1->addChild(slimeLauncher);
 
     cube1->getStats().name = "SLIME";
     cube1->getStats().winSound = "slimewins";
+    cube1->getStats().statMsg = "Slime time: ";
     return cube1;
 }
 
 BouncingCube* PrefabLoader::loadIce() {
+
     BouncingCube* cube2 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere2.obj");
-    cube2->translate(glm::vec3(-5.0f, .0f, 0.0f));
+    
     cube2->addTag("bcube");
 
     Player2* p2 = new Player2();
@@ -33,6 +35,7 @@ BouncingCube* PrefabLoader::loadIce() {
 
     cube2->getStats().name = "ICE";
     cube2->getStats().winSound = "icewins";
+    cube2->getStats().statMsg = "Freeze time: ";
 
     return cube2;
 }

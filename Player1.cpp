@@ -11,9 +11,10 @@ Player1::Player1(){
 }
 
 void Player1::setParent(UD* parent){
-	this->Parent = parent;
+	Parent = parent;
 	coins = dynamic_cast<BouncingCube*>(Parent)->getStats().coins;
 	parentModel = dynamic_cast<BouncingCube*>(Parent)->getModel();
+	Parent->translate(glm::vec3(5.0f, .0f, 0.0f));
 }
 
 void Player1::Update(){
@@ -27,12 +28,14 @@ void Player1::Update(){
 	copyModel = glm::rotate(copyModel, (float)glfwGetTime() / 2, glm::vec3(.0f, 1.0f, 0.0f));
 	copyModel = glm::scale(copyModel, Parent->getScale());
 
-	coins = dynamic_cast<BouncingCube*>(Parent)->getStats().coins;
+	PlayerStats playerStats = gameMan.getp1()->getStats();
+
+	coins = playerStats.coins;
 	coinString = "x" + std::to_string(coins);
 
 	oss.str("");
-	oss << std::fixed << std::setprecision(1) << gameMan.getp1()->getStats().debuffTime;
-	p1StatMsg = "Slime time: " + oss.str();
+	oss << std::fixed << std::setprecision(1) << playerStats.debuffTime;
+	p1StatMsg = playerStats.statMsg + oss.str();
 }
 
 void Player1::Draw(){
@@ -51,6 +54,6 @@ void Player1::drawText(){
 	textManager->RenderText(coinString, 69.25f, 678.25f, .7825f,
 		glm::vec3(1.0, 1.0f, 1.0f));
 
-	textManager->RenderText(p1StatMsg, p1Stats.x, p1Stats.y, 0.4f,
+	textManager->RenderText(p1StatMsg, 32, 177, 0.4f,
 		glm::vec3(.0, 1.0f, .0f));
 }

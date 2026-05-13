@@ -18,7 +18,6 @@ private:
 	Shader* textShader;
 	Shader* coinShader;
 
-	glm::vec2 p1Stats = glm::vec2(32.0f, 177.0f);
 
 	glm::mat4 cModel;
 	glm::mat4 copyModel;

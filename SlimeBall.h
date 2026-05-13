@@ -9,8 +9,7 @@ class SlimeBall : public Projectile {
 
 
 public:
-	SlimeBall();
-
+	SlimeBall(BouncingCube* parent);
 
 
 	void Collide(Collision col) override;
