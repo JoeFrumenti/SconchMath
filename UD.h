@@ -18,7 +18,6 @@ protected:
 	float height;
 	UD* Parent;
 	std::vector<UD*> children;
-	std::map<std::string, float> stats;
 	
 
 public:
@@ -58,7 +57,6 @@ public:
 	virtual void Draw() = 0;
 	virtual void Collide(Collision) {};
 	
-	virtual std::map<std::string, float>& getStats() { return this->stats; }
 	virtual void drawText() {};
 
 

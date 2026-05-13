@@ -11,7 +11,6 @@ private:
 
 	glm::vec2 textPos = glm::vec2(135.0f,729.0f);
 	
-	glm::vec2 p2Stats = glm::vec2(305.0f, 177.0f);
 
 	std::string p1StatMsg = "Slow time: 1";
 	std::string p2StatMsg = "Freeze time : 1";

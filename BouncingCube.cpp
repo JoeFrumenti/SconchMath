@@ -18,20 +18,13 @@ BouncingCube::BouncingCube(std::string path) {
 	
 	width = .6f;
 	height = 0.6f;
+	stats["debufftime"] = 1;
 
 
 	scale = glm::vec3(width);
 	cm.addObject(this);
 }
 
-void BouncingCube::addDebuffTime(float f) {
-	debuffTime = std::min(debuffTime + f, 2.0f);
-	std::cout << debuffTime << std::endl;
-}
-
-float BouncingCube::getDebuffTime() {
-	 return debuffTime; 
-}
 void BouncingCube::win() {
 	velocity = glm::normalize(velocity) * glm::vec3(0.4);
 }

@@ -19,8 +19,8 @@ void SlimeBall::Collide(Collision col){
 		if (tag == "bcube" && col.obj != Parent) {
 			if (!obj->getSlow()) {
 
-				(obj)->slow(par->getDebuffTime());
-				par->addDebuffTime(0.2f);
+				(obj)->slow(par->getStats()["debuffTime"]);
+				par->getStats()["debuffTime"] += 0.2f;
 				isActive = false;
 				bounces = 0;
 				//cm.removeObject(this->getId());

@@ -34,8 +34,6 @@ void SceneLoader::loadFightScene() {
     gameMan.setp1(cube1); 
     gameMan.setp2(cube2);
 
-
-
     UDMan.addUD(&gameMan);
 
 

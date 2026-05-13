@@ -13,7 +13,7 @@ protected:
 	glm::mat4 model;
 	int bounces = 0;
 	CollisionManager& cm = CollisionManager::getInstance();
-	float debuffTime = 1.0f;
+	
 public:
 	void setParent(UD*) override;
 	void launch();

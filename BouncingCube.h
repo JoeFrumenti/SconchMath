@@ -23,6 +23,7 @@ private:
 	glm::mat4 model;
 	glm::vec4 color = glm::vec4(1,1, 1, 1);
 	SoundManager& soundMan = SoundManager::getInstance();
+	std::map<std::string, float> stats;
 	
 	Shader* shader;
 	Shader* textShader;
@@ -37,13 +38,11 @@ private:
 	bool isFrozen = false;
 	glm::vec3 frozenVelocity;
 
-	bool isSlowed;
-	float slowTimer;
-	float slowCap;
+	bool isSlowed = false;
+	float slowTimer = 0;
+	float slowCap = 0;
 
 	float speed = .25f;
-
-	float debuffTime = 1;
 
 public:
 	~BouncingCube();
@@ -58,8 +57,7 @@ public:
 	void freeze(float);
 	void slow(float);
 	void win();
-	void addDebuffTime(float f);
-	float getDebuffTime();
+	virtual std::map<std::string, float>& getStats() { return this->stats; }
 
 	bool getFrozen() { return isFrozen; }
 	bool getSlow() { return isSlowed; }
