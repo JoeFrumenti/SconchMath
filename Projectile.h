@@ -32,8 +32,6 @@ public:
 		std::uniform_real_distribution<float> dist(-.25f, .25f);
 		float value = dist(rng);
 
-
-
 		float x1 = getPos().x;
 		float x2 = Parent->getPos().x;
 		float y1 = getPos().y;
@@ -50,16 +48,17 @@ public:
 
 		setVelocity(pVel);
 
-		if (dx <= 0.2 && dy <= 0.2)
-			shrinkDie = true;
+		this->pos += velocity;
+
 	}
 
 	void shrinkDiePls() {
+		
+		cm.removeObject(this->getId());
 		scale -= glm::vec3(1.0f / 15.0f, 1.0f / 15.0f, 1.0f / 15.0f);
 		if (scale.x <= 0) {
 			shrinkDie = false;
 			isActive = false;
-			cm.removeObject(this->getId());
 		}	
 	}
 

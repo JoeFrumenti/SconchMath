@@ -4,14 +4,15 @@
 #include "UDManager.h"
 #include <vector>
 #include <string>
+#include <set>
 
 #include "Collision.h"
 
 class CollisionManager {
 private:
 	std::vector<UD*> objects;
-	std::vector<UD*> objects1;
-	std::vector<UD*> objects2;
+
+	std::set<std::pair<UD*, UD*>> activeCollisions;
 
 
 public:

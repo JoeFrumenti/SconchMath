@@ -17,26 +17,47 @@ Thief::Thief(BouncingCube* parent) {
 
 	setScale(glm::vec3(1, 1, 1));
 	isActive = true;
-
+	seekParent = false;
 	cm.addObject(this);
 }
 
+void Thief::exitCollision(Collision col) {
+	if (col.obj == Parent)
+		touchingParent = false;
+}
+
 void Thief::Collide(Collision col){
+	if (col.obj == Parent)
+		touchingParent = true;
+
 	for (auto& tag : col.obj->getTags()) {
-		if (tag == "bcube" && col.obj != Parent) {
-			BouncingCube* colObj = dynamic_cast<BouncingCube*>(col.obj);
-			colObj->getStats().coins--;
+		if (tag == "bcube" && col.obj != Parent && !stolen) {
+			dynamic_cast<BouncingCube*>(col.obj)->getStats().coins--;
 			seekParent = true;
+			stolen = true;
+			if (touchingParent)
+			{
+				Parent->getStats().coins++;
+				velocity = glm::vec3(.0f);
+				shrinkDie = true;
+			}
+		}
+		if (tag == "bcube" && col.obj == Parent && stolen) {
+			Parent->getStats().coins++;
+			velocity = glm::vec3(.0f);
+			shrinkDie = true;
 		}
 	}
 }
 
 void Thief::Update() {
-	screenBounce();
-	if (shrinkDie)
-		shrinkDiePls();
-	if (seekParent)
+	if (!seekParent)
+		screenBounce();
+	else 
 		seekParentPls();
+	
+	if (shrinkDie && !seekParent)
+		shrinkDiePls();
 
 
 	model = glm::mat4(1.0f);

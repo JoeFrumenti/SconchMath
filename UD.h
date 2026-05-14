@@ -57,6 +57,7 @@ public:
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 	virtual void Collide(Collision) {};
+	virtual void exitCollision(Collision) {};
 	
 	virtual void drawText() {};
 

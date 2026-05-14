@@ -42,8 +42,8 @@ void SceneLoader::loadFightScene() {
 
     //SPAWN COINS
     int idNum = 10000;
-    for (float i = -5.5f; i <= 5.5f; i += 1.2) {
-        for (float j = -5.0f; j <= 7.5f; j += 1.35f) {
+    for (float i = -5.5f; i <= 5.5f; i += 1.2 * 2) {
+        for (float j = -5.0f; j <= 7.5f; j += 1.35f * 2) {
             Coin* coiny = new Coin();
             coiny->translate(glm::vec3(i, j, 0));
             UDMan.addUD(coiny);
