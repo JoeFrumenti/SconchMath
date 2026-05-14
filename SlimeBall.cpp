@@ -43,7 +43,30 @@ SlimeBall::SlimeBall(BouncingCube* parent) : Projectile(parent) {
 	cm.addObject(this);
 }
 
-	
+void SlimeBall::Update() {
+	if (Parent->getLoser()) {
+		UDManager::getInstance().queueRemoval(ID);
+		CollisionManager::getInstance().removeObject(ID);
+	}
+
+	if (shrinkDie) {
+		scale -= glm::vec3(1.0f / 15.0f, 1.0f / 15.0f, 1.0f / 15.0f);
+		if (scale.x <= 0) {
+			shrinkDie = false;
+			isActive = false;
+			cm.removeObject(this->getId());
+		}
+	}
+
+	else if (isActive) {
+		screenBounce();
+	}
+	model = glm::mat4(1.0f);
+	model = glm::translate(model, pos);
+	model = glm::scale(model, glm::vec3(width * scale.x, height * scale.y, height * scale.z));
+
+
+}
 
 void SlimeBall::Collide(Collision col){
 	for (auto& tag : col.obj->getTags()) {

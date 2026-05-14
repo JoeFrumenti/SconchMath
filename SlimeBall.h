@@ -15,5 +15,6 @@ public:
 
 	void Collide(Collision col) override;
 
+	void Update() override;
 
 };

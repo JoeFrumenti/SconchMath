@@ -4,6 +4,7 @@
 #include "ShaderCollection.h"
 #include "CollisionManager.h"
 #include "GameManager.h"
+#include <random>
 
 class Projectile: public UD {
 protected:
@@ -53,28 +54,29 @@ public:
 
 	}
 	
-	virtual void Update() override {
-		if (Parent->getLoser()) {
-			UDManager::getInstance().queueRemoval(ID);
-			CollisionManager::getInstance().removeObject(ID);
-		}
-			
-		if (shrinkDie) {
-			scale -= glm::vec3(1.0f/15.0f, 1.0f / 15.0f, 1.0f / 15.0f);
-			if (scale.x <= 0) {
-				shrinkDie = false;
-				isActive = false;
-				cm.removeObject(this->getId());
-			}
-		}
+	void seekEnemy() {
 
-		else if (isActive) {
-			screenBounce();
-		}
-			model = glm::mat4(1.0f);
-			model = glm::translate(model, pos);
-			model = glm::scale(model, glm::vec3(width * scale.x, height * scale.y, height * scale.z));
-		
+		std::mt19937 rng(std::random_device{}());
+		std::uniform_real_distribution<float> dist(-.25f, .25f);
+		float value = dist(rng);
+
+
+
+		float x1 = Parent->getPos().x;
+		float x2 = gameMan.getp2()->getPos().x;
+		float y1 = Parent->getPos().y;
+		float y2 = gameMan.getp2()->getPos().y;
+
+
+
+		float dx = x2 - x1 + dist(rng);
+		float dy = y2 - y1 + dist(rng);
+
+		float norm = std::sqrt(dx * dx + dy * dy);
+
+		glm::vec3 pVel = glm::vec3(dx / norm, dy / norm, 0) * glm::vec3(0.5f);
+
+		setVelocity(pVel);
 	}
 
 	virtual void Draw() override{
