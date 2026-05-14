@@ -22,13 +22,21 @@ Thief::Thief(BouncingCube* parent) {
 }
 
 void Thief::Collide(Collision col){
-
+	for (auto& tag : col.obj->getTags()) {
+		if (tag == "bcube" && col.obj != Parent) {
+			BouncingCube* colObj = dynamic_cast<BouncingCube*>(col.obj);
+			colObj->getStats().coins--;
+			seekParent = true;
+		}
+	}
 }
 
 void Thief::Update() {
 	screenBounce();
 	if (shrinkDie)
 		shrinkDiePls();
+	if (seekParent)
+		seekParentPls();
 
 
 	model = glm::mat4(1.0f);

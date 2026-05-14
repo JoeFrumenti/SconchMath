@@ -79,10 +79,11 @@ void SlimeBall::Collide(Collision col){
 				par->getStats().debuffTime += 0.2f;
 				isActive = false;
 				bounces = 0;
-				//cm.removeObject(this->getId());
+				//
 
-				shrinkDie = true;
 			}
+			shrinkDie = true;
+			cm.removeObject(this->getId());
 		}
 	}
 }

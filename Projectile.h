@@ -19,10 +19,40 @@ protected:
 
 	int maxBounces = 1;
 	bool shrinkDie = false;
+	bool seekParent = false;
+
 public:
 	Projectile() = default;
 	Projectile(BouncingCube* parent) { Parent = parent; };
 
+
+	void seekParentPls() {
+
+		std::mt19937 rng(std::random_device{}());
+		std::uniform_real_distribution<float> dist(-.25f, .25f);
+		float value = dist(rng);
+
+
+
+		float x1 = getPos().x;
+		float x2 = Parent->getPos().x;
+		float y1 = getPos().y;
+		float y2 = Parent->getPos().y;
+
+
+
+		float dx = x2 - x1 + dist(rng);
+		float dy = y2 - y1 + dist(rng);
+
+		float norm = std::sqrt(dx * dx + dy * dy);
+
+		glm::vec3 pVel = glm::vec3(dx / norm, dy / norm, 0) * glm::vec3(0.5f);
+
+		setVelocity(pVel);
+
+		if (dx <= 0.2 && dy <= 0.2)
+			shrinkDie = true;
+	}
 
 	void shrinkDiePls() {
 		scale -= glm::vec3(1.0f / 15.0f, 1.0f / 15.0f, 1.0f / 15.0f);
