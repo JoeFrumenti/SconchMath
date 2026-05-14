@@ -1,11 +1,13 @@
-#include "SlimeBall.h"
+#include "Projectile.h"
+#include "Thief.h"
+#include "UD.h"
+#include "Model.h"
+#include "Projectile.h"
+#include "BouncingCube.h"
+#include <random>
 
-
-
-SlimeBall::SlimeBall(BouncingCube* parent) : Projectile(parent) {
+Thief::Thief(BouncingCube* parent) {
 	Parent = parent;
-	
-	maxBounces = 3;
 
 	pos = Parent->getPos();
 	width = 0.5;
@@ -13,7 +15,7 @@ SlimeBall::SlimeBall(BouncingCube* parent) : Projectile(parent) {
 	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/slimeball.obj");
 	velocity = glm::vec3(-0.11f, 0.24f, 0.0f);
 	scale = glm::vec3(1.0f, 1.0f, 1);
-	
+
 
 	std::mt19937 rng(std::random_device{}());
 	std::uniform_real_distribution<float> dist(-.25f, .25f);
@@ -43,24 +45,6 @@ SlimeBall::SlimeBall(BouncingCube* parent) : Projectile(parent) {
 	cm.addObject(this);
 }
 
-	
+void Thief::Collide(Collision col){
 
-void SlimeBall::Collide(Collision col){
-	for (auto& tag : col.obj->getTags()) {
-		BouncingCube* par = dynamic_cast<BouncingCube*>(Parent);
-		BouncingCube* obj = dynamic_cast<BouncingCube*>(col.obj);
-		if (tag == "bcube" && col.obj != Parent) {
-			if (!obj->getSlow()) {
-
-				(obj)->slow(par->getStats().debuffTime);
-				par->getStats().debuffTime += 0.2f;
-				isActive = false;
-				bounces = 0;
-				//cm.removeObject(this->getId());
-
-				shrinkDie = true;
-			}
-		}
-	}
 }
-

@@ -15,6 +15,8 @@ protected:
 	CollisionManager& cm = CollisionManager::getInstance();
 	GameManager& gameMan = GameManager::getInstance();
 	BouncingCube* Parent;
+
+	int maxBounces = 1;
 	
 
 	bool shrinkDie = false;
@@ -43,7 +45,7 @@ public:
 			pos.y += velocity.y;
 			bounces++;
 		}
-		if (bounces >= 3) {
+		if (bounces >= maxBounces) {
 			//isActive = false;
 			bounces = 0;
 			shrinkDie = true;

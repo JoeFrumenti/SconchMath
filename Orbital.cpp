@@ -8,7 +8,7 @@ void Orbital::setParent(BouncingCube* parent) {
 	width = 0.5;
 	height = 0.5;
 	cm.addObject(this);
-
+	 
 }
 
 void Orbital::Update() {

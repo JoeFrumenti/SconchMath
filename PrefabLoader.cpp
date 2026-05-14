@@ -22,6 +22,28 @@ BouncingCube* PrefabLoader::loadSlime() {
     return cube1;
 }
 
+BouncingCube* PrefabLoader::loadThief() {
+    BouncingCube* cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
+
+    cube1->addTag("bcube");
+
+    Player1* p1 = new Player1();
+    CoinPickup* coinPickup = new CoinPickup();
+
+    cube1->addChild(coinPickup);
+    cube1->addChild(p1);
+
+    Launcher* thiefLauncher = Launcher::Create<Thief>();
+    UDManager::getInstance().addUD(thiefLauncher);
+    cube1->addChild(thiefLauncher);
+    thiefLauncher->setParent(cube1);
+
+    cube1->getStats().name = "SLIME";
+    cube1->getStats().winSound = "slimewins";
+    cube1->getStats().statMsg = "Slime time: ";
+    return cube1;
+}
+
 BouncingCube* PrefabLoader::loadIce() {
 
     BouncingCube* cube2 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere2.obj");

@@ -9,7 +9,7 @@ void SceneLoader::loadFightScene() {
     UDManager& UDMan = UDManager::getInstance();
 
 
-    BouncingCube* cube1 = prefabLoader.loadSlime();
+    BouncingCube* cube1 = prefabLoader.loadThief();
     UDMan.addUD(cube1);
 
     BouncingCube* cube2 = prefabLoader.loadIce();

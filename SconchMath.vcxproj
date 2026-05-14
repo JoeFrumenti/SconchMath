@@ -51,6 +51,7 @@
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="MyTimer.cpp" />
+    <ClCompile Include="Thief.cpp" />
     <ClCompile Include="UDManager.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -95,6 +96,7 @@
     <ClInclude Include="texManager.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="MyTimer.h" />
+    <ClInclude Include="Thief.h" />
     <ClInclude Include="UD.h" />
     <ClInclude Include="UDManager.h" />
     <ClInclude Include="Window.h" />
