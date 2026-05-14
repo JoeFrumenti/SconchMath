@@ -68,6 +68,8 @@ public:
 	void slow(float);
 	void win();
 
+
+	bool getLoser() { return loser; }
 	bool getFrozen() { return isFrozen; }
 	bool getSlow() { return isSlowed; }
 	glm::vec3 getFrozenVelocity() { return frozenVelocity; }

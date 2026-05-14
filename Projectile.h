@@ -14,6 +14,7 @@ protected:
 	int bounces = 0;
 	CollisionManager& cm = CollisionManager::getInstance();
 	GameManager& gameMan = GameManager::getInstance();
+	BouncingCube* Parent;
 	
 
 	bool shrinkDie = false;
@@ -51,6 +52,11 @@ public:
 	}
 	
 	virtual void Update() override {
+		if (Parent->getLoser()) {
+			UDManager::getInstance().queueRemoval(ID);
+			CollisionManager::getInstance().removeObject(ID);
+		}
+			
 		if (shrinkDie) {
 			scale -= glm::vec3(1.0f/15.0f, 1.0f / 15.0f, 1.0f / 15.0f);
 			if (scale.x <= 0) {
@@ -70,14 +76,14 @@ public:
 	}
 
 	virtual void Draw() override{
-		if(isActive){
+		if(isActive && !Parent->getLoser()){
 			shader->setMat4("model", model);
 			shader->setVec4("color", glm::vec4(1));
 			ourModel->Draw(*shader);
 		}
 	}
 
-	virtual void setParent(UD* p) override {
+	virtual void setParent(BouncingCube* p) {
 		Parent = p;
 	}
 

@@ -5,12 +5,10 @@
 
 void Launcher::setParent(BouncingCube* parent){
 		this->Parent = parent;
-		std::cout << "Setting parent!!!!!!!!!!!\n";
 }
 
 void Launcher::Update() {
 	
-	//std::cout << "Updating Launcher, launchTimer is " << this->launchTimer << " and deltaTime is " << timer.getDeltaTime() << std::endl;
 	this->launchTimer += timer.getDeltaTime();
 	if (launchTimer >= 1.9){
 		std::cout << "\nLaunching Parent";

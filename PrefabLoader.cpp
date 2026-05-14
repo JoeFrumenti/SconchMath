@@ -31,6 +31,7 @@ BouncingCube* PrefabLoader::loadIce() {
     Player2* p2 = new Player2();
     CoinPickup* coinPickup2 = new CoinPickup();
     Icey* icey = new Icey();
+    icey->setParent(cube2);
     cube2->addChild(p2);
     cube2->addChild(coinPickup2);
     cube2->addChild(icey);

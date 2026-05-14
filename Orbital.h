@@ -13,9 +13,10 @@ protected:
 	glm::mat4 model;
 	int bounces = 0;
 	CollisionManager& cm = CollisionManager::getInstance();
+	BouncingCube* Parent;
 	
 public:
-	void setParent(UD*) override;
+	void setParent(BouncingCube*);
 	void launch();
 	void Update() override;
 	void Draw() override;
