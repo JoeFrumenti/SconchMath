@@ -18,17 +18,25 @@ protected:
 	BouncingCube* Parent;
 
 	int maxBounces = 1;
-	
-
 	bool shrinkDie = false;
 public:
 	Projectile() = default;
 	Projectile(BouncingCube* parent) { Parent = parent; };
 
+
+	void shrinkDiePls() {
+		scale -= glm::vec3(1.0f / 15.0f, 1.0f / 15.0f, 1.0f / 15.0f);
+		if (scale.x <= 0) {
+			shrinkDie = false;
+			isActive = false;
+			cm.removeObject(this->getId());
+		}	
+	}
+
+
 	virtual void screenBounce() {
-		float scale = 0.65f;
-		float boundsX = 8.8f * scale;
-		float boundsY = 16.7f * scale;
+		float boundsX = 5.72;
+		float boundsY = 10.855;
 		
 
 		pos += velocity;
@@ -47,7 +55,7 @@ public:
 			bounces++;
 		}
 		if (bounces >= maxBounces) {
-			//isActive = false;
+			velocity = glm::vec3(0);
 			bounces = 0;
 			shrinkDie = true;
 		}

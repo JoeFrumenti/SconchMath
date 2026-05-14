@@ -7,8 +7,6 @@
 Thief::Thief(BouncingCube* parent) {
 	Parent = parent;
 
-
-
 	pos = Parent->getPos();
 	width = 0.5;
 	height = 0.5;
@@ -29,7 +27,8 @@ void Thief::Collide(Collision col){
 
 void Thief::Update() {
 	screenBounce();
-
+	if (shrinkDie)
+		shrinkDiePls();
 
 
 	model = glm::mat4(1.0f);
