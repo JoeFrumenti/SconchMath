@@ -5,7 +5,7 @@ int main()
 
     addGameObjects();
 
-    init();
+    //init();
 
     renderLoop();
 

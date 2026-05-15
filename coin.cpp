@@ -8,7 +8,7 @@ Coin::Coin() {
 	this->width = 0.25f * scaling;
 	this->height = 0.35f * scaling;
 	tags.push_back("coin");
-	soundMan.addSound("coin", "C:/Users/joefr/source/repos/SconchMath/assets/chime3.wav");
+	soundMan.addSound("coin", "C:/Users/joefr/source/repos/SconchMath/assets/audio/chime3.wav");
 	cm.addObject(this);
 }
 

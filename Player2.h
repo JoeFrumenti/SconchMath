@@ -23,6 +23,7 @@ private:
 	std::string p2StatMsg;
 	std::ostringstream oss;
 
+
 	Model* coin;
 	Model* parentModel;
 

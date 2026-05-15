@@ -9,10 +9,10 @@ void SceneLoader::loadFightScene() {
     UDManager& UDMan = UDManager::getInstance();
 
 
-    BouncingCube* cube1 = prefabLoader.loadThief();
+    BouncingCube* cube1 = prefabLoader.loadSlime();
     UDMan.addUD(cube1);
 
-    BouncingCube* cube2 = prefabLoader.loadIce();
+    BouncingCube* cube2 = prefabLoader.loadThief();
     UDMan.addUD(cube2);
 
     BasicModel* bg = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj");
@@ -31,8 +31,7 @@ void SceneLoader::loadFightScene() {
 
 
     GameManager& gameMan = GameManager::getInstance();
-    gameMan.setp1(cube1); 
-    gameMan.setp2(cube2);
+   
 
     UDMan.addUD(&gameMan);
 
@@ -42,8 +41,8 @@ void SceneLoader::loadFightScene() {
 
     //SPAWN COINS
     int idNum = 10000;
-    for (float i = -5.5f; i <= 5.5f; i += 1.2 * 2) {
-        for (float j = -5.0f; j <= 7.5f; j += 1.35f * 2) {
+    for (float i = -5.5f; i <= 5.5f; i += 1.2) {
+        for (float j = -5.0f; j <= 7.5f; j += 1.35f) {
             Coin* coiny = new Coin();
             coiny->translate(glm::vec3(i, j, 0));
             UDMan.addUD(coiny);

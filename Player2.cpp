@@ -14,6 +14,7 @@ void Player2::setParent(UD* parent){
 	coins = dynamic_cast<BouncingCube*>(Parent)->getStats().coins;
 	parentModel = dynamic_cast<BouncingCube*>(Parent)->getModel();
 	Parent->translate(glm::vec3(-5.0f, .0f, 0.0f));
+	gameMan.setp2(dynamic_cast<BouncingCube*>(Parent));
 }
 
 void Player2::Update(){
@@ -53,7 +54,7 @@ void Player2::Draw(){
 void Player2::drawText(){
 	textShader->use();
 	textManager->RenderText(coinString, 352.75f, 678.25f, .7825f,
-		glm::vec3(1.0, 1.0f, 1.0f));
+		glm::vec3(.0, .0f, .0f));
 	textManager->RenderText(p2StatMsg, 295, 177, 0.4f,
-		glm::vec3(.0, .0f, 1.0f));
+		gameMan.getp2()->getStats().statColor);
 }

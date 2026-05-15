@@ -17,6 +17,8 @@ protected:
 	GameManager& gameMan = GameManager::getInstance();
 	BouncingCube* Parent;
 
+	float variance = 0.25f;
+
 	int maxBounces = 1;
 	bool shrinkDie = false;
 	bool seekParent = false;
@@ -25,11 +27,14 @@ public:
 	Projectile() = default;
 	Projectile(BouncingCube* parent) { Parent = parent; };
 
+	void setVariance(float f) {
+		variance = f;
+	}
 
 	void seekParentPls() {
 
 		std::mt19937 rng(std::random_device{}());
-		std::uniform_real_distribution<float> dist(-.25f, .25f);
+		std::uniform_real_distribution<float> dist(-variance, variance);
 		float value = dist(rng);
 
 		float x1 = getPos().x;
@@ -50,6 +55,12 @@ public:
 
 		this->pos += velocity;
 
+	}
+
+	void die() {
+		cm.removeObject(this->getId());
+		isActive = false;
+		UDManager::getInstance().queueRemoval(this->getId());
 	}
 
 	void shrinkDiePls() {
@@ -93,6 +104,8 @@ public:
 	
 	void seekEnemy() {
 
+		BouncingCube* target = GameManager::getInstance().getNearestEnemy(this->Parent);
+
 		std::mt19937 rng(std::random_device{}());
 		std::uniform_real_distribution<float> dist(-.25f, .25f);
 		float value = dist(rng);
@@ -100,9 +113,9 @@ public:
 
 
 		float x1 = Parent->getPos().x;
-		float x2 = gameMan.getp2()->getPos().x;
+		float x2 = target->getPos().x;
 		float y1 = Parent->getPos().y;
-		float y2 = gameMan.getp2()->getPos().y;
+		float y2 = target->getPos().y;
 
 
 

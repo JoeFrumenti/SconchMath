@@ -7,10 +7,11 @@
 Thief::Thief(BouncingCube* parent) {
 	Parent = parent;
 
+	setVariance(0.0f);
 	pos = Parent->getPos();
 	width = 0.5;
 	height = 0.5;
-	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/slimeball.obj");
+	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/net.obj");
 	scale = glm::vec3(1.0f, 1.0f, 1);
 
 	seekEnemy();
@@ -32,20 +33,23 @@ void Thief::Collide(Collision col){
 
 	for (auto& tag : col.obj->getTags()) {
 		if (tag == "bcube" && col.obj != Parent && !stolen) {
-			dynamic_cast<BouncingCube*>(col.obj)->getStats().coins--;
+			dynamic_cast<BouncingCube*>(col.obj)->getStats().coins-= Parent->getStats().debuffTime;
+			SoundManager::getInstance().playSound("bonk",0);
 			seekParent = true;
 			stolen = true;
 			if (touchingParent)
 			{
-				Parent->getStats().coins++;
+				Parent->getStats().coins+= Parent->getStats().debuffTime;
+				Parent->getStats().debuffTime+=1;
 				velocity = glm::vec3(.0f);
-				shrinkDie = true;
+				die();
 			}
 		}
 		if (tag == "bcube" && col.obj == Parent && stolen) {
-			Parent->getStats().coins++;
+			Parent->getStats().coins+= Parent->getStats().debuffTime;
+			Parent->getStats().debuffTime+=1;
 			velocity = glm::vec3(.0f);
-			shrinkDie = true;
+			die();
 		}
 	}
 }
@@ -56,7 +60,7 @@ void Thief::Update() {
 	else 
 		seekParentPls();
 	
-	if (shrinkDie && !seekParent)
+	if (shrinkDie)
 		shrinkDiePls();
 
 

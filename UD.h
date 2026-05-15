@@ -44,7 +44,6 @@ public:
 
 
 	virtual void addChild(UD* child) {
-		std::cout << "ADDING CHILD\n";
 		this->children.push_back(child);
 		child->setParent(this);
 	}

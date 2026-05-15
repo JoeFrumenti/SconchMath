@@ -13,6 +13,8 @@ private:
 	GameManager& playMan = GameManager::getInstance();
 	using Factory = std::function<std::unique_ptr<Projectile>(BouncingCube*)>;
 
+	float launchRate = 1.9f;
+
 	explicit Launcher(Factory f) : factory_(std::move(f)) {};
 	Factory factory_;
 	BouncingCube* Parent;
@@ -35,5 +37,7 @@ public:
 		return p;
 	}
 		
-	
+	void setLaunchRate(float f) {
+		launchRate = f;
+	}
 };

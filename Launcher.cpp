@@ -10,8 +10,7 @@ void Launcher::setParent(BouncingCube* parent){
 void Launcher::Update() {
 	
 	this->launchTimer += timer.getDeltaTime();
-	if (launchTimer >= 1.9){
-		std::cout << "\nLaunching Parent";
+	if (launchTimer >= launchRate){
 		UDManager::getInstance().addUD(Launch(Parent));
 		
 		launchTimer = 0;

@@ -6,7 +6,7 @@ Model* BouncingCube::getModel() {
 
 BouncingCube::BouncingCube(std::string path) {
 	velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
-	soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/chime.wav");
+	soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/audio/chime.wav");
 
 	textShader = ShaderCollection::getInstance().getShader("Text");
 

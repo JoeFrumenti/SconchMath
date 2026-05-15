@@ -9,7 +9,7 @@ class GameManager: public UD {
 private:
 	InputManager& input = InputManager::getInstance();
 
-	glm::vec2 textPos = glm::vec2(135.0f,729.0f);
+	glm::vec2 textPos = glm::vec2(192,729.0f);
 	
 
 	std::string p1StatMsg = "Slow time: 1";
@@ -19,7 +19,7 @@ private:
 	int winner = 0;
 	UDManager& UDMan = UDManager::getInstance();
 	CollisionManager& cm = CollisionManager::getInstance();
-	std::string message = "100    = WIN";
+	std::string message = "VS";
 	Text* display;
 	float loserScale = 1.0f;
 	BasicModel* coin;
@@ -39,6 +39,8 @@ public:
 
 	BouncingCube* getp1() { return players[0]; }
 	BouncingCube* getp2() { return players[1]; }
+
+	BouncingCube* getNearestEnemy(BouncingCube* target);
 
 	static GameManager& getInstance() {
 		static GameManager instance;

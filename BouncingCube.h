@@ -20,6 +20,7 @@ struct PlayerStats {
 	std::string winSound;
 	std::string name;
 	std::string statMsg;
+	glm::vec3 statColor = glm::vec3(.0f, .0f, .0f);
 	float debuffTime = 1.0f;
 	int coins = 0;
 

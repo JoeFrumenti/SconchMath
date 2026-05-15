@@ -19,6 +19,13 @@ GameManager::GameManager() {
 	coin = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
 }
 
+BouncingCube* GameManager::getNearestEnemy(BouncingCube* target) {
+	for (int i = 0; i < std::size(players); i++) {
+		if (players[i] != target && players[i] != NULL)
+			return players[i];
+	}
+}
+
 void GameManager::Update() {
 	
 	coin->Update();
@@ -55,13 +62,14 @@ void GameManager::Update() {
 }
 
 void GameManager::Draw() {
-	if(winner ==0)
+	if (winner == 0) {
 		coin->Draw();
+	}
 }
 
 void GameManager::drawText() {
 	display->RenderText(message, textPos.x, textPos.y, 0.716f,
-		glm::vec3(1.0, 1.0f, 1.0f));
+		glm::vec3(.0, .0f, .0f));
 	
 	
 }

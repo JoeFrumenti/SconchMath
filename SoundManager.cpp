@@ -130,14 +130,17 @@ SoundManager::SoundManager() {
     for (int i = 0; i < MAX_VOICES; i++) {
         alGenSources(1, &sourcePool[i]);
     }
-    noises["cork"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/corkloud.wav");
-    noises["freeze"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/freeze.wav");
-    noises["unfreeze"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/unfreeze.wav");
-    noises["announce"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/slimevsice.mp3");
-    noises["slimewins"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/slimewins.mp3");
-    noises["icewins"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/icewins.mp3");
-    noises["powerup"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/powerup.wav");
-    noises["powerdown"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/powerdown.wav");
+    noises["announce"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/thiefvsslime.mp3");
+
+    noises["cork"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/corkloud.wav");
+    noises["freeze"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/freeze.wav");
+    noises["unfreeze"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/unfreeze.wav");
+    noises["slimewins"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/slimewins.mp3");
+    noises["icewins"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/icewins.mp3");
+    noises["thiefwins"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/thiefwins.mp3");
+    noises["powerup"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/powerup.wav");
+    noises["powerdown"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/powerdown.wav");
+    noises["bonk"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/bonk.mp3");
 
 }
 void SoundManager::setSong(std::string name) {

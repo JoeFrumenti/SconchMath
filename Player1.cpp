@@ -7,6 +7,8 @@ Player1::Player1(){
 	coin = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
 	parentModel = NULL;
 	UDManager::getInstance().addUD(this);
+	
+
 		
 }
 
@@ -15,6 +17,7 @@ void Player1::setParent(UD* parent){
 	coins = dynamic_cast<BouncingCube*>(Parent)->getStats().coins;
 	parentModel = dynamic_cast<BouncingCube*>(Parent)->getModel();
 	Parent->translate(glm::vec3(5.0f, .0f, 0.0f));
+	gameMan.setp1(dynamic_cast<BouncingCube*>(Parent));
 }
 
 void Player1::Update(){
@@ -52,8 +55,8 @@ void Player1::Draw(){
 void Player1::drawText(){
 	textShader->use();
 	textManager->RenderText(coinString, 69.25f, 678.25f, .7825f,
-		glm::vec3(1.0, 1.0f, 1.0f));
+		glm::vec3(.0, .0f, .0f));
 
 	textManager->RenderText(p1StatMsg, 32, 177, 0.4f,
-		glm::vec3(.0, 1.0f, .0f));
+		gameMan.getp1()->getStats().statColor);
 }

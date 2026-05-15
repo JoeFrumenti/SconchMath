@@ -1,15 +1,16 @@
 #include "PrefabLoader.h"
 
 BouncingCube* PrefabLoader::loadSlime() {
-    BouncingCube* cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
+    BouncingCube* cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/slimeball.obj");
     
     cube1->addTag("bcube");
+    cube1->getStats().statColor = glm::vec3(0.0f, 95.0f, 0.0f);
 
-    Player1* p1 = new Player1();
+    Player2* p2 = new Player2();
     CoinPickup* coinPickup = new CoinPickup();
 
     cube1->addChild(coinPickup);
-    cube1->addChild(p1);
+    cube1->addChild(p2);
 
     Launcher* slimeLauncher = Launcher::Create<SlimeBall>();
     UDManager::getInstance().addUD(slimeLauncher);
@@ -23,8 +24,8 @@ BouncingCube* PrefabLoader::loadSlime() {
 }
 
 BouncingCube* PrefabLoader::loadThief() {
-    BouncingCube* cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
-
+    BouncingCube* cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/Thief.obj");
+    cube1->getStats().statColor = glm::vec3(255.0f, 255.0f, 0.0f);
     cube1->addTag("bcube");
 
     Player1* p1 = new Player1();
@@ -37,10 +38,11 @@ BouncingCube* PrefabLoader::loadThief() {
     UDManager::getInstance().addUD(thiefLauncher);
     cube1->addChild(thiefLauncher);
     thiefLauncher->setParent(cube1);
+    thiefLauncher->setLaunchRate(0.8f);
 
-    cube1->getStats().name = "SLIME";
-    cube1->getStats().winSound = "slimewins";
-    cube1->getStats().statMsg = "Slime time: ";
+    cube1->getStats().name = "THIEF";
+    cube1->getStats().winSound = "thiefwins";
+    cube1->getStats().statMsg = "Coinsteal: ";
     return cube1;
 }
 
