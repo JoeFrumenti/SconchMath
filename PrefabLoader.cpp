@@ -4,7 +4,7 @@ BouncingCube* PrefabLoader::loadSlime() {
     BouncingCube* cube1 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/slimeball.obj");
     
     cube1->addTag("bcube");
-    cube1->getStats().statColor = glm::vec3(0.0f, 95.0f, 0.0f);
+    cube1->getStats().statColor = glm::vec3(.0f, .45f, .0f);
 
     Player2* p2 = new Player2();
     CoinPickup* coinPickup = new CoinPickup();
@@ -38,7 +38,7 @@ BouncingCube* PrefabLoader::loadThief() {
     UDManager::getInstance().addUD(thiefLauncher);
     cube1->addChild(thiefLauncher);
     thiefLauncher->setParent(cube1);
-    thiefLauncher->setLaunchRate(0.8f);
+    thiefLauncher->setLaunchRate(1.3f);
 
     cube1->getStats().name = "THIEF";
     cube1->getStats().winSound = "thiefwins";

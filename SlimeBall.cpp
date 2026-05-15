@@ -15,27 +15,7 @@ SlimeBall::SlimeBall(BouncingCube* parent) : Projectile(parent) {
 	scale = glm::vec3(1.0f, 1.0f, 1);
 	
 
-	std::mt19937 rng(std::random_device{}());
-	std::uniform_real_distribution<float> dist(-.25f, .25f);
-	float value = dist(rng);
-
-
-
-	float x1 = Parent->getPos().x;
-	float x2 = gameMan.getp2()->getPos().x;
-	float y1 = Parent->getPos().y;
-	float y2 = gameMan.getp2()->getPos().y;
-
-
-
-	float dx = x2 - x1 + dist(rng);
-	float dy = y2 - y1 + dist(rng);
-
-	float norm = std::sqrt(dx * dx + dy * dy);
-
-	glm::vec3 pVel = glm::vec3(dx / norm, dy / norm, 0) * glm::vec3(0.5f);
-
-	setVelocity(pVel);
+	seekEnemy();
 
 	setScale(glm::vec3(1, 1, 1));
 	isActive = true;

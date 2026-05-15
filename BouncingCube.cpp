@@ -72,8 +72,7 @@ void BouncingCube::Collide(Collision col) {
 			velocity.x += dvn * nx;
 			velocity.y += dvn * ny;
 
-			if (dynamic_cast<BouncingCube*>(obj)->getFrozen())
-				velocity = glm::normalize(velocity) * glm::vec3(speed);
+			velocity = glm::normalize(velocity) * glm::vec3(speed);
 						
 		}
 	}

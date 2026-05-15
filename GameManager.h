@@ -9,8 +9,7 @@ class GameManager: public UD {
 private:
 	InputManager& input = InputManager::getInstance();
 
-	glm::vec2 textPos = glm::vec2(192,729.0f);
-	
+	glm::vec2 textPos = glm::vec2(213,729.0f);
 
 	std::string p1StatMsg = "Slow time: 1";
 	std::string p2StatMsg = "Freeze time : 1";

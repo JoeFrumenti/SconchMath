@@ -28,13 +28,17 @@ BouncingCube* GameManager::getNearestEnemy(BouncingCube* target) {
 
 void GameManager::Update() {
 	
+	textPos.x += input.getInput().x;
+	if (input.isE())
+		std::cout << textPos.x << std::endl;
+
 	coin->Update();
 
 	if (winner == 0)
 	{
 		if (players[0]->getStats().coins >= 100) {
 			PlayerStats tempStats = players[0]->getStats();
-
+			textPos.x = 127;
 			players[1]->lose();
 			winner = 1;
 			message = "WINNER: " + tempStats.name;
