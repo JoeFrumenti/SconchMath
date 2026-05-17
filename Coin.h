@@ -37,7 +37,8 @@ private:
 public:
 
 	Coin();
-
+	Coin(int i);
+	~Coin();
 
 	void Update() override;
 

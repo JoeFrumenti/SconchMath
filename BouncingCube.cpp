@@ -9,17 +9,13 @@ BouncingCube::BouncingCube(std::string path) {
 	soundMan.addSound("bounce", "C:/Users/joefr/source/repos/SconchMath/assets/audio/chime.wav");
 
 	textShader = ShaderCollection::getInstance().getShader("Text");
-
 	CollisionManager& cm = CollisionManager::getInstance();
-
 	ourModel = new Model(path);
-
 	shader = ShaderCollection::getInstance().getShader("Model");
 	
 	width = .6f;
 	height = 0.6f;
 	stats.debuffTime = 1;
-
 
 	scale = glm::vec3(width);
 	cm.addObject(this);
@@ -81,10 +77,7 @@ void BouncingCube::Collide(Collision col) {
 
 void BouncingCube::screenBounce() {
 	
-	if (isSlowed)
-		pos += velocity * glm::vec3(0.2, 0.2, 0.2);
-	else
-		pos += velocity;
+	pos += velocity * glm::vec3(speedMultiplier);
 
 	if (pos.x + width >= 6 || pos.x - width <= -6) {
 			
@@ -130,10 +123,10 @@ void BouncingCube::Update() {
 	if (isFrozen) {
 		float elapsed = glfwGetTime() - freezeStartTime;
 		if (elapsed >= freezeDuration) {
-			isFrozen = false;
-			velocity = frozenVelocity;
+			speedMultiplier = 1.0f;
 			color = glm::vec4(1.0f, 1.0f, 1.0f,1);
 			soundMan.playSound("powerup", 0);
+			isFrozen = false;
 		}
 		return;
 	}
@@ -145,7 +138,7 @@ void BouncingCube::Update() {
 		{
 			isSlowed = false;
 			color = glm::vec4(1, 1, 1, 1);
-			velocity = glm::normalize(velocity) * glm::vec3(speed);
+			speedMultiplier = 1.0f;
 			soundMan.playSound("powerup", 0);
 		}
 	}
@@ -163,12 +156,12 @@ void BouncingCube::Update() {
 			return;
 		}
 	}
-
+	//std::cout << "Scale is: " << scale.x << scale.y << scale.z << std::endl;
 		
 }
 
 void BouncingCube::Draw(){
-	
+	shader->use();
 
 	for (UD* child : children) {
 		child->Draw();
@@ -183,14 +176,12 @@ void BouncingCube::Draw(){
 	shader->setMat4("model", model);
 	shader->setVec4("color", color);
 	ourModel->Draw(*shader);
-
+	//std::cout << "finished drawing cube\n";
 }
 
 void BouncingCube::freeze(float freezeTime) {
 	soundMan.playSound("unfreeze", 0);
-	if(!isFrozen)
-		frozenVelocity = velocity;
-	velocity = glm::vec3(0.0f, 0.0f, 0.0f);
+	speedMultiplier = 0.0f;
 	isFrozen = true;
 	freezeStartTime = glfwGetTime(); 
 	freezeDuration = freezeTime;
@@ -201,7 +192,7 @@ void BouncingCube::slow(float t) {
 	color = glm::vec4(0.5f, 1.0f, .5f, 1);
 	soundMan.playSound("powerdown", 0);
 		slowCap = t;
-		isSlowed = true;
+		speedMultiplier = 0.2f;
 		slowTimer = 0;
 	
 }

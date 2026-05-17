@@ -16,6 +16,8 @@ void Launcher::Update() {
 		launchTimer = 0;
 	}
 	
+	if (Parent->getLoser())
+		UDManager::getInstance().removeObject(ID);
 
 }
 

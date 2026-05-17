@@ -25,7 +25,7 @@ struct PlayerStats {
 	int coins = 0;
 
 };
-
+//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 class BouncingCube : public UD {
 
@@ -35,7 +35,8 @@ private:
 	glm::vec4 color = glm::vec4(1,1, 1, 1);
 	SoundManager& soundMan = SoundManager::getInstance();
 	PlayerStats stats;
-	
+
+	float speedMultiplier = 1.0f;
 	Shader* shader;
 	Shader* textShader;
 	

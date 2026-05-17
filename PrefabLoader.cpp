@@ -46,6 +46,29 @@ BouncingCube* PrefabLoader::loadThief() {
     return cube1;
 }
 
+BouncingCube* PrefabLoader::loadMoneyLine() {
+    BouncingCube* cube = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/Thief.obj");
+    cube->getStats().statColor = glm::vec3(255.0f, 255.0f, 0.0f);
+    cube->addTag("bcube");
+
+    Player1* p1 = new Player1();
+    CoinPickup* coinPickup = new CoinPickup();
+
+    cube->addChild(coinPickup);
+    cube->addChild(p1);
+
+    Launcher* thiefLauncher = Launcher::Create<MoneyLine>();
+    UDManager::getInstance().addUD(thiefLauncher);
+    cube->addChild(thiefLauncher);
+    thiefLauncher->setParent(cube);
+    thiefLauncher->setLaunchRate(0.5f);
+
+    cube->getStats().name = "THIEF";
+    cube->getStats().winSound = "thiefwins";
+    cube->getStats().statMsg = "Coinsteal: ";
+    return cube;
+}
+
 BouncingCube* PrefabLoader::loadIce() {
 
     BouncingCube* cube2 = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere2.obj");

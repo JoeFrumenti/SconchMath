@@ -1,5 +1,35 @@
 #include "SceneLoader.h"
 
+void SceneLoader::loadChaos() {
+    PrefabLoader prefabLoader = PrefabLoader();
+    UDManager& UDMan = UDManager::getInstance();
+    BouncingCube* cube = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj");
+    cube->translate(glm::vec3(.0f, .0f, -1.0f));
+    cube->addTag("bcube");
+ 
+
+    UDMan.addUD(cube);
+
+
+    BasicModel* bg = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj");
+    bg->translate(glm::vec3(0.0f, -10.0f, -3.0f));
+    bg->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
+    UDMan.addUD(bg);
+
+
+
+    BasicModel* foreground = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundBW.obj");
+
+    foreground->translate(glm::vec3(0.025f, 1.2f, -1.0f));
+    foreground->rotate(3.14159265358979 / 2, glm::vec3(.0f, 1.0f, 0.0f));
+    foreground->scale(glm::vec3(4.54999f, 4.81, 4.54999f));
+    UDMan.addUD(foreground);
+
+    
+
+
+}
+
 void SceneLoader::loadFightScene() {
     //GameObject setup & config
    
@@ -9,7 +39,7 @@ void SceneLoader::loadFightScene() {
     UDManager& UDMan = UDManager::getInstance();
 
 
-    BouncingCube* cube1 = prefabLoader.loadSlime();
+    BouncingCube* cube1 = prefabLoader.loadIce();
     UDMan.addUD(cube1);
 
     BouncingCube* cube2 = prefabLoader.loadThief();

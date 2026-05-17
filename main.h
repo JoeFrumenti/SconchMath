@@ -15,7 +15,6 @@ bool start = false;
 
 void processInput(GLFWwindow* window);
 
-
 const unsigned int SCR_WIDTH = 450;
 const unsigned int SCR_HEIGHT = 800;
 
@@ -23,14 +22,13 @@ Window& window = Window::getInstance();
 
 void init();
 
-auto& UDMan = UDManager::getInstance();
+UDManager& UDMan = UDManager::getInstance();
 
 CollisionManager& cm = CollisionManager::getInstance();
 
 const double TARGET_FPS = 60.0;
 const std::chrono::duration<double> FRAME_DURATION(1.0 / TARGET_FPS);
 
-int started = 0;
 SceneLoader sceneLoader = SceneLoader();
 
 
@@ -68,17 +66,14 @@ void renderLoop() {
 }
 
 void init() {
-    
     start = true;
-    SoundManager::getInstance().playImportantSound("announce");
+    //SoundManager::getInstance().playImportantSound("announce");
     UDMan.addUD(&MyTimer::getInstance());
-
 }
 
 void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS && !start) {
-        
         init();
     }
 
@@ -89,5 +84,5 @@ void processInput(GLFWwindow* window)
 
 void addGameObjects() {
     camera* cam = new camera(SCR_WIDTH, SCR_HEIGHT);
-    sceneLoader.loadFightScene();
+    sceneLoader.loadChaos();
 }

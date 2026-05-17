@@ -12,6 +12,7 @@
 #include "Launcher.h"
 #include "SlimeBall.h"
 #include "Thief.h"
+#include "MoneyLine.h"
 class PrefabLoader {
 private:
 
@@ -20,5 +21,6 @@ public:
 	BouncingCube* loadIce();
 	BouncingCube* loadMoneyBag();
 	BouncingCube* loadThief();
+	BouncingCube* loadMoneyLine();
 	DebugCube* loadDebugCube();
 };

@@ -13,7 +13,6 @@ void DropCoins::Update() {
 	pos = Parent->getPos();
 	if (glm::distance(pos, lastPos) >= 4) {
 		Coin* coin = new Coin();
-		coin->setId(idNum++);
 		coin->translate(pos);
 		UDMan.addUD(coin);
 		lastPos = pos;

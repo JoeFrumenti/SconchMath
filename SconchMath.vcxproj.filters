@@ -159,6 +159,12 @@
     <ClCompile Include="Thief.cpp">
       <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
     </ClCompile>
+    <ClCompile Include="MoneyLine.cpp">
+      <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
+    </ClCompile>
+    <ClCompile Include="Duplicator.cpp">
+      <Filter>Source Files\Entities\Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
@@ -286,8 +292,14 @@
     <ClInclude Include="Projectile.h">
       <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
     </ClInclude>
+    <ClInclude Include="MoneyLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Thief.h">
-      <Filter>Source Files\Entities\Behaviors\Bouncers</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Duplicator.h">
+      <Filter>Source Files\Entities\Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

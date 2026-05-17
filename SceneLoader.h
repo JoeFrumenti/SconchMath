@@ -4,4 +4,5 @@
 class SceneLoader {
 public:
 	void loadFightScene();
+	void loadChaos();
 };

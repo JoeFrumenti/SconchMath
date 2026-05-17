@@ -1,5 +1,20 @@
 #include "Coin.h"
 
+Coin::Coin(int i) {
+	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
+	pos = glm::vec3(.0f, .0f, .0f);
+	shader = ShaderCollection::getInstance().getShader("Model");
+	this->width = 0.25f * scaling;
+	this->height = 0.35f * scaling;
+	tags.push_back("coin");
+	soundMan.addSound("coin", "C:/Users/joefr/source/repos/SconchMath/assets/audio/chime3.wav");
+
+	color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+
+	collisions = i;
+	cm.addObject(this);
+}
+
 Coin::Coin() {
 	
 	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/coin.obj");
@@ -52,8 +67,14 @@ void Coin::Collide(Collision col)  {
 				timer = glfwGetTime();
 				timerRunning = true;
 			}
-			else
+			else {
 				UDMan.removeObject(ID);
+				
+			}
 		}
 	}
+}
+
+Coin::~Coin() {
+	std::cout << "Deleting coin\n";
 }

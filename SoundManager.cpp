@@ -130,7 +130,7 @@ SoundManager::SoundManager() {
     for (int i = 0; i < MAX_VOICES; i++) {
         alGenSources(1, &sourcePool[i]);
     }
-    noises["announce"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/thiefvsslime.mp3");
+    noises["announce"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/thiefvsice.mp3");
 
     noises["cork"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/corkloud.wav");
     noises["freeze"] = SoundBuffer::get()->addSoundEffect("C:/Users/joefr/source/repos/SconchMath/assets/audio/freeze.wav");

@@ -31,6 +31,7 @@ void UDManager::removeObject(int id) {
 	for (auto& obj : UDs) {
 		if (obj.first != id)
 			temp.insert(obj);
+
 	}
 	UDs = temp;
 

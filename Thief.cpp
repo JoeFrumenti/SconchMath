@@ -1,8 +1,4 @@
-#include "Projectile.h"
 #include "Thief.h"
-#include "UD.h"
-#include "Model.h"
-#include "BouncingCube.h"
 
 Thief::Thief(BouncingCube* parent) {
 	Parent = parent;
