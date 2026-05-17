@@ -3,12 +3,16 @@
 void SceneLoader::loadChaos() {
     PrefabLoader prefabLoader = PrefabLoader();
     UDManager& UDMan = UDManager::getInstance();
-    BouncingCube* cube = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj");
-    cube->translate(glm::vec3(.0f, .0f, -1.0f));
+    BouncingCube* cube = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
+    cube->setScale(glm::vec3(0.4f));
     cube->addTag("bcube");
  
 
     UDMan.addUD(cube);
+
+    Duplicator* dupe = new Duplicator();
+    dupe->translate(glm::vec3(0.0f, 2.0f, 0.0f));
+    dupe->setScale(glm::vec3(0.5f));
 
 
     BasicModel* bg = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj");

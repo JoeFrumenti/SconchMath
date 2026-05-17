@@ -13,6 +13,8 @@
 #include "SlimeBall.h"
 #include "Thief.h"
 #include "MoneyLine.h"
+#include "Duplicator.h"
+
 class PrefabLoader {
 private:
 

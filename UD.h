@@ -35,7 +35,7 @@ public:
 
 	virtual void setId(int id) { ID = id; };
 	virtual void setVelocity(glm::vec3 v) { this->velocity = v; }
-	virtual void setScale(glm::vec3 v) { this->scale = v; }
+	virtual void setScale(glm::vec3 v) { scale = v; }
 	virtual void setParent(UD* parent) {};
 
 	virtual void translate(glm::vec3 translation) {

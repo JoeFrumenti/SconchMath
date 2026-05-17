@@ -114,11 +114,8 @@ void BouncingCube::lose() {
 
 void BouncingCube::Update() {
 	
-
-	model = glm::mat4(1.0f);
-	model = glm::translate(model, pos);
-	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
-	model = glm::scale(model, scale);
+	std::cout << "scale is: " << scale.x << std::endl;
+	
 
 	if (isFrozen) {
 		float elapsed = glfwGetTime() - freezeStartTime;
@@ -161,6 +158,12 @@ void BouncingCube::Update() {
 }
 
 void BouncingCube::Draw(){
+	model = glm::mat4(1.0f);
+	model = glm::translate(model, pos);
+	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
+	model = glm::scale(model, scale);
+
+
 	shader->use();
 
 	for (UD* child : children) {
