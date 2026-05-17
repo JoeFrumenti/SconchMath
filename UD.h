@@ -30,8 +30,6 @@ public:
 	virtual glm::vec3 getVelocity() { return velocity; }
 	virtual glm::vec3 getScale() { return scale; }
 	virtual glm::vec3 getPos() { return pos; };
-	
-
 
 	virtual void setId(int id) { ID = id; };
 	virtual void setVelocity(glm::vec3 v) { this->velocity = v; }

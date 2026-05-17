@@ -42,6 +42,7 @@ private:
 	
 	bool loser = false;
 	float loserScale = 1.0f;
+	float rotationOffset = 0.0f;
 	
 	MyTimer& timer = MyTimer::getInstance();
 
@@ -76,5 +77,9 @@ public:
 	bool getSlow() { return isSlowed; }
 	glm::vec3 getFrozenVelocity() { return frozenVelocity; }
 
+	void setRotationOffset(float f) { rotationOffset = f; }
+
 	PlayerStats& getStats() { return this->stats; }
+
+	void setScale(glm::vec3) override;
 };

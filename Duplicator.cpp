@@ -5,11 +5,10 @@ Duplicator::Duplicator() {
 	
 	UDManager::getInstance().addUD(this);
 	CollisionManager::getInstance().addObject(this);
-	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj");
+	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere2.obj");
 	shader = ShaderCollection::getInstance().getShader("Model");
 	width = 0.5f;
 	height = 0.5f;
-	tags.push_back("bcube");
 
 }
 
@@ -24,7 +23,7 @@ float Duplicator::randomFloat(float min, float max) {
 void Duplicator::Update() {
 	model = glm::mat4(1.0f);
 	model = glm::translate(model, pos);
-	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
+	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.0f, 1.0f, 0.0f));
 	model = glm::scale(model, scale);
 }
 
@@ -35,6 +34,7 @@ void Duplicator::Collide(Collision col) {
 			cube->setScale(glm::vec3(0.4f));
 			cube->addTag("bcube");
 			cube->setVelocity(glm::normalize(glm::vec3(randomFloat(-1.0f,1.0f), randomFloat(-1.0f,0.0f), 0.0f)) * glm::vec3(0.25f));
+			cube->setRotationOffset(randomFloat(-1.0f, 1.0f));
 
 			UDManager::getInstance().addUD(cube);
 		}

@@ -21,6 +21,12 @@ BouncingCube::BouncingCube(std::string path) {
 	cm.addObject(this);
 }
 
+void BouncingCube::setScale(glm::vec3 v) {
+	scale = v;
+	width = scale.x;
+	height = scale.y;
+}
+
 void BouncingCube::win() {
 	velocity = glm::normalize(velocity) * glm::vec3(0.4);
 }
@@ -160,7 +166,7 @@ void BouncingCube::Update() {
 void BouncingCube::Draw(){
 	model = glm::mat4(1.0f);
 	model = glm::translate(model, pos);
-	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(.3f, .7f, 0.0f));
+	model = glm::rotate(model, (float)glfwGetTime() + rotationOffset, glm::vec3(rotationOffset, .7f, 0.0f));
 	model = glm::scale(model, scale);
 
 
