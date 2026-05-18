@@ -18,4 +18,5 @@ public:
 	void Update() override;
 	void Draw() override;
 	void Collide(Collision col) override;
+	void spawnCube();
 };

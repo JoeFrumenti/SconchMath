@@ -16,6 +16,8 @@
 #include "ShaderCollection.h"
 #include "MyTimer.h"
 
+#include "ModelCache.h"
+
 struct PlayerStats {
 	std::string winSound;
 	std::string name;

@@ -39,11 +39,12 @@ float randomFloat(float min, float max) {
 
 }
 
-void spawnCube() {
+void Block::spawnCube() {
     BouncingCube* cube = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
     cube->setScale(glm::vec3(0.4f));
     cube->addTag("bcube");
-    cube->setVelocity(glm::normalize(glm::vec3(randomFloat(-1.0f, 1.0f), randomFloat(-1.0f, 0.0f), 0.0f)) * glm::vec3(0.25f));
+    //cube->translate(pos);
+    cube->setVelocity(glm::normalize(glm::vec3(randomFloat(-1.0f, 1.0f), randomFloat(-1.0f, 1.0f), 0.0f)) * glm::vec3(0.2f));
     cube->setRotationOffset(randomFloat(-1.0f, 1.0f));
 
     UDManager::getInstance().addUD(cube);

@@ -168,6 +168,9 @@
     <ClCompile Include="Block.cpp">
       <Filter>Source Files\Entities\Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="ModelCache.cpp">
+      <Filter>Source Files\Engine\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
@@ -306,6 +309,9 @@
     </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelCache.h">
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

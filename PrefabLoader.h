@@ -15,6 +15,7 @@
 #include "MoneyLine.h"
 #include "Duplicator.h"
 #include "Block.h"
+#include "ModelCache.h"
 
 class PrefabLoader {
 private:

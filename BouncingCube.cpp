@@ -10,7 +10,7 @@ BouncingCube::BouncingCube(std::string path) {
 
 	textShader = ShaderCollection::getInstance().getShader("Text");
 	CollisionManager& cm = CollisionManager::getInstance();
-	ourModel = new Model(path);
+	ourModel = ModelCache::getInstance().getModel("cube");
 	shader = ShaderCollection::getInstance().getShader("Model");
 	
 	width = .6f;
