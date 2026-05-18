@@ -118,6 +118,21 @@ void BouncingCube::lose() {
 	
 }
 
+void BouncingCube::stayInBounds() {
+	if (pos.x + width >= 6 || pos.x - width <= -6) {
+
+		soundMan.playSong("bounce");
+		velocity.x = -velocity.x;
+		pos.x += velocity.x;
+
+	}
+	if (pos.y + height >= 11 || pos.y - height <= -11) {
+		soundMan.playSong("bounce");
+		velocity.y = -velocity.y;
+		pos.y += velocity.y;
+	}
+}
+
 void BouncingCube::Update() {
 	
 	
@@ -147,7 +162,8 @@ void BouncingCube::Update() {
 
 	lastPos = pos;
 
-	screenBounce();
+	pos += velocity * speedMultiplier;
+	stayInBounds();
 
 	if (loser) {
 		

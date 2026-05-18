@@ -70,7 +70,7 @@ public:
 	void freeze(float);
 	void slow(float);
 	void win();
-
+	void stayInBounds();
 
 	bool getLoser() { return loser; }
 	bool getFrozen() { return isFrozen; }

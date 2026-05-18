@@ -54,25 +54,15 @@ void Block::Collide(Collision col) {
 	for (auto& tag : col.obj->getTags()) {
         if(tag == "bcube")
         {
-            float blockLeft = pos.x - width / 2.0f;
-            float blockRight = pos.x + width / 2.0f;
-            float blockTop = pos.y - height / 2.0f;
-            float blockBottom = pos.y + height / 2.0f;
-
+            
             UD* ball = col.obj;
+            glm::vec3 ballPos = ball->getPos();
 
-            float overlapLeft = ball->getPos().x - blockLeft;
-            float overlapRight = blockRight - ball->getPos().x;
-            float overlapTop = ball->getPos().y - blockTop;
-            float overlapBottom = blockBottom - ball->getPos().y;
-
-            float minOverlap = std::min({ overlapLeft, overlapRight, overlapTop, overlapBottom });
-
-            if (minOverlap == overlapLeft || minOverlap == overlapRight) {
-                ball->setVelocity(glm::vec3(ball->getVelocity() * glm::vec3(-1, 1, 1)));
+            if (ballPos.x < pos.x - width || ballPos.x > pos.x + width) {
+                ball->setVelocity(ball->getVelocity() * glm::vec3(-1, 1, 1));
             }
-            else {
-                ball->setVelocity(glm::vec3(ball->getVelocity() * glm::vec3(1, -1, 1)));
+            else if (ballPos.y > pos.y + height || ballPos.y < pos.y - height) {
+                ball->setVelocity(ball->getVelocity() * glm::vec3(1, -1, 1));
             }
 
 
