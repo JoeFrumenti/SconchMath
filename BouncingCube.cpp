@@ -120,7 +120,6 @@ void BouncingCube::lose() {
 
 void BouncingCube::Update() {
 	
-	std::cout << "scale is: " << scale.x << std::endl;
 	
 
 	if (isFrozen) {

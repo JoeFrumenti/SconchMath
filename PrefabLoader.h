@@ -14,6 +14,7 @@
 #include "Thief.h"
 #include "MoneyLine.h"
 #include "Duplicator.h"
+#include "Block.h"
 
 class PrefabLoader {
 private:

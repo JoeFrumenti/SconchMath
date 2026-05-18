@@ -29,7 +29,8 @@ void SceneLoader::loadChaos() {
     foreground->scale(glm::vec3(4.54999f, 4.81, 4.54999f));
     UDMan.addUD(foreground);
 
-    
+    Block* block = new Block();
+    UDMan.addUD(block);
 
 
 }
