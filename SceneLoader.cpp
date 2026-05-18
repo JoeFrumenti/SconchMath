@@ -22,16 +22,25 @@ void SceneLoader::loadChaos() {
 
 
 
-    BasicModel* foreground = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundBW.obj");
+    /*BasicModel* foreground = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundBW.obj");
 
     foreground->translate(glm::vec3(0.025f, 1.2f, -1.0f));
     foreground->rotate(3.14159265358979 / 2, glm::vec3(.0f, 1.0f, 0.0f));
     foreground->scale(glm::vec3(4.54999f, 4.81, 4.54999f));
-    UDMan.addUD(foreground);
+    UDMan.addUD(foreground);*/
+    for (float i = -6.0f; i <= 6.0f; i += 1.0f) {
+        for (int j = 1; j <= 5; j++) {
 
-    Block* block = new Block();
-    block->translate(glm::vec3(1.0f, 1.0f, 0.0f));
-    UDMan.addUD(block);
+            Block* block = new Block();
+            block->translate(glm::vec3(i, j + 4, 0.0f));
+            UDMan.addUD(block);
+
+            Block* block2 = new Block();
+            block2->translate(glm::vec3(i, -j - 4, 0.0f));
+            UDMan.addUD(block2);
+
+        }
+    }
 
 
 }

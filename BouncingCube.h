@@ -23,7 +23,6 @@ struct PlayerStats {
 	glm::vec3 statColor = glm::vec3(.0f, .0f, .0f);
 	float debuffTime = 1.0f;
 	int coins = 0;
-
 };
 //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
@@ -35,6 +34,7 @@ private:
 	glm::vec4 color = glm::vec4(1,1, 1, 1);
 	SoundManager& soundMan = SoundManager::getInstance();
 	PlayerStats stats;
+	bool hasCollided = false;
 
 	float speedMultiplier = 1.0f;
 	Shader* shader;
@@ -82,4 +82,10 @@ public:
 	PlayerStats& getStats() { return this->stats; }
 
 	void setScale(glm::vec3) override;
+	void setCollided(bool b) {
+		hasCollided = true;
+	}
+	bool getCollided() {
+		return hasCollided;
+	}
 };

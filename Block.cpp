@@ -54,28 +54,31 @@ void Block::Collide(Collision col) {
 	for (auto& tag : col.obj->getTags()) {
         if(tag == "bcube")
         {
-            
-            UD* ball = col.obj;
-            glm::vec3 ballPos = ball->getPos();
+            BouncingCube* cube = dynamic_cast<BouncingCube*>(col.obj);
+            if (!cube->getCollided()) {
+                cube->setCollided(true);
+                UD* ball = col.obj;
+                glm::vec3 ballPos = ball->getPos();
 
-            if (ballPos.x < pos.x - width || ballPos.x > pos.x + width) {
-                ball->setVelocity(ball->getVelocity() * glm::vec3(-1, 1, 1));
-            }
-            else if (ballPos.y > pos.y + height || ballPos.y < pos.y - height) {
-                ball->setVelocity(ball->getVelocity() * glm::vec3(1, -1, 1));
-            }
+                if (ballPos.x < pos.x - width || ballPos.x > pos.x + width) {
+                    ball->setVelocity(ball->getVelocity() * glm::vec3(-1, 1, 1));
+                }
+                if (ballPos.y > pos.y + height || ballPos.y < pos.y - height) {
+                    ball->setVelocity(ball->getVelocity() * glm::vec3(1, -1, 1));
+                }
 
+                ball->translate(ball->getVelocity());
 
-            if (--hp >= 0) {
-                color -= glm::vec4(.3f, .3f, .3f,.0f);
-                
-            }
-            else {
-                UDManager::getInstance().queueRemoval(ID);
-                CollisionManager::getInstance().removeObject(ID);
-                spawnCube();
-            }
+                if (--hp >= 0) {
+                    color -= glm::vec4(.3f, .3f, .3f, .0f);
 
+                }
+                else {
+                    UDManager::getInstance().queueRemoval(ID);
+                    CollisionManager::getInstance().removeObject(ID);
+                    spawnCube();
+                }
+            }
         }
 	}
 }

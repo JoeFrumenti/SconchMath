@@ -134,7 +134,7 @@ void BouncingCube::stayInBounds() {
 }
 
 void BouncingCube::Update() {
-	
+	hasCollided = false;
 	
 
 	if (isFrozen) {
