@@ -25,10 +25,30 @@ void Block::Draw() {
     model = glm::scale(model, scale);
     shader->use();
     shader->setMat4("model", model);
+    shader->setVec4("color", color);
     ourModel->Draw(*shader);
 
     
 }
+
+float randomFloat(float min, float max) {
+
+    static std::mt19937 gen(std::random_device{}());
+    std::uniform_real_distribution<float> dist(min, max);
+    return dist(gen);
+
+}
+
+void spawnCube() {
+    BouncingCube* cube = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
+    cube->setScale(glm::vec3(0.4f));
+    cube->addTag("bcube");
+    cube->setVelocity(glm::normalize(glm::vec3(randomFloat(-1.0f, 1.0f), randomFloat(-1.0f, 0.0f), 0.0f)) * glm::vec3(0.25f));
+    cube->setRotationOffset(randomFloat(-1.0f, 1.0f));
+
+    UDManager::getInstance().addUD(cube);
+}
+
 
 void Block::Collide(Collision col) {
 	for (auto& tag : col.obj->getTags()) {
@@ -54,6 +74,18 @@ void Block::Collide(Collision col) {
             else {
                 ball->setVelocity(glm::vec3(ball->getVelocity() * glm::vec3(1, -1, 1)));
             }
+
+
+            if (--hp >= 0) {
+                color -= glm::vec4(.3f, .3f, .3f,.0f);
+                
+            }
+            else {
+                UDManager::getInstance().queueRemoval(ID);
+                CollisionManager::getInstance().removeObject(ID);
+                spawnCube();
+            }
+
         }
 	}
 }

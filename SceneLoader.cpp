@@ -10,9 +10,9 @@ void SceneLoader::loadChaos() {
 
     UDMan.addUD(cube);
 
-    Duplicator* dupe = new Duplicator();
+    /*Duplicator* dupe = new Duplicator();
     dupe->translate(glm::vec3(0.0f, 2.0f, 0.0f));
-    dupe->setScale(glm::vec3(0.5f));
+    dupe->setScale(glm::vec3(0.5f));*/
 
 
     BasicModel* bg = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj");
@@ -30,6 +30,7 @@ void SceneLoader::loadChaos() {
     UDMan.addUD(foreground);
 
     Block* block = new Block();
+    block->translate(glm::vec3(1.0f, 1.0f, 0.0f));
     UDMan.addUD(block);
 
 
