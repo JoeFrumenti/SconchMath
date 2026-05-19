@@ -7,6 +7,12 @@
 class Paddle : public UD {
 private:
 	InputManager input = InputManager::getInstance();
+
+	Model* ourModel;
+	glm::mat4 model;
+	Shader* shader;
+
+	float speed = .25f;
 public:
 	Paddle();
 	void Update() override;
