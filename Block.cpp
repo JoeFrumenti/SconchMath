@@ -43,7 +43,7 @@ void Block::spawnCube() {
     BouncingCube* cube = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
     cube->setScale(glm::vec3(0.4f));
     cube->addTag("bcube");
-    //cube->translate(pos);
+    cube->translate(glm::vec3(0,-3,0));
     cube->setVelocity(glm::normalize(glm::vec3(randomFloat(-1.0f, 1.0f), randomFloat(-1.0f, 1.0f), 0.0f)) * glm::vec3(0.2f));
     cube->setRotationOffset(randomFloat(-1.0f, 1.0f));
 
@@ -55,6 +55,7 @@ void Block::Collide(Collision col) {
 	for (auto& tag : col.obj->getTags()) {
         if(tag == "bcube")
         {
+        SoundManager::getInstance().playSong("bounce");
             BouncingCube* cube = dynamic_cast<BouncingCube*>(col.obj);
             if (!cube->getCollided()) {
                 cube->setCollided(true);
