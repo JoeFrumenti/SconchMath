@@ -16,6 +16,7 @@
 #include "Duplicator.h"
 #include "Block.h"
 #include "ModelCache.h"
+#include "Paddle.h"
 
 class PrefabLoader {
 private:

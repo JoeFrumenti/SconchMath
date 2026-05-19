@@ -57,6 +57,9 @@ void SceneLoader::loadChaos() {
         }
     }*/
 
+    Paddle* paddle = new Paddle();
+    UDMan.addUD(paddle);
+
 
 }
 

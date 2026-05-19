@@ -37,6 +37,7 @@
     <ClCompile Include="ModelCache.cpp" />
     <ClCompile Include="MoneyLine.cpp" />
     <ClCompile Include="Orbital.cpp" />
+    <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Player1.cpp" />
     <ClCompile Include="Player2.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -89,6 +90,7 @@
     <ClInclude Include="ModelCache.h" />
     <ClInclude Include="MoneyLine.h" />
     <ClInclude Include="Orbital.h" />
+    <ClInclude Include="Paddle.h" />
     <ClInclude Include="Player1.h" />
     <ClInclude Include="Player2.h" />
     <ClInclude Include="GameManager.h" />

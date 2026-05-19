@@ -171,6 +171,9 @@
     <ClCompile Include="ModelCache.cpp">
       <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Paddle.cpp">
+      <Filter>Source Files\Entities\Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
@@ -312,6 +315,9 @@
     </ClInclude>
     <ClInclude Include="ModelCache.h">
       <Filter>Source Files\Engine\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Paddle.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
