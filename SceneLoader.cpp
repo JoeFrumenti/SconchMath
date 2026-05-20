@@ -2,6 +2,8 @@
 
 void SceneLoader::loadChaos() {
     ModelCache::getInstance().addModel("cube", new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj"));
+    ModelCache::getInstance().addModel("block", new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/brickBlock.obj"));
+    ModelCache::getInstance().addModel("iron", new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj"));
 
     PrefabLoader prefabLoader = PrefabLoader();
     UDManager& UDMan = UDManager::getInstance();
@@ -24,7 +26,21 @@ void SceneLoader::loadChaos() {
 
 
     
-    BlockGrid* grid = new BlockGrid(0, 0);
+    BlockGrid* grid = new BlockGrid(13, 14);
+    for (int i = 0; i < 13; i++)
+        grid->setIron(i, 13);
+
+    for (int i = 0; i < 14; i++) {
+        grid->removeBlock(6, i);
+        grid->setIron(5, i);
+        grid->setIron(7, i);
+    }
+
+
+    using namespace std;
+
+   
+
 
     Paddle* paddle = new Paddle();
     paddle->translate(glm::vec3(0, -10, 0));
