@@ -12,7 +12,7 @@ private:
 	glm::mat4 model;
 	Shader* shader;
 
-	float speed = .25f;
+	float speed = .5f;
 public:
 	Paddle();
 	void Update() override;

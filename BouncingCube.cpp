@@ -13,8 +13,8 @@ BouncingCube::BouncingCube(std::string path) {
 	ourModel = ModelCache::getInstance().getModel("cube");
 	shader = ShaderCollection::getInstance().getShader("Model");
 	
-	width = .6f;
-	height = 0.6f;
+	width = .2f;
+	height = 0.2f;
 	stats.debuffTime = 1;
 
 	scale = glm::vec3(width);
@@ -126,10 +126,14 @@ void BouncingCube::stayInBounds() {
 		pos.x += velocity.x;
 
 	}
-	if (pos.y + height >= 11 || pos.y - height <= -11) {
+	if (pos.y + height >= 11 /* || pos.y - height <= -11*/) {
 		soundMan.playSong("bounce");
 		velocity.y = -velocity.y;
 		pos.y += velocity.y;
+	}
+	if (pos.y <= -12) {
+		UDManager::getInstance().queueRemoval(ID);
+		CollisionManager::getInstance().removeObject(ID);
 	}
 }
 

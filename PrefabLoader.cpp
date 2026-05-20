@@ -104,3 +104,12 @@ DebugCube* PrefabLoader::loadDebugCube() {
     dc->setScale(glm::vec3(0.1, .1, .1));
     return dc;
 }
+
+BasicModel* loadForeground() {
+    BasicModel* foreground = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundBW.obj");
+
+    foreground->translate(glm::vec3(0.025f, 1.2f, -1.0f));
+    foreground->rotate(3.14159265358979 / 2, glm::vec3(.0f, 1.0f, 0.0f));
+    foreground->scale(glm::vec3(4.54999f, 4.81, 4.54999f));
+    return (foreground);
+}

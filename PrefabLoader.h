@@ -28,4 +28,5 @@ public:
 	BouncingCube* loadThief();
 	BouncingCube* loadMoneyLine();
 	DebugCube* loadDebugCube();
+	BasicModel* loadForeground();
 };

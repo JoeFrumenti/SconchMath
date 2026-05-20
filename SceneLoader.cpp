@@ -6,16 +6,14 @@ void SceneLoader::loadChaos() {
     PrefabLoader prefabLoader = PrefabLoader();
     UDManager& UDMan = UDManager::getInstance();
     BouncingCube* cube = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
-    cube->setScale(glm::vec3(0.4f));
-    cube->translate(glm::vec3(0, -3, 0));
+    cube->setScale(glm::vec3(0.2f));
+    cube->translate(glm::vec3(0, -4, 0));
+    cube->setVelocity(glm::vec3(0.1f, -0.25f, 0.0f));
     cube->addTag("bcube");
  
 
     UDMan.addUD(cube);
 
-    /*Duplicator* dupe = new Duplicator();
-    dupe->translate(glm::vec3(0.0f, 2.0f, 0.0f));
-    dupe->setScale(glm::vec3(0.5f));*/
 
 
     BasicModel* bg = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundPB.obj");
@@ -25,39 +23,11 @@ void SceneLoader::loadChaos() {
 
 
 
-    /*BasicModel* foreground = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/backgroundBW.obj");
-
-    foreground->translate(glm::vec3(0.025f, 1.2f, -1.0f));
-    foreground->rotate(3.14159265358979 / 2, glm::vec3(.0f, 1.0f, 0.0f));
-    foreground->scale(glm::vec3(4.54999f, 4.81, 4.54999f));
-    UDMan.addUD(foreground);*/
-    for (float i = -6.0f; i <= 6.0f; i += 1.0f) {
-        for (int j = -4; j <= 9; j++) {
-
-            Block* block = new Block();
-            block->translate(glm::vec3(i, j + 2, 0.0f));
-            UDMan.addUD(block);
-
-            /*Block* block2 = new Block();
-            block2->translate(glm::vec3(i, -j - 2, 0.0f));
-            UDMan.addUD(block2);*/
-
-        }
-    }
-
-    /*for (float i = 0.0f; i <= 3.0f; i += 1.0f) {
-        for (int j = -2; j <= 2; j++) {
-            Block* block = new Block();
-            block->translate(glm::vec3(i + 3, j, 0.0f));
-            UDMan.addUD(block);
-
-            Block* block2 = new Block();
-            block2->translate(glm::vec3(-i - 3, j, 0.0f));
-            UDMan.addUD(block2);
-        }
-    }*/
+    
+    BlockGrid* grid = new BlockGrid(0, 0);
 
     Paddle* paddle = new Paddle();
+    paddle->translate(glm::vec3(0, -10, 0));
     UDMan.addUD(paddle);
 
 

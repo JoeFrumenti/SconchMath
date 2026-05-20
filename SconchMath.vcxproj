@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="BasicModel.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="BlockGrid.cpp" />
     <ClCompile Include="BouncingCube.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="coin.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="..\..\include\Shaders\shader.h" />
     <ClInclude Include="BasicModel.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="BlockGrid.h" />
     <ClInclude Include="BouncingCube.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Coin.h" />
