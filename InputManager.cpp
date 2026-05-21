@@ -9,6 +9,21 @@ InputManager::InputManager() {
 	window = Window::getInstance().get();
 }
 
+glm::vec3 InputManager::getMouseMovement() {
+	double mouseX, mouseY;
+	glfwGetCursorPos(window, &mouseX, &mouseY);
+
+	int winWidth, winHeight;
+	glfwGetWindowSize(window, &winWidth, &winHeight);
+
+	// Convert to normalized -1..1 range, flip Y so up is positive
+	float x = (float)(mouseX / winWidth) * 2.0f - 1.0f;
+
+	return glm::vec3(x, 0, 0);
+}
+
+
+
 glm::vec3 InputManager::getInput() {
 	int x = 0;
 	int y = 0;

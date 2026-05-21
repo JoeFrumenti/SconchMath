@@ -73,6 +73,7 @@ public:
 	void slow(float);
 	void win();
 	void stayInBounds();
+	void spawnClone();
 
 	bool getLoser() { return loser; }
 	bool getFrozen() { return isFrozen; }

@@ -16,6 +16,7 @@ public:
 	InputManager();
 	glm::vec3 getInput();
 	glm::vec3 getInputWASD();
+	glm::vec3 getMouseMovement();
 
 	static InputManager& getInstance() {
 		static InputManager instance;

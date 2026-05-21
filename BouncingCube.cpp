@@ -1,5 +1,6 @@
 
 #include "BouncingCube.h"
+#include <random>
 Model* BouncingCube::getModel() {
 	return ourModel;
 }
@@ -205,6 +206,26 @@ void BouncingCube::Draw(){
 	shader->setVec4("color", color);
 	ourModel->Draw(*shader);
 	//std::cout << "finished drawing cube\n";
+}
+
+float randomFloaty(float min, float max) {
+
+	static std::mt19937 gen(std::random_device{}());
+	std::uniform_real_distribution<float> dist(min, max);
+	return dist(gen);
+
+}
+
+void BouncingCube::spawnClone() {
+
+	BouncingCube* cubey = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
+	cubey->setScale(glm::vec3(0.2f));
+	cubey->addTag("bcube");
+	cubey->translate(pos + glm::vec3(0,0.2,0));
+	cubey->setVelocity(glm::normalize(glm::vec3(1.0f,1.0f, 0.0f)) * glm::vec3(0.2f));
+	cubey->setRotationOffset(randomFloaty(-1.0f, 1.0f));
+
+	UDManager::getInstance().addUD(cubey);
 }
 
 void BouncingCube::freeze(float freezeTime) {

@@ -12,6 +12,8 @@ private:
 	glm::mat4 model;
 	Shader* shader;
 
+	glm::vec3 lastPos;
+
 	float speed = .5f;
 public:
 	Paddle();

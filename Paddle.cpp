@@ -4,16 +4,17 @@ Paddle::Paddle() {
 	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/paddle.obj");
 	shader = ShaderCollection::getInstance().getShader("Model");
 
-	width = 1.45f;
+	width = 1.9f;
 	height = .2f;
 	CollisionManager::getInstance().addObject(this);
 }
 
 void Paddle::Update() {
-	velocity = InputManager::getInstance().getInput() * speed;
-	pos += velocity;
-	if (InputManager::getInstance().isE())
-		std::cout << pos.x << " " << pos.y << " " << pos.z << std::endl;
+	lastPos = pos;
+	velocity = InputManager::getInstance().getMouseMovement() * speed;
+	pos = glm::vec3(velocity.x * 8, pos.y, pos.z);
+	
+	velocity = pos - lastPos;
 }
 
 void Paddle::Draw() {
