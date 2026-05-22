@@ -25,16 +25,8 @@ void SceneLoader::loadChaos() {
 
 
 
-    
-    BlockGrid* grid = new BlockGrid(13, 14);
-    for (int i = 0; i < 13; i++)
-        grid->setIron(i, 13);
-
-    for (int i = 0; i < 14; i++) {
-        grid->removeBlock(6, i);
-        grid->setIron(5, i);
-        grid->setIron(7, i);
-    }
+    LevelBuilder* levelBuilder = new LevelBuilder();
+    levelBuilder->buildLevel();
 
 
     using namespace std;

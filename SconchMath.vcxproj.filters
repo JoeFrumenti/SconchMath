@@ -177,6 +177,9 @@
     <ClCompile Include="BlockGrid.cpp">
       <Filter>Source Files\Entities\Loaders</Filter>
     </ClCompile>
+    <ClCompile Include="LevelBuilder.cpp">
+      <Filter>Source Files\Entities\Loaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
@@ -323,6 +326,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BlockGrid.h">
+      <Filter>Source Files\Entities\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelBuilder.h">
       <Filter>Source Files\Entities\Loaders</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,10 +7,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <unordered_set>
+
+#include "Window.h"
+
 
 class InputManager {
 private:
 	GLFWwindow* window;
+	std::unordered_set<int> heldKeys;
 
 public: 
 	InputManager();
@@ -22,6 +27,8 @@ public:
 		static InputManager instance;
 		return instance;
 	}
+
+	int getPressedKey();
 
 	bool isE();
 

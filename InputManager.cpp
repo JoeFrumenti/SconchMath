@@ -1,9 +1,6 @@
 #include "InputManager.h"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
-#include "Window.h"
 
 InputManager::InputManager() {
 	window = Window::getInstance().get();
@@ -22,7 +19,25 @@ glm::vec3 InputManager::getMouseMovement() {
 	return glm::vec3(x, 0, 0);
 }
 
+int InputManager::getPressedKey() {
+	// GLFW key range: 32 (SPACE) to 348 (last defined key)
+	for (int key = 32; key <= GLFW_KEY_LAST; key++) {
+		int state = glfwGetKey(window, key);
 
+		if (state == GLFW_PRESS) {
+			// Only return the key if it wasn't already held last frame
+			if (heldKeys.find(key) == heldKeys.end()) {
+				heldKeys.insert(key);
+				return key;
+			}
+		}
+		else if (state == GLFW_RELEASE) {
+			heldKeys.erase(key);
+		}
+	}
+
+	return -1; // No new key pressed this frame
+}
 
 glm::vec3 InputManager::getInput() {
 	int x = 0;

@@ -33,6 +33,7 @@
     <ClCompile Include="Icey.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Launcher.cpp" />
+    <ClCompile Include="LevelBuilder.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelCache.cpp" />
@@ -86,6 +87,7 @@
     <ClInclude Include="Icey.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Launcher.h" />
+    <ClInclude Include="LevelBuilder.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
