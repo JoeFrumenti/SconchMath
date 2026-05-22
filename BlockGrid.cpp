@@ -11,6 +11,7 @@ BlockGrid::BlockGrid(int m, int n) {
 void BlockGrid::addBlock(int i, int j) {
     Block* block = new Block(this);
     block->translate(glm::vec3(i * blockSize * 2 + origin.x, -j * blockSize * 2 + origin.y, 0.0f));
+    block->setScale(glm::vec3(blockSize));
     grid[i][j] = block;
     UDManager::getInstance().addUD(block);
 }

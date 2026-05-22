@@ -22,7 +22,8 @@ private:
 
 	glm::vec2 index;
 	glm::vec2 origin;
-	glm::vec2 dimensions;
+	glm::vec2 dimensions = glm::vec2(13,14);
+	char type = 'R';
 
 public:
 	LevelBuilder();

@@ -1,14 +1,15 @@
 #include "LevelBuilder.h"
 
 LevelBuilder::LevelBuilder() {
-    grid = new BlockGrid(13, 14);
+    grid = new BlockGrid(dimensions.x,dimensions.y);
 
     shader = ShaderCollection::getInstance().getShader("Model");
     UDManager::getInstance().addUD(this);
     ourModel = ModelCache::getInstance().getModel("block");
 
-    scale = glm::vec3(grid->getBlockSize());
-    dimensions = grid->getDimensions();
+    scale = glm::vec3(0.5f);
+    grid->setDimensions(dimensions);
+    grid->setBlockSize(scale.x);
     origin = grid->getOrigin();
 
     pos = glm::vec3(origin.x,origin.y, 0);
@@ -34,12 +35,25 @@ void LevelBuilder::buildLevel(const std::string& filename) {
 
 void LevelBuilder::Update() {
     int key = InputManager::getInstance().getPressedKey();
-    if (key == GLFW_KEY_P) {
+
+    if (key == GLFW_KEY_I) {
+        type = 'I';
+        ourModel = ModelCache::getInstance().getModel("iron");
+    }
+
+    else if (key == GLFW_KEY_R) {
+        type = 'R';
+        ourModel = ModelCache::getInstance().getModel("block");
+    }
+
+    else if (key == GLFW_KEY_P) {
 
         std::cout << "P pressed\n";
         std::ofstream file("C:/Users/joefr/source/repos/SconchMath/assets/Levels/TestLevel.txt", std::ios::app);  // append mode
-        file << index.x << "," << index.y << "," << "R" << "\n";
+        file << index.x << "," << index.y << "," << type << "\n";
         grid->addBlock(index.x, index.y);
+        if (type == 'I')
+            grid->setIron(index.x, index.y);
     }
     else if (key == GLFW_KEY_RIGHT && index.x <dimensions.x - 1) {
         pos.x += grid->getBlockSize() * 2;

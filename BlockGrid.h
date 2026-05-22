@@ -37,4 +37,7 @@ public:
 	glm::vec2 getOrigin() { return origin; }
 	glm::vec2 getDimensions() { return dimensions; }
 
+	void setDimensions(glm::vec2 s) { dimensions = s; }
+	void setBlockSize(float s) { blockSize = s; }
+
 };
