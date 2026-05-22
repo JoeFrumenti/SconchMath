@@ -1,13 +1,17 @@
 #pragma once
 
 #include <iostream>
-#include <iomanip>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 #include "InputManager.h"
 #include "BlockGrid.h"
 #include "BasicModel.h"
 #include "ModelCache.h"
 #include "ShaderCollection.h"
+
+
 
 class LevelBuilder:public UD {
 private:
@@ -22,7 +26,7 @@ private:
 
 public:
 	LevelBuilder();
-	void buildLevel();
+	void buildLevel(const std::string& filename);
 	void Update() override;
 	void Draw()override;
 

@@ -26,7 +26,7 @@ void SceneLoader::loadChaos() {
 
 
     LevelBuilder* levelBuilder = new LevelBuilder();
-    levelBuilder->buildLevel();
+    levelBuilder->buildLevel("C:/Users/joefr/source/repos/SconchMath/assets/Levels/TestLevel.txt");
 
 
     using namespace std;

@@ -14,9 +14,22 @@ LevelBuilder::LevelBuilder() {
     pos = glm::vec3(origin.x,origin.y, 0);
 }
 
-void LevelBuilder::buildLevel() {
-    grid->addBlock(0, 0);
-    grid->addBlock(1, 3);
+void LevelBuilder::buildLevel(const std::string& filename) {
+    std::ifstream file(filename);
+    std::string line;
+
+    while (std::getline(file, line)) {
+        std::istringstream ss(line);
+        std::string token;
+
+        std::getline(ss, token, ','); int x = std::stoi(token);
+        std::getline(ss, token, ','); int y = std::stoi(token);
+        std::getline(ss, token, ','); char type = token[0];
+
+        grid->addBlock(x, y);
+        if (type == 'I')
+            grid->setIron(x, y);
+    }
 }
 
 void LevelBuilder::Update() {
@@ -31,11 +44,11 @@ void LevelBuilder::Update() {
         pos.x -= grid->getBlockSize() * 2;
         index.x--;
     }
-    else if (key == GLFW_KEY_UP && index.y < dimensions.y - 1) {
+    else if (key == GLFW_KEY_UP && index.y > 0) {
         pos.y += grid->getBlockSize() * 2;
         index.y--;
     }
-    else if (key == GLFW_KEY_DOWN && index.y > 0) {
+    else if (key == GLFW_KEY_DOWN && index.y < dimensions.y - 1) {
         pos.y -= grid->getBlockSize() * 2;
         index.y++;
     }
