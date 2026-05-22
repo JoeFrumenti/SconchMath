@@ -74,8 +74,8 @@ void Block::Collide(Collision col) {
                     || (ballPos.x > pos.x + width * 0.9 && !grid->isRight(cell.x,cell.y))) {
                     ball->setVelocity(ball->getVelocity() * glm::vec3(-1, 1, 1));
                 }
-                else if ((ballPos.y > pos.y + height * 0.9 && !grid->isAbove(cell.x,cell.y)) 
-                    || (ballPos.y < pos.y - height * 0.9 && !grid->isBelow(cell.x,cell.y))) {
+                else if ((ballPos.y > pos.y + height * 0.85 && !grid->isAbove(cell.x,cell.y)) 
+                    || (ballPos.y < pos.y - height * 0.85 && !grid->isBelow(cell.x,cell.y))) {
                     ball->setVelocity(ball->getVelocity() * glm::vec3(1, -1, 1));
                 }
                 else
