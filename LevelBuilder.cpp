@@ -34,8 +34,13 @@ void LevelBuilder::buildLevel(const std::string& filename) {
 
 void LevelBuilder::Update() {
     int key = InputManager::getInstance().getPressedKey();
-    if (key == GLFW_KEY_P)
+    if (key == GLFW_KEY_P) {
+
         std::cout << "P pressed\n";
+        std::ofstream file("C:/Users/joefr/source/repos/SconchMath/assets/Levels/TestLevel.txt", std::ios::app);  // append mode
+        file << index.x << "," << index.y << "," << "R" << "\n";
+        grid->addBlock(index.x, index.y);
+    }
     else if (key == GLFW_KEY_RIGHT && index.x <dimensions.x - 1) {
         pos.x += grid->getBlockSize() * 2;
         index.x++;
