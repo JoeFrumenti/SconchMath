@@ -7,6 +7,7 @@ class Block;
 class BlockGrid :public UD {
 private: 
 	std::vector<std::vector<Block*>> grid;
+	float blockSize;
 public:
 	BlockGrid(int m, int n);
 	void setBlock(int i, int j, Block* b);
@@ -27,4 +28,5 @@ public:
 	bool isRight(int m, int n);
 
 	void setIron(int m, int n);
+	void addBlock(int, int);
 };
