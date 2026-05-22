@@ -14,6 +14,7 @@ private:
 	Model* ourModel;
 	Shader* shader;
 	glm::mat4 model;
+	BlockGrid* grid;
 public:
 	LevelBuilder();
 	void buildLevel();

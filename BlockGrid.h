@@ -7,7 +7,9 @@ class Block;
 class BlockGrid :public UD {
 private: 
 	std::vector<std::vector<Block*>> grid;
-	float blockSize;
+
+	float blockSize = 0.5f;
+	glm::vec2 origin = glm::vec2(-6, 9);
 public:
 	BlockGrid(int m, int n);
 	void setBlock(int i, int j, Block* b);
@@ -29,4 +31,7 @@ public:
 
 	void setIron(int m, int n);
 	void addBlock(int, int);
+
+	float getBlockSize() { return blockSize; }
+
 };

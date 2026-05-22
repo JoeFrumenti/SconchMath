@@ -1,27 +1,17 @@
 #include "BlockGrid.h"
 #include "Block.h"
 
+
 BlockGrid::BlockGrid(int m, int n) {
-    blockSize = 0.4f;
 
-    grid.resize(m, std::vector<Block*>(n, nullptr));  // size the grid first
+    grid.resize(m, std::vector<Block*>(n, nullptr));  
 
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            Block* block = new Block(this);
-
-            block->translate(glm::vec3((float)i * (blockSize * 2.0f) - 6.0f, -(float)j * (blockSize * 2.0f) + 9.0f, 0.0f));
-            block->setScale(glm::vec3(blockSize));
-            UDManager::getInstance().addUD(block);
-            grid[i][j] = block;
-            block->setCell(i, j);
-        }
-    }
 }
 
 void BlockGrid::addBlock(int i, int j) {
     Block* block = new Block(this);
-    block->translate(glm::vec3(i - 6.0f, -j + 9.0f, 0.0f));
+    block->translate(glm::vec3(i * blockSize * 2 + origin.x, -j * blockSize * 2 + origin.y, 0.0f));
+    UDManager::getInstance().addUD(block);
 }
 
 void BlockGrid::removeBlock(int m, int n) {
