@@ -13,6 +13,7 @@ void BlockGrid::addBlock(int i, int j) {
     block->translate(glm::vec3(i * blockSize * 2 + origin.x, -j * blockSize * 2 + origin.y, 0.0f));
     block->setScale(glm::vec3(blockSize));
     grid[i][j] = block;
+    block->setCell(i, j);
     UDManager::getInstance().addUD(block);
 }
 
