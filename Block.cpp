@@ -6,7 +6,7 @@ Block::Block(BlockGrid* blockGrid) {
     CollisionManager& cm = CollisionManager::getInstance();
     ourModel = ModelCache::getInstance().getModel("block");
     shader = ShaderCollection::getInstance().getShader("Model");
-
+    pos = glm::vec3(0);
     width = .5f;
     height = .5f;
 

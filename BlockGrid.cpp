@@ -3,7 +3,7 @@
 
 
 BlockGrid::BlockGrid(int m, int n) {
-
+    dimensions = glm::vec2(m, n);
     grid.resize(m, std::vector<Block*>(n, nullptr));  
 
 }

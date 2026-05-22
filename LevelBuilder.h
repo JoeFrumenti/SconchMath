@@ -15,6 +15,11 @@ private:
 	Shader* shader;
 	glm::mat4 model;
 	BlockGrid* grid;
+
+	glm::vec2 index;
+	glm::vec2 origin;
+	glm::vec2 dimensions;
+
 public:
 	LevelBuilder();
 	void buildLevel();

@@ -10,6 +10,7 @@ private:
 
 	float blockSize = 0.5f;
 	glm::vec2 origin = glm::vec2(-6, 9);
+	glm::vec2 dimensions;
 public:
 	BlockGrid(int m, int n);
 	void setBlock(int i, int j, Block* b);
@@ -33,5 +34,7 @@ public:
 	void addBlock(int, int);
 
 	float getBlockSize() { return blockSize; }
+	glm::vec2 getOrigin() { return origin; }
+	glm::vec2 getDimensions() { return dimensions; }
 
 };

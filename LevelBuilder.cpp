@@ -8,6 +8,10 @@ LevelBuilder::LevelBuilder() {
     ourModel = ModelCache::getInstance().getModel("block");
 
     scale = glm::vec3(grid->getBlockSize());
+    dimensions = grid->getDimensions();
+    origin = grid->getOrigin();
+
+    pos = glm::vec3(origin.x,origin.y, 0);
 }
 
 void LevelBuilder::buildLevel() {
@@ -19,14 +23,22 @@ void LevelBuilder::Update() {
     int key = InputManager::getInstance().getPressedKey();
     if (key == GLFW_KEY_P)
         std::cout << "P pressed\n";
-    else if (key == GLFW_KEY_RIGHT)
+    else if (key == GLFW_KEY_RIGHT && index.x <dimensions.x - 1) {
         pos.x += grid->getBlockSize() * 2;
-    else if (key == GLFW_KEY_LEFT)
+        index.x++;
+    }
+    else if (key == GLFW_KEY_LEFT && index.x > 0) {
         pos.x -= grid->getBlockSize() * 2;
-    else if (key == GLFW_KEY_UP)
+        index.x--;
+    }
+    else if (key == GLFW_KEY_UP && index.y < dimensions.y - 1) {
         pos.y += grid->getBlockSize() * 2;
-    else if (key == GLFW_KEY_DOWN)
+        index.y--;
+    }
+    else if (key == GLFW_KEY_DOWN && index.y > 0) {
         pos.y -= grid->getBlockSize() * 2;
+        index.y++;
+    }
 }
 
 void LevelBuilder::Draw() {
