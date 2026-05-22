@@ -23,7 +23,10 @@ void SceneLoader::loadChaos() {
     bg->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
     UDMan.addUD(bg);
 
-
+    BasicModel* powerup = new BasicModel("C:/Users/joefr/source/repos/SconchMath/assets/Models/powerup.obj");
+    powerup->translate(glm::vec3(0.0f, 0.0f, .0f));
+    powerup->rotate(3.14159265358979f/2, glm::vec3(1.0f, .0f, .0f));
+    UDMan.addUD(powerup);
 
     LevelBuilder* levelBuilder = new LevelBuilder();
     levelBuilder->buildLevel("C:/Users/joefr/source/repos/SconchMath/assets/Levels/TestLevel.txt");
