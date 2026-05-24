@@ -27,4 +27,6 @@ public:
 	void setCell(int m, int n) { cell = glm::vec2(m, n); }
 	glm::vec2 getCell() { return cell; }
 	void setIron();
+	glm::vec3 getCollisionPoint(BouncingCube* ball);
+	glm::vec3 getBounceDirection(glm::vec3 colPoint, float w, float h);
 };
