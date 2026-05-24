@@ -136,6 +136,7 @@ void BouncingCube::stayInBounds() {
 	if (pos.y <= -12) {
 		UDManager::getInstance().queueRemoval(ID);
 		CollisionManager::getInstance().removeObject(ID);
+		BallContainer::getInstance().removeBall(this);
 	}
 }
 

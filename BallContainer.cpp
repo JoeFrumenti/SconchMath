@@ -6,8 +6,9 @@ void BallContainer::addBall(BouncingCube* ball) {
 }
 
 void BallContainer::multiplyBalls(int mult) {
-	for (BouncingCube* ball : balls) {
-		ball->spawnClone();
+	int j = balls.size();
+	for (int i = 0; i < j; i++) {
+		balls[i]->spawnClone();
 	}
 }
 void BallContainer::removeBall(BouncingCube* ball) {

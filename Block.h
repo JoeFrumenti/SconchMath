@@ -5,6 +5,7 @@
 #include "ShaderCollection.h"
 #include "BouncingCube.h"
 #include "BlockGrid.h"
+#include "Powerup.h"
 #include <random>
 
 class Block : public UD {

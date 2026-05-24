@@ -89,7 +89,8 @@ void Block::Collide(Collision col) {
                 }
                 else if (hp == -1) {
                     grid->removeBlock(cell.x, cell.y);
-                    cube->spawnClone();
+                    Powerup* pUp = new Powerup(1);
+                    pUp->translate(pos);
                 }
                 
             }
