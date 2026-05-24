@@ -18,7 +18,6 @@ void Powerup::Draw() {
 	mMatrix = glm::scale(mMatrix, glm::vec3(0.5f));
 
 
-	shader->use();
 	shader->setMat4("model", mMatrix);
 	shader->setVec4("color", glm::vec4(1.0f));
 

@@ -6,6 +6,7 @@ Block::Block(BlockGrid* blockGrid) {
     CollisionManager& cm = CollisionManager::getInstance();
     ourModel = ModelCache::getInstance().getModel("block");
     shader = ShaderCollection::getInstance().getShader("Model");
+    shader->use();
     pos = glm::vec3(0);
     width = .5f;
     height = .5f;
@@ -26,7 +27,7 @@ void Block::Draw() {
     model = glm::translate(model, pos);
     model = glm::rotate(model, 3.141590f, glm::vec3(0,1,0));
     model = glm::scale(model, scale);
-    shader->use();
+    
     shader->setMat4("model", model);
     shader->setVec4("color", color);
     ourModel->Draw(*shader);

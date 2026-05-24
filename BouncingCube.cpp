@@ -192,7 +192,6 @@ void BouncingCube::Draw(){
 	model = glm::scale(model, scale);
 
 
-	shader->use();
 
 	for (UD* child : children) {
 		child->Draw();

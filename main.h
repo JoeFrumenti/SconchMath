@@ -48,6 +48,7 @@ void renderLoop() {
             
             UDMan.updateUDs();
             cm.checkCollision2D();
+            ShaderCollection::getInstance().getShader("Model")->use();
             UDMan.drawUDs();
             UDMan.drawText();
 
