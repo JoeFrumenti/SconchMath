@@ -59,6 +59,31 @@ void Block::spawnCube() {
 }
 
 
+
+
+
+bool Block::isCollide(glm::vec3 ball, float w, float h) {
+
+    return false;
+}
+
+glm::vec3 Block::getCollisionPoint(BouncingCube* ball) {
+    
+
+    return glm::vec3(0);
+}
+
+
+glm::vec3 Block::getBounceDirection(glm::vec3 colPoint, float w, float h) {
+
+
+    return glm::vec3(0);
+}
+
+
+
+
+
 void Block::Collide(Collision col) {
 	for (auto& tag : col.obj->getTags()) {
         if(tag == "bcube")

@@ -29,4 +29,6 @@ public:
 	void setIron();
 	glm::vec3 getCollisionPoint(BouncingCube* ball);
 	glm::vec3 getBounceDirection(glm::vec3 colPoint, float w, float h);
+
+	bool isCollide(glm::vec3 ball, float w, float h);
 };
