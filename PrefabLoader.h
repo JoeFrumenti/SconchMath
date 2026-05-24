@@ -18,6 +18,7 @@
 #include "ModelCache.h"
 #include "Paddle.h"
 #include "LevelBuilder.h"
+#include "Powerup.h"
 
 class PrefabLoader {
 private:

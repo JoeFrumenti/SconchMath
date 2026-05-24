@@ -18,6 +18,8 @@
 
 #include "ModelCache.h"
 
+#include "BallContainer.h"
+
 struct PlayerStats {
 	std::string winSound;
 	std::string name;

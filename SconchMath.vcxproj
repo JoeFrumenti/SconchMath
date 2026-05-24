@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BallContainer.cpp" />
     <ClCompile Include="BasicModel.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockGrid.cpp" />
@@ -47,6 +48,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OpenGL\glManager.cpp" />
     <ClCompile Include="OpenGL\texManager.cpp" />
+    <ClCompile Include="Powerup.cpp" />
     <ClCompile Include="PrefabLoader.cpp" />
     <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="ShaderCollection.cpp" />
@@ -72,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Shaders\shader.h" />
+    <ClInclude Include="BallContainer.h" />
     <ClInclude Include="BasicModel.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockGrid.h" />
@@ -98,6 +101,7 @@
     <ClInclude Include="Player1.h" />
     <ClInclude Include="Player2.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Powerup.h" />
     <ClInclude Include="PrefabLoader.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="SceneLoader.h" />

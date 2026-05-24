@@ -4,6 +4,7 @@
 #include "ShaderCollection.h"
 #include "BouncingCube.h"
 #include "InputManager.h"
+#include "BallContainer.h"
 class Paddle : public UD {
 private:
 	InputManager input = InputManager::getInstance();

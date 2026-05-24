@@ -20,6 +20,7 @@ BouncingCube::BouncingCube(std::string path) {
 
 	scale = glm::vec3(width);
 	cm.addObject(this);
+	BallContainer::getInstance().addBall(this);
 }
 
 void BouncingCube::setScale(glm::vec3 v) {

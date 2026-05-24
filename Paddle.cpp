@@ -60,5 +60,12 @@ void Paddle::Collide(Collision col) {
 			}
 
 		}
+		else if (tag == "powerup") {
+			
+			BallContainer::getInstance().multiplyBalls(2);
+			UDManager::getInstance().removeObject(col.obj->getId());
+			CollisionManager::getInstance().removeObject(col.obj->getId());
+			
+		}
 	}
 }

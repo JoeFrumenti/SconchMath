@@ -180,6 +180,12 @@
     <ClCompile Include="LevelBuilder.cpp">
       <Filter>Source Files\Entities\Loaders</Filter>
     </ClCompile>
+    <ClCompile Include="Powerup.cpp">
+      <Filter>Source Files\Entities\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="BallContainer.cpp">
+      <Filter>Source Files\Entities\Loaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\Shaders\shader.vs">
@@ -330,6 +336,12 @@
     </ClInclude>
     <ClInclude Include="LevelBuilder.h">
       <Filter>Source Files\Entities\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Powerup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BallContainer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
