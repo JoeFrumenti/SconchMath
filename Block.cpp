@@ -185,13 +185,23 @@ void Block::Collide(Collision col) {
                 
 
                 if (--hp >= 0) {
-                    color -= glm::vec4(.3f, .3f, .3f, .0f);
+                    color -= glm::vec4(.5f, .5f, .5f, .0f);
 
                 }
                 else if (hp == -1) {
                     grid->removeBlock(cell.x, cell.y);
-                    Powerup* pUp = new Powerup(1);
-                    pUp->translate(pos);
+                    if (!spawned) {
+                        spawned = true;
+                        Powerup* pUp = new Powerup(1);
+                        pUp->translate(pos);
+                    }
+                    else {
+                        if (rand() % 3 == 0) {
+                            Powerup* pUp = new Powerup(1);
+                            pUp->translate(pos);
+                        }
+                    }
+
 
                 }
             }

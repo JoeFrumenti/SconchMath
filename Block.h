@@ -13,10 +13,12 @@ private:
 	glm::mat4 model;
 	Model* ourModel;
 	Shader* shader;
-	int hp = 2;
+	int hp = 1;
 	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f,1.0f);
 	BlockGrid* grid;
 	glm::vec2 cell;
+
+	float spawned = false;
 
 public:
 	Block(BlockGrid*);

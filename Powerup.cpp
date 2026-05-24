@@ -15,6 +15,7 @@ void Powerup::Draw() {
 	mMatrix = glm::mat4(1.0f);
 	mMatrix = glm::translate(mMatrix, pos);
 	mMatrix = glm::rotate(mMatrix, 3.14159265358979f / 2, glm::vec3(1.0f, .0f, .0f));
+	mMatrix = glm::rotate(mMatrix, myTimer, glm::vec3(.0f, .0f, 1.0f));
 	mMatrix = glm::scale(mMatrix, glm::vec3(0.5f));
 
 
@@ -27,4 +28,5 @@ void Powerup::Draw() {
 
 void Powerup::Update() {
 	pos.y -= .1f;
+	myTimer += MyTimer::getInstance().getDeltaTime();
 }
