@@ -135,25 +135,50 @@ void Block::Collide(Collision col) {
             float overlapX = (cube->getWidth() + width) - std::abs(cube->getPos().x - pos.x);
             float overlapY = (cube->getHeight() + height) - std::abs(cube->getPos().y - pos.y);
 
+            glm::vec3 cubePos = cube->getPos();
+            glm::vec3 cubeVel = cube->getVelocity();
+            
+
             if (overlapX < overlapY)
             {
                 // Shallower penetration on X — hit a left or right face
-                float newVelX = (cube->getPos().x < pos.x) ? -std::abs(cube->getVelocity().x)
-                    : std::abs(cube->getVelocity().x);
-                cube->setVelocity(glm::vec3(newVelX, cube->getVelocity().y,0));
+                float newVelX = cube->getVelocity().x;
+                float depenetration = 0;
+                
 
-                float depenetration = (cube->getPos().x < pos.x) ? -overlapX : overlapX;
-                cube->setPos(glm::vec3(cube->getPos().x + depenetration, cube->getPos().y,0));
+                if ((cubePos.x < pos.x) && !grid->isLeft(cell.x,cell.y))
+                {
+                    newVelX = -std::abs(cubeVel.x);  // push left
+                    depenetration = -overlapX;
+                }
+                else if(!grid->isRight(cell.x,cell.y))
+                {
+                    newVelX = std::abs(cubeVel.x);   // push right
+                    depenetration = overlapX;
+                }
+
+                cube->setVelocity(glm::vec3(newVelX, cubeVel.y, 0));
+                cube->setPos(glm::vec3(cubePos.x + depenetration, cubePos.y, 0));
             }
             else
             {
                 // Shallower penetration on Y — hit a top or bottom face
-                float newVelY = (cube->getPos().y < pos.y) ? -std::abs(cube->getVelocity().y)
-                    : std::abs(cube->getVelocity().y);
-                cube->setVelocity(glm::vec3(cube->getVelocity().x, newVelY,0));
+                float newVelY = cube->getVelocity().y;
+                float depenetration = 0;
 
-                float depenetration = (cube->getPos().y < pos.y) ? -overlapY : overlapY;
-                cube->setPos(glm::vec3(cube->getPos().x, cube->getPos().y + depenetration,0));
+                if ((cubePos.y < pos.y) && !grid->isBelow(cell.x, cell.y))
+                {
+                    newVelY = -std::abs(cubeVel.y);  // push down
+                    depenetration = -overlapY;
+                }
+                else if(!grid->isAbove(cell.x,cell.y))
+                {
+                    newVelY = std::abs(cubeVel.y);   // push up
+                    depenetration = overlapY;
+                }
+
+                cube->setVelocity(glm::vec3(cubeVel.x, newVelY, 0));
+                cube->setPos(glm::vec3(cubePos.x, cubePos.y + depenetration, 0));
             }
                 
                 
