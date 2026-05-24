@@ -134,6 +134,8 @@ void BouncingCube::stayInBounds() {
 		pos.y += velocity.y;
 	}
 	if (pos.y <= -12) {
+
+
 		UDManager::getInstance().queueRemoval(ID);
 		CollisionManager::getInstance().removeObject(ID);
 		BallContainer::getInstance().removeBall(this);
@@ -218,15 +220,17 @@ float randomFloaty(float min, float max) {
 }
 
 void BouncingCube::spawnClone() {
+	if(BallContainer::getInstance().getBallSize() <= 400)
+	{
+		BouncingCube* cubey = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
+		cubey->setScale(glm::vec3(0.2f));
+		cubey->addTag("bcube");
+		cubey->translate(pos + glm::vec3(0, 0.2, 0));
+		cubey->setVelocity(glm::normalize(glm::vec3(1.0f, 1.0f, 0.0f)) * glm::vec3(0.2f));
+		cubey->setRotationOffset(randomFloaty(-1.0f, 1.0f));
 
-	BouncingCube* cubey = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
-	cubey->setScale(glm::vec3(0.2f));
-	cubey->addTag("bcube");
-	cubey->translate(pos + glm::vec3(0,0.2,0));
-	cubey->setVelocity(glm::normalize(glm::vec3(1.0f,1.0f, 0.0f)) * glm::vec3(0.2f));
-	cubey->setRotationOffset(randomFloaty(-1.0f, 1.0f));
-
-	UDManager::getInstance().addUD(cubey);
+		UDManager::getInstance().addUD(cubey);
+	}
 }
 
 void BouncingCube::freeze(float freezeTime) {

@@ -23,7 +23,6 @@ void SceneLoader::loadChaos() {
     bg->rotate(3.14159265358979f, glm::vec3(.0f, .0f, 1.0f));
     UDMan.addUD(bg);
 
-    Powerup* pUp = new Powerup(1);
 
 
     LevelBuilder* levelBuilder = new LevelBuilder();

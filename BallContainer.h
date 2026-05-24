@@ -13,6 +13,7 @@ public:
 
 	void multiplyBalls(int mult);
 	void removeBall(BouncingCube* ball);
+	int getBallSize() { return balls.size(); }
 
 	static BallContainer& getInstance() {
 		static BallContainer instance;

@@ -11,6 +11,8 @@ private:
 	float blockSize = 0.5f;
 	glm::vec2 origin = glm::vec2(-6, 9);
 	glm::vec2 dimensions;
+
+	bool spawned = false;
 public:
 	BlockGrid(int m, int n);
 	void setBlock(int i, int j, Block* b);
@@ -39,5 +41,8 @@ public:
 
 	void setDimensions(glm::vec2 s) { dimensions = s; }
 	void setBlockSize(float s) { blockSize = s; }
+
+	bool getSpawned() { return spawned; }
+	void setSpawned(bool b) { spawned = b; }
 
 };

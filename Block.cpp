@@ -1,5 +1,8 @@
 #include "Block.h"
 #include "InputManager.h"
+static std::mt19937 rng(std::random_device{}());
+static std::uniform_int_distribution<int> dist(0, 4);
+
 Block::Block(BlockGrid* blockGrid) {
     velocity = glm::vec3(-0.25f, -0.35f, 0.0f);
     grid = blockGrid;
@@ -190,16 +193,22 @@ void Block::Collide(Collision col) {
                 }
                 else if (hp == -1) {
                     grid->removeBlock(cell.x, cell.y);
-                    if (!spawned) {
-                        spawned = true;
+                    if (!grid->getSpawned()) {
+                        grid->setSpawned(true);
                         Powerup* pUp = new Powerup(1);
                         pUp->translate(pos);
                     }
                     else {
-                        if (rand() % 3 == 0) {
+                        static std::mt19937 rng(
+                            std::chrono::steady_clock::now().time_since_epoch().count()
+                        );
+                        static std::uniform_int_distribution<int> dist(0, 2);
+
+                        if (dist(rng) == 0) {
                             Powerup* pUp = new Powerup(1);
                             pUp->translate(pos);
                         }
+                        
                     }
 
 
