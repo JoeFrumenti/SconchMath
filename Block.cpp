@@ -62,51 +62,101 @@ void Block::spawnCube() {
 
 
 
-bool Block::isCollide(glm::vec3 ball, float w, float h) {
-
-    return false;
+bool Block::isCollide(glm::vec3 ballPos, float w, float h) {
+    bool overlapX = std::abs(pos.x - ballPos.x) < (width + w);
+    bool overlapY = std::abs(pos.y - ballPos.y) < (height + h);
+    return (overlapX && overlapY);
 }
 
 glm::vec3 Block::getCollisionPoint(BouncingCube* ball) {
-    
+    glm::vec3 safePos = ball->getPos() - ball->getVelocity(); // last frame's position
+    glm::vec3 unsafePos = ball->getPos();
 
-    return glm::vec3(0);
+    for (int i = 0; i < 10; i++) { 
+        glm::vec3 mid = (safePos + unsafePos) / 2.0f;
+        if (isCollide(mid, ball->getWidth(), ball->getHeight())) {
+            unsafePos = mid;
+        }
+        else {
+            safePos = mid;
+        }
+    }
+    ball->setPos(safePos);
+    return safePos;
 }
 
+glm::vec3 Block::getBounceDirection(glm::vec3 colPoint, float w, float h, glm::vec3 velocity) {
+    float overlapX = (width + w) - std::abs(colPoint.x - pos.x);
+    float overlapY = (height + h) - std::abs(colPoint.y - pos.y);
 
-glm::vec3 Block::getBounceDirection(glm::vec3 colPoint, float w, float h) {
+    bool blockedX = (velocity.x > 0 && grid->isRight(cell.x, cell.y)) ||
+        (velocity.x < 0 && grid->isLeft(cell.x, cell.y));
 
+    bool blockedY = (velocity.y > 0 && grid->isAbove(cell.x, cell.y)) ||
+        (velocity.y < 0 && grid->isBelow(cell.x, cell.y));
 
-    return glm::vec3(0);
+    // use velocity magnitude to weight which axis is more "perpendicular"
+    float absVx = std::abs(velocity.x);
+    float absVy = std::abs(velocity.y);
+
+    bool bounceX, bounceY;
+
+    if (absVy > absVx) {
+        // moving more vertically  primary hit is top/bottom face
+        bounceY = !blockedY;
+        bounceX = (overlapX < overlapY) && !blockedX;
+    }
+    else if (absVx > absVy) {
+        // moving more horizontally  primary hit is left/right face
+        bounceX = !blockedX;
+        bounceY = (overlapY < overlapX) && !blockedY;
+    }
+    else {
+        // diagonal, fall back to overlap
+        bounceX = (overlapX < overlapY) && !blockedX;
+        bounceY = (overlapY < overlapX) && !blockedY;
+    }
+
+    return glm::vec3(
+        bounceX ? -1 : 1,
+        bounceY ? -1 : 1,
+        1
+    );
 }
-
-
-
 
 
 void Block::Collide(Collision col) {
-	for (auto& tag : col.obj->getTags()) {
-        if(tag == "bcube")
+    for (auto& tag : col.obj->getTags()) {
+        if (tag == "bcube")
         {
-        SoundManager::getInstance().playSong("bounce");
+            SoundManager::getInstance().playSong("bounce");
             BouncingCube* cube = dynamic_cast<BouncingCube*>(col.obj);
-            if (!cube->getCollided()) {
-                cube->setCollided(true);
-                UD* ball = col.obj;
-                glm::vec3 ballPos = ball->getPos();
 
-                if ((ballPos.x < pos.x - width * 0.9 && !grid->isLeft(cell.x,cell.y))
-                    || (ballPos.x > pos.x + width * 0.9 && !grid->isRight(cell.x,cell.y))) {
-                    ball->setVelocity(ball->getVelocity() * glm::vec3(-1, 1, 1));
-                }
-                else if ((ballPos.y > pos.y + height * 0.85 && !grid->isAbove(cell.x,cell.y)) 
-                    || (ballPos.y < pos.y - height * 0.85 && !grid->isBelow(cell.x,cell.y))) {
-                    ball->setVelocity(ball->getVelocity() * glm::vec3(1, -1, 1));
-                }
-                else
-                    ball->setVelocity(ball->getVelocity() * glm::vec3(-1, -1, 1));
+            float overlapX = (cube->getWidth() + width) - std::abs(cube->getPos().x - pos.x);
+            float overlapY = (cube->getHeight() + height) - std::abs(cube->getPos().y - pos.y);
 
-                ball->translate(ball->getVelocity());
+            if (overlapX < overlapY)
+            {
+                // Shallower penetration on X — hit a left or right face
+                float newVelX = (cube->getPos().x < pos.x) ? -std::abs(cube->getVelocity().x)
+                    : std::abs(cube->getVelocity().x);
+                cube->setVelocity(glm::vec3(newVelX, cube->getVelocity().y,0));
+
+                float depenetration = (cube->getPos().x < pos.x) ? -overlapX : overlapX;
+                cube->setPos(glm::vec3(cube->getPos().x + depenetration, cube->getPos().y,0));
+            }
+            else
+            {
+                // Shallower penetration on Y — hit a top or bottom face
+                float newVelY = (cube->getPos().y < pos.y) ? -std::abs(cube->getVelocity().y)
+                    : std::abs(cube->getVelocity().y);
+                cube->setVelocity(glm::vec3(cube->getVelocity().x, newVelY,0));
+
+                float depenetration = (cube->getPos().y < pos.y) ? -overlapY : overlapY;
+                cube->setPos(glm::vec3(cube->getPos().x, cube->getPos().y + depenetration,0));
+            }
+                
+                
 
                 if (--hp >= 0) {
                     color -= glm::vec4(.3f, .3f, .3f, .0f);
@@ -116,9 +166,10 @@ void Block::Collide(Collision col) {
                     grid->removeBlock(cell.x, cell.y);
                     Powerup* pUp = new Powerup(1);
                     pUp->translate(pos);
+
                 }
-                
             }
         }
-	}
-}
+    }
+
+

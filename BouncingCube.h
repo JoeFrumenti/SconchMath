@@ -90,6 +90,7 @@ public:
 	void setCollided(bool b) {
 		hasCollided = true;
 	}
+	void setPos(glm::vec3 p) { pos = p; }
 	bool getCollided() {
 		return hasCollided;
 	}
