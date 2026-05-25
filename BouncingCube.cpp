@@ -14,19 +14,16 @@ BouncingCube::BouncingCube(std::string path) {
 	ourModel = ModelCache::getInstance().getModel("cube");
 	shader = ShaderCollection::getInstance().getShader("Model");
 	
-	width = .2f;
-	height = 0.2f;
 	stats.debuffTime = 1;
 
-	scale = glm::vec3(width);
 	cm.addObject(this);
 	BallContainer::getInstance().addBall(this);
 }
 
 void BouncingCube::setScale(glm::vec3 v) {
 	scale = v;
-	width = scale.x;
-	height = scale.y;
+	width = scale.x * 0.75;
+	height = scale.y * 0.75;
 }
 
 void BouncingCube::win() {
@@ -50,7 +47,7 @@ void BouncingCube::Collide(Collision col) {
 	for (auto& tag : col.obj->getTags())
 	{
 		
-		if (tag == "bcube")
+		/*if (tag == "bcube")
 		{
 			
 			UD* obj = col.obj;
@@ -78,7 +75,7 @@ void BouncingCube::Collide(Collision col) {
 
 			velocity = glm::normalize(velocity) * glm::vec3(speed);
 						
-		}
+		}*/
 	}
 }
 
@@ -220,13 +217,13 @@ float randomFloaty(float min, float max) {
 }
 
 void BouncingCube::spawnClone() {
-	if(BallContainer::getInstance().getBallSize() <= 400)
+	if(BallContainer::getInstance().getBallSize() <= 290)
 	{
 		BouncingCube* cubey = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
-		cubey->setScale(glm::vec3(0.2f));
+		cubey->setScale(scale);
 		cubey->addTag("bcube");
-		cubey->translate(pos + glm::vec3(0, 0.2, 0));
-		cubey->setVelocity(glm::normalize(glm::vec3(1.0f, 1.0f, 0.0f)) * glm::vec3(0.2f));
+		cubey->setVelocity(velocity * glm::vec3(-1));
+		cubey->setPos(pos - velocity);
 		cubey->setRotationOffset(randomFloaty(-1.0f, 1.0f));
 
 		UDManager::getInstance().addUD(cubey);

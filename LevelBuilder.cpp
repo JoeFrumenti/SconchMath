@@ -7,7 +7,7 @@ LevelBuilder::LevelBuilder() {
     UDManager::getInstance().addUD(this);
     ourModel = ModelCache::getInstance().getModel("block");
 
-    scale = glm::vec3(0.5f);
+    scale = glm::vec3(0.35f);
     grid->setDimensions(dimensions);
     grid->setBlockSize(scale.x);
     origin = grid->getOrigin();
@@ -16,6 +16,7 @@ LevelBuilder::LevelBuilder() {
 }
 
 void LevelBuilder::buildLevel(const std::string& filename) {
+    
     std::ifstream file(filename);
     std::string line;
 

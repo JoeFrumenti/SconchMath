@@ -4,12 +4,13 @@ void SceneLoader::loadChaos() {
     ModelCache::getInstance().addModel("cube", new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj"));
     ModelCache::getInstance().addModel("block", new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/brickBlock.obj"));
     ModelCache::getInstance().addModel("iron", new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/starCube.obj"));
+    ModelCache::getInstance().addModel("powerup", new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/powerup.obj"));
 
     PrefabLoader prefabLoader = PrefabLoader();
     UDManager& UDMan = UDManager::getInstance();
     BouncingCube* cube = new BouncingCube("C:/Users/joefr/source/repos/SconchMath/assets/Models/DiamondSphere.obj");
-    cube->setScale(glm::vec3(0.2f));
-    cube->translate(glm::vec3(0, -4, 0));
+    cube->setScale(glm::vec3(0.13f));
+    cube->translate(glm::vec3(0, -5, 0));
     cube->setVelocity(glm::vec3(0.1f, -0.25f, 0.0f));
     cube->addTag("bcube");
  

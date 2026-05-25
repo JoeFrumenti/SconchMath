@@ -134,56 +134,6 @@ void Block::Collide(Collision col) {
 
             cube->setVelocity(cube->getVelocity() * getBounceDirection(cube));
 
-
-            //float overlapX = (cube->getWidth() + width) - std::abs(cube->getPos().x - pos.x);
-            //float overlapY = (cube->getHeight() + height) - std::abs(cube->getPos().y - pos.y);
-
-            //glm::vec3 cubePos = cube->getPos();
-            //glm::vec3 cubeVel = cube->getVelocity();
-            //
-
-            //if (overlapX < overlapY)
-            //{
-            //    // Shallower penetration on X — hit a left or right face
-            //    float newVelX = cube->getVelocity().x;
-            //    float depenetration = 0;
-            //    
-
-            //    if ((cubePos.x < pos.x) && !grid->isLeft(cell.x,cell.y))
-            //    {
-            //        newVelX = -std::abs(cubeVel.x);  // push left
-            //        depenetration = -overlapX;
-            //    }
-            //    else if(!grid->isRight(cell.x,cell.y))
-            //    {
-            //        newVelX = std::abs(cubeVel.x);   // push right
-            //        depenetration = overlapX;
-            //    }
-
-            //    cube->setVelocity(glm::vec3(newVelX, cubeVel.y, 0));
-            //    cube->setPos(glm::vec3(cubePos.x + depenetration, cubePos.y, 0));
-            //}
-            //else
-            //{
-            //    // Shallower penetration on Y — hit a top or bottom face
-            //    float newVelY = cube->getVelocity().y;
-            //    float depenetration = 0;
-
-            //    if ((cubePos.y < pos.y) && !grid->isBelow(cell.x, cell.y))
-            //    {
-            //        newVelY = -std::abs(cubeVel.y);  // push down
-            //        depenetration = -overlapY;
-            //    }
-            //    else if(!grid->isAbove(cell.x,cell.y))
-            //    {
-            //        newVelY = std::abs(cubeVel.y);   // push up
-            //        depenetration = overlapY;
-            //    }
-
-            //    cube->setVelocity(glm::vec3(cubeVel.x, newVelY, 0));
-            //    cube->setPos(glm::vec3(cubePos.x, cubePos.y + depenetration, 0));
-            //}
-                
                 
 
                 if (--hp >= 0) {
@@ -203,9 +153,10 @@ void Block::Collide(Collision col) {
                         );
                         static std::uniform_int_distribution<int> dist(0, 2);
 
-                        if (dist(rng) == 0) {
+                        if ((dist(rng) == 0)  && BallContainer::getInstance().getBallSize() <= 300  && grid->getDoubles() < 8){
                             Powerup* pUp = new Powerup(1);
-                            pUp->translate(pos);
+                            pUp->translate(pos + glm::vec3(0,0,1));
+                            grid->addDouble();
                         }
                         
                     }

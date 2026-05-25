@@ -5,7 +5,7 @@ Paddle::Paddle() {
 	shader = ShaderCollection::getInstance().getShader("Model");
 
 	width = 1.9f;
-	height = .2f;
+	height = .35f;
 	CollisionManager::getInstance().addObject(this);
 }
 

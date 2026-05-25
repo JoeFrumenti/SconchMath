@@ -1,9 +1,11 @@
 #include "Powerup.h"
+#include "ModelCache.h"
 
 Powerup::Powerup(int type) {
 	tags.push_back("powerup");
-	ourModel = new Model("C:/Users/joefr/source/repos/SconchMath/assets/Models/powerup.obj");
+	ourModel = ModelCache::getInstance().getModel("powerup");
 	shader = ShaderCollection::getInstance().getShader("Model");
+	height = 0.5f;
 
 	this->type = type;
 
@@ -16,7 +18,7 @@ void Powerup::Draw() {
 	mMatrix = glm::translate(mMatrix, pos);
 	mMatrix = glm::rotate(mMatrix, 3.14159265358979f / 2, glm::vec3(1.0f, .0f, .0f));
 	mMatrix = glm::rotate(mMatrix, myTimer, glm::vec3(.0f, .0f, 1.0f));
-	mMatrix = glm::scale(mMatrix, glm::vec3(0.5f));
+	mMatrix = glm::scale(mMatrix, glm::vec3(0.25f));
 
 
 	shader->setMat4("model", mMatrix);

@@ -13,6 +13,8 @@ private:
 	glm::vec2 dimensions;
 
 	bool spawned = false;
+
+	int doubles = 0;
 public:
 	BlockGrid(int m, int n);
 	void setBlock(int i, int j, Block* b);
@@ -44,5 +46,8 @@ public:
 
 	bool getSpawned() { return spawned; }
 	void setSpawned(bool b) { spawned = b; }
+
+	void addDouble() { doubles++; }
+	int getDoubles() { return doubles; }
 
 };
